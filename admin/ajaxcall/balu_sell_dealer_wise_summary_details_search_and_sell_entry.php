@@ -686,7 +686,7 @@ use Mpdf\Language\ScriptToLanguage;
 
 <?php
     // $sql ="SELECT * FROM details_balu WHERE dealer_id='$dealerId' ";
-    $sql ="SELECT * FROM details_sell_balu ";
+    $sql ="SELECT * FROM details_sell_balu WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if ($result) {
         $rowcount=mysqli_num_rows($result);
