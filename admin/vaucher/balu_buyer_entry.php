@@ -259,7 +259,7 @@
               <th>Edit</th>
             </tr>
             <?php
-              $sql = "SELECT * FROM balu_buyers";
+              $sql = "SELECT * FROM balu_buyers  WHERE project_name_id = '$project_name_id'";
               $show = $db->select($sql);
               if ($show) {
                   while ($rows = $show->fetch_assoc()){
