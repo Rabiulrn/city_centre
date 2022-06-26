@@ -273,29 +273,7 @@ use Mpdf\Language\ScriptToLanguage;
 
     
     <div class="contorlAfterDealer">          
-    <div class="dateSearch">
-      <!-- <b>Search Date:</b>                   
-              <select class="selectpicker" data-style="btn-info" id="dateSearchList">
-                  <option value="alldates">All dates</option>
-                  <?php
-                  $sql = "SELECT DISTINCT dates FROM details WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id' ORDER BY dates ASC";
-                  $result = $db->select($sql);
-                  if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                      $dates = $row['dates'];
-                      $newDate = date("d-m-Y", strtotime($dates));
-                      // echo $newDate;
-                      if ($dates == '0000-00-00') {
-                      } else {
-                        echo '<option value="' . $newDate . '">' . $newDate . '</option>';
-                      }
-                    }
-                  } else {
-                    echo '<option value="">Not Found</option>';
-                  }
-                  ?>
-              </select> -->
-    </div>
+ 
     <!-- <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
         <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
   </div>
@@ -410,7 +388,7 @@ use Mpdf\Language\ScriptToLanguage;
 	              <tr>
                 <td>
 	                      <?php
-	                        $sql = "SELECT customer_id, customer_name FROM customers_balu";
+	                        $sql = "SELECT customer_id, customer_name FROM customers_pathor";
 	                        $all_custmr_id = $db->select($sql);
 	                        echo '<select name="customer_id" id="customer_id" class="form-control" style="width: 140px;">';
 	                          echo '<option value="none">Select...</option>';
@@ -475,7 +453,7 @@ use Mpdf\Language\ScriptToLanguage;
                       <td>
                       <?php
                         // var parti_val = $('#car_rent_redeem').val();
-	                        $sql = "SELECT DISTINCT particulars FROM details_balu WHERE  particulars != ''";
+	                        $sql = "SELECT DISTINCT particulars FROM details_pathor WHERE  particulars != ''";
 	                        $all_particular = $db->select($sql);
 	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
 	                          echo '<option value="none">Select...</option>';
@@ -502,7 +480,7 @@ use Mpdf\Language\ScriptToLanguage;
                         console.log(myElement2);
      </script>'
 ;
-	                        $sql = "SELECT DISTINCT information FROM details_balu WHERE information != ''";
+	                        $sql = "SELECT DISTINCT information FROM details_pathor WHERE information != ''";
 	                        $all_particular = $db->select($sql);
 	                        echo '<select name="information" id="information" class="form-control" style="width: 140px;" required>';
 	                          echo '<option value="none">Select...</option>';
@@ -520,7 +498,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                    </td>
                       <td>
 	                      <?php
-	                        $sql = "SELECT DISTINCT partculars FROM details_balu WHERE partculars != ''";
+	                        $sql = "SELECT DISTINCT partculars FROM details_pathor WHERE partculars != ''";
 	                        $all_partcular = $db->select($sql);
 	                        echo '<select name="partculars" id="partculars" class="form-control" style="width: 140px;">';
 	                          echo '<option value="none">Select...</option>';
@@ -666,7 +644,7 @@ use Mpdf\Language\ScriptToLanguage;
 
 <?php
     // $sql ="SELECT * FROM details_balu WHERE dealer_id='$dealerId' ";
-    $sql ="SELECT * FROM details_sell_balu WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
+    $sql ="SELECT * FROM details_sell_pathor WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if ($result) {
         $rowcount=mysqli_num_rows($result);

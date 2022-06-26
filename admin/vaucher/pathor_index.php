@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>পাথর ও বালু হিসাব</title>
+	<title>পাথর হিসাব</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
@@ -111,7 +111,7 @@
 	  						if($_SESSION['rod_kroy_hisab'] == 'yes'){
         						?>
 			  					<div class="pannel_con" >
-				  					<a href="../vaucher/balu_details_entry.php">
+				  					<a href="../vaucher/pathor_details_entry.php">
 				  						<h5 class="pannel_head" style="background-color: #D2007C;">
 				  							<img src="../img/logo/add1_square.png" alt="logo" class="img_pannel">
 				  							ক্রয় হিসাব
@@ -130,7 +130,7 @@
 				  			if($_SESSION['rod_bikroy_hisab'] == 'yes'){
 				  				?>
 			  					<div class="pannel_con" >
-				  					<a href="../vaucher/balu_details_sell_entry.php">
+				  					<a href="../vaucher/pathor_details_sell_entry.php">
 				  						<h5 class="pannel_head" style="background-color: #DB0101;">
 				  							<img src="../img/logo/add2_square.png" alt="logo" class="img_pannel">
 											  বিক্রয় হিসাব
@@ -149,7 +149,7 @@
 				  			if($_SESSION['rod_category'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
-				  					<a href="../vaucher/balu_hisab_entry.php">
+				  					<a href="../vaucher/pathor_hisab_entry.php">
 				  						<h5 class="pannel_head" style="background-color: #1B9901;">
 				  							<img src="../img/logo/add3_square.png" alt="logo" class="img_pannel">
 				  							ক্যাটাগরি এন্ট্রি
@@ -168,7 +168,7 @@
 				  			if($_SESSION['rod_dealer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
-				  					<a href="../vaucher/balu_dealer_entry.php">
+				  					<a href="../vaucher/pathor_dealer_entry.php">
 				  						<h5 class="pannel_head" style="background-color: #0096FF;">
 				  							<img src="../img/logo/add4_square.png" alt="logo" class="img_pannel">
 				  							ডিলার এন্ট্রি
@@ -187,7 +187,7 @@
 				  			if($_SESSION['rod_customer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
-				  					<a href="../vaucher/balu_stocks.php">
+				  					<a href="../vaucher/pathor_stocks.php">
 				  						<h5 class="pannel_head" style="background-color: #00D089;">
 				  							<img src="../img/logo/add5_square.png" alt="logo" class="img_pannel">
 				  							স্টক তথ্য
@@ -206,7 +206,7 @@
 				  			if($_SESSION['rod_buyer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
-				  					<a href="../vaucher/balu_buyer_entry.php">
+				  					<a href="../vaucher/pathor_buyer_entry.php">
 				  						<h5 class="pannel_head" style="background-color: #FF5620;">
 				  							<img src="../img/logo/add6_square.png" alt="logo" class="img_pannel">
 				  							বায়ার এন্ট্রি
@@ -226,7 +226,7 @@
 							  if($_SESSION['rod_buyer'] == 'yes'){
 								?>
 								<div class="pannel_con" >
-									<a href="../vaucher/balu_customer_entry.php">
+									<a href="../vaucher/pathor_customer_entry.php">
 										<h5 class="pannel_head" style="background-color:#00D089;">
 											<img src="../img/logo/add6_square.png" alt="logo" class="img_pannel">
 											কাস্টমার এন্ট্রি

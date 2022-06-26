@@ -10,11 +10,11 @@
 	$edit_data_permission   = $_SESSION['edit_data'];
 	$delete_data_permission = $_SESSION['delete_data'];
 
-	$_SESSION['pageName'] = 'balu_customer_entry';	
+	$_SESSION['pageName'] = 'pathor_customer_entry';	
 	$sucMsg = '';
 
 
-  	$sql = "SELECT customer_id FROM customers_balu ORDER BY id DESC LIMIT 1";
+  	$sql = "SELECT customer_id FROM customers_pathor ORDER BY id DESC LIMIT 1";
 	$customersId = $db->select($sql);
 	if($customersId->num_rows > 0){
 		$row = $customersId->fetch_assoc();
@@ -37,10 +37,10 @@
 		$buying_type	= trim($_POST['buying_type']);
 		if($submitBtn_value == 'Save'){
 			$customer_id	= $newId; //disabled not work it,  $_POST['customer_id']
-			$sql="INSERT INTO customers_balu (customer_id, customer_name, address, mobile, buying_type, project_name_id) VALUES ('$customer_id', '$customer_name', '$address', '$mobile', '$buying_type', '$project_name_id')";
+			$sql="INSERT INTO customers_pathor (customer_id, customer_name, address, mobile, buying_type, project_name_id) VALUES ('$customer_id', '$customer_name', '$address', '$mobile', '$buying_type', '$project_name_id')";
 
 			if ($db->select($sql) === TRUE) {
-				$sql = "SELECT customer_id FROM customers_balu ORDER BY id DESC LIMIT 1";
+				$sql = "SELECT customer_id FROM customers_pathor ORDER BY id DESC LIMIT 1";
 				$customersId = $db->select($sql);
 				if($customersId->num_rows > 0){
 					$row = $customersId->fetch_assoc();
@@ -56,7 +56,7 @@
 			}	
 		} else{
 			$customer_id = $_POST['customer_id'];
-			$sql="UPDATE customers_balu SET customer_name = '$customer_name', address = '$address', mobile = '$mobile', buying_type = '$buying_type' WHERE customer_id = '$customer_id'";
+			$sql="UPDATE customers_pathor SET customer_name = '$customer_name', address = '$address', mobile = '$mobile', buying_type = '$buying_type' WHERE customer_id = '$customer_id'";
 
 			if ($db->update($sql) === TRUE) {
 			  $sucMsg = "Customer Updated Successfully";
@@ -70,7 +70,7 @@
 
 	if(isset($_GET['remove_id'])){
 	  	$customer_delete = $_GET['remove_id'];
-		$sql = "DELETE FROM customers_balu WHERE id = '$customer_delete'";
+		$sql = "DELETE FROM customers_pathor WHERE id = '$customer_delete'";
 		if ($db->select($sql) === TRUE) {
 			$sucDel = "Customer delete successfully.";
 		} else {
@@ -85,7 +85,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>বালু কাষ্টমার এনট্রি</title>
+	<title>পাথর কাষ্টমার এনট্রি</title>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -177,7 +177,7 @@
 
 		<div class="bar_con">
   		<div class="left_side_bar">  			
-	  		<?php require '../others_page/left_menu_bar_balu_hisab.php'; ?>
+	  		<?php require '../others_page/left_menu_bar_pathor_hisab.php'; ?>
 	  	</div>
 	  	<div class="main_bar">
 	  		<?php
@@ -189,7 +189,7 @@
                 ?>
                     <div class="project_heading">      
                         <h2 class="headingOfAllProject">
-                            <?php echo $rows['heading']; ?> <span class="protidinHisab">বালু কাস্টমার এন্ট্রি</span>
+                            <?php echo $rows['heading']; ?> <span class="protidinHisab">পাথর কাস্টমার এন্ট্রি</span>
                             <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; ?></span> -->
                             
                         </h2>
@@ -262,7 +262,7 @@
 						<th>Edit</th>
 					</tr>
 					<?php
-						$sql = "SELECT * FROM customers_balu";
+						$sql = "SELECT * FROM customers_pathor";
 						$show = $db->select($sql);
 						if ($show) 
 						{
@@ -450,10 +450,10 @@
 	                                buttons: {
 	                                    Yes: function () {
 	                                        $(this).dialog("close");
-	                                        $.get("balu_customer_entry.php?remove_id="+remove_id, function(data, status){
+	                                        $.get("pathor_customer_entry.php?remove_id="+remove_id, function(data, status){
 	                                          console.log(status);
 	                                          if(status == 'success'){
-	                                            window.location.href = 'balu_customer_entry.php';
+	                                            window.location.href = 'pathor_customer_entry.php';
 	                                          }
 	                                        });
 	                                    },

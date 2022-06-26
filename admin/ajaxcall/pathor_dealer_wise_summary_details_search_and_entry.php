@@ -270,29 +270,7 @@ $sucMsg = "";
 
 
   <div class="contorlAfterDealer">
-    <div class="dateSearch">
-      <!-- <b>Search Date:</b>                   
-              <select class="selectpicker" data-style="btn-info" id="dateSearchList">
-                  <option value="alldates">All dates</option>
-                  <?php
-                  $sql = "SELECT DISTINCT dates FROM details WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id' ORDER BY dates ASC";
-                  $result = $db->select($sql);
-                  if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                      $dates = $row['dates'];
-                      $newDate = date("d-m-Y", strtotime($dates));
-                      // echo $newDate;
-                      if ($dates == '0000-00-00') {
-                      } else {
-                        echo '<option value="' . $newDate . '">' . $newDate . '</option>';
-                      }
-                    }
-                  } else {
-                    echo '<option value="">Not Found</option>';
-                  }
-                  ?>
-              </select> -->
-    </div>
+   
     <!-- <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
         <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
   </div>
@@ -403,7 +381,7 @@ $sucMsg = "";
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT buyer_id FROM balu_buyers";
+            $sql = "SELECT buyer_id FROM pathor_buyers";
             $all_custmr_id = $db->select($sql);
             echo '<select name="buyer_id" id="buyer_id" class="form-control-balu" style="width: 140px;">';
             echo '<option value="none">Select...</option>';
@@ -432,7 +410,7 @@ $sucMsg = "";
           <td>
                       <?php
                         // var parti_val = $('#car_rent_redeem').val();
-	                        $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
+	                        $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''";
 	                        $all_particular = $db->select($sql);
 	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
 	                          echo '<option value="none">Select...</option>';
@@ -602,7 +580,7 @@ $sucMsg = "";
 
 
 <?php
-$sql = "SELECT * FROM details_balu WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT * FROM details_pathor WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result) {
   $rowcount = mysqli_num_rows($result);

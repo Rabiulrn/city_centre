@@ -17,7 +17,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 <html>
 
 <head>
-    <title>পাথর ও বালু ক্রয় হিসাব </title>
+    <title>বালু ক্রয় হিসাব </title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

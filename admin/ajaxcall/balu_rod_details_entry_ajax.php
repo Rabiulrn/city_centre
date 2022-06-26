@@ -72,7 +72,7 @@
            (`buyer_id`,`dealer_id`,`type`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `voucher_no`, `address`, `motor_no`, `motor_sl`, `delivery_date`, `dates`, `partculars`, `particulars`, `debit`, `ton & kg`, `length`, `width`, `height`, `shifty`, `inchi (-)_minus`, `cft (-)_dropped Out`, `inchi (+)_added`, `points ( - )_dropped out`, `shift`, `total_shift`, `paras`, `discount`, `credit`,`balance`, `cemeats_paras`, `ton`, `total_shifts`, `tons`, `bank_name`, `fee`,`project_name_id`) 
     VALUES ('$buyer_id', '$dealer_id','$type', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$voucher_no', '$address', '$motor_no', '$motor_sl', '$delivery_date', '$dates', '$partculars', '$particulars', '$debit', '$ton_kg', '$length', '$width', '$height ', '$shifty', '$inchi_minus','$cft_dropped_out', '$inchi_added', '$points_dropped_out', '$shift', '$total_shift', '$paras', '$discount', '$credit','$balance', '$cemeats_paras', '$ton', '$total_shifts', '$tons', '$bank_name', '$fee','$project_name_id')";
 
-$sql2 = "INSERT INTO `stocks_balu` (`stock_id`, `partculars`, `particulars`, `ton`) VALUES ('','$partculars', '$particulars', '$ton')";
+$sql2 = "INSERT INTO `stocks_balu` (`stock_id`, `partculars`, `particulars`, `ton`,`project_name_id`) VALUES ('','$partculars', '$particulars', '$ton','$project_name_id')";
 
     $result = $db->insert($sql);
     if ($result) 

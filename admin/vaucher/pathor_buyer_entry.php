@@ -10,11 +10,11 @@
     $edit_data_permission   = $_SESSION['edit_data'];
     $delete_data_permission = $_SESSION['delete_data'];
 
-    $_SESSION['pageName'] = 'balu_buyer_entry';   
+    $_SESSION['pageName'] = 'pathor_buyer_entry';   
 
     $sucMsg = '';
     $submitBtn_value ='';
-    $sql = "SELECT buyer_id FROM balu_buyers ORDER BY id DESC LIMIT 1";
+    $sql = "SELECT buyer_id FROM pathor_buyers ORDER BY id DESC LIMIT 1";
     $customersId = $db->select($sql);
     if($customersId->num_rows > 0){
         $row = $customersId->fetch_assoc();
@@ -40,10 +40,10 @@
         if($submitBtn_value === 'Save'){
             $buyer_id     = $newId;
         
-            $sql="INSERT INTO balu_buyers (buyer_id, buyer_name, address, mobile, buyer_type, project_name_id) VALUES ('$buyer_id','$buyer_name', '$address', '$mobile', '$buyer_type', '$project_name_id')";
+            $sql="INSERT INTO pathor_buyers (buyer_id, buyer_name, address, mobile, buyer_type, project_name_id) VALUES ('$buyer_id','$buyer_name', '$address', '$mobile', '$buyer_type', '$project_name_id')";
 
             if ($db->select($sql) === TRUE) {
-              $sql = "SELECT buyer_id FROM balu_buyers ORDER BY id DESC LIMIT 1";
+              $sql = "SELECT buyer_id FROM pathor_buyers ORDER BY id DESC LIMIT 1";
               $customersId = $db->select($sql);
               if($customersId->num_rows > 0){
                 $row = $customersId->fetch_assoc();
@@ -63,7 +63,7 @@
             // echo '</pre>';
             $buyer_id     = $_POST['buyer_id']; 
             // var_dump($buyer_id);
-            $sql="UPDATE balu_buyers SET buyer_name = '$buyer_name', address = '$address', mobile = '$mobile' , buyer_type = '$buyer_type' WHERE buyer_id = '$buyer_id'";
+            $sql="UPDATE pathor_buyers SET buyer_name = '$buyer_name', address = '$address', mobile = '$mobile' , buyer_type = '$buyer_type' WHERE buyer_id = '$buyer_id'";
 
             if ($db->update($sql) === TRUE) {
                 $sucMsg = "Buyer Updated Successfully";
@@ -78,7 +78,7 @@
     if(isset($_GET['remove_id'])){
         $delete_buyer = $_GET['remove_id'];
 
-        $sql = "DELETE FROM balu_buyers WHERE id = '$delete_buyer'";
+        $sql = "DELETE FROM pathor_buyers WHERE id = '$delete_buyer'";
         if ($db->select($sql) === TRUE) {
           $sucDel = "Buyer delete successfully.";
         } else {
@@ -94,7 +94,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> বালু বায়ার এন্ট্রি</title>
+  <title> পাথর বায়ার এন্ট্রি</title>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -189,7 +189,7 @@
 
     <div class="bar_con">
         <div class="left_side_bar">             
-            <?php require '../others_page/left_menu_bar_balu_hisab.php'; ?>
+            <?php require '../others_page/left_menu_bar_pathor_hisab.php'; ?>
         </div>
         <div class="main_bar">
             <?php
@@ -259,7 +259,7 @@
               <th>Edit</th>
             </tr>
             <?php
-              $sql = "SELECT * FROM balu_buyers  WHERE project_name_id = '$project_name_id'";
+              $sql = "SELECT * FROM pathor_buyers  WHERE project_name_id = '$project_name_id'";
               $show = $db->select($sql);
               if ($show) {
                   while ($rows = $show->fetch_assoc()){
@@ -490,10 +490,10 @@
                                     buttons: {
                                         Yes: function () {
                                             $(this).dialog("close");
-                                            $.get("balu_buyer_entry.php?remove_id="+remove_id, function(data, status){
+                                            $.get("pathor_buyer_entry.php?remove_id="+remove_id, function(data, status){
                                               console.log(status);
                                               if(status == 'success'){
-                                                window.location.href = 'balu_buyer_entry.php';
+                                                window.location.href = 'pathor_buyer_entry.php';
                                               }
                                             });
                                         },

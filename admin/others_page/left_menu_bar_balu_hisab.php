@@ -16,7 +16,7 @@
         }
         if($_SESSION['rod_bikroy_hisab'] == 'yes'){
             ?>         
-            <a class="mnu_left" <?php if($_SESSION['pageName'] == 'balu_bikroy_hisab'){echo 'mnu_active';}?>" href="../vaucher/balu_details_sell_entry.php">
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'balu_bikroy_hisab'){echo 'mnu_active';}?>" href="../vaucher/balu_details_sell_entry.php">
                 <img src="../img/logo/add2.png" alt="logo" class="img_mnu">
                 <!-- বিক্রয় হিসাবের দৈনিক এন্ট্রি -->
                 বিক্রয় হিসাব

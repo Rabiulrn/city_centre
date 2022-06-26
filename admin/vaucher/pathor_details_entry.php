@@ -17,7 +17,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 <html>
 
 <head>
-    <title>পাথর ও বালু ক্রয় হিসাব </title>
+    <title>পাথর ক্রয় হিসাব </title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -537,7 +537,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                     <tr>
                         <td><b>Select a Dealer Name</b></td>
                         <td><?php
-                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM balu_dealer";
+                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM pathor_dealer";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
                             echo '<option value="">Select...</option>';
@@ -574,7 +574,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>Buyer ID(বায়ার আই ডি)</td>
                                 <td>
                                     <?php
-                                    $sql = "SELECT buyer_id FROM balu_buyers";
+                                    $sql = "SELECT buyer_id FROM pathor_buyers";
                                     $all_custmr_id = $db->select($sql);
                                     echo '<select name="buyer_id" id="buyer_id_popup" class="form-control">';
                                     echo '<option value="none">Select...</option>';
@@ -593,7 +593,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
 
                           
-                            <!-- <input type="hidden" name="balu_details_id" id="balu_details_id"> -->
+                            <!-- <input type="hidden" name="pathor_details_id" id="pathor_details_id"> -->
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
                                 <td>
@@ -690,30 +690,30 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>Particulars (বিবরণ)</td>
                                 <td>
                                     <?php
-                                    $balu_catgry_sql = "SELECT * FROM balu_category";
+                                    $balu_catgry_sql = "SELECT * FROM pathor_category";
                                     $rslt_balu_catgry = $db->select($balu_catgry_sql);
 
                                     echo '<select name="particulars" id="particulars_popup" class="form-control">';
                                     echo '<option value="">Select...</option>';
-                                    if ($rslt_balu_catgry->num_rows > 0) {
-                                        while ($row = $rslt_balu_catgry->fetch_assoc()) {
-                                            $balu_category_id = $row['id'];
-                                            $balu_category_name = $row['category_name'];
+                                    if ($rslt_pathor_catgry->num_rows > 0) {
+                                        while ($row = $rslt_pathor_catgry->fetch_assoc()) {
+                                            $pathor_category_id = $row['id'];
+                                            $pathor_category_name = $row['category_name'];
 
-                                            echo '<option style="font-weight: bold;">' . $balu_category_name . '</option>';
+                                            echo '<option style="font-weight: bold;">' . $pathor_category_name . '</option>';
 
-                                            $balu_lbl_sql = "SELECT * FROM balu_and_other_label";
-                                            $rslt_balu_lbl = $db->select($balu_lbl_sql);
-                                            if ($rslt_balu_lbl->num_rows > 0) {
+                                            $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
+                                            $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
+                                            if ($rslt_pathor_lbl->num_rows > 0) {
 
-                                                while ($row2 = $rslt_balu_lbl->fetch_assoc()) {
+                                                while ($row2 = $rslt_pathor_lbl->fetch_assoc()) {
                                                     $raol_id = $row2['id'];
-                                                    $raol_balu_label = $row2['balu_label'];
-                                                    $raol_balu_category_id = $row2['balu_category_id'];
+                                                    $raol_pathor_label = $row2['pathor_label'];
+                                                    $raol_pathor_category_id = $row2['pathor_category_id'];
 
 
-                                                    if ($balu_category_id == $raol_balu_category_id) {
-                                                        echo "<option value='" . $raol_balu_label . "'>" . $raol_balu_label . "</option>";
+                                                    if ($pathor_category_id == $raol_pathor_category_id) {
+                                                        echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
                                                     }
                                                 }
                                             } else {
@@ -862,16 +862,16 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         <?php
-                            $sql = "SELECT id FROM details_balu";
+                            $sql = "SELECT id FROM details_pathor";
                             $id = $db->select($sql);
                             if ($id->num_rows > 0) {
                                 while ($row = $id->fetch_assoc()) {
                                     $id2 = $row['id'];
-                                   echo '<input type="hidden" name="balu_details_id" id="balu_details_id" value="' . $id2 . '">' ;
+                                   echo '<input type="hidden" name="pathor_details_id" id="pathor_details_id" value="' . $id2 . '">' ;
                                 }
                             } 
                             ?>
-                        <!-- <input type="hidden" name="balu_details_id" id="balu_details_id"> -->
+                        <!-- <input type="hidden" name="pathor_details_id" id="pathor_details_id"> -->
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
@@ -901,7 +901,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
     <script type="text/javascript">
         function dealerWiseSummaryDetailsSearchAndEntry(dlrId, restext = false) {
             $.ajax({
-                url: '../ajaxcall/balu_dealer_wise_summary_details_search_and_entry.php',
+                url: '../ajaxcall/pathor_dealer_wise_summary_details_search_and_entry.php',
                 type: 'post',
                 data: {
                     dealerId: dlrId,
@@ -1021,7 +1021,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
         function getDealerNameByDealerId(dlrIda) {
             $.ajax({
-                url: '../ajaxcall/balu_get_dealer_name_by_dealer_id.php',
+                url: '../ajaxcall/pathor_get_dealer_name_by_dealer_id.php',
                 type: 'post',
                 data: {
                     dealerId: dlrIda,
@@ -1067,7 +1067,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             });
             var pass = $("#matchPassword").val();
             $.ajax({
-                url: "../ajaxcall/balu_match_password_for_vaucher_credit.php",
+                url: "../ajaxcall/pathor_match_password_for_vaucher_credit.php",
                 type: "post",
                 data: {
                     pass: pass
@@ -1106,7 +1106,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                         },
                         buttons: {
                             Yes: function() {
-                                var urltxt = '../ajaxcall/balu_rod_del_entry_ajax.php';
+                                var urltxt = '../ajaxcall/pathor_rod_del_entry_ajax.php';
                                 $.ajax({
                                     url: urltxt,
                                     type: 'post',
@@ -1175,7 +1175,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
                 var formElement = $('#form_entry')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_rod_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_rod_details_entry_ajax.php';
 
             } else if (submit_type == 'insert_popup') {
                 var buyer_id = $('#buyer_id_popup').val();
@@ -1188,7 +1188,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_rod_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_rod_details_entry_ajax.php';
 
             } else {
                 ////Horizontal Edit er code
@@ -1215,7 +1215,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_rod_update_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_rod_update_entry_ajax.php';
 
             }
 
@@ -1285,7 +1285,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
     <script type="text/javascript">
         function edit_rod_details(rod_id) {
             $('.rodDetailsEnCon').hide();
-            var urltxt = '../ajaxcall/balu_rod_edit_entry_ajax.php';
+            var urltxt = '../ajaxcall/pathor_rod_edit_entry_ajax.php';
             $.ajax({
                 url: urltxt,
                 type: 'post',
@@ -1293,7 +1293,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                 // processData: false,
                 // contentType: false,
                 data: {
-                    'balu_details_id': rod_id
+                    'pathor_details_id': rod_id
                 },
                 success: function(res) {
                     console.log(res);
@@ -1641,7 +1641,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
     <script type="text/javascript">
         function getDataByDates(datestr, dealerId) {
             $.ajax({
-                url: '../ajaxcall/balu_rod_search_date_entry.php',
+                url: '../ajaxcall/pathor_rod_search_date_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,
@@ -1661,7 +1661,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
         function getSummaryByDates(datestr, dealerId) {
             $.ajax({
-                url: '../ajaxcall/balu_rod_search_date_wise_summary_entry.php',
+                url: '../ajaxcall/pathor_rod_search_date_wise_summary_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,
@@ -1782,7 +1782,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
         function gbbank_update(id, gbvalue) {
             $.ajax({
-                url: '../ajaxcall_save_update/balu_gb_bank_update.php',
+                url: '../ajaxcall_save_update/pathor_gb_bank_update.php',
                 type: 'post',
                 data: {
                     details_id: id,

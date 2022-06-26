@@ -6,7 +6,7 @@
     require '../config/config.php';
     require '../lib/database.php';
     $db = new Database();
-    $_SESSION['pageName'] = 'balu_bikroy_hisab';
+    $_SESSION['pageName'] = 'pathor_bikroy_hisab';
     // $sucMsgPopup = '';
 ?>
 
@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>বালু বিক্রয় হিসাব</title>
+    <title>পাথর বিক্রয় হিসাব</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -458,7 +458,7 @@
 
     <div class="bar_con">
         <div class="left_side_bar">             
-            <?php require '../others_page/left_menu_bar_balu_hisab.php'; ?>
+            <?php require '../others_page/left_menu_bar_pathor_hisab.php'; ?>
         </div>
         <div class="main_bar" style="padding-bottom: 30px;">
             <?php
@@ -853,7 +853,7 @@
     <script type="text/javascript">
         function dealerWiseSummaryDetailsSearchAndEntry(dlrId, restext=false){
             $.ajax({
-                url: '../ajaxcall/balu_sell_dealer_wise_summary_details_search_and_sell_entry.php',
+                url: '../ajaxcall/pathor_sell_dealer_wise_summary_details_search_and_sell_entry.php',
                 type: 'post',
                 data: {
                   dealerId   : dlrId,
@@ -971,7 +971,7 @@
 
         function getDealerNameByDealerId(dlrIda){
             $.ajax({
-                url: '../ajaxcall/balu_get_dealer_name_by_dealer_id.php',
+                url: '../ajaxcall/pathor_get_dealer_name_by_dealer_id.php',
                 type: 'post',
                 data: {
                     dealerId   : dlrIda,
@@ -1015,7 +1015,7 @@
             $("#passMsg").html("").css({'margin':'0px'});          
             var pass = $("#matchPassword").val();
             $.ajax({
-                url: "../ajaxcall/balu_match_password_for_vaucher_credit.php",
+                url: "../ajaxcall/pathor_match_password_for_vaucher_credit.php",
                 type: "post",
                 data: { pass : pass },
                 success: function (response) {
@@ -1041,7 +1041,7 @@
                                       position: { my: "center", at: "center center-20%", of: window },
                                       buttons: {
                                           Yes: function () {
-                                          var urltxt = '../ajaxcall/balu_rod_del_sell_entry_ajax.php';        
+                                          var urltxt = '../ajaxcall/pathor_rod_del_sell_entry_ajax.php';        
                                           $.ajax({
                                               url: urltxt,
                                               type: 'post',
@@ -1107,7 +1107,7 @@
                 }
                 var formElement = $('#form_entry')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_sell_rod_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_sell_rod_details_entry_ajax.php';
 
             } else if(submit_type == 'insert_popup'){
                 var buyer_id = $('#buyer_id_popup').val();
@@ -1120,7 +1120,7 @@
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_rod_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_rod_details_entry_ajax.php';
 
             } else {
                 ////Horizontal Edit er code
@@ -1147,7 +1147,7 @@
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_rod_update_sell_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_rod_update_sell_entry_ajax.php';
 
             }
 
@@ -1216,7 +1216,7 @@
     <script type="text/javascript">
         function edit_rod_details(rod_id){
             $('.rodDetailsEnCon').hide();
-            var urltxt = '../ajaxcall/balu_rod_edit_entry_ajax.php';        
+            var urltxt = '../ajaxcall/pathor_rod_edit_entry_ajax.php';        
             $.ajax({
                 url: urltxt,
                 type: 'post',
@@ -1569,7 +1569,7 @@ var ton   = $('#ton').val();
     <script type="text/javascript">
         function getDataByDates(datestr, dealerId){
             $.ajax({
-                url: '../ajaxcall/balu_rod_search_date_entry.php',
+                url: '../ajaxcall/pathor_rod_search_date_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,
@@ -1589,7 +1589,7 @@ var ton   = $('#ton').val();
 
         function getSummaryByDates(datestr, dealerId){
             $.ajax({
-                url: '../ajaxcall/balu_rod_search_date_wise_summary_entry.php',
+                url: '../ajaxcall/pathor_rod_search_date_wise_summary_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,
@@ -1704,7 +1704,7 @@ var ton   = $('#ton').val();
 
         function gbbank_update(id, gbvalue){
             $.ajax({
-                url: '../ajaxcall_save_update/balu_gb_bank_update.php',
+                url: '../ajaxcall_save_update/pathor_gb_bank_update.php',
                 type: 'post',
                 data: {
                     details_id: id,

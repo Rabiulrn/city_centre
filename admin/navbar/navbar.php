@@ -95,14 +95,14 @@
                          if($page == 'pathor_hisab'){echo 'active';}
 
                          if($_SESSION['pageName'] == 'pathor_kroy_hisab'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_bikroy_hisab'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_hisab_entry'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_dealer_entry'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_customer_entry'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_buyer_entry'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_table_headers'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_report_sell_hisab'){echo 'active';}
-                        //  else if($_SESSION['pageName'] == 'balu_report_dealer'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'pathor_bikroy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_hisab_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_dealer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_customer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_buyer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_table_headers'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_report_sell_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_report_dealer'){echo 'active';}
 
                          echo '"><a href="../vaucher/pathor_index.php">পাথর হিসাব</a>';
                          echo '</li>';

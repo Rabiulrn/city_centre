@@ -10,10 +10,10 @@
   $edit_data_permission   = $_SESSION['edit_data'];
   $delete_data_permission = $_SESSION['delete_data'];
 
-  $_SESSION['pageName'] = 'balu_table_headers';  
+  $_SESSION['pageName'] = 'pathor_table_headers';  
   $sucMsg = '';
 
- 
+
 
 ?>
 
@@ -111,7 +111,7 @@
 
     <div class="bar_con">
         <div class="left_side_bar">             
-            <?php require '../others_page/left_menu_bar_balu_hisab.php'; ?>
+            <?php require '../others_page/left_menu_bar_pathor_hisab.php'; ?>
         </div>
         <div class="main_bar">
             <?php
@@ -149,7 +149,7 @@
                   <th>Edit</th> -->
                 </tr>
                 <?php
-                  $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_balu WHERE partculars != '' GROUP BY partculars,particulars";
+                  $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_pathor WHERE partculars != '' GROUP BY partculars,particulars";
                   $show = $db->select($sql);
                   if ($show) {
                       while ($rows = $show->fetch_assoc()){
@@ -157,21 +157,7 @@
                               echo "<td>". $rows['partculars'] . "</td>";
                               echo "<td>". $rows['particulars'] . "</td>";
                               echo "<td>". $rows['ton'] . "</td>";
-                            //   echo "<td>". $rows['address'] . "</td>";
-                            //   echo "<td>". $rows['contact_person_name'] . "</td>";
-                            //   echo "<td>". $rows['mobile'] . "</td>";
-                              
-                            //   if($delete_data_permission == 'yes'){
-                            //     echo "<td width='78px'><a class='btn btn-danger dealerDelete' data_delete_id=" . $rows['id'] . ">Delete</a></td>";
-                            //   } else {
-                            //     echo '<td width="78px"><a class="btn btn-danger edPermit" disabled>Delete</a></td>';
-                            //   }
-
-                            //   if($edit_data_permission == 'yes'){
-                            //     echo "<td width='60px'><a class='btn btn-success' onclick='displayupdate(this)'>Edit</a></td>";
-                            //   } else {
-                            //     echo '<td width="60px"><a class="btn btn-success edPermit" disabled>Edit</a></td>';
-                            //   }                              
+                                      
                           echo "</tr>";
                       }
                   }
@@ -335,10 +321,10 @@
                                     buttons: {
                                         Yes: function () {
                                             $(this).dialog("close");
-                                            $.get("balu_table_headers.php?remove_id="+remove_id, function(data, status){
+                                            $.get("pathor_stocks.php?remove_id="+remove_id, function(data, status){
                                               console.log(status);
                                               if(status == 'success'){
-                                                window.location.href = 'balu_table_headers.php';
+                                                window.location.href = 'pathor_stocks.php';
                                               }
                                             });
                                         },

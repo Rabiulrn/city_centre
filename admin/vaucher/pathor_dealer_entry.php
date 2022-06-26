@@ -10,10 +10,73 @@
   $edit_data_permission   = $_SESSION['edit_data'];
   $delete_data_permission = $_SESSION['delete_data'];
 
-  $_SESSION['pageName'] = 'balu_table_headers';  
+  $_SESSION['pageName'] = 'pathor_dealer_entry';  
   $sucMsg = '';
 
- 
+  $sql = "SELECT dealer_id FROM pathor_dealer ORDER BY id DESC LIMIT 1";
+  $customersId = $db->select($sql);
+  if($customersId->num_rows > 0){
+      $row = $customersId->fetch_assoc();
+      $largestId = $row['dealer_id'];
+  } else {
+        $largestId = 'DLAR-100000';
+  }
+  $matches = preg_replace('/\D/', '', $largestId);
+  $newNumber = $matches + 1;
+  $newId = 'DLAR-' . $newNumber;
+
+
+  if(isset($_POST['submit'])){
+      $submitBtn_value = $_POST['submit'];      
+      $dealer_name   = trim($_POST['dealer_name']);
+      $address        = trim($_POST['address']);
+      $contact_person_name = trim($_POST['contact_person_name']);
+      $mobile        = trim($_POST['mobile']);
+      // var_dump($rod_c);
+
+      if($submitBtn_value == 'Save'){
+          $dealer_id     = $newId;
+          $sql="INSERT INTO pathor_dealer (dealer_id, dealer_name, address, contact_person_name, mobile, project_name_id) VALUES ('$dealer_id','$dealer_name', '$address', '$contact_person_name', '$mobile',  '$project_name_id')";
+
+          if ($db->select($sql) === TRUE) {
+              $sql = "SELECT dealer_id FROM pathor_dealer ORDER BY id DESC LIMIT 1";
+              $customersId = $db->select($sql);
+              if($customersId->num_rows > 0){
+                $row = $customersId->fetch_assoc();
+                $largestId = $row['dealer_id'];
+              }
+              $matches = preg_replace('/\D/', '', $largestId);
+              $newNumber = $matches + 1;
+              $newId = 'CMPY-' . $newNumber;
+
+              $sucMsg = "New Dealer Saved Successfully";
+          } else {
+              echo "Error: " . $sql . "<br>" . $db->error;
+          }
+      } else {
+          $dealer_id = $_POST['dealer_id'];
+          $sql="UPDATE pathor_dealer SET dealer_name = '$dealer_name', address = '$address', contact_person_name = '$contact_person_name', mobile = '$mobile' WHERE dealer_id = '$dealer_id'";
+
+          if ($db->update($sql) === TRUE) {
+              $sucMsg = "Dealer Updated Successfully";
+          } else {
+              echo "Error: " . $sql . "<br>" . $db->error;
+          }
+      }
+
+          
+  }
+
+  if(isset($_GET['remove_id'])){
+      $delete_dealer = $_GET['remove_id'];
+
+      $sql = "DELETE FROM pathor_dealer WHERE id = '$delete_dealer'";
+      if ($db->select($sql) === TRUE) {
+        $sucDel = "Dealer delete successfully.";
+      } else {
+        echo "Error: " . $sql . "<br>" .$db->error;
+      }
+  }
 
 ?>
 
@@ -23,7 +86,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>স্টক তথ্য</title>
+    <title>পাথর ডিলার এনট্রি</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -52,17 +115,18 @@
       .rodDelEnCon{
           margin-bottom: 50px;
           position: relative;
+          height: 157px;
       }
-      .balu_table_headerssTableCon{
+      .pathor_dealersTableCon{
           width: 100%;
           margin-bottom: 0px;
 		  background-color: gray;
       }
-      .balu_table_headerssTableCon tr th {
+      .pathor_dealersTableCon tr th {
         border: 1px solid #ddd;
         text-align: center;
       }
-      .balu_table_headerssTableCon tr td {
+      .pathor_dealersTableCon tr td {
         border: 1px solid #ddd;
         padding: 2px;
       }
@@ -95,6 +159,7 @@
           position: absolute;
           right: 0px;
       }
+    
     </style>
     
 </head>
@@ -111,7 +176,7 @@
 
     <div class="bar_con">
         <div class="left_side_bar">             
-            <?php require '../others_page/left_menu_bar_balu_hisab.php'; ?>
+            <?php require '../others_page/left_menu_bar_pathor_hisab.php'; ?>
         </div>
         <div class="main_bar">
             <?php
@@ -123,7 +188,7 @@
                 ?>
                     <div class="project_heading">      
                         <h2 class="headingOfAllProject">
-                            <?php echo $rows['heading']; ?> <span class="protidinHisab">স্টক তথ্য</span>
+                            <?php echo $rows['heading']; ?> <span class="protidinHisab">ডিলার এন্ট্রি</span>
                             <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; ?></span> -->
                             
                         </h2>
@@ -133,45 +198,81 @@
                 } 
             ?>
             <!-- <h4 class="company_header">Dealer Entry</h4> -->
-  
+            <div class="rodDelEnCon">        
+            
+                <!-- <div class="backcircle">
+                  <a href="../vaucher/rod_index.php">
+                    <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
+                  </a>
+                </div> -->
+                
+                <form action="" method="post" onsubmit="return validation()">
+                    <table class="dealersTableCon">
+                        <tr>
+                          <th width="130px">Delear Id</th>
+                          <th>Delear Name</th>
+                          <th width="260px">Address</th>
+                          <th>Contact Person Name</th>
+                          <th>Mobile</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="text" class="form-control" id="dealer_id" value="<?php echo $newId; ?>" disabled>
+                            <input type="hidden" name= "dealer_id" class="form-control" id="dealer_id_hidden" value="<?php echo $newId; ?>">
+                          </td>
+                          <td><input type="text" name = "dealer_name" class="form-control" id="dealer_name" placeholder="Enter Dealer Name..."></td>
+                          <td><input type="text" name = "address" class="form-control" id="address" placeholder="Enter Company Address..."></td>
+                          <!-- <td><textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter Company Address..." id='address' style="resize: none;"></textarea></td> -->
+                          <td><input type="text" name = "contact_person_name" class="form-control" id="contact_person" placeholder="Enter Contact Person Name..."></td>
+                          <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No..."></td>
+                        </tr>
+                        <tr>
+                          <td class="borderLess"></td>
+                          <td class="borderLess"><h4 id="companyNameErrMsg" class="text-danger"></h4></td>
+                          <td class="borderLess"><h4 id="addressErrMsg" class="text-danger"></h4></td>
+                          <td class="borderLess"><h4 id="contactPersonNameErrMsg" class="text-danger"></h4></td>
+                          <td class="borderLess"><h4 id="mobileErrMsg" class="text-danger"></h4></td>
+                        </tr>
+                    </table>
+                    <h4 class="text-center text-success"><?php echo $sucMsg; ?></h4>
+                    <input type="submit" name="submit" id="submitBtn" class="btn btn-primary" value="Save">
+                </form>
+            </div>
 
             <div class="showDealerCon">
               <table >
                 <tr class="bg-primary">
-                  <th>মারফ‌োত নাম</th>
-                  <th>ব‌িবরণ</th>
-                  <th>টোন</th>
-
-                  <!-- <th>Address</th>
+                  <th>Dealer Id</th>
+                  <th>Dealer Name</th>
+                  <th>Address</th>
                   <th>Contact Person Name</th>
-                  <th>Mobile</th> -->
-                  <!-- <th>Delete</th>
-                  <th>Edit</th> -->
+                  <th>Mobile</th>
+                  <th>Delete</th>
+                  <th>Edit</th>
                 </tr>
                 <?php
-                  $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_balu WHERE partculars != '' GROUP BY partculars,particulars";
+                  $sql = "SELECT * FROM pathor_dealer WHERE project_name_id = '$project_name_id'";
                   $show = $db->select($sql);
                   if ($show) {
                       while ($rows = $show->fetch_assoc()){
                           echo "<tr>";
-                              echo "<td>". $rows['partculars'] . "</td>";
-                              echo "<td>". $rows['particulars'] . "</td>";
-                              echo "<td>". $rows['ton'] . "</td>";
-                            //   echo "<td>". $rows['address'] . "</td>";
-                            //   echo "<td>". $rows['contact_person_name'] . "</td>";
-                            //   echo "<td>". $rows['mobile'] . "</td>";
+                              echo "<td>". $rows['dealer_id'] . "</td>";
+                              echo "<td>". $rows['dealer_name'] . "</td>";
+                              echo "<td>". $rows['address'] . "</td>";
+                              echo "<td>". $rows['contact_person_name'] . "</td>";
+                              echo "<td>". $rows['mobile'] . "</td>";
                               
-                            //   if($delete_data_permission == 'yes'){
-                            //     echo "<td width='78px'><a class='btn btn-danger dealerDelete' data_delete_id=" . $rows['id'] . ">Delete</a></td>";
-                            //   } else {
-                            //     echo '<td width="78px"><a class="btn btn-danger edPermit" disabled>Delete</a></td>';
-                            //   }
+                              if($delete_data_permission == 'yes'){
+                                echo "<td width='78px'><a class='btn btn-danger dealerDelete' data_delete_id=" . $rows['id'] . ">Delete</a></td>";
+                              } else {
+                                echo '<td width="78px"><a class="btn btn-danger edPermit" disabled>Delete</a></td>';
+                              }
 
-                            //   if($edit_data_permission == 'yes'){
-                            //     echo "<td width='60px'><a class='btn btn-success' onclick='displayupdate(this)'>Edit</a></td>";
-                            //   } else {
-                            //     echo '<td width="60px"><a class="btn btn-success edPermit" disabled>Edit</a></td>';
-                            //   }                              
+                              if($edit_data_permission == 'yes'){
+                                echo "<td width='60px'><a class='btn btn-success' onclick='displayupdate(this)'>Edit</a></td>";
+                              } else {
+                                echo '<td width="60px"><a class="btn btn-success edPermit" disabled>Edit</a></td>';
+                              }                              
                           echo "</tr>";
                       }
                   }
@@ -191,7 +292,7 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
         function validation(){
-            var company_name = $('#header_name').val();
+            var company_name = $('#dealer_name').val();
             var address    = $('#address').val();
             var contact_person  = $('#contact_person').val();
             var mobile      = $('#mobile').val();
@@ -202,7 +303,7 @@
             var mobile_valid        = false;
 
             if(company_name == ''){
-              $('#companyNameErrMsg').html('Header name can not be empty !');
+              $('#companyNameErrMsg').html('Company name can not be empty !');
               $('#company_name').focus();       
             } else if(company_name.length > 100) {
               $('#companyNameErrMsg').html('Company name can not be greater than 100 characters !');
@@ -215,52 +316,52 @@
               company_name_valid  = true;
             }
 
-            // if(address == ''){
-            //   $('#addressErrMsg').html('Address can not be empty !');
-            //   $('#address').focus();        
-            // } else if(address.length > 255) {
-            //   $('#addressErrMsg').html('Address can not be greater than 255 characters !');
-            //   $('#address').focus();        
-            // } else if($.isNumeric(address)) {
-            //   $('#addressErrMsg').html('Address can not be a number!');
-            //   $('#address').focus();        
-            // } else {
-            //   $('#addressErrMsg').html('');
-            //   address_valid  = true;
-            // }
+            if(address == ''){
+              $('#addressErrMsg').html('Address can not be empty !');
+              $('#address').focus();        
+            } else if(address.length > 255) {
+              $('#addressErrMsg').html('Address can not be greater than 255 characters !');
+              $('#address').focus();        
+            } else if($.isNumeric(address)) {
+              $('#addressErrMsg').html('Address can not be a number!');
+              $('#address').focus();        
+            } else {
+              $('#addressErrMsg').html('');
+              address_valid  = true;
+            }
 
 
-            // if(contact_person == ''){
-            //   $('#contactPersonNameErrMsg').html('Contact person name can not be empty !');
-            //   $('#contact_person').focus();       
-            // } else if(contact_person.length > 100) {
-            //   $('#contactPersonNameErrMsg').html('Contact person name can not be greater than 100 characters !');
-            //   $('#contact_person').focus();       
-            // } else if($.isNumeric(contact_person)) {
-            //   $('#contactPersonNameErrMsg').html('Contact person name can not be a number!');
-            //   $('#contact_person').focus();       
-            // } else {
-            //   $('#contactPersonNameErrMsg').html('');
-            //   contact_person_valid =true;
-            // }
+            if(contact_person == ''){
+              $('#contactPersonNameErrMsg').html('Contact person name can not be empty !');
+              $('#contact_person').focus();       
+            } else if(contact_person.length > 100) {
+              $('#contactPersonNameErrMsg').html('Contact person name can not be greater than 100 characters !');
+              $('#contact_person').focus();       
+            } else if($.isNumeric(contact_person)) {
+              $('#contactPersonNameErrMsg').html('Contact person name can not be a number!');
+              $('#contact_person').focus();       
+            } else {
+              $('#contactPersonNameErrMsg').html('');
+              contact_person_valid =true;
+            }
 
 
-            // if(mobile == ''){
-            //   $('#mobileErrMsg').html('Mobile number can not be empty !');
-            //   $('#mobile').focus();       
-            // } else if(mobile.length > 11) {
-            //   $('#mobileErrMsg').html('Mobile number can not be greater than 11 characters !');
-            //   $('#mobile').focus();       
-            // } else if(!$.isNumeric(mobile)) {
-            //   $('#mobileErrMsg').html('Mobile number must contain number!');
-            //   $('#mobile').focus();       
-            // } else {
-            //   $('#mobileErrMsg').html('');
-            //   mobile_valid  = true;
-            // }
+            if(mobile == ''){
+              $('#mobileErrMsg').html('Mobile number can not be empty !');
+              $('#mobile').focus();       
+            } else if(mobile.length > 11) {
+              $('#mobileErrMsg').html('Mobile number can not be greater than 11 characters !');
+              $('#mobile').focus();       
+            } else if(!$.isNumeric(mobile)) {
+              $('#mobileErrMsg').html('Mobile number must contain number!');
+              $('#mobile').focus();       
+            } else {
+              $('#mobileErrMsg').html('');
+              mobile_valid  = true;
+            }
 
 
-            if(company_name_valid){
+            if(company_name_valid && address_valid && contact_person_valid && mobile_valid){
               return true;
             } else {
               return false;
@@ -275,9 +376,9 @@
             var td_mobile   = $(element).closest('tr').find('td:eq(4)').text();
             // alert(td_mobile);
 
-            $('#header_id').val(td_id);
-            $('#header_id_hidden').val(td_id);
-            $('#header_name').val(td_name);
+            $('#dealer_id').val(td_id);
+            $('#dealer_id_hidden').val(td_id);
+            $('#dealer_name').val(td_name);
             $('#address').val(td_addr);
             $('#contact_person').val(td_contact);
             $('#mobile').val(td_mobile);
@@ -335,10 +436,10 @@
                                     buttons: {
                                         Yes: function () {
                                             $(this).dialog("close");
-                                            $.get("balu_table_headers.php?remove_id="+remove_id, function(data, status){
+                                            $.get("pathor_dealer_entry.php?remove_id="+remove_id, function(data, status){
                                               console.log(status);
                                               if(status == 'success'){
-                                                window.location.href = 'balu_table_headers.php';
+                                                window.location.href = 'pathor_dealer_entry.php';
                                               }
                                             });
                                         },
