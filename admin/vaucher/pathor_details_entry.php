@@ -690,8 +690,8 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>Particulars (বিবরণ)</td>
                                 <td>
                                     <?php
-                                    $balu_catgry_sql = "SELECT * FROM pathor_category";
-                                    $rslt_balu_catgry = $db->select($balu_catgry_sql);
+                                    $pathor_catgry_sql = "SELECT * FROM pathor_category";
+                                    $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
 
                                     echo '<select name="particulars" id="particulars_popup" class="form-control">';
                                     echo '<option value="">Select...</option>';
@@ -862,16 +862,16 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         <?php
-                            $sql = "SELECT id FROM details_pathor";
-                            $id = $db->select($sql);
-                            if ($id->num_rows > 0) {
-                                while ($row = $id->fetch_assoc()) {
-                                    $id2 = $row['id'];
-                                   echo '<input type="hidden" name="pathor_details_id" id="pathor_details_id" value="' . $id2 . '">' ;
-                                }
-                            } 
+                            // $sql = "SELECT id FROM details_pathor";
+                            // $id = $db->select($sql);
+                            // if ($id->num_rows > 0) {
+                            //     while ($row = $id->fetch_assoc()) {
+                            //         $id2 = $row['id'];
+                            //        echo '<input type="hidden" name="pathor_details_id" id="pathor_details_id" value="' . $id2 . '">' ;
+                            //     }
+                            // } 
                             ?>
-                        <!-- <input type="hidden" name="pathor_details_id" id="pathor_details_id"> -->
+                        <input type="hidden" name="pathor_details_id" id="pathor_details_id">
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
@@ -1067,7 +1067,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             });
             var pass = $("#matchPassword").val();
             $.ajax({
-                url: "../ajaxcall/pathor_match_password_for_vaucher_credit.php",
+                url: "../ajaxcall/balu_match_password_for_vaucher_credit.php",
                 type: "post",
                 data: {
                     pass: pass
@@ -1377,6 +1377,8 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
             // alert(buyr_id);
             // $('#dealer_id').val(dlar_id);
+            $('#pathor_details_id').val(rowid);
+
 
             $('#buyer_id_popup').val(buyr_id);
             $('#motor_name_popup').val(motor_name);

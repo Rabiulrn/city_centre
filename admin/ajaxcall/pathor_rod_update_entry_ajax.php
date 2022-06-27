@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	$balu_details_id = $_POST['balu_details_id'];
+	$pathor_details_id = $_POST['pathor_details_id'];
 
 	require '../config/config.php';
 	require '../lib/database.php';
@@ -8,9 +8,9 @@
 	$sucMsg ="";
 
 
-if(isset($balu_details_id)){
+if(isset($pathor_details_id)){
     
-	$id           = trim($_POST['balu_details_id']);
+	$id           = trim($_POST['pathor_details_id']);
     $motor_name           = trim($_POST['motor_name']);
     $driver_name           = trim($_POST['driver_name']);
     $motor_vara          = trim($_POST['motor_vara']);
@@ -68,8 +68,8 @@ if(isset($balu_details_id)){
 	// update query likte hobe
 	// ========================================
     //  $sql2 = "UPDATE details_balu SET information = '$information'";
-    echo $id;
-	$sql = "UPDATE details_balu SET motor_name = '$motor_name', driver_name = '$driver_name', dealer_id = '$dealer_id', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address',  motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit' WHERE id = '$id'";
+
+	$sql = "UPDATE details_pathor SET motor_name = '$motor_name', driver_name = '$driver_name', dealer_id = '$dealer_id', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address',  motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit' WHERE id = '$pathor_details_id'";
     
 
 //    $sql2 = "UPDATE `details_balu` SET `motor_name`='$motor_name',`driver_name`='$driver_name',`motor_vara`= '$motor_vara',`unload`='$unload',`cars_rent_redeem`='$car_rent_redeem',`information`='$information',`sl`='$sl',`voucher_no`='$voucher_no',`address`='$address',`motor_no`='$motor_sl',`motor_sl`='$motor_sl',`delivery_date`='$delivery_date',
@@ -78,9 +78,9 @@ if(isset($balu_details_id)){
     
     //  ,  
 
-	if ($db->select($sql2) === TRUE) {
-		$sucMsg = "Balu details updated Successfully.";
-		echo "Balu details updated Successfully.";
+	if ($db->select($sql) === TRUE) {
+		$sucMsg = "Pathor details updated Successfully.";
+		echo "Pathor details updated Successfully.";
 	} else {
 		echo "Error: " . $sql . "<br>" . $db->error;
 	}

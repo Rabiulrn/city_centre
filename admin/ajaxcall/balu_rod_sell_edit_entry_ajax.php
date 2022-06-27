@@ -168,7 +168,7 @@
                 <td>
                   <!-- <input type="text" name="customer_id" class="form-control" id="customer_id" placeholder="Enter customer_id..."> -->
                   <?php
-                    $sql = "SELECT customer_id FROM customers";
+                    $sql = "SELECT customer_id FROM customers_balu";
                     $all_custmr_id = $db->select($sql);
                     echo '<select name="customer_id" id="customer_id_edit" class="form-control" style="width: 140px;">';
                       echo '<option value="none">Select...</option>';

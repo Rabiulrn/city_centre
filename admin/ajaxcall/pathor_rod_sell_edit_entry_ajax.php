@@ -13,7 +13,7 @@
       
       $entryDisBlock= 'none';
       $editDisBlock= 'display';
-      $sql = "SELECT * FROM details_sell_balu WHERE id = '$rod_details_id'";
+      $sql = "SELECT * FROM details_sell_pathor WHERE id = '$rod_details_id'";
       $result = $db->select($sql);
       if($result) {
           while ($rows = $result->fetch_assoc()){
@@ -168,7 +168,7 @@
                 <td>
                   <!-- <input type="text" name="customer_id" class="form-control" id="customer_id" placeholder="Enter customer_id..."> -->
                   <?php
-                    $sql = "SELECT customer_id FROM customers";
+                    $sql = "SELECT customer_id FROM customers_pathor";
                     $all_custmr_id = $db->select($sql);
                     echo '<select name="customer_id" id="customer_id_edit" class="form-control" style="width: 140px;">';
                       echo '<option value="none">Select...</option>';
@@ -252,7 +252,7 @@
                 </td>
                 <td>
                   <?php
-                    $rod_catgry_sql = "SELECT * FROM rod_category";
+                    $rod_catgry_sql = "SELECT * FROM pathor_category";
                     $rslt_rod_catgry = $db->select($rod_catgry_sql);
 
                     echo '<select name="paritculars" id="paritculars_edit" class="form-control" style="width: 260px;">';

@@ -11,7 +11,7 @@
   $rod_details_id = $_POST['rod_details_id'];
   if(isset($rod_details_id)){
 
-      $sql = "DELETE FROM details_sell_balu WHERE id = '$rod_details_id'";
+      $sql = "DELETE FROM details_sell_pathor WHERE id = '$rod_details_id'";
       if ($db->select($sql) === TRUE) {
         $sucDel = "Details sell entry deleted successfully.";
         echo $sucDel;

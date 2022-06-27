@@ -522,7 +522,7 @@
                                 <td>Customer ID(Customer আই ডি)</td>
                                 <td>
                                     <?php
-                                        $sql = "SELECT customer_id FROM customers";
+                                        $sql = "SELECT customer_id FROM customers_balu";
                                         $all_custmr_id = $db->select($sql);
                                         echo '<select name="customer_id" id="customer_id_popup" class="form-control">';
                                           echo '<option value="none">Select...</option>';
@@ -586,7 +586,7 @@
                             <tr>
                                 <td>Cars rent & Redeem (গাড়ী ভাড়া ও খালাস)</td>
                                 <td>
-                                    <input type="text" name = "car_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
+                                    <input type="text" name = "cars_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
                                 </td>
                             </tr>
                             <tr>
@@ -732,7 +732,7 @@
                             <tr>
                                 <td>Cft ( - ) Dropped Out (সিএফটি ( - ) বাদ)</td>
                                 <td>
-                                    <input type="text" name="cft_dropped" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
+                                    <input type="text" name="cft_dropped_out" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>
@@ -750,13 +750,13 @@
                             <tr>
                                 <td> Shift(সেপ্টি) </td>
                                 <td>
-                                <input type="text" name="" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
+                                <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total Shift(মোট সেপ্টি) </td>
                                 <td>
-                                <input type="text" name="" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
+                                <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
                             </tr>
                             <tr>
@@ -804,7 +804,7 @@
                             <tr>
                                 <td>Tons (টোন)</td>
                                 <td>
-                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter total_paras...">
+                                    <input type="text" name="tons" class="form-control" id="tons_popup" placeholder="Enter total_paras...">
                                 </td>
                             </tr> 
                             <tr>
@@ -1223,7 +1223,7 @@
                 dataType: 'html',
                 // processData: false,
                 // contentType: false,
-                data: {'rod_details_id': rod_id},
+                data: {'balu_details_id': rod_id},
                 success: function(res){
                     console.log(res);
                     // alert(res);
@@ -1305,7 +1305,7 @@
             
 
             // alert(buyr_id);
-            $('#rod_details_id').val(rowid);
+            $('#balu_details_id').val(rowid);
             $('#customer_id_popup').val(customer_id);
             $('#motor_name_popup').val(motor_name);
             $('#driver_name_popup').val(driver_name);

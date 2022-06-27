@@ -8,7 +8,7 @@
 	require '../lib/database.php';
 	$db = new Database();
 
-	$sql = "SELECT dealer_name, address, contact_person_name, mobile FROM balu_dealer WHERE dealer_id = '$dealerId'";
+	$sql = "SELECT dealer_name, address, contact_person_name, mobile FROM pathor_dealer WHERE dealer_id = '$dealerId'";
     $all_custmr_id = $db->select($sql);
 	if($all_custmr_id->num_rows > 0){
 	  	$row = $all_custmr_id->fetch_assoc();

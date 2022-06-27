@@ -484,7 +484,7 @@
                   <tr>
                     <td><b>Select a Dealer Name</b></td>
                     <td><?php
-                        $sql = "SELECT dealer_id, dealer_name FROM balu_dealer";
+                        $sql = "SELECT dealer_id, dealer_name FROM pathor_dealer";
                         $all_custmr_id = $db->select($sql);
                         echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
                           echo '<option value="">Select...</option>';
@@ -522,7 +522,7 @@
                                 <td>Customer ID(Customer আই ডি)</td>
                                 <td>
                                     <?php
-                                        $sql = "SELECT customer_id FROM customers";
+                                        $sql = "SELECT customer_id FROM customers_pathor";
                                         $all_custmr_id = $db->select($sql);
                                         echo '<select name="customer_id" id="customer_id_popup" class="form-control">';
                                           echo '<option value="none">Select...</option>';
@@ -542,7 +542,7 @@
                                 <td>Type (টাইপ)</td>
                                 <td>
 	                      <?php
-	                        $sql = "SELECT DISTINCT type FROM details_balu";
+	                        $sql = "SELECT DISTINCT type FROM details_pathor";
 	                        $all_custmr_id = $db->select($sql);
 	                        echo '<select name="type" id="type" class="form-control" style="width: 310px;">';
 	                          echo '<option value="none">Select...</option>';
@@ -648,30 +648,30 @@
                                 <td>Particulars (বিবরণ)</td>
                                 <td>                          
                                     <?php
-                                        $balu_catgry_sql = "SELECT * FROM balu_category";
-                                        $rslt_balu_catgry = $db->select($balu_catgry_sql);
+                                        $pathor_catgry_sql = "SELECT * FROM pathor_category";
+                                        $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
 
                                         echo '<select name="particulars" id="particulars_popup" class="form-control">';
                                         echo '<option value="">Select...</option>';
-                                        if($rslt_balu_catgry->num_rows > 0){
-                                              while($row = $rslt_balu_catgry->fetch_assoc()){
-                                                $balu_category_id = $row['id'];
-                                                $balu_category_name = $row['category_name'];
+                                        if($rslt_pathor_catgry->num_rows > 0){
+                                              while($row = $rslt_pathor_catgry->fetch_assoc()){
+                                                $pathor_category_id = $row['id'];
+                                                $pathor_category_name = $row['category_name'];
 
-                                                echo '<option style="font-weight: bold;">'. $balu_category_name . '</option>';
+                                                echo '<option style="font-weight: bold;">'. $pathor_category_name . '</option>';
 
-                                                  $balu_lbl_sql = "SELECT * FROM balu_and_other_label";
-                                                  $rslt_balu_lbl = $db->select($balu_lbl_sql);
-                                                  if($rslt_balu_lbl->num_rows > 0){
+                                                  $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
+                                                  $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
+                                                  if($rslt_pathor_lbl->num_rows > 0){
 
-                                                    while($row2 = $rslt_balu_lbl->fetch_assoc()){
+                                                    while($row2 = $rslt_pathor_lbl->fetch_assoc()){
                                                         $raol_id = $row2['id'];
-                                                        $raol_balu_label = $row2['balu_label'];
-                                                        $raol_balu_category_id = $row2['balu_category_id'];
+                                                        $raol_pathor_label = $row2['pathor_label'];
+                                                        $raol_pathor_category_id = $row2['pathor_category_id'];
 
 
-                                                        if($balu_category_id == $raol_balu_category_id){
-                                                          echo "<option value='" . $raol_balu_label . "'>" . $raol_balu_label . "</option>";
+                                                        if($pathor_category_id == $pathor_balu_category_id){
+                                                          echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
                                                         }
                                                       }
                                                   } else{
@@ -822,7 +822,7 @@
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         
-                        <input type="hidden" name="balu_details_id" id="balu_details_id">
+                        <input type="hidden" name="pathor_details_id" id="pathor_details_id">
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name = "submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
@@ -1015,7 +1015,7 @@
             $("#passMsg").html("").css({'margin':'0px'});          
             var pass = $("#matchPassword").val();
             $.ajax({
-                url: "../ajaxcall/pathor_match_password_for_vaucher_credit.php",
+                url: "../ajaxcall/balu_match_password_for_vaucher_credit.php",
                 type: "post",
                 data: { pass : pass },
                 success: function (response) {
@@ -1428,6 +1428,23 @@ var ton   = $('#ton').val();
                     $('#credit').val(credit);
                 }
 
+
+
+                //check minus
+                // <?php
+                //   $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_pathor WHERE partculars != '' GROUP BY partculars,particulars";
+                //   $show = $db->select($sql);
+                //   if ($show) {
+                //       while ($rows = $show->fetch_assoc()){
+                //           echo "<tr>";
+                //               echo "<td>". $rows['partculars'] . "</td>";
+                //               echo "<td>". $rows['particulars'] . "</td>";
+                //               echo "<td>". $rows['ton'] . "</td>";
+                                      
+                //           echo "</tr>";
+                //       }
+                //   }
+                // ?>
 
                 var debit = $("#debit").val();
                 var credit = $("#credit").val();

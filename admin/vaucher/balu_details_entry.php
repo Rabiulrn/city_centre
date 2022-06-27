@@ -862,16 +862,16 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         <?php
-                            $sql = "SELECT id FROM details_balu";
-                            $id = $db->select($sql);
-                            if ($id->num_rows > 0) {
-                                while ($row = $id->fetch_assoc()) {
-                                    $id2 = $row['id'];
-                                   echo '<input type="hidden" name="balu_details_id" id="balu_details_id" value="' . $id2 . '">' ;
-                                }
-                            } 
+                            // $sql = "SELECT id FROM details_balu";
+                            // $id = $db->select($sql);
+                            // if ($id->num_rows > 0) {
+                            //     while ($row = $id->fetch_assoc()) {
+                            //         $id2 = $row['id'];
+                            //        echo '<input type="hidden" name="balu_details_id" id="balu_details_id" value="' . $id2 . '">' ;
+                            //     }
+                            // } 
                             ?>
-                        <!-- <input type="hidden" name="balu_details_id" id="balu_details_id"> -->
+                        <input type="hidden" name="balu_details_id" id="balu_details_id">
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
@@ -1377,7 +1377,9 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
             // alert(buyr_id);
             // $('#dealer_id').val(dlar_id);
+            $('#balu_details_id').val(rowid);
 
+            
             $('#buyer_id_popup').val(buyr_id);
             $('#motor_name_popup').val(motor_name);
             $('#driver_name_popup').val(driver_name);
