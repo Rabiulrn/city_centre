@@ -485,7 +485,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
 	                              }
 	                            } else{
-	                              echo '<option value="none">0 Result</option>';
+	                              
 	                            }
 	                          echo '</select>';
 	                      ?>
@@ -496,7 +496,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                      <?php
                         // var parti_val = $('#car_rent_redeem').val();
                         echo '<script type="text/JavaScript"> 
-                        var myElement = document.getElementById("type");
+                        var myElement = document.getElementById("particulars");
                         var myElement2 = myElement.options[myElement.selectedIndex].value;
                         console.log("hello");
                         console.log(myElement2);
@@ -520,7 +520,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                    </td>
                       <td>
 	                      <?php
-	                        $sql = "SELECT DISTINCT partculars FROM details_balu WHERE partculars != ''";
+	                        $sql = "SELECT DISTINCT partculars,particulars FROM details_balu WHERE partculars != '' ";
 	                        $all_partcular = $db->select($sql);
 	                        echo '<select name="partculars" id="partculars" class="form-control" style="width: 140px;">';
 	                          echo '<option value="none">Select...</option>';
@@ -599,16 +599,16 @@ use Mpdf\Language\ScriptToLanguage;
 	                      <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="shifty '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" name="inchi(-)_minus" class="form-control-balu" id="inchi(-)_minus" placeholder="-in'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu" id="inchi(-)_minus" placeholder="-in'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" name="cft(-)_dropped_out" class="form-control-balu" id="cft(-)_dropped_out" placeholder="-cft'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)"   name="cft(-)_dropped_out" class="form-control-balu" id="cft(-)_dropped_out" placeholder="-cft'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" name="inchi(+)_added" class="form-control-balu" id="inchi(+)_added" placeholder="+in '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)"  name="inchi(+)_added" class="form-control-balu" id="inchi(+)_added" placeholder="+in '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" name="points(-)_dropped_out" class="form-control-balu" id="points(-)_dropped_out" placeholder="-point '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu" id="points(-)_dropped_out" placeholder="-point '00 mm'...">
 	                    </td>
                       <td>
 	                      <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="shifty '00 mm'...">
@@ -620,7 +620,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                      <input type="text" onkeypress="return isNumber(event)"  name="paras" class="form-control-balu value-calc" id="paras" placeholder="Enter paras...">
 	                    </td>
                       <td>
-	                      <input type="text" name="discount" class="form-control-balu value-calc" id="discount" placeholder="discount...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="discount...">
 	                    </td>
 	                    <td>
 	                      <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="credit...">

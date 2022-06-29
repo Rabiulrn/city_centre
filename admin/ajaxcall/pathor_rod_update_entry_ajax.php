@@ -10,12 +10,12 @@
 
 if(isset($pathor_details_id)){
     
-	$id           = trim($_POST['pathor_details_id']);
+	
     $motor_name           = trim($_POST['motor_name']);
     $driver_name           = trim($_POST['driver_name']);
     $motor_vara          = trim($_POST['motor_vara']);
     $unload          = trim($_POST['unload']);
-    $car_rent_redeem  = trim($_POST['car_rent_redeem']);
+    $car_rent_redeem  = trim($_POST['cars_rent_redeem']);
     $information      = trim($_POST['information']);
     // $delear_id      = trim($_POST['delear_id']);
     $delear_id      = trim($_SESSION['dealerIdInput']);
@@ -42,15 +42,15 @@ if(isset($pathor_details_id)){
 	$partculars     = trim($_POST['partculars']);
     $particulars    = trim($_POST['particulars']);
     $debit        = trim($_POST['debit']);
-    $ton_kg          = trim($_POST['ton & kg']);
+    $ton_kg          = trim($_POST['ton_kg']);
     $length         = trim($_POST['length']);
     $width        = trim($_POST['width']);
     $height     = trim($_POST['height']);
     $shifty     = trim($_POST['shifty']);
-    $inchi_minus        = trim($_POST['inchi(-)_minus']);
-    $cft_dropped_out    = trim($_POST['cft(-)_dropped_out']);
-    $inchi_added    = trim($_POST['inchi(+)_added']);
-    $points_dropped_out      = trim($_POST['points(-)_dropped_out']);
+    $inchi_minus        = trim($_POST['inchi_minus']);
+    $cft_dropped_out    = trim($_POST['cft_dropped_out']);
+    $inchi_added    = trim($_POST['inchi_added']);
+    $points_dropped_out      = trim($_POST['points_dropped_out']);
     $shift      = trim($_POST['shift']);
     $total_shift      = trim($_POST['total_shift']);
    
@@ -69,7 +69,7 @@ if(isset($pathor_details_id)){
 	// ========================================
     //  $sql2 = "UPDATE details_balu SET information = '$information'";
 
-	$sql = "UPDATE details_pathor SET motor_name = '$motor_name', driver_name = '$driver_name', dealer_id = '$dealer_id', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address',  motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit' WHERE id = '$pathor_details_id'";
+	$sql = "UPDATE details_pathor SET motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address',  motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit' WHERE id = '$pathor_details_id'";
     
 
 //    $sql2 = "UPDATE `details_balu` SET `motor_name`='$motor_name',`driver_name`='$driver_name',`motor_vara`= '$motor_vara',`unload`='$unload',`cars_rent_redeem`='$car_rent_redeem',`information`='$information',`sl`='$sl',`voucher_no`='$voucher_no',`address`='$address',`motor_no`='$motor_sl',`motor_sl`='$motor_sl',`delivery_date`='$delivery_date',

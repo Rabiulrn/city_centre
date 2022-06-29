@@ -334,7 +334,10 @@
             if(contact_person == ''){
               $('#contactPersonNameErrMsg').html('Contact person name can not be empty !');
               $('#contact_person').focus();       
-            } else if(contact_person.length > 100) {
+            // } else if(contact_person == "."){
+            //   $('#contactPersonNameErrMsg').html('Contact person name can not be dot !');
+            //   $('#contact_person').focus();       
+            // } else if(contact_person.length > 100) {
               $('#contactPersonNameErrMsg').html('Contact person name can not be greater than 100 characters !');
               $('#contact_person').focus();       
             } else if($.isNumeric(contact_person)) {
@@ -352,7 +355,10 @@
             } else if(mobile.length > 11) {
               $('#mobileErrMsg').html('Mobile number can not be greater than 11 characters !');
               $('#mobile').focus();       
-            } else if(!$.isNumeric(mobile)) {
+            }else if(mobile.length < 11) {
+              $('#mobileErrMsg').html('Mobile number can not be less than 11 characters !');
+              $('#mobile').focus();       
+            }  else if(!$.isNumeric(mobile)) {
               $('#mobileErrMsg').html('Mobile number must contain number!');
               $('#mobile').focus();       
             } else {

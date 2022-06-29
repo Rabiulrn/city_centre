@@ -339,7 +339,10 @@
               $('#contact_person').focus();       
             } else if($.isNumeric(contact_person)) {
               $('#contactPersonNameErrMsg').html('Contact person name can not be a number!');
-              $('#contact_person').focus();       
+              $('#contact_person').focus();  
+            // } else if($.isSpecial(contact_person)) {
+            //   $('#contactPersonNameErrMsg').html('Contact person name can not be a specilas character');
+            //   $('#contact_person').focus();       
             } else {
               $('#contactPersonNameErrMsg').html('');
               contact_person_valid =true;
@@ -352,7 +355,11 @@
             } else if(mobile.length > 11) {
               $('#mobileErrMsg').html('Mobile number can not be greater than 11 characters !');
               $('#mobile').focus();       
-            } else if(!$.isNumeric(mobile)) {
+            }
+            else if(mobile.length < 11) {
+              $('#mobileErrMsg').html('Mobile number can not be less than 11 characters !');
+              $('#mobile').focus();       
+            }  else if(!$.isNumeric(mobile)) {
               $('#mobileErrMsg').html('Mobile number must contain number!');
               $('#mobile').focus();       
             } else {

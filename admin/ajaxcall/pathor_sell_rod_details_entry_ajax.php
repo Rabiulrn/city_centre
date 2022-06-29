@@ -70,29 +70,30 @@ $fee  = trim($_POST['fee']);
 
 
 
-$sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_pathor WHERE partculars != '' AND ton > '$ton' GROUP BY partculars,particulars";
-$show = $db->select($sql);
-if ($show) {
-  $sql_update = "UPDATE stocks_pathor SET `ton` = `ton` - '$ton' WHERE partculars ='$partculars' AND particulars ='$particulars' AND ton > 0 ORDER BY ton DESC LIMIT 1";
 
-  $result2 = $db->select($sql_update);
-  // print_r($result2);
-  if ($result2) {
-    // print_r($sql_update);
-    // $sucMsg = "stocks updated Successfully.";
-    echo "stocks updated  Successfully.";
-  } else {
-    echo " marfot and particular not matched ";
-  }
-} else {
-  echo "higher than stocks.";
-}
+// $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_pathor WHERE partculars != '' AND ton > '$ton' GROUP BY partculars,particulars";
+// $show = $db->select($sql);
+// if ($show) {
+//   $sql_update = "UPDATE stocks_pathor SET `ton` = `ton` - '$ton' WHERE partculars ='$partculars' AND particulars ='$particulars' AND ton > 0 ORDER BY ton DESC LIMIT 1";
 
-
-
+//   $result2 = $db->select($sql_update);
+//   // print_r($result2);
+//   if ($result2) {
+//     // print_r($sql_update);
+//     // $sucMsg = "stocks updated Successfully.";
+//     echo "stocks updated  Successfully.";
+//   } else {
+//     echo " marfot and particular not matched ";
+//   }
+// } else {
+//   echo "higher than stocks.";
+// }
 
 
 
+
+
+if($customer_id != 'none' && $partculars != 'none' && $particulars != 'none'  ){
 $sql = "INSERT INTO `details_sell_pathor`
            (`customer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `voucher_no`, `address`, `motor_no`, `motor_sl`, `delivery_date`, `dates`, `partculars`, `particulars`, `debit`, `ton & kg`, `length`, `width`, `height`, `shifty`, `inchi (-)_minus`, `cft (-)_dropped Out`, `inchi (+)_added`, `points ( - )_dropped out`, `shift`, `total_shift`, `paras`, `discount`, `credit`,`balance`, `cemeats_paras`, `ton`, `total_shifts`, `tons`, `bank_name`, `fee`,`project_name_id`) 
     VALUES ('$customer_id', '$dealer_id', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$voucher_no', '$address', '$motor_no', '$motor_sl', '$delivery_date', '$dates', '$partculars', '$particulars', '$debit', '$ton_kg', '$length', '$width', '$height ', '$shifty', '$inchi_minus','$cft_dropped_out', '$inchi_added', '$points_dropped_out', '$shift', '$total_shift', '$paras', '$discount', '$credit','$balance', '$cemeats_paras', '$ton', '$total_shifts', '$tons', '$bank_name', '$fee','$project_name_id')";
@@ -108,3 +109,17 @@ if ($result) {
 } else {
   echo "Error: " . $sql . "<br>" . $db->error;
 }
+
+
+$sql_update = "UPDATE stocks_pathor SET `ton` = `ton` - '$ton' WHERE partculars ='$partculars' AND particulars ='$particulars' AND `ton` - '$ton' >= 0 ORDER BY ton DESC LIMIT 1";
+
+  $result2 = $db->select($sql_update);
+  // print_r($result2);
+  if ($result2) {
+    // print_r($sql_update);
+    // $sucMsg = "stocks updated Successfully.";
+    echo "stocks updated  Successfully.";
+  } else {
+    echo " marfot and particular not matched ";
+  }
+} ?>

@@ -58,7 +58,7 @@
           $sql="UPDATE pathor_category SET category_name = '$category_name' WHERE category_id = '$category_id'";
 
           if ($db->update($sql) === TRUE) {
-              $sucMsg = "Header Updated Successfully";
+              $sucMsg = "Category Entry Updated Successfully";
           } else {
               echo "Error: " . $sql . "<br>" . $db->error;
           }

@@ -48,19 +48,25 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
         #detailsEtryTable {
             width: 293%;
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
+            
         }
 
         #detailsEtryTable tr:first-child td {
             text-align: center;
+            background-color:#38B844;
+            Color: white;
         }
 
         #detailsEtryTable tr:nth-child(2) td {
             text-align: center;
+            background-color:#38B844;
+            Color: white;
         }
 
         #detailsEtryTable td {
-            border: 1px solid #9c9c9c;
+            /* color inserted here */
+            border: 2px solid #E0E4E0;
         }
 
         .scrolling-div {
@@ -592,7 +598,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             </tr>
 
 
-                          
+
                             <!-- <input type="hidden" name="balu_details_id" id="balu_details_id"> -->
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
@@ -652,7 +658,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             <tr>
                                 <td>Address (ঠিকানা)</td>
                                 <td>
-                                    <input type="text" name="address" class="form-control" id="address_popup" placeholder="Enter address...">
+                                    <input type="text" name="address" class="form-control" id="address_popup" placeholder="Enter Address...">
                                 </td>
                             </tr>
                             <tr>
@@ -862,15 +868,15 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         <?php
-                            // $sql = "SELECT id FROM details_balu";
-                            // $id = $db->select($sql);
-                            // if ($id->num_rows > 0) {
-                            //     while ($row = $id->fetch_assoc()) {
-                            //         $id2 = $row['id'];
-                            //        echo '<input type="hidden" name="balu_details_id" id="balu_details_id" value="' . $id2 . '">' ;
-                            //     }
-                            // } 
-                            ?>
+                        // $sql = "SELECT id FROM details_balu";
+                        // $id = $db->select($sql);
+                        // if ($id->num_rows > 0) {
+                        //     while ($row = $id->fetch_assoc()) {
+                        //         $id2 = $row['id'];
+                        //        echo '<input type="hidden" name="balu_details_id" id="balu_details_id" value="' . $id2 . '">' ;
+                        //     }
+                        // } 
+                        ?>
                         <input type="hidden" name="balu_details_id" id="balu_details_id">
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
@@ -1159,12 +1165,12 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     returnValid = true;
                 }
 
-                if (partculars == 'none') {
-                    alert('Please select a marfot name');
-                    returnValid = false;
-                } else {
-                    returnValid = true;
-                }
+                // if (partculars == 'none') {
+                //     alert('Please select a marfot name');
+                //     returnValid = false;
+                // } else {
+                //     returnValid = true;
+                // }
 
                 if (particulars == 'none') {
                     alert('Please select a particular');
@@ -1379,7 +1385,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             // $('#dealer_id').val(dlar_id);
             $('#balu_details_id').val(rowid);
 
-            
+
             $('#buyer_id_popup').val(buyr_id);
             $('#motor_name_popup').val(motor_name);
             $('#driver_name_popup').val(driver_name);
@@ -1468,6 +1474,10 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#total_shifts').val(shifty);
 
             }
+
+  
+
+
             //ton and kg
             var ton = $('#ton').val();
             var ton_kg = $('#kg').val();
@@ -1539,6 +1549,10 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#total_paras').val(total_paras);
             }
         });
+
+
+
+
         $(document).on('input change paste keyup', '.value-calc_edit', function() {
             var kg = $('#kg_edit').val();
             var paras = $('#paras_edit').val();

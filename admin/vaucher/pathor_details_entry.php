@@ -49,18 +49,56 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         #detailsEtryTable {
             width: 293%;
             border: 1px solid #ddd;
+            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+           
         }
 
         #detailsEtryTable tr:first-child td {
             text-align: center;
+            /* font-weight: 550; */
+            background-color: #9bd1ff;
+            border: 1px solid white;
+            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
         }
 
         #detailsEtryTable tr:nth-child(2) td {
             text-align: center;
+            /* font-weight: bold; */
+            background-color: #9bd1ff;
+            border: 1px solid white;
+            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
         }
+     
+        #detailsEtryTable tr:nth-child(3) td {
+            /* border: 2px solid #9c9c9c; */
+            border: 1px solid skyblue;
+            /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
+        }
+        #detailsEtryTable tr:nth-child(3) input {
+            border: none;
+            height: 39px;
+            /* border-radius: 10% 10% 0% 0%; */
+            /* transition: border-bottom 1s linear ; */
+        }
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
+            /* outline: 1px solid skyblue; */
+            outline: none;
+            border-bottom: 2px solid skyblue;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            /* font-size: 1px; */
+            
+        }
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus::placeholder {
+            color: transparent;
+            
+            /* font-size: large; */
+            
+        }
+
 
         #detailsEtryTable td {
             border: 1px solid #9c9c9c;
+
         }
 
         .scrolling-div {
@@ -122,6 +160,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         #detailsNewTable2 {
             width: 217%;
             border: 1px solid #ddd;
+            
             /*transform: rotateX(180deg);*/
         }
 
@@ -129,6 +168,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         td {
             border: 1px solid #ddd;
             padding: 2px 5px;
+           
         }
 
         #detailsNewTable2 tr:first-child th {
@@ -136,6 +176,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             background-color: rgba(9, 0, 0, .6);
             color: #fff;
             padding: 5px 0px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
         }
 
         #detailsNewTable2 tr:nth-child(2) th {
@@ -143,6 +184,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             background-color: #363636;
             padding: 5px 0px;
             color: #fff;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
         }
 
         .viewDetailsCon {
@@ -628,7 +670,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td>Cars rent & Redeem (গাড়ী ভাড়া ও খালাস)</td>
                                 <td>
-                                    <input type="text" name="car_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
+                                    <input type="text" name="cars_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
                                 </td>
                             </tr>
                             <tr>
@@ -640,7 +682,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td>SL (ক্রমিক)</td>
                                 <td>
-                                    <input type="text" name="sl" class="form-control" id="sl_popup" placeholder="Enter SL...">
+                                    <input type="text" name="sl_no" class="form-control" id="sl_popup" placeholder="Enter SL...">
                                 </td>
                             </tr>
                             <tr>
@@ -784,19 +826,19 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td>Points ( - ) Dropped Out (পয়েন্ট ( - ) বাদ) </td>
                                 <td>
-                                    <input type="text" name="points_dropped" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
+                                    <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Shift(সেপ্টি) </td>
                                 <td>
-                                    <input type="text" name="" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
+                                    <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total Shift(মোট সেপ্টি) </td>
                                 <td>
-                                    <input type="text" name="" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
+                                    <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
                             </tr>
                             <tr>

@@ -598,7 +598,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                      <input type="text" onkeypress="return isNumber(event)"  name="paras" class="form-control-balu value-calc" id="paras" placeholder="Enter paras...">
 	                    </td>
                       <td>
-	                      <input type="text" name="discount" class="form-control-balu value-calc" id="discount" placeholder="discount...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="discount...">
 	                    </td>
 	                    <td>
 	                      <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="credit...">

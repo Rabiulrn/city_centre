@@ -1,13 +1,13 @@
-<?php 
-    session_start();
-    if(!isset($_SESSION['username'])){
-        header('location:../index.php');
-    }
-    require '../config/config.php';
-    require '../lib/database.php';
-    $db = new Database();
-    $_SESSION['pageName'] = 'pathor_bikroy_hisab';
-    // $sucMsgPopup = '';
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('location:../index.php');
+}
+require '../config/config.php';
+require '../lib/database.php';
+$db = new Database();
+$_SESSION['pageName'] = 'pathor_bikroy_hisab';
+// $sucMsgPopup = '';
 ?>
 
 
@@ -15,6 +15,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>পাথর বিক্রয় হিসাব</title>
     <meta charset="utf-8">
@@ -34,8 +35,8 @@
 
 
     <style type="text/css">
-        .rodDetailsEnCon{
-          position: relative;
+        .rodDetailsEnCon {
+            position: relative;
         }
 
         .scroll-after-btn {
@@ -44,26 +45,33 @@
             position: absolute;
             right: 0px;
         }
-        #detailsEtryTable{
-          width: 293%;
-          border: 1px solid #ddd;
+
+        #detailsEtryTable {
+            width: 293%;
+            border: 1px solid #ddd;
         }
-        #detailsEtryTable tr:first-child td{
-          text-align: center;
+
+        #detailsEtryTable tr:first-child td {
+            text-align: center;
         }
-        #detailsEtryTable tr:nth-child(2) td{
-          text-align: center;
+
+        #detailsEtryTable tr:nth-child(2) td {
+            text-align: center;
         }
-        #detailsEtryTable td{
-          border: 1px solid #9c9c9c;
+
+        #detailsEtryTable td {
+            border: 1px solid #9c9c9c;
         }
-        .scrolling-div{
-          width: 100%;
-          overflow-y: auto;      
+
+        .scrolling-div {
+            width: 100%;
+            overflow-y: auto;
         }
-        #form_entry{
+
+        #form_entry {
             overflow-y: scroll;
         }
+
         /*.scrolling-div::-webkit-scrollbar {
           width: 10px;
           
@@ -80,7 +88,7 @@
         .scrolling-div::-webkit-scrollbar-thumb:hover {
           background: #900;
         }*/
-        .scrollsign_plus{
+        .scrollsign_plus {
             width: 25px;
             height: 25px;
             /*border: 1px solid red;*/
@@ -98,171 +106,192 @@
             -moz-user-select: none;
             -webkit-user-select: none;
         }
-        .widthPercent1{
+
+        .widthPercent1 {
             width: 3.5%;
         }
-        .widthPercent2{
+
+        .widthPercent2 {
             width: 3.7%;
         }
-        .widthPercent3{
+
+        .widthPercent3 {
             width: 3.7%;
         }
-        #detailsNewTable2{
-          width: 217%;
-          border: 1px solid #ddd;
-          /*transform: rotateX(180deg);*/
+
+        #detailsNewTable2 {
+            width: 217%;
+            border: 1px solid #ddd;
+            /*transform: rotateX(180deg);*/
         }
-        #detailsNewTable2 th, td{
-          border: 1px solid #ddd;
-          padding: 2px 5px;
+
+        #detailsNewTable2 th,
+        td {
+            border: 1px solid #ddd;
+            padding: 2px 5px;
         }
-        #detailsNewTable2 tr:first-child th{
-          text-align: center;
-          background-color: rgba(9,0,0,.6);
-          color: #fff;
-          padding: 5px 0px;
+
+        #detailsNewTable2 tr:first-child th {
+            text-align: center;
+            background-color: rgba(9, 0, 0, .6);
+            color: #fff;
+            padding: 5px 0px;
         }
-        #detailsNewTable2 tr:nth-child(2) th{
-          text-align: center;
-          background-color: #363636;
-          padding: 5px 0px;
-          color: #fff;
+
+        #detailsNewTable2 tr:nth-child(2) th {
+            text-align: center;
+            background-color: #363636;
+            padding: 5px 0px;
+            color: #fff;
         }
-        .viewDetailsCon{
+
+        .viewDetailsCon {
             width: 100%;
             max-height: 470px;
             overflow-x: auto;
             /*overflow-y: auto;*/
             /*margin-bottom: 50px;*/
         }
-        .ui-dialog-titlebar{
-          color: white;
-          background-color: #ce0000;
+
+        .ui-dialog-titlebar {
+            color: white;
+            background-color: #ce0000;
         }
-        
-        
-        .dateSearch{
+
+
+        .dateSearch {
             position: relative;
             width: 225px;
             /*left: 325px;
             top: -6px;*/
         }
-        .bootstrap-select{
+
+        .bootstrap-select {
             width: 130px !important;
         }
-        .dealerIdSelect{
-          width: 100%;
-          text-align: center;
-          height: 50px;
-          /*border: 1px solid red;*/
+
+        .dealerIdSelect {
+            width: 100%;
+            text-align: center;
+            height: 50px;
+            /*border: 1px solid red;*/
         }
+
         .dealerIdSelect table {
-          /*width: 50%;*/
-          /*margin-left: 25%;*/
+            /*width: 50%;*/
+            /*margin-left: 25%;*/
         }
+
         .dealerIdSelect table tr td {
-          text-align: right;
-          border: none;
+            text-align: right;
+            border: none;
         }
-        #flip{
+
+        #flip {
             /*border: 1px solid red;*/
             position: relative;
             top: -42px;
         }
-        #flip label{
-          display: inline-block;
 
-        }  
-        #panel{
-          border: 2px solid #333;
-          margin: 0px 0px 20px;
+        #flip label {
+            display: inline-block;
+
         }
-        table.summary tr td.hastext{
-          text-align: right;
+
+        #panel {
+            border: 2px solid #333;
+            margin: 0px 0px 20px;
         }
-        table.summary tr td.hastext{
-          text-align: right;
+
+        table.summary tr td.hastext {
+            text-align: right;
+        }
+
+        table.summary tr td.hastext {
+            text-align: right;
         }
 
         /* The container */
         .conchk {
-          display: inline-block;
-          position: absolute;
-          padding-right: 32px;
-          margin-bottom: 12px;
-          cursor: pointer;
-          font-size: 15px;
-          right: 0px;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
+            display: inline-block;
+            position: absolute;
+            padding-right: 32px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            right: 0px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* Hide the browser's default checkbox */
         .conchk input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-          height: 0;
-          width: 0;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
         }
 
         /* Create a custom checkbox */
         .checkmark {
-          position: absolute;
-          top: 0;
-          right: 0;
-          height: 22px;
-          width: 22px;
-          background-color: #9bd1ff;
-          border: 1px solid #2196F3;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #9bd1ff;
+            border: 1px solid #2196F3;
         }
 
         /* On mouse-over, add a grey background color */
-        .conchk:hover input ~ .checkmark {
-          background-color: #2196F3;
+        .conchk:hover input~.checkmark {
+            background-color: #2196F3;
         }
 
         /* When the checkbox is checked, add a blue background */
-        .conchk input:checked ~ .checkmark {
-          background-color: #2196F3;
+        .conchk input:checked~.checkmark {
+            background-color: #2196F3;
         }
 
         /* Create the checkmark/indicator (hidden when not checked) */
         .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
+            content: "";
+            position: absolute;
+            display: none;
         }
 
         /* Show the checkmark when checked */
-        .conchk input:checked ~ .checkmark:after {
-          display: block;
+        .conchk input:checked~.checkmark:after {
+            display: block;
         }
 
         /* Style the checkmark/indicator */
         .conchk .checkmark:after {
-          left: 9px;
-          top: 5px;
-          width: 5px;
-          height: 10px;
-          border: solid white;
-          border-width: 0 3px 3px 0;
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
         }
-        .backcircle{
+
+        .backcircle {
             font-size: 18px;
             position: absolute;
             margin-top: -25px;
         }
-        .backcircle a:hover{
+
+        .backcircle a:hover {
             text-decoration: none !important;
         }
 
-        #gb_bank_ganti{
+        #gb_bank_ganti {
             position: absolute;
             left: 0px;
             top: -1px;
@@ -271,41 +300,48 @@
             padding: 0px 3px;
             display: none;
         }
-        .contorlAfterDealer{
+
+        .contorlAfterDealer {
             position: absolute;
             width: 408px;
             height: 45px;
             right: 175px;
             top: -6px;
         }
-        .printBtnDlr{
+
+        .printBtnDlr {
             position: absolute;
             top: 0px;
             right: 116px;
             border: 1px solid #46b8da;
         }
-        .printBtnDlrDown{
+
+        .printBtnDlrDown {
             position: absolute;
             top: 0px;
             right: 15px;
             border: 1px solid #46b8da;
         }
-        @media print
-        {    
-          .no_print_media, .no_print_media *
-          {
-              display: none !important;
-          }
+
+        @media print {
+
+            .no_print_media,
+            .no_print_media * {
+                display: none !important;
+            }
         }
-        .btn-info{
+
+        .btn-info {
             background-color: #F0F0F0 !important;
             color: #000 !important;
         }
+
         .btn-info:hover {
-          background-color: #F0F0F0 !important;
-          color: #000 !important;
+            background-color: #F0F0F0 !important;
+            color: #000 !important;
         }
-        #popUpNewBtn{
+
+        #popUpNewBtn {
             width: 30px;
             height: 30px;
             padding: 3px;
@@ -316,16 +352,18 @@
             cursor: pointer;
             /*z-index: 9;*/
         }
-        #popupEntry{
+
+        #popupEntry {
             display: none;
             width: 100%;
-            background-color: rgba(0,0,0, .7);
+            background-color: rgba(0, 0, 0, .7);
             height: 100%;
             position: fixed;
             top: 0px;
             z-index: 99999;
         }
-        #control_all{
+
+        #control_all {
             width: 50%;
             background-color: #fff;
             border: 5px solid #333;
@@ -337,7 +375,8 @@
             margin-left: -25%;
             padding: 15px;
         }
-        .popupClose{
+
+        .popupClose {
             position: absolute;
             top: 0px;
             right: 0px;
@@ -349,7 +388,8 @@
             transition: all .5s;
             cursor: pointer;
         }
-        .bar_one{
+
+        .bar_one {
             width: 20px;
             height: 3px;
             background-color: red;
@@ -359,7 +399,8 @@
             left: -1px;
             transition: all .5s;
         }
-        .bar_two{
+
+        .bar_two {
             width: 20px;
             height: 3px;
             background-color: red;
@@ -369,23 +410,28 @@
             left: -1px;
             transition: all .5s;
         }
-        .popupClose:hover{
+
+        .popupClose:hover {
             background-color: red;
             transition: all .5s;
         }
-        .popupClose:hover .bar_one{
+
+        .popupClose:hover .bar_one {
             background-color: #fff;
             transition: all .5s;
         }
-        .popupClose:hover .bar_two{
+
+        .popupClose:hover .bar_two {
             background-color: #fff;
             transition: all .5s;
         }
-        .popupHead{
+
+        .popupHead {
             text-align: center;
             margin: 15px 0px 15px;
         }
-        .popupHead::after{
+
+        .popupHead::after {
             content: '';
             height: 3px;
             /*width: 180px;*/
@@ -396,114 +442,120 @@
             /*margin-left: -98px;*/
             background-color: #ddd;
         }
-        .items_all_con{
+
+        .items_all_con {
             /*border: 1px solid red;*/
             height: calc(100% - 63px);
             overflow-y: scroll;
-            padding: 15px; 
+            padding: 15px;
         }
-        .pop_btn_con{
+
+        .pop_btn_con {
             position: relative;
             margin: 25px 0px 10px;
             height: 36px;
         }
-        .popup_save_btn{
+
+        .popup_save_btn {
             width: 40%;
             position: absolute;
             left: 20px;
         }
+
         .popup_cancel_btn {
             width: 40%;
             position: absolute;
             right: 20px;
         }
+
         .protidinHisab {
             margin-top: 13px;
         }
     </style>
 </head>
+
 <body>
     <?php
-        include '../navbar/header_text.php';
-        // $page = 'rod_hisab';
-        include '../navbar/navbar.php';
+    include '../navbar/header_text.php';
+    // $page = 'rod_hisab';
+    include '../navbar/navbar.php';
     ?>
     <div class="container">
-    		<?php
-    			// $ph_id = $_SESSION['project_name_id'];
-    			// $query = "SELECT * FROM project_heading WHERE id = $ph_id";
-    			// $show = $db->select($query);
-    			// if ($show) 
-    			// {
-    			// 	while ($rows = $show->fetch_assoc()) 
-    			// 	{
-    			?>
-    				<!-- <div class="project_heading text-center" id="city_center_id">      
+        <?php
+        // $ph_id = $_SESSION['project_name_id'];
+        // $query = "SELECT * FROM project_heading WHERE id = $ph_id";
+        // $show = $db->select($query);
+        // if ($show) 
+        // {
+        // 	while ($rows = $show->fetch_assoc()) 
+        // 	{
+        ?>
+        <!-- <div class="project_heading text-center" id="city_center_id">      
     				  <h2 class="text-center"><?php echo $rows['heading']; ?></h2>
     				  h4 class="text-center"><?php echo $rows['subheading']; ?></h4>
     				</div> -->
-    			<?php 
-    			// 	}
-    			// } 
-    		?>
-            <!-- <p class="text-center">রড ক্রয় হিসাব</p> -->
+        <?php
+        // 	}
+        // } 
+        ?>
+        <!-- <p class="text-center">রড ক্রয় হিসাব</p> -->
 
-            <!-- <div class="backcircle">
+        <!-- <div class="backcircle">
               <a href="../vaucher/rod_index.php">
                 <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
               </a>
             </div> -->
-            
+
     </div>
 
     <div class="bar_con">
-        <div class="left_side_bar">             
+        <div class="left_side_bar">
             <?php require '../others_page/left_menu_bar_pathor_hisab.php'; ?>
         </div>
         <div class="main_bar" style="padding-bottom: 30px;">
             <?php
-                $ph_id = $_SESSION['project_name_id'];
-                $query = "SELECT * FROM project_heading WHERE id = $ph_id";
-                $show = $db->select($query);
-                if ($show) {
-                    while ($rows = $show->fetch_assoc()) {
-                ?>
-                    <div class="project_heading">      
+            $ph_id = $_SESSION['project_name_id'];
+            $query = "SELECT * FROM project_heading WHERE id = $ph_id";
+            $show = $db->select($query);
+            if ($show) {
+                while ($rows = $show->fetch_assoc()) {
+            ?>
+                    <div class="project_heading">
                         <h2 class="headingOfAllProject" id="city_center_id">
                             <?php echo $rows['heading']; ?> <span class="protidinHisab">pathor and balu bikroy হিসাব</span>
-                            <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; ?></span> -->
-                            
+                            <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; 
+                                                                ?></span> -->
+
                         </h2>
                     </div>
-                <?php 
-                    }
-                } 
+            <?php
+                }
+            }
             ?>
             <div class="dealerIdSelect">
                 <table>
-                  <tr>
-                    <td><b>Select a Dealer Name</b></td>
-                    <td><?php
-                        $sql = "SELECT dealer_id, dealer_name FROM pathor_dealer";
-                        $all_custmr_id = $db->select($sql);
-                        echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
-                          echo '<option value="">Select...</option>';
-                          if($all_custmr_id->num_rows > 0){
-                              while($row = $all_custmr_id->fetch_assoc()){
-                                $id = $row['dealer_id'];
-                                $dealer_name = $row['dealer_name'];                                
-                                echo '<option value="' . $id . '">' . $dealer_name . '</option>';
-
-                              }
-                            } else{
-                              echo '<option value="none">0 Result</option>';
+                    <tr>
+                        <td><b>Select a Dealer Name</b></td>
+                        <td><?php
+                            $sql = "SELECT dealer_id, dealer_name FROM pathor_dealer";
+                            $all_custmr_id = $db->select($sql);
+                            echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
+                            echo '<option value="">Select...</option>';
+                            if ($all_custmr_id->num_rows > 0) {
+                                while ($row = $all_custmr_id->fetch_assoc()) {
+                                    $id = $row['dealer_id'];
+                                    $dealer_name = $row['dealer_name'];
+                                    echo '<option value="' . $id . '">' . $dealer_name . '</option>';
+                                }
+                            } else {
+                                echo '<option value="none">0 Result</option>';
                             }
-                          echo '</select>';
-                      ?></td>
-                  </tr>
+                            echo '</select>';
+                            ?></td>
+                    </tr>
                 </table>
             </div>
-            <div id= "allconid" style="display: none;">
+            <div id="allconid" style="display: none;">
             </div>
 
         </div>
@@ -514,7 +566,7 @@
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead">bikroy হিসাব এন্ট্রি</h2>
+                <h2 class="popupHead">হিসাব এন্ট্রি</h2>
                 <div class="items_all_con">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
@@ -522,71 +574,71 @@
                                 <td>Customer ID(Customer আই ডি)</td>
                                 <td>
                                     <?php
-                                        $sql = "SELECT customer_id FROM customers_pathor";
-                                        $all_custmr_id = $db->select($sql);
-                                        echo '<select name="customer_id" id="customer_id_popup" class="form-control">';
-                                          echo '<option value="none">Select...</option>';
-                                          if($all_custmr_id->num_rows > 0){
-                                              while($row = $all_custmr_id->fetch_assoc()){
-                                                $id = $row['customer_id'];
-                                                echo '<option value="' . $id . '">' . $id . '</option>';
-                                              }
-                                            } else{
-                                              echo '<option value="none">0 Resulst</option>';
-                                            }
-                                          echo '</select>';
-                                      ?>
+                                    $sql = "SELECT customer_id FROM customers_pathor";
+                                    $all_custmr_id = $db->select($sql);
+                                    echo '<select name="customer_id" id="customer_id_popup" class="form-control">';
+                                    echo '<option value="none">Select...</option>';
+                                    if ($all_custmr_id->num_rows > 0) {
+                                        while ($row = $all_custmr_id->fetch_assoc()) {
+                                            $id = $row['customer_id'];
+                                            echo '<option value="' . $id . '">' . $id . '</option>';
+                                        }
+                                    } else {
+                                        echo '<option value="none">0 Resulst</option>';
+                                    }
+                                    echo '</select>';
+                                    ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Type (টাইপ)</td>
                                 <td>
-	                      <?php
-	                        $sql = "SELECT DISTINCT type FROM details_pathor";
-	                        $all_custmr_id = $db->select($sql);
-	                        echo '<select name="type" id="type" class="form-control" style="width: 310px;">';
-	                          echo '<option value="none">Select...</option>';
-	                          if($all_custmr_id->num_rows > 0){
-	                              while($row = $all_custmr_id->fetch_assoc()){
-	                                $type = $row['type'];
-                                    
-	                                echo '<option  value="' . $type . '">' . $type . '</option>';
-	                              }
-	                            } else{
-	                              echo '<option value="none">0 Result</option>';
-	                            }
-	                          echo '</select>';
-	                      ?>           
+                                    <?php
+                                    $sql = "SELECT DISTINCT type FROM details_pathor";
+                                    $all_custmr_id = $db->select($sql);
+                                    echo '<select name="type" id="type" class="form-control" style="width: 310px;">';
+                                    echo '<option value="none">Select...</option>';
+                                    if ($all_custmr_id->num_rows > 0) {
+                                        while ($row = $all_custmr_id->fetch_assoc()) {
+                                            $type = $row['type'];
+
+                                            echo '<option  value="' . $type . '">' . $type . '</option>';
+                                        }
+                                    } else {
+                                        echo '<option value="none">0 Result</option>';
+                                    }
+                                    echo '</select>';
+                                    ?>
                             </tr>
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
                                 <td>
-                                    <input type="text" name ="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
-                                </td>           
+                                    <input type="text" name="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
+                                </td>
                             </tr>
                             <tr>
                             <tr>
                                 <td>Driver Name (ড্রাইভারের নাম)</td>
                                 <td>
-                                    <input type="text"  name ="driver_name" class="form-control" id="driver_name_popup" placeholder="Enter Driver Name...">
-                                </td>           
+                                    <input type="text" name="driver_name" class="form-control" id="driver_name_popup" placeholder="Enter Driver Name...">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Motor Vara (গাড়ী ভাড়া)</td>
                                 <td>
-                                    <input type="text" onkeypress="return isNumber(event)" name ="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara...">
-                                </td>           
+                                    <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara...">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Unload (আনলোড)</td>
                                 <td>
-                                    <input type="text" name ="unload" class="form-control" id="unload_popup" placeholder="Unload">
+                                    <input type="text" name="unload" class="form-control" id="unload_popup" placeholder="Unload">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Cars rent & Redeem (গাড়ী ভাড়া ও খালাস)</td>
                                 <td>
-                                    <input type="text" name = "car_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
+                                    <input type="text" name="cars_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
                                 </td>
                             </tr>
                             <tr>
@@ -598,7 +650,7 @@
                             <tr>
                                 <td>SL (ক্রমিক)</td>
                                 <td>
-                                    <input type="text" name="sl" class="form-control" id="sl_popup" placeholder="Enter SL...">
+                                    <input type="text" name="sl_no" class="form-control" id="sl_popup" placeholder="Enter SL...">
                                 </td>
                             </tr>
                             <tr>
@@ -646,44 +698,42 @@
                             </tr>
                             <tr>
                                 <td>Particulars (বিবরণ)</td>
-                                <td>                          
+                                <td>
                                     <?php
-                                        $pathor_catgry_sql = "SELECT * FROM pathor_category";
-                                        $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
+                                    $pathor_catgry_sql = "SELECT * FROM pathor_category";
+                                    $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
 
-                                        echo '<select name="particulars" id="particulars_popup" class="form-control">';
-                                        echo '<option value="">Select...</option>';
-                                        if($rslt_pathor_catgry->num_rows > 0){
-                                              while($row = $rslt_pathor_catgry->fetch_assoc()){
-                                                $pathor_category_id = $row['id'];
-                                                $pathor_category_name = $row['category_name'];
+                                    echo '<select name="particulars" id="particulars_popup" class="form-control">';
+                                    echo '<option value="">Select...</option>';
+                                    if ($rslt_pathor_catgry->num_rows > 0) {
+                                        while ($row = $rslt_pathor_catgry->fetch_assoc()) {
+                                            $pathor_category_id = $row['id'];
+                                            $pathor_category_name = $row['category_name'];
 
-                                                echo '<option style="font-weight: bold;">'. $pathor_category_name . '</option>';
+                                            echo '<option style="font-weight: bold;">' . $pathor_category_name . '</option>';
 
-                                                  $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
-                                                  $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
-                                                  if($rslt_pathor_lbl->num_rows > 0){
+                                            $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
+                                            $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
+                                            if ($rslt_pathor_lbl->num_rows > 0) {
 
-                                                    while($row2 = $rslt_pathor_lbl->fetch_assoc()){
-                                                        $raol_id = $row2['id'];
-                                                        $raol_pathor_label = $row2['pathor_label'];
-                                                        $raol_pathor_category_id = $row2['pathor_category_id'];
+                                                while ($row2 = $rslt_pathor_lbl->fetch_assoc()) {
+                                                    $raol_id = $row2['id'];
+                                                    $raol_pathor_label = $row2['pathor_label'];
+                                                    $raol_pathor_category_id = $row2['pathor_category_id'];
 
 
-                                                        if($pathor_category_id == $pathor_balu_category_id){
-                                                          echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
-                                                        }
-                                                      }
-                                                  } else{
-                                                    echo '<option>0 results</option>';
-                                                  }
-
-                                              }
-
-                                            } else{
-                                              echo '<option>0 results</option>';
+                                                    if ($pathor_category_id == $pathor_balu_category_id) {
+                                                        echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
+                                                    }
+                                                }
+                                            } else {
+                                                echo '<option>0 results</option>';
                                             }
-                                        echo '</select> ';
+                                        }
+                                    } else {
+                                        echo '<option>0 results</option>';
+                                    }
+                                    echo '</select> ';
                                     ?>
                                 </td>
                             </tr>
@@ -738,62 +788,62 @@
                             <tr>
                                 <td>Inchi (+) Added (Inchi (+) যোগ) </td>
                                 <td>
-                                <input type="text" name="inchi_added" class="form-control" id="inchi_added_popup" placeholder="Enter Inchi (+) Added ...">
+                                    <input type="text" name="inchi_added" class="form-control" id="inchi_added_popup" placeholder="Enter Inchi (+) Added ...">
                                 </td>
                             </tr>
                             <tr>
-                                <td>Points ( - ) Dropped Out (পয়েন্ট ( - )  বাদ) </td>
+                                <td>Points ( - ) Dropped Out (পয়েন্ট ( - ) বাদ) </td>
                                 <td>
-                                <input type="text" name="points_dropped" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
+                                    <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Shift(সেপ্টি) </td>
                                 <td>
-                                <input type="text" name="" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
+                                    <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total Shift(মোট সেপ্টি) </td>
                                 <td>
-                                <input type="text" name="" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
+                                    <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Para's (দর) </td>
                                 <td>
-                                <input type="text" name="paras" class="form-control" id="paras_popup" placeholder="Enter Paras ...">
+                                    <input type="text" name="paras" class="form-control" id="paras_popup" placeholder="Enter Paras ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Discount(কমিশন) </td>
                                 <td>
-                                <input type="text" name="discount" class="form-control" id="discount_popup" placeholder="Enter Discount ...">
+                                    <input type="text" name="discount" class="form-control" id="discount_popup" placeholder="Enter Discount ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Credit(মূল) </td>
                                 <td>
-                                <input type="text" name="credit" class="form-control" id="credit_popup" placeholder="Enter Credit ...">
+                                    <input type="text" name="credit" class="form-control" id="credit_popup" placeholder="Enter Credit ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Balance(অবশিষ্ট) </td>
                                 <td>
-                                <input type="text" name="balance" class="form-control" id="balance_popup" placeholder="Enter Balance  ...">
+                                    <input type="text" name="balance" class="form-control" id="balance_popup" placeholder="Enter Balance  ...">
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
                                 <td>
-                                <input type="text" name="cemeats_paras" class="form-control" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's..."> 
+                                    <input type="text" name="cemeats_paras" class="form-control" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
                             </tr>
-                                <td>Ton(টোন)</td>
-                                <td>
-                                    <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
-                                </td>
+                            <td>Ton(টোন)</td>
+                            <td>
+                                <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
+                            </td>
                             </tr>
                             <tr>
                                 <td>Total Shift(সেপ্টি)</td>
@@ -806,7 +856,7 @@
                                 <td>
                                     <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter total_paras...">
                                 </td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td>Bank_name (ব্যাংক নাম)</td>
                                 <td>
@@ -818,16 +868,16 @@
                                 <td>
                                     <input type="text" name="fee" class="form-control" id="fee_popup" placeholder="Enter total_paras...">
                                 </td>
-                            </tr>                           
+                            </tr>
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
-                        
+
                         <input type="hidden" name="pathor_details_id" id="pathor_details_id">
                         <div class="pop_btn_con">
-                            <input onclick="valid('insert_popup')" type="button" name = "submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
+                            <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -835,34 +885,33 @@
     </div>
     <?php include '../others_page/delete_permission_modal.php';  ?>
 
-	
 
-    <script>         
-        $(document).on("click","#flipChkbox",function() {
-            if($('#flipChkbox input[type="checkbox"]').prop("checked") == true){
+
+    <script>
+        $(document).on("click", "#flipChkbox", function() {
+            if ($('#flipChkbox input[type="checkbox"]').prop("checked") == true) {
                 // alert("Checkbox is checked.");
                 $("#panel").slideDown("slow");
-            } else if($('#flipChkbox input[type="checkbox"]').prop("checked") == false){              
+            } else if ($('#flipChkbox input[type="checkbox"]').prop("checked") == false) {
                 // alert("Checkbox is unchecked.");
                 $("#panel").slideUp("slow");
             }
         });
-    // onkeypress="return isNumber(event)"
-
+        // onkeypress="return isNumber(event)"
     </script>
     <script type="text/javascript">
-        function dealerWiseSummaryDetailsSearchAndEntry(dlrId, restext=false){
+        function dealerWiseSummaryDetailsSearchAndEntry(dlrId, restext = false) {
             $.ajax({
                 url: '../ajaxcall/pathor_sell_dealer_wise_summary_details_search_and_sell_entry.php',
                 type: 'post',
                 data: {
-                  dealerId   : dlrId,
+                    dealerId: dlrId,
                 },
-                success: function(res){
+                success: function(res) {
                     // alert(res);
                     $('#allconid').html(res);
 
-                    if(restext != false){
+                    if (restext != false) {
                         $('#NewEntrySucMsg').html(restext).show();
                         $('#NewEntrySucMsgPopup').html(restext).show();
                     }
@@ -870,10 +919,10 @@
                     $('.selectpicker').selectpicker();
 
 
-                    $('#delivery_date').bind('keydown',function(e){
+                    $('#delivery_date').bind('keydown', function(e) {
                         if (e.which == 13)
                             e.stopImmediatePropagation();
-                    }).datepicker( {
+                    }).datepicker({
                         onSelect: function(date) {
                             // alert(date);
                             $(this).change();
@@ -883,10 +932,10 @@
                     });
 
 
-                    $('#dates').bind('keydown',function(e){
+                    $('#dates').bind('keydown', function(e) {
                         if (e.which == 13)
                             e.stopImmediatePropagation();
-                    }).datepicker( {
+                    }).datepicker({
                         onSelect: function(date) {
                             // alert(date);
                             $(this).change();
@@ -895,7 +944,7 @@
                         changeYear: true,
                     });
 
-                    $('#flipChkbox input[type="checkbox"]').prop( "checked", true );
+                    $('#flipChkbox input[type="checkbox"]').prop("checked", true);
                     // $('#gb_bank_ganti').hide();
 
                     // $(document).on('keypress', '#gb_bank_ganti', function(e){
@@ -909,9 +958,11 @@
                         $("#NewEntrySucMsg").html('');
                         $('#NewEntrySucMsgPopup').html('');
                         $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
-                        
-                        $("#popupEntry").fadeIn(500);                       
-                        $(".items_all_con").animate({ scrollTop: 0 }, "0");
+
+                        $("#popupEntry").fadeIn(500);
+                        $(".items_all_con").animate({
+                            scrollTop: 0
+                        }, "0");
                         // $(".items_all_con").scrollTop(0);
                         // console.log('red');
                     });
@@ -942,7 +993,7 @@
                         $('#shifty_popup').val('');
                         $('#inchi_minus_popup').val('');
                         $('#cft_dropped_popup').val('');
-                        $('#inchi_added_popup').val(''); 
+                        $('#inchi_added_popup').val('');
                         $('#points_dropped_popup').val('');
                         $('#shift_popup').val('');
                         $('#total_shift_popup').val('');
@@ -952,10 +1003,10 @@
                         $('#balance_popup').val('');
                         $('#cemeats_paras_popup').val('');
                         $('#ton_popup').val('');
-                        $('#total_shift_popup').val(''); 
+                        $('#total_shift_popup').val('');
                         $('#tons_popup').val('');
-                        $('#bank_name_popup').val(''); 
-                        $('#fee_popup').val('');                             
+                        $('#bank_name_popup').val('');
+                        $('#fee_popup').val('');
                         $("#NewEntrySucMsg").html('');
                         $("#NewEntrySucMsgPopup").html('');
                     });
@@ -963,32 +1014,32 @@
                         $(".popupClose").trigger('click');
                     });
                 },
-                error: function(jqXHR, textStatus, errorThrown){
+                error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         }
 
-        function getDealerNameByDealerId(dlrIda){
+        function getDealerNameByDealerId(dlrIda) {
             $.ajax({
                 url: '../ajaxcall/pathor_get_dealer_name_by_dealer_id.php',
                 type: 'post',
                 data: {
-                    dealerId   : dlrIda,
+                    dealerId: dlrIda,
                 },
-                success: function(res){
+                success: function(res) {
                     // alert(res);
                     $('#city_center_id').html(res);
                 },
-                error: function(jqXHR, textStatus, errorThrown){
+                error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         }
-        $(document).on('change', '#delear_id', function(){
-            var optionValue = $('#delear_id option:selected').val();          
+        $(document).on('change', '#delear_id', function() {
+            var optionValue = $('#delear_id option:selected').val();
             // alert(optionValue);
-            if(optionValue === ''){
+            if (optionValue === '') {
                 $('#allconid').css('display', 'none');
             } else {
                 dealerWiseSummaryDetailsSearchAndEntry(optionValue);
@@ -1000,106 +1051,123 @@
         $("#delear_id").val("DLAR-100001").change();
     </script>
     <script type="text/javascript">
-        $(document).on('click', '.detailsDelete', function(event){          
-          var data_delete_id = $(event.target).attr('data_delete_id');
-          $("#verifyPasswordModal").show().height($("html").height() + $(".bar_con").height());
-          $("#matchPassword").val('');
-          $("#passMsg").html('');
-          $("#verifyToDeleteBtn").removeAttr("data_delete_id");
-          $("#verifyToDeleteBtn").attr("data_delete_id", data_delete_id);
+        $(document).on('click', '.detailsDelete', function(event) {
+            var data_delete_id = $(event.target).attr('data_delete_id');
+            $("#verifyPasswordModal").show().height($("html").height() + $(".bar_con").height());
+            $("#matchPassword").val('');
+            $("#passMsg").html('');
+            $("#verifyToDeleteBtn").removeAttr("data_delete_id");
+            $("#verifyToDeleteBtn").attr("data_delete_id", data_delete_id);
         });
-        $(document).on('click', '#verifyToDeleteBtn', function(event){
+        $(document).on('click', '#verifyToDeleteBtn', function(event) {
             event.preventDefault();
             var data_delete_id = $(event.target).attr('data_delete_id');
-            console.log('detailsDelete',data_delete_id);
-            $("#passMsg").html("").css({'margin':'0px'});          
+            console.log('detailsDelete', data_delete_id);
+            $("#passMsg").html("").css({
+                'margin': '0px'
+            });
             var pass = $("#matchPassword").val();
             $.ajax({
                 url: "../ajaxcall/balu_match_password_for_vaucher_credit.php",
                 type: "post",
-                data: { pass : pass },
-                success: function (response) {
-                  // alert(response);
-                  if(response == 'password_matched'){
-                      $("#verifyPasswordModal").hide();
-                      ConfirmDialog('Are you sure delete details info?',data_delete_id); 
-                  } else {
-                      $("#passMsg").html(response).css({'color':'red','margin-top':'10px'});
-                  }
+                data: {
+                    pass: pass
+                },
+                success: function(response) {
+                    // alert(response);
+                    if (response == 'password_matched') {
+                        $("#verifyPasswordModal").hide();
+                        ConfirmDialog('Are you sure delete details info?', data_delete_id);
+                    } else {
+                        $("#passMsg").html(response).css({
+                            'color': 'red',
+                            'margin-top': '10px'
+                        });
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                  console.log(textStatus, errorThrown);
+                    console.log(textStatus, errorThrown);
                 }
             });
-            
-            function ConfirmDialog(message,data_delete_id){
+
+            function ConfirmDialog(message, data_delete_id) {
                 $('<div></div>').appendTo('body')
-                                  .html('<div><h4>'+message+'</h4></div>')
-                                  .dialog({
-                                      modal: true, title: 'Alert', zIndex: 10000, autoOpen: true,
-                                      width: '40%', resizable: false,
-                                      position: { my: "center", at: "center center-20%", of: window },
-                                      buttons: {
-                                          Yes: function () {
-                                          var urltxt = '../ajaxcall/pathor_rod_del_sell_entry_ajax.php';        
-                                          $.ajax({
-                                              url: urltxt,
-                                              type: 'post',
-                                              dataType: 'html',
-                                              data: {'rod_details_id': data_delete_id},
-                                              success: function(res){
-                                                  console.log(res);
-                                                  // alert(res);
-                                                  var optionValue = $('#delear_id option:selected').val(); 
-                                                  dealerWiseSummaryDetailsSearchAndEntry(optionValue,res);
-                                              },
-                                              error: function(jqXHR, textStatus, errorThrown){
-                                                  console.log(textStatus, errorThrown);
-                                              }
-                                          });
-                                              $(this).dialog("close");
-                                            //   $.get("rod_details_entry.php?remove_id="+ data_delete_id, function(data, status){
-                                              // console.log(status);
-                                            //    if(status == 'success'){
-                                            //      window.location.href = 'rod_details_entry.php';
-                                            //    }
-                                            //   });
-                                          },
-                                          No: function () {
-                                              $(this).dialog("close");
-                                          }
-                                      },
-                                      close: function (event, ui) {
-                                          $(this).remove();
-                                      }
-                                  });
-            };           
+                    .html('<div><h4>' + message + '</h4></div>')
+                    .dialog({
+                        modal: true,
+                        title: 'Alert',
+                        zIndex: 10000,
+                        autoOpen: true,
+                        width: '40%',
+                        resizable: false,
+                        position: {
+                            my: "center",
+                            at: "center center-20%",
+                            of: window
+                        },
+                        buttons: {
+                            Yes: function() {
+                                var urltxt = '../ajaxcall/pathor_rod_del_sell_entry_ajax.php';
+                                $.ajax({
+                                    url: urltxt,
+                                    type: 'post',
+                                    dataType: 'html',
+                                    data: {
+                                        'rod_details_id': data_delete_id
+                                    },
+                                    success: function(res) {
+                                        console.log(res);
+                                        // alert(res);
+                                        var optionValue = $('#delear_id option:selected').val();
+                                        dealerWiseSummaryDetailsSearchAndEntry(optionValue, res);
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        console.log(textStatus, errorThrown);
+                                    }
+                                });
+                                $(this).dialog("close");
+                                //   $.get("rod_details_entry.php?remove_id="+ data_delete_id, function(data, status){
+                                // console.log(status);
+                                //    if(status == 'success'){
+                                //      window.location.href = 'rod_details_entry.php';
+                                //    }
+                                //   });
+                            },
+                            No: function() {
+                                $(this).dialog("close");
+                            }
+                        },
+                        close: function(event, ui) {
+                            $(this).remove();
+                        }
+                    });
+            };
         });
     </script>
     <script type="text/javascript">
         function valid(submit_type) {
             var returnValid = false;
-          
-            if(submit_type=='insert'){
+
+            if (submit_type == 'insert') {
                 var customer_id = $('#customer_id').val();
                 var partculars = $('#partculars').val();
                 var particulars = $('#particulars').val();
-            
-                if(customer_id == 'none') {
+
+                if (customer_id == 'none') {
                     alert('Please select a customer Id');
                     returnValid = false;
                 } else {
                     returnValid = true;
                 }
-                
-                if(partculars == 'none') {
+
+                if (partculars == 'none') {
                     alert('Please select a marfot name');
                     returnValid = false;
                 } else {
                     returnValid = true;
                 }
-                
-                if(particulars == 'none') {
+
+                if (particulars == 'none') {
                     alert('Please select a particular');
                     returnValid = false;
                 } else {
@@ -1109,13 +1177,13 @@
                 var formData = new FormData(formElement);
                 var urltxt = '../ajaxcall/pathor_sell_rod_details_entry_ajax.php';
 
-            } else if(submit_type == 'insert_popup'){
+            } else if (submit_type == 'insert_popup') {
                 var buyer_id = $('#buyer_id_popup').val();
-                
-                if(buyer_id == 'none'){
+
+                if (buyer_id == 'none') {
                     alert('Please select a buyer Id');
                     returnValid = false;
-                } else{
+                } else {
                     returnValid = true;
                 }
                 var formElement = $('#insertPopupForm')[0];
@@ -1125,7 +1193,7 @@
             } else {
                 ////Horizontal Edit er code
                 // var buyer_id_edit = $('#buyer_id_edit').val();
-              
+
                 // if(buyer_id_edit == 'none'){
                 //     alert('Please select a buyer Id');
                 //     returnValid = false;
@@ -1138,11 +1206,11 @@
 
                 ////Popup edit/update er code
                 var customer_id = $('#customer_id_popup').val();
-                
-                if(customer_id == 'none'){
+
+                if (customer_id == 'none') {
                     alert('Please select a customer Id');
                     returnValid = false;
-                } else{
+                } else {
                     returnValid = true;
                 }
                 var formElement = $('#insertPopupForm')[0];
@@ -1151,7 +1219,7 @@
 
             }
 
-            if(returnValid){
+            if (returnValid) {
                 $.ajax({
                     url: urltxt,
                     type: 'post',
@@ -1159,11 +1227,11 @@
                     processData: false,
                     contentType: false,
                     data: formData,
-                    success: function(res){
+                    success: function(res) {
                         console.log(res);
                         // alert(res);          
-                        var optionValue = $('#delear_id option:selected').val(); 
-                        dealerWiseSummaryDetailsSearchAndEntry(optionValue,res);
+                        var optionValue = $('#delear_id option:selected').val();
+                        dealerWiseSummaryDetailsSearchAndEntry(optionValue, res);
                         $('#customer_id_popup').val("none").change();
                         $('#motor_name_popup').val('');
                         $('#driver_name_popup').val('');
@@ -1206,25 +1274,27 @@
                         $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
 
                     },
-                    error: function(jqXHR, textStatus, errorThrown){
+                    error: function(jqXHR, textStatus, errorThrown) {
                         console.log(textStatus, errorThrown);
                     }
                 });
-            } 
-      }
+            }
+        }
     </script>
     <script type="text/javascript">
-        function edit_rod_details(rod_id){
+        function edit_rod_details(rod_id) {
             $('.rodDetailsEnCon').hide();
-            var urltxt = '../ajaxcall/pathor_rod_edit_entry_ajax.php';        
+            var urltxt = '../ajaxcall/pathor_rod_edit_entry_ajax.php';
             $.ajax({
                 url: urltxt,
                 type: 'post',
                 dataType: 'html',
                 // processData: false,
                 // contentType: false,
-                data: {'rod_details_id': rod_id},
-                success: function(res){
+                data: {
+                    'pathor_details_id': rod_id
+                },
+                success: function(res) {
                     console.log(res);
                     // alert(res);
                     $('.rodDetailsEdit').html(res).show();
@@ -1232,10 +1302,10 @@
 
 
 
-                    $('#delivery_date_edit').bind('keydown',function(e){
+                    $('#delivery_date_edit').bind('keydown', function(e) {
                         if (e.which == 13)
                             e.stopImmediatePropagation();
-                    }).datepicker( {
+                    }).datepicker({
                         onSelect: function(date) {
                             // alert(date);
                             $(this).change();
@@ -1243,10 +1313,10 @@
                         dateFormat: "dd-mm-yy",
                         changeYear: true,
                     });
-                    $('#dates_edit').bind('keydown',function(e){
+                    $('#dates_edit').bind('keydown', function(e) {
                         if (e.which == 13)
                             e.stopImmediatePropagation();
-                    }).datepicker( {
+                    }).datepicker({
                         onSelect: function(date) {
                             // alert(date);
                             $(this).change();
@@ -1256,56 +1326,56 @@
                     });
 
                 },
-                error: function(jqXHR, textStatus, errorThrown){
+                error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         }
 
-        function edit_rod_popup(element, rowid){
-            var customer_id         = $(element).closest('tr').find('td:eq(0)').text();
+        function edit_rod_popup(element, rowid) {
+            var customer_id = $(element).closest('tr').find('td:eq(0)').text();
             // var dlar_id         = $(element).closest('tr').find('td:eq(1)').text();
-            var motor_name      = $(element).closest('tr').find('td:eq(1)').text();
-            var driver_name      = $(element).closest('tr').find('td:eq(2)').text();
-            var motor_vara      = $(element).closest('tr').find('td:eq(3)').text();
-            var unload          = $(element).closest('tr').find('td:eq(4)').text();
+            var motor_name = $(element).closest('tr').find('td:eq(1)').text();
+            var driver_name = $(element).closest('tr').find('td:eq(2)').text();
+            var motor_vara = $(element).closest('tr').find('td:eq(3)').text();
+            var unload = $(element).closest('tr').find('td:eq(4)').text();
             var cars_rent_redeem = $(element).closest('tr').find('td:eq(5)').text();
-            var information     = $(element).closest('tr').find('td:eq(6)').text();
-            var sl    = $(element).closest('tr').find('td:eq(7)').text();
-            var voucher_no     = $(element).closest('tr').find('td:eq(8)').text();
-            var address         = $(element).closest('tr').find('td:eq(9)').text();
-            var motor_number        = $(element).closest('tr').find('td:eq(10)').text();
-            var motor_sl         = $(element).closest('tr').find('td:eq(11)').text();           
-            var delivery_date   = $(element).closest('tr').find('td:eq(12)').text();
-            var date            = $(element).closest('tr').find('td:eq(13)').text();
-            var partculars      = $(element).closest('tr').find('td:eq(14)').text();
-            var particulars     = $(element).closest('tr').find('td:eq(15)').text();
-            var debit           = $(element).closest('tr').find('td:eq(16)').text();
-            var ton_kg              = $(element).closest('tr').find('td:eq(17)').text();
-            var length              = $(element).closest('tr').find('td:eq(18)').text();
-            var width             = $(element).closest('tr').find('td:eq(19)').text();
-            var height              = $(element).closest('tr').find('td:eq(20)').text();
-            var shifty              = $(element).closest('tr').find('td:eq(21)').text();
-            var inchi_minus              = $(element).closest('tr').find('td:eq(22)').text();
-            var cft_dropped              = $(element).closest('tr').find('td:eq(23)').text();
-            var inchi_added             = $(element).closest('tr').find('td:eq(24)').text();
-            var points_dropped              = $(element).closest('tr').find('td:eq(25)').text();
-            var shift             = $(element).closest('tr').find('td:eq(26)').text();
-            var total_shift             = $(element).closest('tr').find('td:eq(27)').text();
-            var paras             = $(element).closest('tr').find('td:eq(28)').text();
-            var discount             = $(element).closest('tr').find('td:eq(29)').text();
-            var credit            = $(element).closest('tr').find('td:eq(30)').text();
-            var balance             = $(element).closest('tr').find('td:eq(31)').text();
-            var cemeats_paras             = $(element).closest('tr').find('td:eq(32)').text();
-            var ton             = $(element).closest('tr').find('td:eq(33)').text();
-            var total_shift             = $(element).closest('tr').find('td:eq(34)').text();
-            var tons              = $(element).closest('tr').find('td:eq(35)').text();
-            var bank_name             = $(element).closest('tr').find('td:eq(36)').text();
-            var fee             = $(element).closest('tr').find('td:eq(37)').text();
-            
+            var information = $(element).closest('tr').find('td:eq(6)').text();
+            var sl = $(element).closest('tr').find('td:eq(7)').text();
+            var voucher_no = $(element).closest('tr').find('td:eq(8)').text();
+            var address = $(element).closest('tr').find('td:eq(9)').text();
+            var motor_number = $(element).closest('tr').find('td:eq(10)').text();
+            var motor_sl = $(element).closest('tr').find('td:eq(11)').text();
+            var delivery_date = $(element).closest('tr').find('td:eq(12)').text();
+            var date = $(element).closest('tr').find('td:eq(13)').text();
+            var partculars = $(element).closest('tr').find('td:eq(14)').text();
+            var particulars = $(element).closest('tr').find('td:eq(15)').text();
+            var debit = $(element).closest('tr').find('td:eq(16)').text();
+            var ton_kg = $(element).closest('tr').find('td:eq(17)').text();
+            var length = $(element).closest('tr').find('td:eq(18)').text();
+            var width = $(element).closest('tr').find('td:eq(19)').text();
+            var height = $(element).closest('tr').find('td:eq(20)').text();
+            var shifty = $(element).closest('tr').find('td:eq(21)').text();
+            var inchi_minus = $(element).closest('tr').find('td:eq(22)').text();
+            var cft_dropped = $(element).closest('tr').find('td:eq(23)').text();
+            var inchi_added = $(element).closest('tr').find('td:eq(24)').text();
+            var points_dropped = $(element).closest('tr').find('td:eq(25)').text();
+            var shift = $(element).closest('tr').find('td:eq(26)').text();
+            var total_shift = $(element).closest('tr').find('td:eq(27)').text();
+            var paras = $(element).closest('tr').find('td:eq(28)').text();
+            var discount = $(element).closest('tr').find('td:eq(29)').text();
+            var credit = $(element).closest('tr').find('td:eq(30)').text();
+            var balance = $(element).closest('tr').find('td:eq(31)').text();
+            var cemeats_paras = $(element).closest('tr').find('td:eq(32)').text();
+            var ton = $(element).closest('tr').find('td:eq(33)').text();
+            var total_shift = $(element).closest('tr').find('td:eq(34)').text();
+            var tons = $(element).closest('tr').find('td:eq(35)').text();
+            var bank_name = $(element).closest('tr').find('td:eq(36)').text();
+            var fee = $(element).closest('tr').find('td:eq(37)').text();
+
 
             // alert(buyr_id);
-            $('#rod_details_id').val(rowid);
+            $('#pathor_details_id').val(rowid);
             $('#customer_id_popup').val(customer_id);
             $('#motor_name_popup').val(motor_name);
             $('#driver_name_popup').val(driver_name);
@@ -1345,93 +1415,95 @@
             $('#bank_name_popup').val(bank_name);
             $('#fee_popup').val(fee);
 
-            
+
             $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')");
             $("#popupEntry").fadeIn(500);
             $("#NewEntrySucMsgPopup").html('');
-            $(".items_all_con").animate({ scrollTop: 0 }, "0");
+            $(".items_all_con").animate({
+                scrollTop: 0
+            }, "0");
         }
     </script>
-    <script type="text/javascript">   
-      //Start calculation
-      $(document).on('input change paste keyup', '.value-calc', function(){
-                var kg    = $('#kg').val();
-                var paras = $('#paras').val();
-                if(kg == ''){
-                    $('#credit').val('0');
-                } else if(paras == ''){
-                    $('#credit').val('0');
-                } else {
-                    var credit = kg * paras;
-                    //  alert(credit);
-                    $('#credit').val(credit);
-                }
+    <script type="text/javascript">
+        //Start calculation
+        $(document).on('input change paste keyup', '.value-calc', function() {
+            var kg = $('#kg').val();
+            var paras = $('#paras').val();
+            if (kg == '') {
+                $('#credit').val('0');
+            } else if (paras == '') {
+                $('#credit').val('0');
+            } else {
+                var credit = kg * paras;
+                //  alert(credit);
+                $('#credit').val(credit);
+            }
 
 
-//shifty
-                var length    = $('#length').val();
-                var width = $('#width').val();
-                var height = $('#height').val();
-                if(length == ''){
-                    $('#shifty').val('0');
-                } else if(width == ''){
-                    $('#shifty').val('0');
-                }else if(height == ''){
-                    $('#shifty').val('0');
-                }
-                // else if(length != ''){
-                //     $('#kg').val('0');
-                // }
-                  else {
-                    var shifty = length * width * height;
-                    var shift_to_ton = shifty/23.5;
-                    // alert(credit);
-                    $('#shifty').val(shifty);
-                    $('#ton').val(shift_to_ton);
-                    $('#tons').val(shift_to_ton);
-                    $('#shift').val(shifty);
-                    $('#total_shift').val(shifty);
-                    $('#total_shifts').val(shifty);
+            //shifty
+            var length = $('#length').val();
+            var width = $('#width').val();
+            var height = $('#height').val();
+            if (length == '') {
+                $('#shifty').val('0');
+            } else if (width == '') {
+                $('#shifty').val('0');
+            } else if (height == '') {
+                $('#shifty').val('0');
+            }
+            // else if(length != ''){
+            //     $('#kg').val('0');
+            // }
+            else {
+                var shifty = length * width * height;
+                var shift_to_ton = shifty / 23.5;
+                // alert(credit);
+                $('#shifty').val(shifty);
+                $('#ton').val(shift_to_ton);
+                $('#tons').val(shift_to_ton);
+                $('#shift').val(shifty);
+                $('#total_shift').val(shifty);
+                $('#total_shifts').val(shifty);
 
-                }
-//ton and kg
-var ton   = $('#ton').val();
-               var ton_kg    = $('#kg').val();
-               var credit = $("#credit").val();
-                if(ton_kg != ''){
-                    $("#length").attr("value", "not applicable");
-                    // $('#length').val('not applicable');
-                    $('#width').val('not applicable');
-                    $('#height').val('not applicable');
-                    $('#ton').val(ton_kg);
-                    $('#tons').val(ton_kg);
+            }
+            //ton and kg
+            var ton = $('#ton').val();
+            var ton_kg = $('#kg').val();
+            var credit = $("#credit").val();
+            if (ton_kg != '') {
+                $("#length").attr("value", "not applicable");
+                // $('#length').val('not applicable');
+                $('#width').val('not applicable');
+                $('#height').val('not applicable');
+                $('#ton').val(ton_kg);
+                $('#tons').val(ton_kg);
 
-                    var ton_to_cft = ton_kg * 23.5;
-                    $('#shifty').val(ton_to_cft);
-                    $('#shift').val(ton_to_cft);
-                    $('#total_shift').val(ton_to_cft);
-                    $('#total_shifts').val(ton_to_cft);
-               
-                } else {
-                    var credit = ton * paras;
-                    // alert(credit);
-                    $('#credit').val(credit);
-                }
-                var discount = $("#discount").val();
-                if(discount != ''){
-                    var credit = credit - ((discount/100)*credit);
-                    $('#credit').val(credit);
-                }
-                var fee = $("#fee").val();
-                if(fee != ''){
-                    var credit =  parseInt(credit) + parseInt(fee);
-                    $('#credit').val(credit);
-                }
+                var ton_to_cft = ton_kg * 23.5;
+                $('#shifty').val(ton_to_cft);
+                $('#shift').val(ton_to_cft);
+                $('#total_shift').val(ton_to_cft);
+                $('#total_shifts').val(ton_to_cft);
+
+            } else {
+                var credit = ton * paras;
+                // alert(credit);
+                $('#credit').val(credit);
+            }
+            var discount = $("#discount").val();
+            if (discount != '') {
+                var credit = credit - ((discount / 100) * credit);
+                $('#credit').val(credit);
+            }
+            var fee = $("#fee").val();
+            if (fee != '') {
+                var credit = parseInt(credit) + parseInt(fee);
+                $('#credit').val(credit);
+            }
 
 
 
-                //check minus
-                // <?php
+            //check minus
+            // <?php
                 //   $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_pathor WHERE partculars != '' GROUP BY partculars,particulars";
                 //   $show = $db->select($sql);
                 //   if ($show) {
@@ -1440,151 +1512,152 @@ var ton   = $('#ton').val();
                 //               echo "<td>". $rows['partculars'] . "</td>";
                 //               echo "<td>". $rows['particulars'] . "</td>";
                 //               echo "<td>". $rows['ton'] . "</td>";
-                                      
+
                 //           echo "</tr>";
                 //       }
                 //   }
-                // ?>
+                // 
+                ?>
 
-                var debit = $("#debit").val();
-                var credit = $("#credit").val();
-                if(debit == ''){
-                    $('#balance').val('0');
-                } else if(credit == ''){
-                    $('#balance').val('0');
-                } else {
-                    var balance = credit - debit;
-                    // alert(balance);
-                    $('#balance').val(balance);
-                }
-
-                var motor_vara = $('#motor_vara').val();
-                var unload = $('#unload').val();
-                if(motor_vara == ''){
-                    $('#car_rent_redeem').val('0');
-                } else if(unload == ''){
-                    $('#car_rent_redeem').val('0');
-                } else {
-                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
-                    // alert(balance);
-                    $('#car_rent_redeem').val(car_rent_redeem);
-                    $('#cemeats_paras').val(car_rent_redeem);
-                }
-
-
-                var car_rent_redeem = $('#car_rent_redeem').val();
-                var credit = $("#credit").val();
-                if(car_rent_redeem == ''){
-                    var total_paras = credit;
-                    $('#total_paras').val(total_paras);
-                } else {
-                    var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                    $('#total_paras').val(total_paras);
-                }
-            });
-            $(document).on('input change paste keyup', '.value-calc_edit', function(){
-                var kg    = $('#kg_edit').val();
-                var paras = $('#paras_edit').val();
-                if(kg == ''){
-                    $('#credit_edit').val('0');
-                } else if(paras == ''){
-                    $('#credit_edit').val('0');
-                } else {
-                var credit = kg * paras;
-                    // alert(credit);
-                    $('#credit_edit').val(credit);
-                }
-
-                var debit = $("#debit_edit").val();
-                var credit = $("#credit_edit").val();
-                if(debit == ''){
-                    $('#balance_edit').val('0');
-                } else if(credit == ''){
-                    $('#balance_edit').val('0');
-                } else {
+            var debit = $("#debit").val();
+            var credit = $("#credit").val();
+            if (debit == '') {
+                $('#balance').val('0');
+            } else if (credit == '') {
+                $('#balance').val('0');
+            } else {
                 var balance = credit - debit;
-                    // alert(balance);
-                    $('#balance_edit').val(balance);
-                }
+                // alert(balance);
+                $('#balance').val(balance);
+            }
 
-                var motor_cash = $('#motor_cash_edit').val();
-                var unload = $('#unload_edit').val();
-                if(motor_cash == ''){
-                    $('#car_rent_redeem_edit').val('0');
-                } else if(unload == ''){
-                    $('#car_rent_redeem_edit').val('0');
-                } else {
+            var motor_vara = $('#motor_vara').val();
+            var unload = $('#unload').val();
+            if (motor_vara == '') {
+                $('#car_rent_redeem').val('0');
+            } else if (unload == '') {
+                $('#car_rent_redeem').val('0');
+            } else {
+                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+                // alert(balance);
+                $('#car_rent_redeem').val(car_rent_redeem);
+                $('#cemeats_paras').val(car_rent_redeem);
+            }
+
+
+            var car_rent_redeem = $('#car_rent_redeem').val();
+            var credit = $("#credit").val();
+            if (car_rent_redeem == '') {
+                var total_paras = credit;
+                $('#total_paras').val(total_paras);
+            } else {
+                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+                $('#total_paras').val(total_paras);
+            }
+        });
+        $(document).on('input change paste keyup', '.value-calc_edit', function() {
+            var kg = $('#kg_edit').val();
+            var paras = $('#paras_edit').val();
+            if (kg == '') {
+                $('#credit_edit').val('0');
+            } else if (paras == '') {
+                $('#credit_edit').val('0');
+            } else {
+                var credit = kg * paras;
+                // alert(credit);
+                $('#credit_edit').val(credit);
+            }
+
+            var debit = $("#debit_edit").val();
+            var credit = $("#credit_edit").val();
+            if (debit == '') {
+                $('#balance_edit').val('0');
+            } else if (credit == '') {
+                $('#balance_edit').val('0');
+            } else {
+                var balance = credit - debit;
+                // alert(balance);
+                $('#balance_edit').val(balance);
+            }
+
+            var motor_cash = $('#motor_cash_edit').val();
+            var unload = $('#unload_edit').val();
+            if (motor_cash == '') {
+                $('#car_rent_redeem_edit').val('0');
+            } else if (unload == '') {
+                $('#car_rent_redeem_edit').val('0');
+            } else {
                 var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
-                    // alert(balance);
-                    $('#car_rent_redeem_edit').val(car_rent_redeem);
-                }
+                // alert(balance);
+                $('#car_rent_redeem_edit').val(car_rent_redeem);
+            }
 
 
-                var car_rent_redeem = $('#car_rent_redeem_edit').val();
-                var credit = $("#credit_edit").val();
-                if(car_rent_redeem == ''){
-                    var total_paras = credit;
-                    $('#total_paras_edit').val(total_paras);
-                } else {
-                    var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                    $('#total_paras_edit').val(total_paras);
-                }
-            });
+            var car_rent_redeem = $('#car_rent_redeem_edit').val();
+            var credit = $("#credit_edit").val();
+            if (car_rent_redeem == '') {
+                var total_paras = credit;
+                $('#total_paras_edit').val(total_paras);
+            } else {
+                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+                $('#total_paras_edit').val(total_paras);
+            }
+        });
         //End calculation
         //Start calculation popup
-            $(document).on('input change paste keyup', '.value-calc-popup', function(){
-                var kg    = $('#kg_popup').val();
-                var paras = $('#paras_popup').val();
-                if(kg == ''){
-                    $('#credit_popup').val('0');
-                } else if(paras == ''){
-                    $('#credit_popup').val('0');
-                } else {
-                    var credit = kg * paras;
-                    // alert(credit);
-                    $('#credit_popup').val(credit);
-                }
+        $(document).on('input change paste keyup', '.value-calc-popup', function() {
+            var kg = $('#kg_popup').val();
+            var paras = $('#paras_popup').val();
+            if (kg == '') {
+                $('#credit_popup').val('0');
+            } else if (paras == '') {
+                $('#credit_popup').val('0');
+            } else {
+                var credit = kg * paras;
+                // alert(credit);
+                $('#credit_popup').val(credit);
+            }
 
-                var debit = $("#debit_popup").val();
-                var credit = $("#credit_popup").val();
-                if(debit == ''){
-                    $('#balance_popup').val('0');
-                } else if(credit == ''){
-                    $('#balance_popup').val('0');
-                } else {
-                    var balance = credit - debit;
-                    // alert(balance);
-                    $('#balance_popup').val(balance);
-                }
+            var debit = $("#debit_popup").val();
+            var credit = $("#credit_popup").val();
+            if (debit == '') {
+                $('#balance_popup').val('0');
+            } else if (credit == '') {
+                $('#balance_popup').val('0');
+            } else {
+                var balance = credit - debit;
+                // alert(balance);
+                $('#balance_popup').val(balance);
+            }
 
-                var motor_cash = $('#motor_cash_popup').val();
-                var unload = $('#unload_popup').val();
-                if(motor_cash == ''){
-                    $('#car_rent_redeem_popup').val('0');
-                } else if(unload == ''){
-                    $('#car_rent_redeem_popup').val('0');
-                } else {
-                    var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
-                    // alert(balance);
-                    $('#car_rent_redeem_popup').val(car_rent_redeem);
-                }
+            var motor_cash = $('#motor_cash_popup').val();
+            var unload = $('#unload_popup').val();
+            if (motor_cash == '') {
+                $('#car_rent_redeem_popup').val('0');
+            } else if (unload == '') {
+                $('#car_rent_redeem_popup').val('0');
+            } else {
+                var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
+                // alert(balance);
+                $('#car_rent_redeem_popup').val(car_rent_redeem);
+            }
 
 
-                var car_rent_redeem = $('#car_rent_redeem_popup').val();
-                var credit = $("#credit_popup").val();
-                if(car_rent_redeem == ''){
-                    var total_paras = credit;
-                    $('#total_paras_popup').val(total_paras);
-                } else {
-                    var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                    $('#total_paras_popup').val(total_paras);
-                }
-              });
+            var car_rent_redeem = $('#car_rent_redeem_popup').val();
+            var credit = $("#credit_popup").val();
+            if (car_rent_redeem == '') {
+                var total_paras = credit;
+                $('#total_paras_popup').val(total_paras);
+            } else {
+                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+                $('#total_paras_popup').val(total_paras);
+            }
+        });
         //End calculation popup
     </script>
 
     <script type="text/javascript">
-        function getDataByDates(datestr, dealerId){
+        function getDataByDates(datestr, dealerId) {
             $.ajax({
                 url: '../ajaxcall/pathor_rod_search_date_entry.php',
                 type: 'post',
@@ -1592,19 +1665,19 @@ var ton   = $('#ton').val();
                     optionDate: datestr,
                     dealerId: dealerId,
                 },
-                success: function(res){
+                success: function(res) {
                     // alert(res);
                     $('#viewDetails').html(res);
                     $('.left_side_bar').height($('.main_bar').innerHeight());
                 },
-                error: function(jqXHR, textStatus, errorThrown){
+                error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         }
 
 
-        function getSummaryByDates(datestr, dealerId){
+        function getSummaryByDates(datestr, dealerId) {
             $.ajax({
                 url: '../ajaxcall/pathor_rod_search_date_wise_summary_entry.php',
                 type: 'post',
@@ -1612,70 +1685,70 @@ var ton   = $('#ton').val();
                     optionDate: datestr,
                     dealerId: dealerId,
                 },
-                success: function(res){
+                success: function(res) {
                     // alert(res);
                     $('#panel').html(res);
                 },
-                error: function(jqXHR, textStatus, errorThrown){
+                error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         }
 
 
-        $(document).on('change', '#dateSearchList', function(){
+        $(document).on('change', '#dateSearchList', function() {
             var optionDate = $('#dateSearchList option:selected').val();
-            var dealerId  =  $('#delear_id option:selected').val();
+            var dealerId = $('#delear_id option:selected').val();
             // alert(dealerId);          
             getDataByDates(optionDate, dealerId);
-            getSummaryByDates(optionDate, dealerId);          
+            getSummaryByDates(optionDate, dealerId);
         });
-
     </script>
-    <script>         
-        function datecheckformat(e){
+    <script>
+        function datecheckformat(e) {
             //On Enter key Press
 
             var currentID = e.target.id;
             var dateStr = $('#' + currentID).val();
             // alert(e.target.id);            
             // alert(dateStr);
-            if(e.which == 13) {          
+            if (e.which == 13) {
                 // alert('You pressed enter!');            
-                if(dateStr.length == 8){                  
-                    var day     = dateStr.trim().substr(0, 2);
-                    var month   = dateStr.trim().substr(2, 2);
-                    var year    = dateStr.trim().substr(4, 4);
+                if (dateStr.length == 8) {
+                    var day = dateStr.trim().substr(0, 2);
+                    var month = dateStr.trim().substr(2, 2);
+                    var year = dateStr.trim().substr(4, 4);
                     var formatedDate = day + '-' + month + '-' + year;
                     // alert(formatedDate);
-                    $('#' + currentID).val(formatedDate);  
-                    $('#' + currentID).datepicker("setDate", new Date(year, month-1, day) );                
+                    $('#' + currentID).val(formatedDate);
+                    $('#' + currentID).datepicker("setDate", new Date(year, month - 1, day));
                     console.log(formatedDate);
-                } else{
+                } else {
                     alert('Date input dayMonthYear within 8 char.');
                 }
             }
 
         }
-        function datecheckformatpopup(e){
+
+        function datecheckformatpopup(e) {
             //On Enter key Press
 
             var currentID = e.target.id;
             var dateStr = $('#' + currentID).val();
             // alert(e.target.id);            
             // alert(dateStr);
-            if(e.which == 13) {          
+            if (e.which == 13) {
                 // alert('You pressed enter!');            
-                if(dateStr.length == 8){                  
-                    var day     = dateStr.trim().substr(0, 2);
-                    var month   = dateStr.trim().substr(2, 2);
-                    var year    = dateStr.trim().substr(4, 4);
+                if (dateStr.length == 8) {
+                    var day = dateStr.trim().substr(0, 2);
+                    var month = dateStr.trim().substr(2, 2);
+                    var year = dateStr.trim().substr(4, 4);
                     var formatedDate = day + '-' + month + '-' + year;
                     // alert(formatedDate);
-                    $('#' + currentID).val(formatedDate);  
-                    $('#' + currentID).datepicker("setDate", new Date(year, month-1, day) );                
+                    $('#' + currentID).val(formatedDate);
+                    $('#' + currentID).datepicker("setDate", new Date(year, month - 1, day));
                     console.log(formatedDate);
-                } else{
+                } else {
                     alert('Date input dayMonthYear within 8 char.');
                 }
             }
@@ -1683,152 +1756,158 @@ var ton   = $('#ton').val();
         }
     </script>
     <script type="text/javascript">
-        $(document).on('click', '#entry_scroll1', function(){
-            $('#scrolling-entry-div').animate({scrollLeft:'1090'}, 1000, "swing");
+        $(document).on('click', '#entry_scroll1', function() {
+            $('#scrolling-entry-div').animate({
+                scrollLeft: '1090'
+            }, 1000, "swing");
             $(this).hide();
             $('#entry_scroll2').show();
             $('#entry_scroll3').hide();
         });
-        $(document).on('click', '#entry_scroll2', function(){
-            $('#scrolling-entry-div').animate({scrollLeft:'+=1110'}, 1000, "swing");
+        $(document).on('click', '#entry_scroll2', function() {
+            $('#scrolling-entry-div').animate({
+                scrollLeft: '+=1110'
+            }, 1000, "swing");
             $(this).hide();
             $('#entry_scroll1').hide();
             $('#entry_scroll3').show();
         });
-        $(document).on('click', '#entry_scroll3', function(){
-            $('#scrolling-entry-div').animate({scrollLeft:'0'}, 1000, "swing");
+        $(document).on('click', '#entry_scroll3', function() {
+            $('#scrolling-entry-div').animate({
+                scrollLeft: '0'
+            }, 1000, "swing");
             $(this).hide();
             $('#entry_scroll1').show();
             $('#entry_scroll2').hide();
         });
     </script>
     <script type="text/javascript">
-        $(document).on('click', '#gb_bank_ganti_td', function(){
+        $(document).on('click', '#gb_bank_ganti_td', function() {
             $('#gb_bank_ganti').show().focus();
         });
 
-        $(document).on('mousedown', function(e){
+        $(document).on('mousedown', function(e) {
             console.log(e);
             console.log($(e.target).attr('id'));
-            if($(e.target).attr('id')=='gb_bank_ganti'){
-              
-            }else{
+            if ($(e.target).attr('id') == 'gb_bank_ganti') {
+
+            } else {
                 console.log('hide');
                 $('#gb_bank_ganti').hide();
-            }            
+            }
         });
 
 
-        function gbbank_update(id, gbvalue){
+        function gbbank_update(id, gbvalue) {
             $.ajax({
                 url: '../ajaxcall_save_update/pathor_gb_bank_update.php',
                 type: 'post',
                 data: {
                     details_id: id,
-                    gbvalue   : gbvalue,
+                    gbvalue: gbvalue,
                 },
-                success: function(res){
+                success: function(res) {
                     $('#gbbank_stable_val').html(res);
-                    alert('GB Bank Ganti Updated Successfully.');                    
+                    alert('GB Bank Ganti Updated Successfully.');
                 },
-                error: function(jqXHR, textStatus, errorThrown){
+                error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         }
 
-        $(document).on('keypress', '#gb_bank_ganti', function(e){          
-            if (e.which == 13){
+        $(document).on('keypress', '#gb_bank_ganti', function(e) {
+            if (e.which == 13) {
                 var id = $(e.currentTarget).attr('data-id');
                 var gbvalue = $('#gb_bank_ganti').val();
                 // alert(id);
-                gbbank_update(id, gbvalue);          
+                gbbank_update(id, gbvalue);
                 $('#gb_bank_ganti').hide();
             }
         });
     </script>
     <script type="text/javascript">
-        $(document).on('change', '#particulars', function(){          
+        $(document).on('change', '#particulars', function() {
             var value = $('#particulars option:selected').val().match(/\d+/);
             // alert(value);
-            if(value == '04'){
+            if (value == '04') {
                 $('#mm').val('04.5 mm');
-            } else if(value == '06'){
+            } else if (value == '06') {
                 $('#mm').val('06 mm');
-            } else if(value == '08'){
+            } else if (value == '08') {
                 $('#mm').val('08 mm');
-            } else if(value == '10'){
+            } else if (value == '10') {
                 $('#mm').val('10 mm');
-            } else if(value == '12'){
+            } else if (value == '12') {
                 $('#mm').val('12 mm');
-            } else if(value == '16'){
+            } else if (value == '16') {
                 $('#mm').val('16 mm');
-            } else if(value == '20'){
+            } else if (value == '20') {
                 $('#mm').val('20 mm');
-            }else if(value == '22'){
-              $('#mm').val('22 mm');
-            } else if(value == '25'){
+            } else if (value == '22') {
+                $('#mm').val('22 mm');
+            } else if (value == '25') {
                 $('#mm').val('25 mm');
-            } else if(value == '32'){
+            } else if (value == '32') {
                 $('#mm').val('32 mm');
-            } else if(value == '42'){
+            } else if (value == '42') {
                 $('#mm').val('42 mm');
             } else {
                 $('#mm').val('');
             }
         });
-        $(document).on('change', '#particulars_edit', function(){          
+        $(document).on('change', '#particulars_edit', function() {
             var value = $('#particulars_edit option:selected').val().match(/\d+/);
             // alert(value);
-            if(value == '04'){
+            if (value == '04') {
                 $('#mm_edit').val('04.5 mm');
-            } else if(value == '06'){
+            } else if (value == '06') {
                 $('#mm_edit').val('06 mm');
-            } else if(value == '08'){
+            } else if (value == '08') {
                 $('#mm_edit').val('08 mm');
-            } else if(value == '10'){
+            } else if (value == '10') {
                 $('#mm_edit').val('10 mm');
-            } else if(value == '12'){
+            } else if (value == '12') {
                 $('#mm_edit').val('12 mm');
-            } else if(value == '16'){
+            } else if (value == '16') {
                 $('#mm_edit').val('16 mm');
-            } else if(value == '20'){
+            } else if (value == '20') {
                 $('#mm_edit').val('20 mm');
-            }else if(value == '22'){
-              $('#mm_edit').val('22 mm');
-            } else if(value == '25'){
+            } else if (value == '22') {
+                $('#mm_edit').val('22 mm');
+            } else if (value == '25') {
                 $('#mm_edit').val('25 mm');
-            } else if(value == '32'){
+            } else if (value == '32') {
                 $('#mm_edit').val('32 mm');
-            } else if(value == '42'){
+            } else if (value == '42') {
                 $('#mm_edit').val('42 mm');
             } else {
                 $('#mm_edit').val('');
             }
         });
-        $(document).on('change', '#particulars_popup', function(){          
-            var value = $('#particulars_popup option:selected').val().match(/\d+/);            // alert(value);
-            if(value == '04'){
+        $(document).on('change', '#particulars_popup', function() {
+            var value = $('#particulars_popup option:selected').val().match(/\d+/); // alert(value);
+            if (value == '04') {
                 $('#mm_popup').val('04.5 mm');
-            } else if(value == '06'){
+            } else if (value == '06') {
                 $('#mm_popup').val('06 mm');
-            } else if(value == '08'){
+            } else if (value == '08') {
                 $('#mm_popup').val('08 mm');
-            } else if(value == '10'){
+            } else if (value == '10') {
                 $('#mm_popup').val('10 mm');
-            } else if(value == '12'){
+            } else if (value == '12') {
                 $('#mm_popup').val('12 mm');
-            } else if(value == '16'){
+            } else if (value == '16') {
                 $('#mm_popup').val('16 mm');
-            } else if(value == '20'){
+            } else if (value == '20') {
                 $('#mm_popup').val('20 mm');
-            }else if(value == '22'){
-              $('#mm_popup').val('22 mm');
-            } else if(value == '25'){
+            } else if (value == '22') {
+                $('#mm_popup').val('22 mm');
+            } else if (value == '25') {
                 $('#mm_popup').val('25 mm');
-            } else if(value == '32'){
+            } else if (value == '32') {
                 $('#mm_popup').val('32 mm');
-            } else if(value == '42'){
+            } else if (value == '42') {
                 $('#mm_popup').val('42 mm');
             } else {
                 $('#mm_popup').val('');
@@ -1859,14 +1938,14 @@ var ton   = $('#ton').val();
             wme.focus();
             wme.print();
             // wme.close();
-        
+
         }
     </script>
     <script type="text/javascript">
-        $('#delivery_date_popup').bind('keydown',function(e){
+        $('#delivery_date_popup').bind('keydown', function(e) {
             if (e.which == 13)
                 e.stopImmediatePropagation();
-        }).datepicker( {
+        }).datepicker({
             onSelect: function(date) {
                 // alert(date);
                 $(this).change();
@@ -1874,12 +1953,12 @@ var ton   = $('#ton').val();
             dateFormat: "dd-mm-yy",
             changeYear: true,
         });
-         
 
-        $('#dates_popup').bind('keydown',function(e){
+
+        $('#dates_popup').bind('keydown', function(e) {
             if (e.which == 13)
                 e.stopImmediatePropagation();
-        }).datepicker( {
+        }).datepicker({
             onSelect: function(date) {
                 // alert(date);
                 $(this).change();
@@ -1889,48 +1968,58 @@ var ton   = $('#ton').val();
         });
     </script>
     <script type="text/javascript">
-        $(document).on('click', '.edPermit', function(event){
+        $(document).on('click', '.edPermit', function(event) {
             event.preventDefault();
             ConfirmDialog('You have no permission edit/delete this data !');
-            function ConfirmDialog(message){
+
+            function ConfirmDialog(message) {
                 $('<div></div>').appendTo('body')
-                                .html('<div><h4>'+message+'</h4></div>')
-                                .dialog({
-                                    modal: true, title: 'Alert', zIndex: 10000, autoOpen: true,
-                                    width: '40%', resizable: false,
-                                    position: { my: "center", at: "center center-20%", of: window },
-                                    buttons: {
-                                        Ok: function () {
-                                            $(this).dialog("close");
-                                        },
-                                        Cancel: function () {
-                                            $(this).dialog("close");
-                                        }
-                                    },
-                                    close: function (event, ui) {
-                                        $(this).remove();
-                                    }
-                                });
+                    .html('<div><h4>' + message + '</h4></div>')
+                    .dialog({
+                        modal: true,
+                        title: 'Alert',
+                        zIndex: 10000,
+                        autoOpen: true,
+                        width: '40%',
+                        resizable: false,
+                        position: {
+                            my: "center",
+                            at: "center center-20%",
+                            of: window
+                        },
+                        buttons: {
+                            Ok: function() {
+                                $(this).dialog("close");
+                            },
+                            Cancel: function() {
+                                $(this).dialog("close");
+                            }
+                        },
+                        close: function(event, ui) {
+                            $(this).remove();
+                        }
+                    });
             };
         });
 
 
-function isNumber(evt) {
-      evt = (evt) ? evt : window.event;
-      var charCode = (evt.which) ? evt.which : evt.keyCode;
-      if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
-        alert("Should be enter a number value");
-        console.log("Workkkkk",evt);
-        return false;
-      }
-      return true;
-    }
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
+                alert("Should be enter a number value");
+                console.log("Workkkkk", evt);
+                return false;
+            }
+            return true;
+        }
     </script>
     <script type="text/javascript">
-        $(document).on("click", ".kajol_close, .cancel", function(){
+        $(document).on("click", ".kajol_close, .cancel", function() {
             $("#verifyPasswordModal").hide();
         });
     </script>
     <script src="../js/common_js.js"> </script>
 </body>
+
 </html>

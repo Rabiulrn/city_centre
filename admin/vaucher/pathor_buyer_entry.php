@@ -349,6 +349,9 @@
             } else if(mobile.length > 11) {
                 $('#mobileErrMsg').html('Mobile number can not be greater than 11 characters !');
                 $('#mobile').focus();       
+            }else if(mobile.length < 11) {
+                $('#mobileErrMsg').html('Mobile number can not be less than 11 characters !');
+                $('#mobile').focus();       
             } else if(!$.isNumeric(mobile)) {
                 $('#mobileErrMsg').html('Mobile number must contain number!');
                 $('#mobile').focus();       
