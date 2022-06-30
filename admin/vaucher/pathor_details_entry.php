@@ -32,7 +32,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <style type="text/css">
         .rodDetailsEnCon {
@@ -45,6 +45,63 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             position: absolute;
             right: 0px;
         }
+.form-control-dealer{
+    border-color:#9bd1ff;
+}
+/* select { */
+
+/* styling */
+/* background-color: white;
+border: thin solid blue;
+border-radius: 4px;
+display: inline-block;
+font: inherit;
+line-height: 1.5em;
+padding: 0.5em 3.5em 0.5em 1em; */
+
+/* reset */
+
+/* margin: 0;      
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+-webkit-appearance: none;
+-moz-appearance: none;
+}
+select.form-control-dealer {
+  background-image:
+    linear-gradient(45deg, transparent 50%, blue 50%),
+    linear-gradient(135deg, blue 50%, transparent 50%),
+    linear-gradient(to right, skyblue, skyblue);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    100% 0;
+  background-size:
+    5px 5px,
+    5px 5px,
+    2.5em 2.5em;
+  background-repeat: no-repeat;
+} */
+
+/* select.form-control-dealer:focus {
+  background-image:
+    linear-gradient(45deg, white 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, white 50%),
+    linear-gradient(to right, gray, gray);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    100% 0;
+  background-size:
+    5px 5px,
+    5px 5px,
+    2.5em 2.5em;
+  background-repeat: no-repeat;
+  border-color: grey;
+  outline: 0;
+} */
+
 
         #detailsEtryTable {
             width: 293%;
@@ -52,7 +109,9 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
            
         }
-
+        /* #rodDetailsEnCon ::-webkit-scrollbar {
+            width: 50px;
+        } */
         #detailsEtryTable tr:first-child td {
             text-align: center;
             /* font-weight: 550; */
@@ -76,7 +135,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         }
         #detailsEtryTable tr:nth-child(3) input {
             border: none;
-            height: 39px;
+            /* height: 39px; */
             /* border-radius: 10% 10% 0% 0%; */
             /* transition: border-bottom 1s linear ; */
         }
@@ -95,7 +154,9 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             
         }
 
-
+        .btn-pathor:hover{
+            background-color: #000;
+        }
         #detailsEtryTable td {
             border: 1px solid #9c9c9c;
 
@@ -110,22 +171,22 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             overflow-y: scroll;
         }
 
-        /*.scrolling-div::-webkit-scrollbar {
+        /* .scrolling-div::-webkit-scrollbar {
           width: 10px;
           
         }
+     
         .scrolling-div::-webkit-scrollbar-track {
-          background: #ff9696;
-          box-shadow: inset 0 0 5px grey; 
-          border-radius: 10px;
+          background: linear-gradient(to bottom, #ffffff 0%, #ccffff 100%);
+          
         }
         .scrolling-div::-webkit-scrollbar-thumb {
-          background: red;
-          border-radius: 10px;
+          background:linear-gradient(to top, #66ffff 0%, #ccffff 100%);
+     
         }
         .scrolling-div::-webkit-scrollbar-thumb:hover {
-          background: #900;
-        }*/
+          background: linear-gradient(to bottom, #66ffff 0%, #ccffff 100%);
+        } */
         .scrollsign_plus {
             width: 25px;
             height: 25px;
@@ -577,12 +638,12 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             <div class="dealerIdSelect">
                 <table>
                     <tr>
-                        <td><b>Select a Dealer Name</b></td>
+                        <td><b>Select a Dealer Name :</b></td>
                         <td><?php
-                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM pathor_dealer";
+                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM pathor_dealer WHERE dealer_name != ''";
                             $all_custmr_id = $db->select($sql);
-                            echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
-                            echo '<option value="">Select...</option>';
+                            echo '<select name="delear_id" id="delear_id" class="form-control form-control-dealer" style="width: 222px;">';
+                            // echo '<option value=""></option>';
                             if ($all_custmr_id->num_rows > 0) {
                                 while ($row = $all_custmr_id->fetch_assoc()) {
                                     $id = $row['dealer_id'];
@@ -2033,7 +2094,8 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                alert("Should be enter a number value");
+                Swal.fire("Should be enter a number value");
+                // alert("Should be enter a number value");
                 console.log("Workkkkk", evt);
                 return false;
             }

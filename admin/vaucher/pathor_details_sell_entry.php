@@ -32,6 +32,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
 
+<!-- alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
 
     <style type="text/css">
@@ -2007,7 +2009,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
             if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
-                alert("Should be enter a number value");
+                Swal.fire("Should be enter a number value");
+                // alert("Should be enter a number value");
                 console.log("Workkkkk", evt);
                 return false;
             }

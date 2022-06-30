@@ -383,7 +383,7 @@ $sucMsg = "";
             <?php
             $sql = "SELECT buyer_id FROM pathor_buyers";
             $all_custmr_id = $db->select($sql);
-            echo '<select name="buyer_id" id="buyer_id" class="form-control-balu" style="width: 140px;">';
+            echo '<select name="buyer_id" id="buyer_id" class="form-control" style="width: 140px;">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {

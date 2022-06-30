@@ -209,7 +209,7 @@
                     <table class="dealersTableCon">
                         <tr>
                           <th width="130px">Category Id</th>
-                          <th>Category Name</th>
+                          <th mx-2>Category Name</th>
                           <!-- <th width="260px">Address</th>
                           <th>Contact Person Name</th>
                           <th>Mobile</th> -->

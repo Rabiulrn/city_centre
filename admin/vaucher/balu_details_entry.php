@@ -31,8 +31,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
-
-
+<!-- alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <style type="text/css">
         .rodDetailsEnCon {
@@ -546,7 +546,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             $sql = "SELECT DISTINCT dealer_name, dealer_id FROM balu_dealer";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
-                            echo '<option value="">Select...</option>';
+                        
                             if ($all_custmr_id->num_rows > 0) {
                                 while ($row = $all_custmr_id->fetch_assoc()) {
                                     $id = $row['dealer_id'];
@@ -742,31 +742,31 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             <tr>
                                 <td>Ton & Kg (টোন ও কেজি)</td>
                                 <td>
-                                    <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg...">
+                                    <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg..." disabled>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Length (দৈর্ঘ্যের)</td>
                                 <td>
-                                    <input type="text" name="length" class="form-control" id="length_popup" placeholder="Enter Length...">
+                                    <input type="text" name="length" class="form-control" id="length_popup" placeholder="Enter Length..." disabled>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Width (প্রস্ত)</td>
                                 <td>
-                                    <input type="text" name="width" class="form-control" id="width_popup" placeholder="Enter Width...">
+                                    <input type="text" name="width" class="form-control" id="width_popup" placeholder="Enter Width..." disabled>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Height (উচাঁ)</td>
                                 <td>
-                                    <input type="text" name="height" class="form-control" id="height_popup" placeholder="Enter height...">
+                                    <input type="text" name="height" class="form-control" id="height_popup" placeholder="Enter height..." disabled>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Shifty (সেপ্টি)</td>
                                 <td>
-                                    <input type="text" name="shifty" class="form-control" id="shifty_popup" placeholder="Enter Shifty...">
+                                    <input type="text" name="shifty" class="form-control" id="shifty_popup" placeholder="Enter Shifty..." disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -838,7 +838,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             </tr>
                             <td>Ton(টোন)</td>
                             <td>
-                                <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
+                                <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton..." disabled>
                             </td>
                             </tr>
                             <tr>
@@ -850,11 +850,11 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             <tr>
                                 <td>Tons (টোন)</td>
                                 <td>
-                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons...">
+                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons..." disabled>
                                 </td>
                             </tr>
                             <tr>
-                                <td>B</td>
+                                <td>Bank Name</td>
                                 <td>
                                     <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
                                 </td>
@@ -2006,7 +2006,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var charCode = (evt.which) ? evt.which : evt.keyCode;
             // if ((charCode > 31 || charCode < 46)&& charCode == 47 && (charCode < 48 || charCode > 57)) {
             if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
-                alert("Should be enter a number value");
+                Swal.fire("Should be enter a number value");
+                // alert("Should be enter a number value");
                 console.log("Workkkkk", evt);
                 return false;
             }

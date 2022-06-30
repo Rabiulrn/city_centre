@@ -31,6 +31,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
 
+<!-- alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
 
     <style type="text/css">
@@ -514,7 +516,7 @@
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead">bikroy হিসাব এন্ট্রি</h2>
+                <h2 class="popupHead">বিক্রয় হিসাব এন্ট্রি</h2>
                 <div class="items_all_con">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
@@ -522,7 +524,7 @@
                                 <td>Customer ID(Customer আই ডি)</td>
                                 <td>
                                     <?php
-                                        $sql = "SELECT customer_id FROM customers_balu";
+                                        $sql = "SELECT customer_id FROM customers_pathor";
                                         $all_custmr_id = $db->select($sql);
                                         echo '<select name="customer_id" id="customer_id_popup" class="form-control">';
                                           echo '<option value="none">Select...</option>';
@@ -539,24 +541,24 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Type (টাইপ)</td>
+                                <td>Particulars (বিবরণ)</td>
                                 <td>
-	                      <?php
-	                        $sql = "SELECT DISTINCT type FROM details_balu";
-	                        $all_custmr_id = $db->select($sql);
-	                        echo '<select name="type" id="type" class="form-control" style="width: 310px;">';
+                                <?php
+                        // var parti_val = $('#car_rent_redeem').val();
+	                        $sql = "SELECT DISTINCT particulars FROM details_balu WHERE  particulars != ''";
+	                        $all_particular = $db->select($sql);
+	                        echo '<select name="particulars" id="particulars" class="form-control" required>';
 	                          echo '<option value="none">Select...</option>';
-	                          if($all_custmr_id->num_rows > 0){
-	                              while($row = $all_custmr_id->fetch_assoc()){
-	                                $type = $row['type'];
-                                    
-	                                echo '<option  value="' . $type . '">' . $type . '</option>';
+	                          if($all_particular->num_rows > 0){
+	                              while($row = $all_particular->fetch_assoc()){
+                                    $particulars = $row['particulars'];
+	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
 	                              }
 	                            } else{
-	                              echo '<option value="none">0 Result</option>';
+	                              
 	                            }
 	                          echo '</select>';
-	                      ?>           
+	                      ?>
                             </tr>
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
@@ -592,8 +594,31 @@
                             <tr>
                                 <td>Information (মালের বিবরণ)</td>
                                 <td>
-                                    <input type="text" name="information" class="form-control" id="information_popup" placeholder="Enter information...">
-                                </td>
+	                      <?php
+                        // var parti_val = $('#car_rent_redeem').val();
+                        echo '<script type="text/JavaScript"> 
+                        var myElement = document.getElementById("particulars");
+                        var myElement2 = myElement.options[myElement.selectedIndex].value;
+                        console.log("hello");
+                        console.log(myElement2);
+     </script>'
+;
+	                        $sql = "SELECT DISTINCT information FROM details_balu WHERE information != ''";
+	                        $all_particular = $db->select($sql);
+	                        echo '<select name="information" id="information" class="form-control" required>';
+	                          echo '<option value="none">Select...</option>';
+	                          if($all_particular->num_rows > 0){
+	                              while($row = $all_particular->fetch_assoc()){
+                                    $information = $row['information'];
+	                                echo '<option value="' . $information . '">' . $information . '</option>';
+	                              }
+	                            } else{
+	                              echo '<option value="none">0 Result</option>';
+	                            }
+	                          echo '</select>';
+	                      ?>
+
+	                    </td>
                             </tr>
                             <tr>
                                 <td>SL (ক্রমিক)</td>
@@ -641,12 +666,28 @@
                             <tr>
                                 <td>Partculars (মারফোত নাম)</td>
                                 <td>
-                                    <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
-                                </td>
+	                      <?php
+	                        $sql = "SELECT DISTINCT partculars,particulars FROM details_balu WHERE partculars != '' ";
+	                        $all_partcular = $db->select($sql);
+	                        echo '<select name="partculars" id="partculars" class="form-control" >';
+	                          echo '<option value="none">Select...</option>';
+	                          if($all_partcular->num_rows > 0){
+	                              while($row = $all_partcular->fetch_assoc()){
+                                    $partculars = $row['partculars'];
+	                                echo '<option value="' . $partculars . '">' . $partculars . '</option>';
+	                              }
+	                            } else{
+	                              echo '<option value="none">0 Result</option>';
+	                            }
+	                          echo '</select>';
+	                      ?>
+
+	                    </td>
+                     
                             </tr>
                             <tr>
                                 <td>Particulars (বিবরণ)</td>
-                                <td>                          
+                                <td disabled>                          
                                     <?php
                                         $balu_catgry_sql = "SELECT * FROM balu_category";
                                         $rslt_balu_catgry = $db->select($balu_catgry_sql);
@@ -658,7 +699,7 @@
                                                 $balu_category_id = $row['id'];
                                                 $balu_category_name = $row['category_name'];
 
-                                                echo '<option style="font-weight: bold;">'. $balu_category_name . '</option>';
+                                                echo '<option style="font-weight: bold;">'. $balu_category_name . '</option> disabled';
 
                                                   $balu_lbl_sql = "SELECT * FROM balu_and_other_label";
                                                   $rslt_balu_lbl = $db->select($balu_lbl_sql);
@@ -671,7 +712,7 @@
 
 
                                                         if($balu_category_id == $raol_balu_category_id){
-                                                          echo "<option value='" . $raol_balu_label . "'>" . $raol_balu_label . "</option>";
+                                                          echo "<option value='" . $raol_balu_label . "'>" . $raol_balu_label . "</option> disabled";
                                                         }
                                                       }
                                                   } else{
@@ -1902,7 +1943,8 @@ function isNumber(evt) {
       evt = (evt) ? evt : window.event;
       var charCode = (evt.which) ? evt.which : evt.keyCode;
       if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
-        alert("Should be enter a number value");
+        Swal.fire("Should be enter a number value");
+        // alert("Should be enter a number value");
         console.log("Workkkkk",evt);
         return false;
       }
