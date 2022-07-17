@@ -114,33 +114,49 @@
 	    	position: relative;
 	    	height: 157px;
 	    	margin-bottom: 50px;
+			
 	    }
 	    .showCustomerCon table{
 	    	width: 100%;
 	    	margin-bottom: 50px;
 	    }
 	    .showCustomerCon table tr th{
-			border: 1px solid #ddd;
+			border: 2px solid #ddd;
 			text-align: center;
-			padding: 10px;
+			padding: 5px 5px;
+			
 	    }
 	    .showCustomerCon table tr td {
-	    	border: 1px solid #ddd;
+	    	border: 2px solid #ddd;
 	    	padding: 2px 5px;
+	    }
+		.showCustomerCon table tr:nth-child(odd) td {
+	    	border: 2px solid #ddd;
+	    	padding: 2px 5px;
+			/* text-align: center; */
+            background-color: #d2df0d40;
+            color: black;
 	    }
 	    .customerEntryTable {
 	    	width: 100%;
 	    	/*margin-bottom: 10px;*/
 	    }
 	    .customerEntryTable tr th {
-	    	border: 1px solid #ddd;
-	    	padding: 2px 5px;
-	    	text-align: center;
+	    	border: 2px solid #ddd;
+	    	padding: 4px 5px;
+			text-align: center;
+            background-color:#3e9309d4;
+            Color: white;
 	    }
-	    .customerEntryTable tr td {
-	    	border: 1px solid #ddd;
+	   
+		.customerEntryTable tr td {
+	    	border: 2px solid #ddd;
 	    	padding: 2px;
+			outline: none;
+            /* border-bottom: 2px solid #508d2aba; */
+            /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 	    }
+		
 	    .borderLess{
 	    	border: none !important;
 	    }
@@ -203,11 +219,11 @@
 				<form action="" method="post" onsubmit="return validation()">
 					<table class="customerEntryTable">
 						<tr>
-							<th width="130px">Customer Id:</th>
-							<th>Customer Name:</th>
-							<th>Address:</th>
-							<th>Mobile:</th>
-							<th>Buying Type:</th>
+							<th width="130px">Customer Id</th>
+							<th>Customer Name</th>
+							<th>Address</th>
+							<th>Mobile</th>
+							<th>Buying Type</th>
 						</tr>
 						<tr>
 							<td>
@@ -215,17 +231,17 @@
 								<input type="hidden" name= "customer_id" id="customer_id_hidden" value="<?php echo $newId;; ?>">
 							</td>
 							<td>
-								<input type="text" name = "customer_name" class="form-control" id="customer_name" placeholder="Enter Customer Name...">
+								<input type="text" name = "customer_name" class="form-control" id="customer_name" rows = "1" placeholder="Enter customer name...">
 							</td>
 							<td>
-							<!-- <input type="text" name = "address" class="form-control" id="address" placeholder="Enter Customer Address..."> -->
-								 <textarea name = "address" class = "form-control" rows = "1" placeholder = "Enter Customer Address..." id='address' style="resize: none;"></textarea>
+							 <input type="text" name = "address" class="form-control" id="address" rows = "1"  placeholder="Enter customer address..."> 
+								 <!-- <textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter customer address..." id='address' style="resize: none;"></textarea> -->
 							</td>
 							<td>
-								<input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No...">
+								<input type="text" name="mobile" class="form-control" id="mobile" rows = "1"  placeholder="Enter mobile no...">
 							</td>
 							<td>
-								<input type="text" name="buying_type" class="form-control" id="buying_type" placeholder="Enter Buying Type...">
+								<input type="text" name="buying_type" class="form-control" id="buying_type" rows = "1"  placeholder="Enter buying type...">
 							</td>
 						</tr>
 						<tr>

@@ -125,8 +125,14 @@
 	        float: right;
 	        margin-bottom: 3px;
 	    }
+		.table-border th{
+			text-align: center;
+            background-color:#3e9309d4;
+            color: white;
+		}
 	    .table-border > tbody > tr > td {
 	        border: 1px solid #ddd !important;
+			
 	    }
 	    .table-border > thead > tr > th {
 	        border: 1px solid #ddd !important;
@@ -153,14 +159,19 @@
 	    .rodAndLabelTbl{
 	    	border: 1px solid #ddd;
 	    	padding: 2px;
+			
+			
 	    }
 	    #tableOne{
 	    	position: relative;
 	    	/*left: 50%;
 	    	margin-left: -25%;*/
+			
 	    }
 	    #tableOne tr th, #tableOne tr td{
 	    	padding: 4px 5px;
+			
+			
 	    }
 	    #submitBtn{
 	    	width: 100px;
@@ -229,7 +240,7 @@
 					    <table class="table table-border table-condensed">
 							<thead>
 								<tr>
-									<th>Rod Category Name:</th>
+									<th>Rod Category Name</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -251,8 +262,8 @@
 					<table class="table table-border" width="100%">
 						<thead>
 							<tr>
-								<th>Rod Category Name:</th>
-								<th>Rod Label Name:</th>
+								<th>Rod Category Name</th>
+								<th>Rod Label Name</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -289,7 +300,7 @@
 						</tbody>
 					</table>
 					<h4 class="text-center text-success"><?php echo $sucMsgLbl; ?></h4>
-					<input type="submit" name="label_submit" id="lblSubmitBtn" class="btn btn-block btn-success" value="Save">	
+					<input type="submit" name="label_submit" id="lblSubmitBtn" class="btn btn-block btn-primary" value="Save">	
 				</div>
 			</form>
 

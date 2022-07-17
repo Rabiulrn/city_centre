@@ -48,20 +48,49 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
         #detailsEtryTable {
             width: 293%;
-            border: 2px solid #ddd;
+            border: 1px solid #3e9309d4;
             
         }
 
         #detailsEtryTable tr:first-child td {
             text-align: center;
-            background-color:#38B844;
+            background-color:#3e9309d4;
             Color: white;
         }
 
         #detailsEtryTable tr:nth-child(2) td {
             text-align: center;
-            background-color:#38B844;
+            background-color:#3e9309d4;
             Color: white;
+        }
+     
+        #detailsEtryTable tr:nth-child(3) td {
+               border: 1px solid #3e9309d4; 
+            /* text-align: center; */
+            
+            /* Color: black; */
+            /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
+        }
+        #detailsEtryTable tr:nth-child(3) input {
+            border: none;
+            /* height: 39px; */
+            /* border-radius: 10% 10% 0% 0%; */
+            /* transition: border-bottom 1s linear ; */
+        }
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
+            /* outline: 1px solid skyblue; */
+            outline: none;
+            border-bottom: 2px solid #508d2aba;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            height: 30px;
+            /* font-size: 1px; */
+            
+        }
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus::placeholder {
+            color: transparent;
+            
+            /* font-size: large; */
+            
         }
 
         #detailsEtryTable td {
@@ -124,6 +153,18 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         .widthPercent3 {
             width: 3.7%;
         }
+        .header {
+        /* Background color */
+        /* background-color: #ddd; */
+
+        /* Stick to the top */
+        position: sticky;
+        top: 0;
+
+        /* Displayed on top of other rows when scrolling */
+          z-index: 1; 
+         }
+  
 
         #detailsNewTable2 {
             width: 217%;
@@ -137,11 +178,12 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             padding: 2px 5px;
         }
 
+
         #detailsNewTable2 tr:first-child th {
             text-align: center;
-            background-color: rgba(9, 0, 0, .6);
-            color: #fff;
+            background-color: #363636;
             padding: 5px 0px;
+            color: #fff;
         }
 
         #detailsNewTable2 tr:nth-child(2) th {
@@ -150,13 +192,20 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             padding: 5px 0px;
             color: #fff;
         }
-
+        #detailsNewTable2 tr:nth-child(even) td {
+            text-align: center;
+            background-color: #d2df0d2e;
+            color: black;
+            padding: 5px 0px;
+        }
+      
         .viewDetailsCon {
             width: 100%;
             max-height: 470px;
             overflow-x: auto;
             /*overflow-y: auto;*/
             /*margin-bottom: 50px;*/
+            
         }
 
         .ui-dialog-titlebar {
@@ -741,32 +790,32 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             </tr>
                             <tr>
                                 <td>Ton & Kg (টোন ও কেজি)</td>
-                                <td>
-                                    <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg..." disabled>
+                                <td >
+                                    <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg..." style="cursor:not-allowed;">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Length (দৈর্ঘ্যের)</td>
                                 <td>
-                                    <input type="text" name="length" class="form-control" id="length_popup" placeholder="Enter Length..." disabled>
+                                    <input type="text" name="length" class="form-control" id="length_popup" placeholder="Enter Length..." >
                                 </td>
                             </tr>
                             <tr>
                                 <td>Width (প্রস্ত)</td>
                                 <td>
-                                    <input type="text" name="width" class="form-control" id="width_popup" placeholder="Enter Width..." disabled>
+                                    <input type="text" name="width" class="form-control" id="width_popup" placeholder="Enter Width..." >
                                 </td>
                             </tr>
                             <tr>
                                 <td>Height (উচাঁ)</td>
                                 <td>
-                                    <input type="text" name="height" class="form-control" id="height_popup" placeholder="Enter height..." disabled>
+                                    <input type="text" name="height" class="form-control" id="height_popup" placeholder="Enter height..." >
                                 </td>
                             </tr>
                             <tr>
                                 <td>Shifty (সেপ্টি)</td>
                                 <td>
-                                    <input type="text" name="shifty" class="form-control" id="shifty_popup" placeholder="Enter Shifty..." disabled>
+                                    <input type="text" name="shifty" class="form-control" id="shifty_popup" placeholder="Enter Shifty..." >
                                 </td>
                             </tr>
                             <tr>
@@ -778,7 +827,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             <tr>
                                 <td>Cft ( - ) Dropped Out (সিএফটি ( - ) বাদ)</td>
                                 <td>
-                                    <input type="text" name="cft_dropped" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
+                                    <input type="text" name="cft_dropped_out" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>
@@ -790,19 +839,19 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             <tr>
                                 <td>Points ( - ) Dropped Out (পয়েন্ট ( - ) বাদ) </td>
                                 <td>
-                                    <input type="text" name="points_dropped" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
+                                    <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Shift(সেপ্টি) </td>
                                 <td>
-                                    <input type="text" name="" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
+                                    <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total Shift(মোট সেপ্টি) </td>
                                 <td>
-                                    <input type="text" name="" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
+                                    <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
                             </tr>
                             <tr>
@@ -838,7 +887,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             </tr>
                             <td>Ton(টোন)</td>
                             <td>
-                                <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton..." disabled>
+                                <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton..." >
                             </td>
                             </tr>
                             <tr>
@@ -850,7 +899,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             <tr>
                                 <td>Tons (টোন)</td>
                                 <td>
-                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons..." disabled>
+                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons..." >
                                 </td>
                             </tr>
                             <tr>
@@ -1433,8 +1482,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         }
     </script>
     <script type="text/javascript">
-        //Start calculation
-        $(document).on('input change paste keyup', '.value-calc', function() {
+       //Start calculation
+       $(document).on('input change paste keyup', '.value-calc', function() {
             var kg = $('#kg').val();
             var paras = $('#paras').val();
             if (kg == '') {
@@ -1452,6 +1501,11 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var length = $('#length').val();
             var width = $('#width').val();
             var height = $('#height').val();
+
+            var inchi_minus = $("#inchi_minus").val();
+            var cft_dropped_out = $('#cft_dropped_out').val();
+            var inchi_added = $('#inchi_added').val();
+            var points_dropped_out = $('#points_dropped_out').val();
             if (length == '') {
                 $('#shifty').val('0');
             } else if (width == '') {
@@ -1459,12 +1513,27 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             } else if (height == '') {
                 $('#shifty').val('0');
             }
+            // else if (inchi_minus == '') {
+            //     $('#shifty').val('0');
+            // }
             // else if(length != ''){
             //     $('#kg').val('0');
             // }
             else {
                 var shifty = length * width * height;
-                var shift_to_ton = shifty / 23.5;
+                if(inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != ''){
+                   var  shifty2 = (length * width * height)-(length*width*inchi_minus/12)-cft_dropped_out+(length*width*inchi_added/12)-points_dropped_out;
+                   var shift2_to_ton = shifty2 / 23.5;
+                // alert(credit);
+                $('#shifty').val(shifty);
+                $('#ton').val(shift2_to_ton);
+                $('#tons').val(shift2_to_ton);
+                $('#shift').val(shifty2);
+                $('#total_shift').val(shifty2);
+                $('#total_shifts').val(shifty2);
+                }
+                else{
+                    var shift_to_ton = shifty / 23.5;
                 // alert(credit);
                 $('#shifty').val(shifty);
                 $('#ton').val(shift_to_ton);
@@ -1473,15 +1542,15 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#total_shift').val(shifty);
                 $('#total_shifts').val(shifty);
 
+                }
+               
+
             }
-
-  
-
-
             //ton and kg
             var ton = $('#ton').val();
             var ton_kg = $('#kg').val();
             var credit = $("#credit").val();
+            
             if (ton_kg != '') {
                 $("#length").attr("value", "not applicable");
                 // $('#length').val('not applicable');
@@ -1495,7 +1564,6 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#shift').val(ton_to_cft);
                 $('#total_shift').val(ton_to_cft);
                 $('#total_shifts').val(ton_to_cft);
-
             } else {
                 var credit = ton * paras;
                 // alert(credit);
@@ -1511,6 +1579,24 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 var credit = parseInt(credit) + parseInt(fee);
                 $('#credit').val(credit);
             }
+
+
+             
+            // console.log(inchi_minus);
+            // console.log(ton_kg);
+
+            // if (inchi_minus != '') {
+            //     console.log(inchi_minus);
+            //     $('#shift').val(inchi_minus);
+            //     $('#total_shift').val('test');
+
+            // }
+
+            // if (cft_dropped_out != '') {
+            //     console.log(cft_dropped_out);
+           
+            // }
+
 
 
             var debit = $("#debit").val();
@@ -1549,108 +1635,104 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#total_paras').val(total_paras);
             }
         });
+        // $(document).on('input change paste keyup', '.value-calc_edit', function() {
+        //     var kg = $('#kg_edit').val();
+        //     var paras = $('#paras_edit').val();
+        //     if (kg == '') {
+        //         $('#credit_edit').val('0');
+        //     } else if (paras == '') {
+        //         $('#credit_edit').val('0');
+        //     } else {
+        //         var credit = kg * paras;
+        //         // alert(credit);
+        //         $('#credit_edit').val(credit);
+        //     }
+
+        //     var debit = $("#debit_edit").val();
+        //     var credit = $("#credit_edit").val();
+        //     if (debit == '') {
+        //         $('#balance_edit').val('0');
+        //     } else if (credit == '') {
+        //         $('#balance_edit').val('0');
+        //     } else {
+        //         var balance = credit - debit;
+        //         // alert(balance);
+        //         $('#balance_edit').val(balance);
+        //     }
+
+        //     var motor_cash = $('#motor_cash_edit').val();
+        //     var unload = $('#unload_edit').val();
+        //     if (motor_cash == '') {
+        //         $('#car_rent_redeem_edit').val('0');
+        //     } else if (unload == '') {
+        //         $('#car_rent_redeem_edit').val('0');
+        //     } else {
+        //         var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
+        //         // alert(balance);
+        //         $('#car_rent_redeem_edit').val(car_rent_redeem);
+        //     }
 
 
+        //     var car_rent_redeem = $('#car_rent_redeem_edit').val();
+        //     var credit = $("#credit_edit").val();
+        //     if (car_rent_redeem == '') {
+        //         var total_paras = credit;
+        //         $('#total_paras_edit').val(total_paras);
+        //     } else {
+        //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+        //         $('#total_paras_edit').val(total_paras);
+        //     }
+        // });
+        // //End calculation
+        // //Start calculation popup
+        // $(document).on('input change paste keyup', '.value-calc-popup', function() {
+        //     var kg = $('#kg_popup').val();
+        //     var paras = $('#paras_popup').val();
+        //     if (kg == '') {
+        //         $('#credit_popup').val('0');
+        //     } else if (paras == '') {
+        //         $('#credit_popup').val('0');
+        //     } else {
+        //         var credit = kg * paras;
+        //         // alert(credit);
+        //         $('#credit_popup').val(credit);
+        //     }
+
+        //     var debit = $("#debit_popup").val();
+        //     var credit = $("#credit_popup").val();
+        //     if (debit == '') {
+        //         $('#balance_popup').val('0');
+        //     } else if (credit == '') {
+        //         $('#balance_popup').val('0');
+        //     } else {
+        //         var balance = credit - debit;
+        //         // alert(balance);
+        //         $('#balance_popup').val(balance);
+        //     }
+
+        //     var motor_cash = $('#motor_cash_popup').val();
+        //     var unload = $('#unload_popup').val();
+        //     if (motor_cash == '') {
+        //         $('#car_rent_redeem_popup').val('0');
+        //     } else if (unload == '') {
+        //         $('#car_rent_redeem_popup').val('0');
+        //     } else {
+        //         var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
+        //         // alert(balance);
+        //         $('#car_rent_redeem_popup').val(car_rent_redeem);
+        //     }
 
 
-        $(document).on('input change paste keyup', '.value-calc_edit', function() {
-            var kg = $('#kg_edit').val();
-            var paras = $('#paras_edit').val();
-            if (kg == '') {
-                $('#credit_edit').val('0');
-            } else if (paras == '') {
-                $('#credit_edit').val('0');
-            } else {
-                var credit = kg * paras;
-                // alert(credit);
-                $('#credit_edit').val(credit);
-            }
-
-            var debit = $("#debit_edit").val();
-            var credit = $("#credit_edit").val();
-            if (debit == '') {
-                $('#balance_edit').val('0');
-            } else if (credit == '') {
-                $('#balance_edit').val('0');
-            } else {
-                var balance = credit - debit;
-                // alert(balance);
-                $('#balance_edit').val(balance);
-            }
-
-            var motor_cash = $('#motor_cash_edit').val();
-            var unload = $('#unload_edit').val();
-            if (motor_cash == '') {
-                $('#car_rent_redeem_edit').val('0');
-            } else if (unload == '') {
-                $('#car_rent_redeem_edit').val('0');
-            } else {
-                var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
-                // alert(balance);
-                $('#car_rent_redeem_edit').val(car_rent_redeem);
-            }
-
-
-            var car_rent_redeem = $('#car_rent_redeem_edit').val();
-            var credit = $("#credit_edit").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#total_paras_edit').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                $('#total_paras_edit').val(total_paras);
-            }
-        });
-        //End calculation
-        //Start calculation popup
-        $(document).on('input change paste keyup', '.value-calc-popup', function() {
-            var kg = $('#kg_popup').val();
-            var paras = $('#paras_popup').val();
-            if (kg == '') {
-                $('#credit_popup').val('0');
-            } else if (paras == '') {
-                $('#credit_popup').val('0');
-            } else {
-                var credit = kg * paras;
-                // alert(credit);
-                $('#credit_popup').val(credit);
-            }
-
-            var debit = $("#debit_popup").val();
-            var credit = $("#credit_popup").val();
-            if (debit == '') {
-                $('#balance_popup').val('0');
-            } else if (credit == '') {
-                $('#balance_popup').val('0');
-            } else {
-                var balance = credit - debit;
-                // alert(balance);
-                $('#balance_popup').val(balance);
-            }
-
-            var motor_cash = $('#motor_cash_popup').val();
-            var unload = $('#unload_popup').val();
-            if (motor_cash == '') {
-                $('#car_rent_redeem_popup').val('0');
-            } else if (unload == '') {
-                $('#car_rent_redeem_popup').val('0');
-            } else {
-                var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
-                // alert(balance);
-                $('#car_rent_redeem_popup').val(car_rent_redeem);
-            }
-
-
-            var car_rent_redeem = $('#car_rent_redeem_popup').val();
-            var credit = $("#credit_popup").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#total_paras_popup').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                $('#total_paras_popup').val(total_paras);
-            }
-        });
+        //     var car_rent_redeem = $('#car_rent_redeem_popup').val();
+        //     var credit = $("#credit_popup").val();
+        //     if (car_rent_redeem == '') {
+        //         var total_paras = credit;
+        //         $('#total_paras_popup').val(total_paras);
+        //     } else {
+        //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+        //         $('#total_paras_popup').val(total_paras);
+        //     }
+        // });
         //End calculation popup
     </script>
 

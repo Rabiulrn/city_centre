@@ -52,12 +52,43 @@
         }
         #detailsEtryTable tr:first-child td{
           text-align: center;
+          background-color:#3e9309d4;
+          color: white;
         }
         #detailsEtryTable tr:nth-child(2) td{
           text-align: center;
+          background-color:#3e9309d4;
+          Color: white;
+        }
+        #detailsEtryTable tr:nth-child(3) td {
+            border: 1px solid #3e9309d4; 
+            /* text-align: center; */
+            
+            /* Color: black; */
+            /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
+        }
+        #detailsEtryTable tr:nth-child(3) input {
+               border: none;
+            /* height: 39px; */
+            /* border-radius: 10% 10% 0% 0%; */
+            /* transition: border-bottom 1s linear ; */
+        }
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
+            /* outline: 1px solid skyblue; */
+            outline: none;
+            border-bottom: 2px solid #508d2aba;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            /* font-size: 1px; */
+            
+        }
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus::placeholder {
+            color: transparent;
+            
+            /* font-size: large; */
+            
         }
         #detailsEtryTable td{
-          border: 1px solid #9c9c9c;
+          border: 2px solid #E0E4E0;
         }
         .scrolling-div{
           width: 100%;
@@ -109,18 +140,29 @@
         .widthPercent3{
             width: 3.7%;
         }
+        .header {
+                        /* Background color */
+                        /* background-color: #ddd; */
+
+                        /* Stick to the top */
+                        position: sticky;
+                        top: 0;
+
+                        /* Displayed on top of other rows when scrolling */
+                         z-index: 1; 
+                    }
         #detailsNewTable2{
           width: 217%;
           border: 1px solid #ddd;
           /*transform: rotateX(180deg);*/
         }
         #detailsNewTable2 th, td{
-          border: 1px solid #ddd;
+          border: 2px solid #ddd;
           padding: 2px 5px;
         }
         #detailsNewTable2 tr:first-child th{
           text-align: center;
-          background-color: rgba(9,0,0,.6);
+          background-color: #363636;
           color: #fff;
           padding: 5px 0px;
         }
@@ -130,6 +172,18 @@
           padding: 5px 0px;
           color: #fff;
         }
+        #detailsNewTable2 tr:nth-child(even) td {
+            text-align: center;
+            background-color: #d2df0d2e;
+            color: black;
+            padding: 5px 0px;
+        }
+        /* #detailsNewTable2 tr:nth-child(odd) td {
+            text-align: center;
+            background-color: #d2df0d2e;
+            color: grey;
+            padding: 5px 0px;
+        } */
         .viewDetailsCon{
             width: 100%;
             max-height: 470px;
@@ -785,7 +839,7 @@
                             <tr>
                                 <td>Points ( - ) Dropped Out (পয়েন্ট ( - )  বাদ) </td>
                                 <td>
-                                <input type="text" name="points_dropped" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
+                                <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>

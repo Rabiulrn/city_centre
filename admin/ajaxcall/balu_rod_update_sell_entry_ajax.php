@@ -19,7 +19,7 @@ if(isset($balu_details_id)){
     // $delear_id      = trim($_POST['delear_id']);
     $delear_id      = trim($_SESSION['dealerIdInput']);
     $sl      = trim($_POST['sl_no']);
-    $voucher_no     = trim($_POST['delivery_no']);
+    $voucher_no     = trim($_POST['voucher_no']);
     $address        = trim($_POST['address']);
     $motor_number          = trim($_POST['motor_number']);
     $motor_sl    = trim($_POST['motor_sl']);

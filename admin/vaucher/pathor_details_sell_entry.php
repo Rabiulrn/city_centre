@@ -37,8 +37,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
 
 
     <style type="text/css">
-        .rodDetailsEnCon {
-            position: relative;
+        .rodDetailsEnCon{
+          position: relative;
         }
 
         .scroll-after-btn {
@@ -47,33 +47,57 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             position: absolute;
             right: 0px;
         }
-
-        #detailsEtryTable {
-            width: 293%;
-            border: 1px solid #ddd;
+        #detailsEtryTable{
+          width: 293%;
+          border: 1px solid #ddd;
         }
-
-        #detailsEtryTable tr:first-child td {
-            text-align: center;
+        #detailsEtryTable tr:first-child td{
+          text-align: center;
+          background-color:#3e9309d4;
+          color: white;
         }
-
-        #detailsEtryTable tr:nth-child(2) td {
-            text-align: center;
+        #detailsEtryTable tr:nth-child(2) td{
+          text-align: center;
+          background-color:#3e9309d4;
+          Color: white;
         }
-
-        #detailsEtryTable td {
-            border: 1px solid #9c9c9c;
+        #detailsEtryTable tr:nth-child(3) td {
+            border: 1px solid #3e9309d4; 
+            /* text-align: center; */
+            
+            /* Color: black; */
+            /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
         }
-
-        .scrolling-div {
-            width: 100%;
-            overflow-y: auto;
+        #detailsEtryTable tr:nth-child(3) input {
+               border: none;
+            /* height: 39px; */
+            /* border-radius: 10% 10% 0% 0%; */
+            /* transition: border-bottom 1s linear ; */
         }
-
-        #form_entry {
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
+            /* outline: 1px solid skyblue; */
+            outline: none;
+            border-bottom: 2px solid #508d2aba;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            /* font-size: 1px; */
+            
+        }
+        #detailsEtryTable tr:nth-child(3) input[type=text]:focus::placeholder {
+            color: transparent;
+            
+            /* font-size: large; */
+            
+        }
+        #detailsEtryTable td{
+          border: 2px solid #E0E4E0;
+        }
+        .scrolling-div{
+          width: 100%;
+          overflow-y: auto;      
+        }
+        #form_entry{
             overflow-y: scroll;
         }
-
         /*.scrolling-div::-webkit-scrollbar {
           width: 10px;
           
@@ -90,7 +114,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
         .scrolling-div::-webkit-scrollbar-thumb:hover {
           background: #900;
         }*/
-        .scrollsign_plus {
+        .scrollsign_plus{
             width: 25px;
             height: 25px;
             /*border: 1px solid red;*/
@@ -108,192 +132,188 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             -moz-user-select: none;
             -webkit-user-select: none;
         }
-
-        .widthPercent1 {
+        .widthPercent1{
             width: 3.5%;
         }
-
-        .widthPercent2 {
+        .widthPercent2{
             width: 3.7%;
         }
-
-        .widthPercent3 {
+        .widthPercent3{
             width: 3.7%;
         }
+        .header {
+                        /* Background color */
+                        /* background-color: #ddd; */
 
-        #detailsNewTable2 {
-            width: 217%;
-            border: 1px solid #ddd;
-            /*transform: rotateX(180deg);*/
+                        /* Stick to the top */
+                        position: sticky;
+                        top: 0;
+
+                        /* Displayed on top of other rows when scrolling */
+                         z-index: 1; 
+                    }
+        #detailsNewTable2{
+          width: 217%;
+          border: 1px solid #ddd;
+          /*transform: rotateX(180deg);*/
         }
-
-        #detailsNewTable2 th,
-        td {
-            border: 1px solid #ddd;
-            padding: 2px 5px;
+        #detailsNewTable2 th, td{
+          border: 2px solid #ddd;
+          padding: 2px 5px;
         }
-
-        #detailsNewTable2 tr:first-child th {
+        #detailsNewTable2 tr:first-child th{
+          text-align: center;
+          background-color: #363636;
+          color: #fff;
+          padding: 5px 0px;
+        }
+        #detailsNewTable2 tr:nth-child(2) th{
+          text-align: center;
+          background-color: #363636;
+          padding: 5px 0px;
+          color: #fff;
+        }
+        #detailsNewTable2 tr:nth-child(even) td {
             text-align: center;
-            background-color: rgba(9, 0, 0, .6);
-            color: #fff;
+            background-color: #d2df0d2e;
+            color: black;
             padding: 5px 0px;
         }
-
-        #detailsNewTable2 tr:nth-child(2) th {
-            text-align: center;
-            background-color: #363636;
-            padding: 5px 0px;
-            color: #fff;
-        }
-
-        .viewDetailsCon {
+        .viewDetailsCon{
             width: 100%;
             max-height: 470px;
             overflow-x: auto;
             /*overflow-y: auto;*/
             /*margin-bottom: 50px;*/
         }
-
-        .ui-dialog-titlebar {
-            color: white;
-            background-color: #ce0000;
+        .ui-dialog-titlebar{
+          color: white;
+          background-color: #ce0000;
         }
-
-
-        .dateSearch {
+        
+        
+        .dateSearch{
             position: relative;
             width: 225px;
             /*left: 325px;
             top: -6px;*/
         }
-
-        .bootstrap-select {
+        .bootstrap-select{
             width: 130px !important;
         }
-
-        .dealerIdSelect {
-            width: 100%;
-            text-align: center;
-            height: 50px;
-            /*border: 1px solid red;*/
+        .dealerIdSelect{
+          width: 100%;
+          text-align: center;
+          height: 50px;
+          /*border: 1px solid red;*/
         }
-
         .dealerIdSelect table {
-            /*width: 50%;*/
-            /*margin-left: 25%;*/
+          /*width: 50%;*/
+          /*margin-left: 25%;*/
         }
-
         .dealerIdSelect table tr td {
-            text-align: right;
-            border: none;
+          text-align: right;
+          border: none;
         }
-
-        #flip {
+        #flip{
             /*border: 1px solid red;*/
             position: relative;
             top: -42px;
         }
+        #flip label{
+          display: inline-block;
 
-        #flip label {
-            display: inline-block;
-
+        }  
+        #panel{
+          border: 2px solid #333;
+          margin: 0px 0px 20px;
         }
-
-        #panel {
-            border: 2px solid #333;
-            margin: 0px 0px 20px;
+        table.summary tr td.hastext{
+          text-align: right;
         }
-
-        table.summary tr td.hastext {
-            text-align: right;
-        }
-
-        table.summary tr td.hastext {
-            text-align: right;
+        table.summary tr td.hastext{
+          text-align: right;
         }
 
         /* The container */
         .conchk {
-            display: inline-block;
-            position: absolute;
-            padding-right: 32px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            font-size: 15px;
-            right: 0px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+          display: inline-block;
+          position: absolute;
+          padding-right: 32px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 15px;
+          right: 0px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
         }
 
         /* Hide the browser's default checkbox */
         .conchk input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
         }
 
         /* Create a custom checkbox */
         .checkmark {
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: 22px;
-            width: 22px;
-            background-color: #9bd1ff;
-            border: 1px solid #2196F3;
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 22px;
+          width: 22px;
+          background-color: #9bd1ff;
+          border: 1px solid #2196F3;
         }
 
         /* On mouse-over, add a grey background color */
-        .conchk:hover input~.checkmark {
-            background-color: #2196F3;
+        .conchk:hover input ~ .checkmark {
+          background-color: #2196F3;
         }
 
         /* When the checkbox is checked, add a blue background */
-        .conchk input:checked~.checkmark {
-            background-color: #2196F3;
+        .conchk input:checked ~ .checkmark {
+          background-color: #2196F3;
         }
 
         /* Create the checkmark/indicator (hidden when not checked) */
         .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
+          content: "";
+          position: absolute;
+          display: none;
         }
 
         /* Show the checkmark when checked */
-        .conchk input:checked~.checkmark:after {
-            display: block;
+        .conchk input:checked ~ .checkmark:after {
+          display: block;
         }
 
         /* Style the checkmark/indicator */
         .conchk .checkmark:after {
-            left: 9px;
-            top: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            transform: rotate(45deg);
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
         }
-
-        .backcircle {
+        .backcircle{
             font-size: 18px;
             position: absolute;
             margin-top: -25px;
         }
-
-        .backcircle a:hover {
+        .backcircle a:hover{
             text-decoration: none !important;
         }
 
-        #gb_bank_ganti {
+        #gb_bank_ganti{
             position: absolute;
             left: 0px;
             top: -1px;
@@ -302,48 +322,41 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             padding: 0px 3px;
             display: none;
         }
-
-        .contorlAfterDealer {
+        .contorlAfterDealer{
             position: absolute;
             width: 408px;
             height: 45px;
             right: 175px;
             top: -6px;
         }
-
-        .printBtnDlr {
+        .printBtnDlr{
             position: absolute;
             top: 0px;
             right: 116px;
             border: 1px solid #46b8da;
         }
-
-        .printBtnDlrDown {
+        .printBtnDlrDown{
             position: absolute;
             top: 0px;
             right: 15px;
             border: 1px solid #46b8da;
         }
-
-        @media print {
-
-            .no_print_media,
-            .no_print_media * {
-                display: none !important;
-            }
+        @media print
+        {    
+          .no_print_media, .no_print_media *
+          {
+              display: none !important;
+          }
         }
-
-        .btn-info {
+        .btn-info{
             background-color: #F0F0F0 !important;
             color: #000 !important;
         }
-
         .btn-info:hover {
-            background-color: #F0F0F0 !important;
-            color: #000 !important;
+          background-color: #F0F0F0 !important;
+          color: #000 !important;
         }
-
-        #popUpNewBtn {
+        #popUpNewBtn{
             width: 30px;
             height: 30px;
             padding: 3px;
@@ -354,18 +367,16 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             cursor: pointer;
             /*z-index: 9;*/
         }
-
-        #popupEntry {
+        #popupEntry{
             display: none;
             width: 100%;
-            background-color: rgba(0, 0, 0, .7);
+            background-color: rgba(0,0,0, .7);
             height: 100%;
             position: fixed;
             top: 0px;
             z-index: 99999;
         }
-
-        #control_all {
+        #control_all{
             width: 50%;
             background-color: #fff;
             border: 5px solid #333;
@@ -377,8 +388,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             margin-left: -25%;
             padding: 15px;
         }
-
-        .popupClose {
+        .popupClose{
             position: absolute;
             top: 0px;
             right: 0px;
@@ -390,8 +400,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             transition: all .5s;
             cursor: pointer;
         }
-
-        .bar_one {
+        .bar_one{
             width: 20px;
             height: 3px;
             background-color: red;
@@ -401,8 +410,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             left: -1px;
             transition: all .5s;
         }
-
-        .bar_two {
+        .bar_two{
             width: 20px;
             height: 3px;
             background-color: red;
@@ -412,28 +420,23 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             left: -1px;
             transition: all .5s;
         }
-
-        .popupClose:hover {
+        .popupClose:hover{
             background-color: red;
             transition: all .5s;
         }
-
-        .popupClose:hover .bar_one {
+        .popupClose:hover .bar_one{
             background-color: #fff;
             transition: all .5s;
         }
-
-        .popupClose:hover .bar_two {
+        .popupClose:hover .bar_two{
             background-color: #fff;
             transition: all .5s;
         }
-
-        .popupHead {
+        .popupHead{
             text-align: center;
             margin: 15px 0px 15px;
         }
-
-        .popupHead::after {
+        .popupHead::after{
             content: '';
             height: 3px;
             /*width: 180px;*/
@@ -444,32 +447,27 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             /*margin-left: -98px;*/
             background-color: #ddd;
         }
-
-        .items_all_con {
+        .items_all_con{
             /*border: 1px solid red;*/
             height: calc(100% - 63px);
             overflow-y: scroll;
-            padding: 15px;
+            padding: 15px; 
         }
-
-        .pop_btn_con {
+        .pop_btn_con{
             position: relative;
             margin: 25px 0px 10px;
             height: 36px;
         }
-
-        .popup_save_btn {
+        .popup_save_btn{
             width: 40%;
             position: absolute;
             left: 20px;
         }
-
         .popup_cancel_btn {
             width: 40%;
             position: absolute;
             right: 20px;
         }
-
         .protidinHisab {
             margin-top: 13px;
         }
@@ -784,7 +782,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                             <tr>
                                 <td>Cft ( - ) Dropped Out (সিএফটি ( - ) বাদ)</td>
                                 <td>
-                                    <input type="text" name="cft_dropped" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
+                                    <input type="text" name="cft_dropped_out" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>

@@ -320,7 +320,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                    <td class="widthPercent1">Customer ID</td>
 	                    <!-- <td width="150">Dealer ID</td> -->
                       <!-- <td class="widthPercent1">Type</td> -->
-          <td class="widthPercent2">Particulars</td>
+         
           <td class="widthPercent1">Information</td>
           <td class="widthPercent2">Partculars</td>
                       <td class="widthPercent1">Motor Name</td>
@@ -330,6 +330,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                    <td class="widthPercent1">Cars rent & Redeem</td>
 	                   
                       <td class="widthPercent1">SL</td>  
+                      <td class="widthPercent2">Particulars</td>
                       <td class="widthPercent1">Voucher No.</td> 
                       <td class="widthPercent1">Address</td>              
 	                    <td class="widthPercent1">Motor Number</td>
@@ -365,7 +366,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                    <td>customer আই ডি</td>
 	                    <!-- <td>ডিলার আই ডি</td> -->
 	                    <!-- <td>টাইপ</td> -->
-                      <td>ব‌িবরণ</td>
+                      
                       <td>মালের বিবরণ</td>
                       <td>মারফ‌োত নাম</td>
 	                    <td>গাড়ী নাম</td>
@@ -375,6 +376,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                    <td>গাড়ী ভাড়া ও খালাস</td>
 	                 
 	                    <td>ক্রমিক</td>
+                      <td>ব‌িবরণ</td>
 	                    <td>ভাউচার নং</td>
 	                    <td>ঠিকানা</td>
 	                    <td>গাড়ী নাম্বার</td>
@@ -472,25 +474,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                        //   echo '</select>';
 	                      ?>
 	                    <!-- </td> -->
-                      <td>
-                      <?php
-                        // var parti_val = $('#car_rent_redeem').val();
-	                        $sql = "SELECT DISTINCT particulars FROM details_balu WHERE  particulars != ''";
-	                        $all_particular = $db->select($sql);
-	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
-	                          echo '<option value="none">Select...</option>';
-	                          if($all_particular->num_rows > 0){
-	                              while($row = $all_particular->fetch_assoc()){
-                                    $particulars = $row['particulars'];
-	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
-	                              }
-	                            } else{
-	                              
-	                            }
-	                          echo '</select>';
-	                      ?>
-
-	                    </td>
+                     
 
                       <td>
 	                      <?php
@@ -539,13 +523,13 @@ use Mpdf\Language\ScriptToLanguage;
                      
 	                    
                       <td>
-	                      <input type="text" name = "motor_name" class="form-control-balu" id="motor_name" placeholder="motor name...">
+	                      <input type="text" name = "motor_name" class="form-control-balu" id="motor_name" placeholder="Motor name...">
 	                    </td>
 	                    <td>
-	                      <input type="text" name="driver_name" class="form-control-balu" id="driver_name" placeholder="driver name...">
+	                      <input type="text" name="driver_name" class="form-control-balu" id="driver_name" placeholder="Driver name...">
 	                    </td>
 	                    <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name = "motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="gari vara...">
+	                      <input type="text" onkeypress="return isNumber(event)" name = "motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="Gari vara...">
 	                    </td>
 	                    <td>
 	                      <input type="text" onkeypress="return isNumber(event)" name = "unload" name ="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload">
@@ -554,21 +538,54 @@ use Mpdf\Language\ScriptToLanguage;
 	                      <input type="text" name = "car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
 	                    </td>
 	               
-	                    
-	                    <td>
-	                      <input type="text" name="sl_no" class="form-control-balu" id="sl_no" placeholder="Enter SL No...">
+                      <?PHP
+          $sql = "SELECT sl FROM details_sell_balu ORDER BY id DESC LIMIT 1";
+          $customersId = $db->select($sql);
+          if($customersId->num_rows > 0){
+              $row = $customersId->fetch_assoc();
+              $largestId = $row['sl'];
+          } else {
+                $largestId = 'sl-100000';
+          }
+          $matches = preg_replace('/\D/', '', $largestId);
+          $newNumber = $matches + 1;
+          $newId = 'SL-' . $newNumber;
+?>
+
+
+          <td>
+            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no...">
+          </td>
+          <td>
+                      <?php
+                        // var parti_val = $('#car_rent_redeem').val();
+	                        $sql = "SELECT DISTINCT particulars FROM details_balu WHERE  particulars != ''";
+	                        $all_particular = $db->select($sql);
+	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
+	                          echo '<option value="none">Select...</option>';
+	                          if($all_particular->num_rows > 0){
+	                              while($row = $all_particular->fetch_assoc()){
+                                    $particulars = $row['particulars'];
+	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
+	                              }
+	                            } else{
+	                              
+	                            }
+	                          echo '</select>';
+	                      ?>
+
 	                    </td>
 	                    <td>
-	                      <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter delivery no...">
+	                      <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter voucher no...">
 	                    </td>
                       <td>
-	                      <input type="text" name="address" class="form-control-balu" id="address" placeholder="address...">
+	                      <input type="text" name="address" class="form-control-balu" id="address" placeholder="Address...">
 	                    </td>
 	                    <td>
-	                      <input type="text" name="motor" class="form-control-balu" id="motor" placeholder="motor...">
+	                      <input type="text" name="motor" class="form-control-balu" id="motor" placeholder="Motor...">
 	                    </td>
 	                    <td>
-	                      <input type="text" name="motor_no" class="form-control-balu" id="motor_no" placeholder="MotorSL...">
+	                      <input type="text" name="motor_no" class="form-control-balu" id="motor_no" placeholder="Motor sl...">
 	                    </td>
 	                    <td>
 	                      <input onkeypress="datecheckformat(event)" type="text" name="delivery_date" class="form-control-balu" id="delivery_date" placeholder="dd-mm-yyyy">
@@ -581,72 +598,72 @@ use Mpdf\Language\ScriptToLanguage;
 	                    </td> -->
                       
 	                    <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="debit...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="Debit...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)"  name="kg" class="form-control-balu value-calc" id="kg" placeholder="Ton kg...">
+	                      <input type="text" onkeypress="return isNumber(event)"  name="kg" class="form-control-balu value-calc" id="kg" placeholder="Ton & kg...">
 	                    </td>
 	                    <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="length" class="form-control-balu value-calc" id="length" placeholder="length'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="length" class="form-control-balu value-calc" id="length" placeholder="Length'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="width" class="form-control-balu value-calc" id="width" placeholder="width'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="width" class="form-control-balu value-calc" id="width" placeholder="Width'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="height" class="form-control-balu value-calc" id="height" placeholder="height '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="height" class="form-control-balu value-calc" id="height" placeholder="Height '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="shifty '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="Shifty '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu" id="inchi(-)_minus" placeholder="-in'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu" id="inchi(-)_minus" placeholder="-Inchi'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)"   name="cft(-)_dropped_out" class="form-control-balu" id="cft(-)_dropped_out" placeholder="-cft'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)"   name="cft(-)_dropped_out" class="form-control-balu" id="cft(-)_dropped_out" placeholder="-Cft'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)"  name="inchi(+)_added" class="form-control-balu" id="inchi(+)_added" placeholder="+in '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)"  name="inchi(+)_added" class="form-control-balu" id="inchi(+)_added" placeholder="+Inchi '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu" id="points(-)_dropped_out" placeholder="-point '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu" id="points(-)_dropped_out" placeholder="-Point '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="shifty '00 mm'...">
+	                      <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="Shifty '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="total-shifty '00 mm'...">
+	                      <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-shifty '00 mm'...">
 	                    </td>
 	                    <td>
 	                      <input type="text" onkeypress="return isNumber(event)"  name="paras" class="form-control-balu value-calc" id="paras" placeholder="Enter paras...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="discount...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
 	                    </td>
 	                    <td>
-	                      <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="credit...">
+	                      <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="Credit...">
 	                    </td>
 	                    
 	                    <td>
-	                      <input type="text" name="balance" class="form-control-balu value-calc" id="balance" placeholder="balance...">
+	                      <input type="text" name="balance" class="form-control-balu value-calc" id="balance" placeholder="Balance...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name = "cemeats_paras" class="form-control-balu value-calc" id="cemeats_paras" placeholder="cemeats_paras...">
+	                      <input type="text" onkeypress="return isNumber(event)" name = "cemeats_paras" class="form-control-balu value-calc" id="cemeats_paras" placeholder="Cemeats_paras...">
 	                    </td>
                       <td>
 	                      <input type="text" onkeypress="return isNumber(event)" name = "ton" name="ton" class="form-control-balu value-calc" id="ton" placeholder="Ton...">
 	                    </td>
                      
                       <td>
-	                      <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="total-shifty '00 mm'...">
+	                      <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-shifty '00 mm'...">
 	                    </td>
                       <td>
 	                      <input type="text" onkeypress="return isNumber(event)" name = "tons" name="tons" class="form-control-balu value-calc" id="tons" placeholder="Tons...">
 	                    </td>
                       <td>
-	                      <input type="text" name="bank" class="form-control-balu " id="bank" placeholder="bank name...">
+	                      <input type="text" name="bank" class="form-control-balu " id="bank" placeholder="Bank name...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name = "fee" class="form-control-balu value-calc" id="fee" placeholder="fee">
+	                      <input type="text" onkeypress="return isNumber(event)" name = "fee" class="form-control-balu value-calc" id="fee" placeholder="Fee">
 	                    </td>
 	                <!-- <td colspan="2"></td> -->
 	              </tr>               
@@ -675,7 +692,7 @@ use Mpdf\Language\ScriptToLanguage;
             <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
               <div class="viewDetailsCon" id="viewDetails">
                   <table id="detailsNewTable2" >
-                    <head>
+                    <thead class="header">
                       <tr>
                         <th>Customer ID:</th>
                         <th>Motor Name</th>
@@ -762,7 +779,7 @@ use Mpdf\Language\ScriptToLanguage;
                         <th class='no_print_media'></th>
                         <th class='no_print_media'></th>
                       </tr>
-                    </head>
+                    </thead>
                     <tbody>
                     <?php
                         while ($rows = $result->fetch_assoc()) {
@@ -819,7 +836,7 @@ use Mpdf\Language\ScriptToLanguage;
                           echo "<td>". $rows['tons'] ."</td>";
                           echo "<td>". $rows['bank_name'] ."</td>";
                           echo "<td>". $rows['fee'] ."</td>";
-                          echo "<td>". $rows[''] ."</td>";
+                          // echo "<td>". $rows[''] ."</td>";
 
                           if($delete_data_permission == 'yes'){
                             echo "<td width='78px' class='no_print_media'><a class='btn btn-danger detailsDelete' data_delete_id=" . $rows['id'] . ">Delete</a></td>";

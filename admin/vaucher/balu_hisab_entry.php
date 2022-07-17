@@ -58,7 +58,7 @@
           $sql="UPDATE balu_category SET category_name = '$category_name' WHERE category_id = '$category_id'";
 
           if ($db->update($sql) === TRUE) {
-              $sucMsg = "Header Updated Successfully";
+              $sucMsg = "Category Entry Updated Successfully";
           } else {
               echo "Error: " . $sql . "<br>" . $db->error;
           }
@@ -96,71 +96,80 @@
 
   
     <style type="text/css">
-      .dateInput{
-          line-height: 22px !important;
-      }
-      .allowText {
-          float: right;
-          margin-bottom: 3px;
-      }
-      .table-bordered > tbody > tr > td {
-          border: 1px solid #ddd;
-      }
-      .table > thead > tr > th {
-          border-bottom: 2px solid #ddd;
-      }
-      .table-bordered > thead > tr > th {
-          border: 1px solid #ddd;
-      }
-      .rodDelEnCon{
-          margin-bottom: 50px;
-          position: relative;
-          height: 157px;
-      }
-      .balu_categorysTableCon{
-          width: 100%;
-          margin-bottom: 0px;
-		  background-color: gray;
-      }
-      .balu_categorysTableCon tr th {
+    .dateInput{
+        line-height: 22px !important;
+    }
+    .allowText {
+        float: right;
+        margin-bottom: 3px;
+    }
+    .table-bordered > tbody > tr > td {
         border: 1px solid #ddd;
-        text-align: center;
-      }
-      .balu_categorysTableCon tr td {
+    }
+    .table > thead > tr > th {
+        border-bottom: 2px solid #ddd;
+    }
+    .table-bordered > thead > tr > th {
         border: 1px solid #ddd;
-        padding: 2px;
-      }
-      .borderLess {
-        border: none !important;
-      }
-      .showDealerCon table {
-        width: 100%;
+    }
+    .rodDelEnCon{
+        height: 157px;
+        position: relative;
         margin-bottom: 50px;
-      }
-      .showDealerCon table th{
-        border: 1px solid #ddd;
-        text-align: center;
-        padding: 2px 5px;
-      }
-      .showDealerCon table td{
-        border: 1px solid #ddd;
-        padding: 2px 5px;
-      }
-      .backcircle{
+    }
+    .dealersTableCon{
+        width: 100%;
+    }
+    .dealersTableCon tr th {
+      border: 2px solid #ddd;
+      text-align: center;
+      padding: 4px 5px;
+     background-color:#3e9309d4;
+     color: white;
+    }
+    .dealersTableCon tr td {
+      border: 2px solid #ddd;
+      padding: 2px;
+    }
+    .borderLess {
+      border: none !important;
+    }
+    .showDealerCon table {
+      width: 100%;
+      margin-bottom: 50px;
+    }
+    .showDealerCon table th{
+      border: 2px solid #ddd;
+      text-align: center;
+      padding: 5px 5px;
+    }
+    .showDealerCon table tr:nth-child(odd) td {
+	    	border: 2px solid #ddd;
+	    	padding: 2px 5px;
+			/* text-align: center; */
+            background-color: #d2df0d2e;
+            color: black;
+	}
+    .showDealerCon table td{
+      border: 2px solid #ddd;
+      padding: 2px 5px;
+
+    }
+    .backcircle{
         font-size: 18px;
         position: absolute;
         margin-top: -20px;
-      }
-      .backcircle a:hover{
-          text-decoration: none !important;
-      }
-      #submitBtn{
-          width: 100px;
-          position: absolute;
-          right: 0px;
-      }
-    </style>
-    
+    }
+    .backcircle a:hover{
+        text-decoration: none !important;
+    }
+    #submitBtn{
+        width: 100px;
+        position: absolute;
+        right: 0px;
+    }
+  </style>
+     
 </head>
 <body>
     <?php
@@ -208,18 +217,18 @@
                 <form action="" method="post" onsubmit="return validation()">
                     <table class="dealersTableCon">
                         <tr>
-                          <th width="130px">Category Id</th>
-                          <th mx-2>Category Name</th>
+                          <!-- <th width="130px">Category Id</th> -->
+                          <th width="70%">Category Name</th>
                           <!-- <th width="260px">Address</th>
                           <th>Contact Person Name</th>
                           <th>Mobile</th> -->
                         </tr>
                         <tr>
-                          <td>
+                          <!-- <td>
                             <input type="text" class="form-control" id="category_id" value="<?php echo $newId; ?>" disabled>
                             <input type="hidden" name= "category_id" class="form-control" id="category_id_hidden" value="<?php echo $newId; ?>">
-                          </td>
-                          <td><input type="text" name = "category_name" class="form-control" id="category_name" placeholder="Enter Category Name..."></td>
+                          </td> -->
+                          <td><input type="text" name = "category_name" class="form-control" id="category_name" placeholder="Enter category name..."></td>
                           <!-- <td><textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter Company Address..." id='address' style="resize: none;"></textarea></td>
                           <td><input type="text" name = "contact_person_name" class="form-control" id="contact_person" placeholder="Enter Contact Person Name..."></td>
                           <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No..."></td> -->
@@ -240,7 +249,7 @@
             <div class="showDealerCon">
               <table >
                 <tr class="bg-primary">
-                  <th>Category Id</th>
+                  <!-- <th>Category Id</th> -->
                   <th>Category Name</th>
                   <!-- <th>Address</th>
                   <th>Contact Person Name</th>
@@ -254,7 +263,7 @@
                   if ($show) {
                       while ($rows = $show->fetch_assoc()){
                           echo "<tr>";
-                              echo "<td>". $rows['category_id'] . "</td>";
+                              // echo "<td>". $rows['category_id'] . "</td>";
                               echo "<td>". $rows['category_name'] . "</td>";
                             //   echo "<td>". $rows['address'] . "</td>";
                             //   echo "<td>". $rows['contact_person_name'] . "</td>";

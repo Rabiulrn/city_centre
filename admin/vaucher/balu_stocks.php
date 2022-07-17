@@ -59,11 +59,11 @@
 		  background-color: gray;
       }
       .balu_table_headerssTableCon tr th {
-        border: 1px solid #ddd;
+        border: 2px solid #ddd;
         text-align: center;
       }
       .balu_table_headerssTableCon tr td {
-        border: 1px solid #ddd;
+        border: 2px solid #ddd;
         padding: 2px;
       }
       .borderLess {
@@ -74,13 +74,20 @@
         margin-bottom: 50px;
       }
       .showDealerCon table th{
-        border: 1px solid #ddd;
+        border: 2px solid #ddd;
         text-align: center;
-        padding: 2px 5px;
+        padding: 4px 5px;
       }
+      .showDealerCon table tr:nth-child(odd) td {
+	    	border: 2px solid #ddd;
+	    	padding: 2px 5px;
+			/* text-align: center; */
+            background-color: #d2df0d2e;
+            color: black;
+	    }
       .showDealerCon table td{
-        border: 1px solid #ddd;
-        padding: 2px 5px;
+        border: 2px solid #ddd;
+        padding: 2px 5px; 
       }
       .backcircle{
         font-size: 18px;

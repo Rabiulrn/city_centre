@@ -494,7 +494,7 @@
 	                    <td>বান্ডিল</td>
 	                    <td>মোট দাম</td>
 	              </tr>
-	              <tr>
+	              <tr style = "position: relative;">
 	                    <td>
 	                      <!-- <input type="text" name="customer_id" class="form-control" id="customer_id" placeholder="Enter customer_id..."> -->
 	                      <?php
@@ -533,7 +533,7 @@
 	                      ?>
 	                    <!-- </td> -->
 	                    <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name = "motor_cash" class="form-control value-calc" id="motor_cash" placeholder="Enter Motor Cash...">
+	                      <input type="text" onkeypress="return isNumber(event)" name = "motor_cash" class="form-control value-calc" id="motor_cash" placeholder="Enter motor cash...">
 	                    </td>
 	                    <td>
 	                      <input type="text" onkeypress="return isNumber(event)" name = "motor_cash" name ="unload" class="form-control value-calc" id="unload" placeholder="Unload">
@@ -549,7 +549,7 @@
 	                      <input type="text" name="address" class="form-control" id="address" placeholder="Enter address...">
 	                    </td>
 	                    <td>
-	                      <input type="text" name="sl_no" class="form-control" id="sl_no" placeholder="Enter SL No...">
+	                      <input type="text" name="sl_no" class="form-control" id="sl_no" placeholder="Enter sl no...">
 	                    </td>
 	                    <td>
 	                      <input type="text" name="delivery_no" class="form-control" id="delivery_no" placeholder="Enter delivery no...">
@@ -558,12 +558,12 @@
 	                      <input type="text" name="motor" class="form-control" id="motor" placeholder="Enter number of motor...">
 	                    </td>
 	                    <td>
-	                      <input type="text" name="motor_no" class="form-control" id="motor_no" placeholder="Enter Motor No...">
+	                      <input type="text" name="motor_no" class="form-control" id="motor_no" placeholder="Enter motor no...">
 	                    </td>
-	                    <td>
+	                    <td  style = "z-index:2">
 	                      <input onkeypress="datecheckformat(event)" type="text" name="delivery_date" class="form-control" id="delivery_date" placeholder="dd-mm-yyyy">
 	                    </td>
-	                    <td>
+	                    <td style = "z-index:2">
 	                      <input onkeypress="datecheckformat(event)" type="text" name="dates" class="form-control" id="dates" placeholder="dd-mm-yyyy">
 	                    </td>
 	                    <td>
@@ -663,7 +663,7 @@
             <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
               <div class="viewDetailsCon" id="viewDetails">
                   <table id="detailsNewTable2" >
-                    <head>
+                    <thead class="header">
                       <tr>
                         <th>Buyer ID:</th>
                         <th>Dealer ID:</th>
@@ -720,7 +720,7 @@
                         <th class='no_print_media'></th>
                         <th class='no_print_media'></th>
                       </tr>
-                    </head>
+                    </thead>
                     <tbody>
                     <?php
                         while ($rows = $result->fetch_assoc()) {

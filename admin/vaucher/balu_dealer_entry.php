@@ -117,17 +117,19 @@
           position: relative;
           height: 157px;
       }
-      .balu_dealersTableCon{
+      .dealersTableCon{
           width: 100%;
           margin-bottom: 0px;
-		  background-color: gray;
       }
-      .balu_dealersTableCon tr th {
-        border: 1px solid #ddd;
+      .dealersTableCon tr th {
+        border: 2px solid #ddd;
         text-align: center;
+        padding: 4px 5px;
+        background-color:#3e9309d4;
+        color: white;
       }
-      .balu_dealersTableCon tr td {
-        border: 1px solid #ddd;
+      .dealersTableCon tr td {
+        border: 2px solid #ddd;
         padding: 2px;
       }
       .borderLess {
@@ -138,14 +140,24 @@
         margin-bottom: 50px;
       }
       .showDealerCon table th{
-        border: 1px solid #ddd;
+        border: 2px solid #ddd;
         text-align: center;
-        padding: 2px 5px;
+        padding: 5px 5px;
+        
       }
       .showDealerCon table td{
-        border: 1px solid #ddd;
+        border: 2px solid #ddd;
         padding: 2px 5px;
       }
+      .showDealerCon table tr:nth-child(odd) td {
+	    	border: 2px solid #ddd;
+	    	padding: 2px 5px;
+			/* text-align: center; */
+            background-color: #d2df0d2e;
+            color: black;
+            /* width: 100%;
+        margin-bottom: 50px; */
+	    }
       .backcircle{
         font-size: 18px;
         position: absolute;
@@ -159,8 +171,8 @@
           position: absolute;
           right: 0px;
       }
-    
     </style>
+     
     
 </head>
 <body>
@@ -220,11 +232,11 @@
                             <input type="text" class="form-control" id="dealer_id" value="<?php echo $newId; ?>" disabled>
                             <input type="hidden" name= "dealer_id" class="form-control" id="dealer_id_hidden" value="<?php echo $newId; ?>">
                           </td>
-                          <td><input type="text" name = "dealer_name" class="form-control" id="dealer_name" placeholder="Enter Dealer Name..."></td>
-                          <td><input type="text" name = "address" class="form-control" id="address" placeholder="Enter Company Address..."></td>
+                          <td><input type="text" name = "dealer_name" class="form-control" id="dealer_name" placeholder="Enter dealer name..."></td>
+                          <td><input type="text" name = "address" class="form-control" id="address" placeholder="Enter company address..."></td>
                           <!-- <td><textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter Company Address..." id='address' style="resize: none;"></textarea></td> -->
-                          <td><input type="text" name = "contact_person_name" class="form-control" id="contact_person" placeholder="Enter Contact Person Name..."></td>
-                          <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No..."></td>
+                          <td><input type="text" name = "contact_person_name" class="form-control" id="contact_person" placeholder="Enter contact person name..."></td>
+                          <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter mobile no..."></td>
                         </tr>
                         <tr>
                           <td class="borderLess"></td>

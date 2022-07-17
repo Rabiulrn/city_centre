@@ -281,9 +281,9 @@ $sucMsg = "";
   <form id="form_entry">
     <!-- <h2 class="ce_header bg-primary">Details Entry</h2> -->
     <div class="scrolling-div" id="scrolling-entry-div">
-      <div id="popUpNewBtn">
+      <!-- <div id="popUpNewBtn">
         <img src="../img/others/new_entry.png" width="100%" height="100%">
-      </div>
+      </div> -->
       <!-- <div class="scrollsign_plus" id="entry_scroll3">+</div> 
                 <div class="scrollsign_plus" id="entry_scroll2">+</div>                  
                 <div class="scrollsign_plus" id="entry_scroll1">+</div>                   -->
@@ -292,7 +292,7 @@ $sucMsg = "";
           <td class="widthPercent1">Buyer ID</td>
           <!-- <td width="150">Dealer ID</td> -->
           <!-- <td class="widthPercent1">Type</td> -->
-          <td class="widthPercent2">Particulars</td>
+        
           <td class="widthPercent1">Information</td>
           <td class="widthPercent1">Motor Name</td>
           <td class="widthPercent1">Driver Name</td>
@@ -301,6 +301,7 @@ $sucMsg = "";
           <td class="widthPercent1">Cars rent & Redeem</td>
          
           <td class="widthPercent1">SL</td>
+          <td class="widthPercent2">Particulars</td>
           <td class="widthPercent1">Voucher No.</td>
           <td class="widthPercent1">Address</td>
           <td class="widthPercent1">Motor Number</td>
@@ -336,7 +337,7 @@ $sucMsg = "";
           <td>বায়ার আই ডি</td>
           <!-- <td>ডিলার আই ডি</td> -->
           <!-- <td>টাইপ</td> -->
-          <td>ব‌িবরণ</td>
+         
           <td>মালের বিবরণ</td>
           <td>গাড়ী নাম</td>
           <td>ড্রাইভারের নাম</td>
@@ -345,6 +346,7 @@ $sucMsg = "";
           <td>গাড়ী ভাড়া ও খালাস</td>
         
           <td>ক্রমিক</td>
+          <td>ব‌িবরণ</td>
           <td>ভাউচার নং</td>
           <td>ঠিকানা</td>
           <td>গাড়ী নাম্বার</td>
@@ -407,29 +409,11 @@ $sucMsg = "";
 
 
 
-          <td>
-                      <?php
-                        // var parti_val = $('#car_rent_redeem').val();
-	                        $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''";
-	                        $all_particular = $db->select($sql);
-	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
-	                          echo '<option value="none">Select...</option>';
-	                          if($all_particular->num_rows > 0){
-	                              while($row = $all_particular->fetch_assoc()){
-                                    $particulars = $row['category_name'];
-	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
-	                              }
-	                            } else{
-	                              echo '<option value="none">0 Result</option>';
-	                            }
-	                          echo '</select>';
-	                      ?>
-
-	                    </td>
+         
          
 
           <td>
-            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter information...">
+            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter Information...">
           </td>
 
           <!-- <td> -->
@@ -452,13 +436,13 @@ $sucMsg = "";
           <!-- </td> -->
 
           <td>
-            <input type="text" name="motor_name" class="form-control-balu" id="motor_name" placeholder="motor name...">
+            <input type="text" name="motor_name" class="form-control-balu" id="motor_name" placeholder="Motor name...">
           </td>
           <td>
-            <input type="text" name="driver_name" class="form-control-balu" id="driver_name" placeholder="driver name...">
+            <input type="text" name="driver_name" class="form-control-balu" id="driver_name" placeholder="Driver name...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="gari vara...">
+            <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="Gari vara...">
           </td>
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload">
@@ -468,21 +452,55 @@ $sucMsg = "";
           </td>
   
 
+          <?PHP
+          $sql = "SELECT sl FROM details_pathor ORDER BY id DESC LIMIT 1";
+          $customersId = $db->select($sql);
+          if($customersId->num_rows > 0){
+              $row = $customersId->fetch_assoc();
+              $largestId = $row['sl'];
+          } else {
+                $largestId = 'sl-100000';
+          }
+          $matches = preg_replace('/\D/', '', $largestId);
+          $newNumber = $matches + 1;
+          $newId = 'SL-' . $newNumber;
+?>
+
 
           <td>
-            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" placeholder="Enter SL No...">
+            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no..." style="cursor:not-allowed;">
+          </td>
+
+          <td>
+                      <?php
+                        // var parti_val = $('#car_rent_redeem').val();
+	                        $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''";
+	                        $all_particular = $db->select($sql);
+	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
+	                          echo '<option value="none">Select...</option>';
+	                          if($all_particular->num_rows > 0){
+	                              while($row = $all_particular->fetch_assoc()){
+                                    $particulars = $row['category_name'];
+	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
+	                              }
+	                            } else{
+	                              echo '<option value="none">0 Result</option>';
+	                            }
+	                          echo '</select>';
+	                      ?>
+
+	                    </td>
+          <td>
+            <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter voucher no..." required>
           </td>
           <td>
-            <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter delivery no..." required>
+            <input type="text" name="address" class="form-control-balu" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>
           </td>
           <td>
-            <input type="text" name="address" class="form-control-balu" id="address" placeholder="address..." pattern="[a-zA-Z0-9-\s]+" required>
+            <input type="text" name="motor" class="form-control-balu" id="motor" placeholder="Motor...">
           </td>
           <td>
-            <input type="text" name="motor" class="form-control-balu" id="motor" placeholder="motor...">
-          </td>
-          <td>
-            <input type="text" name="motor_no" class="form-control-balu" id="motor_no" placeholder="MotorSL...">
+            <input type="text" name="motor_no" class="form-control-balu" id="motor_no" placeholder="Motor sl...">
           </td>
           <td>
             <input onkeypress="datecheckformat(event)" type="text" name="delivery_date" class="form-control-balu" id="delivery_date" placeholder="dd-mm-yyyy">
@@ -491,77 +509,77 @@ $sucMsg = "";
             <input onkeypress="datecheckformat(event)" type="text" name="dates" class="form-control-balu" id="dates" placeholder="dd-mm-yyyy">
           </td>
           <td>
-            <input type="text" name="partculars" class="form-control-balu" id="partculars" placeholder="marfot...">
+            <input type="text" name="partculars" class="form-control-balu" id="partculars" placeholder="Marfot...">
           </td>
 
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="debit...">
+            <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="Debit...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="kg" class="form-control-balu value-calc" id="kg" placeholder="Ton kg...">
+            <input type="text" onkeypress="return isNumber(event)" name="kg" class="form-control-balu value-calc" id="kg" placeholder="Ton & kg...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="length" class="form-control-balu value-calc" id="length" placeholder="length'00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="length" class="form-control-balu value-calc" id="length" placeholder="Length'00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="width" class="form-control-balu value-calc" id="width" placeholder="width'00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="width" class="form-control-balu value-calc" id="width" placeholder="Width'00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="height" class="form-control-balu value-calc" id="height" placeholder="height '00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="height" class="form-control-balu value-calc" id="height" placeholder="Height '00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="shifty '00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="Shifty '00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu" id="inchi(-)_minus" placeholder="-in'00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu value-calc" id="inchi_minus" placeholder="-Inchi'00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="cft(-)_dropped_out" class="form-control-balu" id="cft(-)_dropped_out" placeholder="-cft'00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="cft(-)_dropped_out" class="form-control-balu value-calc" id="cft_dropped_out" placeholder="-Cft'00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="inchi(+)_added" class="form-control-balu" id="inchi(+)_added" placeholder="+in '00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="inchi(+)_added" class="form-control-balu value-calc" id="inchi_added" placeholder="+Inchi '00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu" id="points(-)_dropped_out" placeholder="-point '00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu value-calc" id="points_dropped_out" placeholder="-Point '00 mm'...">
           </td>
           <td>
-            <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="shifty '00 mm'...">
+            <input type="text" name="shift" class="form-control-balu" id="shift" placeholder="shifty '00 mm'...">
           </td>
           <td>
-            <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="total-shifty '00 mm'...">
+            <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-shifty '00 mm'...">
           </td>
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="ton" class="form-control-balu value-calc" id="ton" placeholder="Ton...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="paras per ton...">
+            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="Paras per ton...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="discount...">
+            <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
           </td>
           <td>
-            <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="credit...">
+            <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="Credit...">
           </td>
 
           <td>
-            <input type="text" name="balance" class="form-control-balu value-calc" id="balance" placeholder="balance...">
+            <input type="text" name="balance" class="form-control-balu value-calc" id="balance" placeholder="Balance...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="cemeats_paras" class="form-control-balu value-calc" id="cemeats_paras" placeholder="cemeats_paras...">
+            <input type="text" onkeypress="return isNumber(event)" name="cemeats_paras" class="form-control-balu value-calc" id="cemeats_paras" placeholder="Cemeats_paras...">
           </td>
           
 
           <td>
-            <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="total-shifty '00 mm'...">
+            <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-shifty '00 mm'...">
           </td>
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="tons" name="tons" class="form-control-balu value-calc" id="tons" placeholder="Tons...">
           </td>
           <td>
-            <input type="text" name="bank" class="form-control-balu" id="bank" placeholder="bank name...">
+            <input type="text" name="bank" class="form-control-balu" id="bank" placeholder="Bank name...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="fee" class="form-control-balu value-calc" id="fee" placeholder="fee">
+            <input type="text" onkeypress="return isNumber(event)" name="fee" class="form-control-balu value-calc" id="fee" placeholder="Fee">
           </td>
           <!-- <td colspan="2"></td> -->
         </tr>
@@ -590,7 +608,7 @@ if ($result) {
       <div class="viewDetailsCon" id="viewDetails">
         <table id="detailsNewTable2">
 
-          <head>
+          <thead class="header">
             <tr>
               <th>Buyer ID:</th>
               <th>Motor Name</th>

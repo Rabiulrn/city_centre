@@ -35,7 +35,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <style type="text/css">
-        .rodDetailsEnCon {
+         .rodDetailsEnCon {
             position: relative;
         }
 
@@ -45,92 +45,30 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             position: absolute;
             right: 0px;
         }
-.form-control-dealer{
-    border-color:#9bd1ff;
-}
-/* select { */
-
-/* styling */
-/* background-color: white;
-border: thin solid blue;
-border-radius: 4px;
-display: inline-block;
-font: inherit;
-line-height: 1.5em;
-padding: 0.5em 3.5em 0.5em 1em; */
-
-/* reset */
-
-/* margin: 0;      
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
-box-sizing: border-box;
--webkit-appearance: none;
--moz-appearance: none;
-}
-select.form-control-dealer {
-  background-image:
-    linear-gradient(45deg, transparent 50%, blue 50%),
-    linear-gradient(135deg, blue 50%, transparent 50%),
-    linear-gradient(to right, skyblue, skyblue);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    100% 0;
-  background-size:
-    5px 5px,
-    5px 5px,
-    2.5em 2.5em;
-  background-repeat: no-repeat;
-} */
-
-/* select.form-control-dealer:focus {
-  background-image:
-    linear-gradient(45deg, white 50%, transparent 50%),
-    linear-gradient(135deg, transparent 50%, white 50%),
-    linear-gradient(to right, gray, gray);
-  background-position:
-    calc(100% - 15px) 1em,
-    calc(100% - 20px) 1em,
-    100% 0;
-  background-size:
-    5px 5px,
-    5px 5px,
-    2.5em 2.5em;
-  background-repeat: no-repeat;
-  border-color: grey;
-  outline: 0;
-} */
-
 
         #detailsEtryTable {
             width: 293%;
-            border: 1px solid #ddd;
-            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-           
+            border: 1px solid #3e9309d4;
+            
         }
-        /* #rodDetailsEnCon ::-webkit-scrollbar {
-            width: 50px;
-        } */
+
         #detailsEtryTable tr:first-child td {
             text-align: center;
-            /* font-weight: 550; */
-            background-color: #9bd1ff;
-            border: 1px solid white;
-            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+            background-color:#3e9309d4;
+            Color: white;
         }
 
         #detailsEtryTable tr:nth-child(2) td {
             text-align: center;
-            /* font-weight: bold; */
-            background-color: #9bd1ff;
-            border: 1px solid white;
-            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+            background-color:#3e9309d4;
+            Color: white;
         }
      
         #detailsEtryTable tr:nth-child(3) td {
-            /* border: 2px solid #9c9c9c; */
-            border: 1px solid skyblue;
+            border: 1px solid #3e9309d4;
+            /* text-align: center; */
+            
+            /* Color: black; */
             /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
         }
         #detailsEtryTable tr:nth-child(3) input {
@@ -142,8 +80,9 @@ select.form-control-dealer {
         #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
             /* outline: 1px solid skyblue; */
             outline: none;
-            border-bottom: 2px solid skyblue;
+            border-bottom: 2px solid #508d2aba;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            height: 30px;
             /* font-size: 1px; */
             
         }
@@ -154,12 +93,9 @@ select.form-control-dealer {
             
         }
 
-        .btn-pathor:hover{
-            background-color: #000;
-        }
         #detailsEtryTable td {
-            border: 1px solid #9c9c9c;
-
+            /* color inserted here */
+            border: 2px solid #E0E4E0;
         }
 
         .scrolling-div {
@@ -171,22 +107,22 @@ select.form-control-dealer {
             overflow-y: scroll;
         }
 
-        /* .scrolling-div::-webkit-scrollbar {
+        /*.scrolling-div::-webkit-scrollbar {
           width: 10px;
           
         }
-     
         .scrolling-div::-webkit-scrollbar-track {
-          background: linear-gradient(to bottom, #ffffff 0%, #ccffff 100%);
-          
+          background: #ff9696;
+          box-shadow: inset 0 0 5px grey; 
+          border-radius: 10px;
         }
         .scrolling-div::-webkit-scrollbar-thumb {
-          background:linear-gradient(to top, #66ffff 0%, #ccffff 100%);
-     
+          background: red;
+          border-radius: 10px;
         }
         .scrolling-div::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(to bottom, #66ffff 0%, #ccffff 100%);
-        } */
+          background: #900;
+        }*/
         .scrollsign_plus {
             width: 25px;
             height: 25px;
@@ -221,23 +157,31 @@ select.form-control-dealer {
         #detailsNewTable2 {
             width: 217%;
             border: 1px solid #ddd;
-            
             /*transform: rotateX(180deg);*/
         }
+        .header {
+                        /* Background color */
+                        /* background-color: #ddd; */
+
+                        /* Stick to the top */
+                        position: sticky;
+                        top: 0;
+
+                        /* Displayed on top of other rows when scrolling */
+                         z-index: 1; 
+                    }
 
         #detailsNewTable2 th,
         td {
             border: 1px solid #ddd;
             padding: 2px 5px;
-           
         }
 
         #detailsNewTable2 tr:first-child th {
             text-align: center;
-            background-color: rgba(9, 0, 0, .6);
+            background-color: #363636;
             color: #fff;
             padding: 5px 0px;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
         }
 
         #detailsNewTable2 tr:nth-child(2) th {
@@ -245,9 +189,14 @@ select.form-control-dealer {
             background-color: #363636;
             padding: 5px 0px;
             color: #fff;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
         }
-
+        #detailsNewTable2 tr:nth-child(even) td {
+            text-align: center;
+            background-color: #d2df0d2e;
+            color: black;
+            padding: 5px 0px;
+        }
+      
         .viewDetailsCon {
             width: 100%;
             max-height: 470px;
@@ -875,7 +824,7 @@ select.form-control-dealer {
                             <tr>
                                 <td>Cft ( - ) Dropped Out (সিএফটি ( - ) বাদ)</td>
                                 <td>
-                                    <input type="text" name="cft_dropped" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
+                                    <input type="text" name="cft_dropped_out" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>
@@ -1549,6 +1498,11 @@ select.form-control-dealer {
             var length = $('#length').val();
             var width = $('#width').val();
             var height = $('#height').val();
+
+            var inchi_minus = $("#inchi_minus").val();
+            var cft_dropped_out = $('#cft_dropped_out').val();
+            var inchi_added = $('#inchi_added').val();
+            var points_dropped_out = $('#points_dropped_out').val();
             if (length == '') {
                 $('#shifty').val('0');
             } else if (width == '') {
@@ -1556,11 +1510,17 @@ select.form-control-dealer {
             } else if (height == '') {
                 $('#shifty').val('0');
             }
+            // else if (inchi_minus == '') {
+            //     $('#shifty').val('0');
+            // }
             // else if(length != ''){
             //     $('#kg').val('0');
             // }
             else {
                 var shifty = length * width * height;
+                if(inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != ''){
+                     shifty = (length * width * height)-(length*width*inchi_minus/12)-cft_dropped_out+(length*width*inchi_minus/12)-points_dropped_out;
+                }
                 var shift_to_ton = shifty / 23.5;
                 // alert(credit);
                 $('#shifty').val(shifty);
@@ -1575,6 +1535,7 @@ select.form-control-dealer {
             var ton = $('#ton').val();
             var ton_kg = $('#kg').val();
             var credit = $("#credit").val();
+            
             if (ton_kg != '') {
                 $("#length").attr("value", "not applicable");
                 // $('#length').val('not applicable');
@@ -1588,7 +1549,6 @@ select.form-control-dealer {
                 $('#shift').val(ton_to_cft);
                 $('#total_shift').val(ton_to_cft);
                 $('#total_shifts').val(ton_to_cft);
-
             } else {
                 var credit = ton * paras;
                 // alert(credit);
@@ -1604,6 +1564,24 @@ select.form-control-dealer {
                 var credit = parseInt(credit) + parseInt(fee);
                 $('#credit').val(credit);
             }
+
+
+             
+            // console.log(inchi_minus);
+            // console.log(ton_kg);
+
+            // if (inchi_minus != '') {
+            //     console.log(inchi_minus);
+            //     $('#shift').val(inchi_minus);
+            //     $('#total_shift').val('test');
+
+            // }
+
+            // if (cft_dropped_out != '') {
+            //     console.log(cft_dropped_out);
+           
+            // }
+
 
 
             var debit = $("#debit").val();

@@ -76,8 +76,15 @@
       .showDealerCon table th{
         border: 1px solid #ddd;
         text-align: center;
-        padding: 2px 5px;
+        padding: 4px 5px;
       }
+      .showDealerCon table tr:nth-child(odd) td {
+	    	border: 2px solid #ddd;
+	    	padding: 2px 5px;
+			/* text-align: center; */
+            background-color: #d2df0d2e;
+            color: black;
+	    }
       .showDealerCon table td{
         border: 1px solid #ddd;
         padding: 2px 5px;

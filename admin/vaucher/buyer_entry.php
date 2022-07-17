@@ -131,11 +131,14 @@
         width: 100%;
     }
     .dealersTableCon tr th {
-      border: 1px solid #ddd;
+      border: 2px solid #ddd;
       text-align: center;
+      padding: 4px 5px;
+      background-color:#3e9309d4;
+      color: white;
     }
     .dealersTableCon tr td {
-      border: 1px solid #ddd;
+      border: 2px solid #ddd;
       padding: 2px;
     }
     .borderLess {
@@ -146,12 +149,19 @@
       margin-bottom: 50px;
     }
     .showDealerCon table th{
-      border: 1px solid #ddd;
+      border: 2px solid #ddd;
       text-align: center;
-      padding: 2px 5px;
+      padding: 5px 5px;
     }
+    .showDealerCon table tr:nth-child(odd) td {
+	    	border: 2px solid #ddd;
+	    	padding: 2px 5px;
+			/* text-align: center; */
+            background-color: #d2df0d2e;
+            color: black;
+	}
     .showDealerCon table td{
-      border: 1px solid #ddd;
+      border: 2px solid #ddd;
       padding: 2px 5px;
 
     }
@@ -226,10 +236,15 @@
                         <input type="text" class="form-control" id="buyer_id" value="<?php echo $newId; ?>" disabled>
                         <input type="hidden" name= "buyer_id" id ="buyer_id_hidden" value="<?php echo $newId; ?>">
                       </td>
-                      <td><input type="text" name = "buyer_name" class="form-control" id="buyer_name" placeholder="Enter Buyer Name..."></td>
-                      <td><textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter Buyer Address..." id='address' style="resize: none;"></textarea></td>
-                      <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No..."></td>
-                      <td><input type="text" name = "buyer_type" class="form-control" id="buyer_type" placeholder="Enter Buyer Type..."></td>
+                      <td><input type="text" name = "buyer_name" class="form-control" id="buyer_name" placeholder="Enter buyer name..."></td>
+                      
+                      <td>
+                        <input type="text" name = "address" class="form-control" id="address" placeholder="Enter buyer address...">
+                    </td>
+                        <!-- <textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter Buyer Address..." id='address' style="resize: none;"></textarea> -->
+                    
+                      <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter mobile no..."></td>
+                      <td><input type="text" name = "buyer_type" class="form-control" id="buyer_type" placeholder="Enter buyer type..."></td>
                       
                     </tr>
                     <tr>
