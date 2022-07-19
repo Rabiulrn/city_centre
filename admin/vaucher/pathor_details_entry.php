@@ -196,7 +196,14 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             color: black;
             padding: 5px 0px;
         }
+        #detailsNewTable2 tr:nth-child(odd) td {
+            text-align: center;
+            background-color: white;
+            color: black;
+            padding: 5px 0px;
+        }
       
+
         .viewDetailsCon {
             width: 100%;
             max-height: 470px;
@@ -357,23 +364,24 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             position: absolute;
             width: 408px;
             height: 45px;
-            right: 175px;
+            right: 15px;
             top: -6px;
         }
 
         .printBtnDlr {
             position: absolute;
             top: 0px;
-            right: 116px;
-            border: 1px solid #46b8da;
+            right: 1px;
+            border: 2px solid #46b8da;
+            
         }
 
-        .printBtnDlrDown {
+        /* .printBtnDlrDown {
             position: absolute;
             top: 0px;
             right: 15px;
             border: 1px solid #46b8da;
-        }
+        } */
 
         @media print {
 
@@ -618,8 +626,8 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead">ক্রয় হিসাব এন্ট্রি</h2>
-                <div class="items_all_con">
+                <h2 class="popupHead"style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
+                <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
                             <tr>
@@ -628,7 +636,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                     <?php
                                     $sql = "SELECT buyer_id FROM pathor_buyers";
                                     $all_custmr_id = $db->select($sql);
-                                    echo '<select name="buyer_id" id="buyer_id_popup" class="form-control">';
+                                    echo '<select name="buyer_id" id="buyer_id_popup" class="form-control" disabled>';
                                     echo '<option value="none">Select...</option>';
                                     if ($all_custmr_id->num_rows > 0) {
                                         while ($row = $all_custmr_id->fetch_assoc()) {
@@ -668,7 +676,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td>Motor Vara (গাড়ী ভাড়া)</td>
                                 <td>
-                                    <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara...">
+                                    <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara..." disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -732,7 +740,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                     <input onkeypress="datecheckformatpopup(event)" type="text" name="dates" class="form-control" id="dates_popup" placeholder="dd-mm-yyyy">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Partculars (মারফোত নাম)</td>
                                 <td>
                                     <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
@@ -778,14 +786,14 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                     echo '</select> ';
                                     ?>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Debit (জমা টাকা)</td>
                                 <td>
                                     <input type="text" name="debit" class="form-control value-calc-popup" id="debit_popup" placeholder="Enter debit...">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Ton & Kg (টোন ও কেজি)</td>
                                 <td>
                                     <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg...">
@@ -850,7 +858,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>
                                     <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td> Para's (দর) </td>
                                 <td>
@@ -882,7 +890,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                     <input type="text" name="cemeats_paras" class="form-control" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
                             </tr>
-                            <td>Ton(টোন)</td>
+                            <!-- <td>Ton(টোন)</td>
                             <td>
                                 <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
                             </td>
@@ -898,9 +906,9 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>
                                     <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
-                                <td>B</td>
+                                <td>Bank Name</td>
                                 <td>
                                     <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
                                 </td>
@@ -1008,7 +1016,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                     $("#popUpNewBtn").click(function() {
                         $("#NewEntrySucMsg").html('');
                         $('#NewEntrySucMsgPopup').html('');
-                        $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
+                        // $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
 
                         $("#popupEntry").fadeIn(500);
                         $(".items_all_con").animate({
@@ -1324,7 +1332,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                         $('#bank_name_popup').val('');
                         $('#fee_popup').val('');
                         $('#NewEntrySucMsgPopup').html('');
-                        $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
+                        // $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -1470,7 +1478,9 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             $('#tons_popup').val(tons);
             $('#bank_name_popup').val(bank_name);
             $('#fee_popup').val(fee);
-            $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')");
+            $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
+                        $(".popupClose").trigger('click');
+                    });
             $("#popupEntry").fadeIn(500);
             $("#NewEntrySucMsgPopup").html('');
             $(".items_all_con").animate({
@@ -1983,7 +1993,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         function myFunction() {
 
             var header = document.getElementById('city_center_id');
-            var summary = document.getElementById('panel');
+            // var summary = document.getElementById('panel');
             var details = document.getElementById('detailsNewTable2');
             var wme = window.open("", "", "width=900,height=700, scrollbars=yes");
 
@@ -1992,7 +2002,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             wme.document.write('<style>td, th{border: 1px solid #868686; padding: 4px; }#detailsNewTable2{border-collapse: collapse;}.text-center{text-align: center; margin: 6px 0px;}.summary{border-collapse: collapse; margin-bottom: 20px;}.no_print_media{display: none !important;}.hastext{text-align: right;}</style>');
 
             wme.document.write(header.outerHTML);
-            wme.document.write(summary.outerHTML);
+            // wme.document.write(summary.outerHTML);
             wme.document.write(details.outerHTML);
 
 

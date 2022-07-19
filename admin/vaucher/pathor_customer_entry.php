@@ -199,7 +199,7 @@
                 ?>
                     <div class="project_heading">      
                         <h2 class="headingOfAllProject">
-                            <?php echo $rows['heading']; ?> <span class="protidinHisab">পাথর কাস্টমার এন্ট্রি</span>
+                            <?php echo $rows['heading']; ?> <span class="protidinHisab">কাস্টমার এন্ট্রি</span>
                             <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; ?></span> -->
                             
                         </h2>

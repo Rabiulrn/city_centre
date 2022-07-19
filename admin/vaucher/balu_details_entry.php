@@ -33,7 +33,9 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
 <!-- alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
-
+    <!-- download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js" ></script>
+    
     <style type="text/css">
         .rodDetailsEnCon {
             position: relative;
@@ -168,7 +170,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
         #detailsNewTable2 {
             width: 217%;
-            border: 1px solid #ddd;
+            /* border: 1px solid #ddd; */
             /*transform: rotateX(180deg);*/
         }
 
@@ -176,6 +178,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         td {
             border: 1px solid #ddd;
             padding: 2px 5px;
+               
         }
 
 
@@ -195,6 +198,12 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         #detailsNewTable2 tr:nth-child(even) td {
             text-align: center;
             background-color: #d2df0d2e;
+            color: black;
+            padding: 5px 0px;
+        }
+        #detailsNewTable2 tr:nth-child(odd) td {
+            text-align: center;
+            background-color: white;
             color: black;
             padding: 5px 0px;
         }
@@ -360,23 +369,23 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             position: absolute;
             width: 408px;
             height: 45px;
-            right: 175px;
+            right: 15px;
             top: -6px;
         }
 
         .printBtnDlr {
             position: absolute;
             top: 0px;
-            right: 116px;
-            border: 1px solid #46b8da;
+            right: 1px;
+            border: 2px solid #46b8da;
         }
 
-        .printBtnDlrDown {
+        /* .printBtnDlrDown {
             position: absolute;
             top: 0px;
             right: 15px;
             border: 1px solid #46b8da;
-        }
+        } */
 
         @media print {
 
@@ -503,6 +512,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             height: calc(100% - 63px);
             overflow-y: scroll;
             padding: 15px;
+            
         }
 
         .pop_btn_con {
@@ -526,6 +536,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         .protidinHisab {
             margin-top: 13px;
         }
+       
     </style>
 </head>
 
@@ -577,7 +588,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             ?>
                     <div class="project_heading">
                         <h2 class="headingOfAllProject" id="city_center_id">
-                            <?php echo $rows['heading']; ?> <span class="protidinHisab">ক্রয় হিসাব</span>
+                            <?php echo $rows['heading']; ?> <span class="protidinHisab"> ক্রয় হিসাব</span>
                             <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; 
                                                                 ?></span> -->
 
@@ -621,8 +632,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead">ক্রয় হিসাব এন্ট্রি</h2>
-                <div class="items_all_con">
+                <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
+                <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;" >
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
                             <tr>
@@ -631,7 +642,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                                     <?php
                                     $sql = "SELECT buyer_id FROM balu_buyers";
                                     $all_custmr_id = $db->select($sql);
-                                    echo '<select name="buyer_id" id="buyer_id_popup" class="form-control">';
+                                    echo '<select name="buyer_id" id="buyer_id_popup" class="form-control" disabled>';
                                     echo '<option value="none">Select...</option>';
                                     if ($all_custmr_id->num_rows > 0) {
                                         while ($row = $all_custmr_id->fetch_assoc()) {
@@ -735,7 +746,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                                     <input onkeypress="datecheckformatpopup(event)" type="text" name="dates" class="form-control" id="dates_popup" placeholder="dd-mm-yyyy">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Partculars (মারফোত নাম)</td>
                                 <td>
                                     <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
@@ -781,14 +792,14 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                                     echo '</select> ';
                                     ?>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Debit (জমা টাকা)</td>
                                 <td>
                                     <input type="text" name="debit" class="form-control value-calc-popup" id="debit_popup" placeholder="Enter debit...">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Ton & Kg (টোন ও কেজি)</td>
                                 <td >
                                     <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg..." style="cursor:not-allowed;">
@@ -853,39 +864,39 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                                 <td>
                                     <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td> Para's (দর) </td>
                                 <td>
-                                    <input type="text" name="paras" class="form-control" id="paras_popup" placeholder="Enter Paras ...">
+                                    <input type="text" name="paras" class="form-control value-calc-popup" id="paras_popup" placeholder="Enter Paras ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Discount(কমিশন) </td>
                                 <td>
-                                    <input type="text" name="discount" class="form-control" id="discount_popup" placeholder="Enter Discount ...">
+                                    <input type="text" name="discount" class="form-control value-calc-popup" id="discount_popup" placeholder="Enter Discount ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Credit(মূল) </td>
                                 <td>
-                                    <input type="text" name="credit" class="form-control" id="credit_popup" placeholder="Enter Credit ...">
+                                    <input type="text" name="credit" class="form-control value-calc-popup" id="credit_popup" placeholder="Enter Credit ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Balance(অবশিষ্ট) </td>
                                 <td>
-                                    <input type="text" name="balance" class="form-control" id="balance_popup" placeholder="Enter Balance  ...">
+                                    <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup" placeholder="Enter Balance  ...">
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
                                 <td>
-                                    <input type="text" name="cemeats_paras" class="form-control" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
+                                    <input type="text" name="cemeats_paras" class="form-control value-calc-popup" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
                             </tr>
-                            <td>Ton(টোন)</td>
+                            <!-- <td>Ton(টোন)</td>
                             <td>
                                 <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton..." >
                             </td>
@@ -901,7 +912,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                                 <td>
                                     <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons..." >
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Bank Name</td>
                                 <td>
@@ -911,7 +922,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
-                                    <input type="text" name="fee" class="form-control" id="fee_popup" placeholder="Enter Fee...">
+                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter Fee...">
                                 </td>
                             </tr>
                         </table>
@@ -1011,7 +1022,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     $("#popUpNewBtn").click(function() {
                         $("#NewEntrySucMsg").html('');
                         $('#NewEntrySucMsgPopup').html('');
-                        $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
+                        // $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
 
                         $("#popupEntry").fadeIn(500);
                         $(".items_all_con").animate({
@@ -1327,7 +1338,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                         $('#bank_name_popup').val('');
                         $('#fee_popup').val('');
                         $('#NewEntrySucMsgPopup').html('');
-                        $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
+                        // $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -1473,7 +1484,9 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             $('#tons_popup').val(tons);
             $('#bank_name_popup').val(bank_name);
             $('#fee_popup').val(fee);
-            $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')");
+            $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
+                        $(".popupClose").trigger('click');
+                    });
             $("#popupEntry").fadeIn(500);
             $("#NewEntrySucMsgPopup").html('');
             $(".items_all_con").animate({
@@ -1684,33 +1697,51 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         //     }
         // });
         // //End calculation
-        // //Start calculation popup
+        //Start calculation popup
         // $(document).on('input change paste keyup', '.value-calc-popup', function() {
-        //     var kg = $('#kg_popup').val();
-        //     var paras = $('#paras_popup').val();
-        //     if (kg == '') {
-        //         $('#credit_popup').val('0');
-        //     } else if (paras == '') {
-        //         $('#credit_popup').val('0');
-        //     } else {
-        //         var credit = kg * paras;
-        //         // alert(credit);
-        //         $('#credit_popup').val(credit);
+        //     // var kg = $('#kg_popup').val();
+        //     // var paras = $('#paras_popup').val();
+        //     // if (kg == '') {
+        //     //     $('#credit_popup').val('0');
+        //     // } else if (paras == '') {
+        //     //     $('#credit_popup').val('0');
+        //     // } else {
+        //     //     var credit = kg * paras;
+        //     //     // echo(kg);
+        //     //     // echo(paras);
+        //     //     // alert(credit);
+        //     //     $('#credit_popup').val(credit);
+        //     // }
+
+
+        //     var discountp = $("#discount_popup").val();
+        //     var creditp = $("#credit_popup").val();
+        //     var discountp2 = parseFloat(discountp);
+        //     if (discountp != '') {
+        //          creditp = creditp - ((discountp2 / 100) * creditp);
+        //         // alert(typeof(discountp2));
+        //         $('#credit_popup').val(creditp.toFixed(2));
+            
         //     }
 
-        //     var debit = $("#debit_popup").val();
-        //     var credit = $("#credit_popup").val();
+        //     // var fee = parseFloat($("#fee_popup").val()) ;
+        //     // if (fee != '') {
+        //     //  creditp = parseInt(creditp) + parseInt(fee);
+        //     //     $('#credit_popup').val(creditp);
+        //     // }
+        //     var debit = parseFloat($("#debit_popup").val()) ;
+        //     var creditp = $("#credit_popup").val();
         //     if (debit == '') {
         //         $('#balance_popup').val('0');
-        //     } else if (credit == '') {
+        //     } else if (creditp == '') {
         //         $('#balance_popup').val('0');
         //     } else {
-        //         var balance = credit - debit;
+        //         var balance = creditp - debit;
         //         // alert(balance);
         //         $('#balance_popup').val(balance);
         //     }
 
-        //     var motor_cash = $('#motor_cash_popup').val();
+        //     var motor_cash = $('#motor_vara_popup').val();
         //     var unload = $('#unload_popup').val();
         //     if (motor_cash == '') {
         //         $('#car_rent_redeem_popup').val('0');
@@ -1720,18 +1751,19 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         //         var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
         //         // alert(balance);
         //         $('#car_rent_redeem_popup').val(car_rent_redeem);
+        //         $('#cemeats_paras_popup').val(car_rent_redeem);
         //     }
 
 
-        //     var car_rent_redeem = $('#car_rent_redeem_popup').val();
-        //     var credit = $("#credit_popup").val();
-        //     if (car_rent_redeem == '') {
-        //         var total_paras = credit;
-        //         $('#total_paras_popup').val(total_paras);
-        //     } else {
-        //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-        //         $('#total_paras_popup').val(total_paras);
-        //     }
+        // //     var car_rent_redeem = $('#car_rent_redeem_popup').val();
+        // //     var credit = $("#credit_popup").val();
+        // //     if (car_rent_redeem == '') {
+        // //         var total_paras = credit;
+        // //         $('#total_paras_popup').val(total_paras);
+        // //     } else {
+        // //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+        // //         $('#total_paras_popup').val(total_paras);
+        // //     }
         // });
         //End calculation popup
     </script>
@@ -1998,7 +2030,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         function myFunction() {
 
             var header = document.getElementById('city_center_id');
-            var summary = document.getElementById('panel');
+            // var summary = document.getElementById('panel');
             var details = document.getElementById('detailsNewTable2');
             var wme = window.open("", "", "width=900,height=700, scrollbars=yes");
 
@@ -2007,7 +2039,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             wme.document.write('<style>td, th{border: 1px solid #868686; padding: 4px; }#detailsNewTable2{border-collapse: collapse;}.text-center{text-align: center; margin: 6px 0px;}.summary{border-collapse: collapse; margin-bottom: 20px;}.no_print_media{display: none !important;}.hastext{text-align: right;}</style>');
 
             wme.document.write(header.outerHTML);
-            wme.document.write(summary.outerHTML);
+            // wme.document.write(summary.outerHTML);
             wme.document.write(details.outerHTML);
 
 
@@ -2020,6 +2052,22 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             // wme.close();
 
         }
+
+        function myFunction2() {
+            var doc = new jsPDF();  //create jsPDF object
+  doc.fromHTML(document.getElementById("detailsNewTable2"), // page element which you want to print as PDF
+  15,
+  15, 
+  {
+    'width': 170  //set width
+  },
+  function(a) 
+   {
+    doc.save("HTML2PDF.pdf"); // save file name as HTML2PDF.pdf
+  });
+        }
+
+
     </script>
     <script type="text/javascript">
         $('#delivery_date_popup').bind('keydown', function(e) {

@@ -74,7 +74,7 @@ if(isset($balu_details_id)){
     // echo $ton_kg;
     
 
-	$sql = "UPDATE details_balu SET buyer_id = '$buyer_id', motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address',  motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit',`ton & kg`='$ton_kg',`length`='$length',`width`='$width',`height`='$height',`shifty`='$shifty',`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`cemeats_paras`='$cemeats_paras',`ton`='$ton',`bank_name`='$bank_name',`fee`='$fee'  WHERE id = '$balu_details_id'";
+	$sql = "UPDATE details_balu SET  motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address',  motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit',`ton & kg`='$ton_kg',`length`='$length',`width`='$width',`height`='$height',`shifty`='$shifty',`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`cemeats_paras`='$cemeats_paras',`ton`='$ton',`bank_name`='$bank_name',`fee`='$fee'  WHERE id = '$balu_details_id'";
     // ,`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`cemeats_paras`='$cemeats_paras',`ton`='$ton', WHERE id = '$balu_details_id'";
     
 
@@ -88,11 +88,11 @@ if(isset($balu_details_id)){
 		$sucMsg = "Balu details updated Successfully.";
 		echo "Balu details updated Successfully.";
 
-        $sql_update = "UPDATE stocks_balu SET  partculars ='$partculars', particulars ='$particulars', `ton` = '$ton' WHERE partculars ='$partculars' AND particulars ='$particulars' AND `ton` = '$ton'";
-        $result2 =$db->select($sql_update);
-        if ( $result2) {
-          echo "stocks updated  Successfully.";
-        }
+        // $sql_update = "UPDATE stocks_balu SET  partculars ='$partculars', particulars ='$particulars', `ton` = '$ton' WHERE partculars ='$partculars' AND particulars ='$particulars' AND `ton` = '$ton'";
+        // $result2 =$db->select($sql_update);
+        // if ( $result2) {
+        //   echo "stocks updated  Successfully.";
+        // }
         
         
 	} else {

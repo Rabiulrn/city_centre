@@ -271,8 +271,8 @@ $sucMsg = "";
 
   <div class="contorlAfterDealer">
    
-    <!-- <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-        <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+     <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
   </div>
 </div>
 
@@ -314,13 +314,13 @@ $sucMsg = "";
           <td class="widthPercent3">Length</td>
           <td class="widthPercent3">width</td>
           <td class="widthPercent3">Height</td>
-          <td class="widthPercent3">Shifty</td>
+          <td class="widthPercent3">Cft</td>
           <td class="widthPercent3"> Inchi (-) Minus</td>
           <td class="widthPercent3">Cft ( - ) Dropped Out</td>
           <td class="widthPercent3">Inchi (+) Added</td>
           <td class="widthPercent3">Points ( - ) Dropped Out</td>
-          <td class="widthPercent3">Shift</td>
-          <td class="widthPercent3">Total Shift</td>
+          <td class="widthPercent3">Cft</td>
+          <td class="widthPercent3">Total Cft</td>
           <td class="widthPercent3">Ton</td>
           <td class="widthPercent3">Para's</td>
           <td class="widthPercent3">Discount</td>
@@ -328,7 +328,7 @@ $sucMsg = "";
           <td class="widthPercent3">Balance</td>
           <td class="widthPercent3">Cemeat's Para's</td>
          
-          <td class="widthPercent3">Total Shift</td>
+          <td class="widthPercent3">Total Cft</td>
           <td class="widthPercent3">Tons</td>
           <td class="widthPercent3">Bank Name</td>
           <td class="widthPercent3">Fee</td>
@@ -359,13 +359,13 @@ $sucMsg = "";
           <td>দৈর্ঘ্যের</td>
           <td>প্রস্ত</td>
           <td>উচাঁ</td>
-          <td>সেপ্টি</td>
+          <td>সিএফটি</td>
           <td>Inchi (-) বিয়োগ </td>
           <td>সিএফটি ( - ) বাদ</td>
           <td>Inchi (+) যোগ </td>
           <td>পয়েন্ট ( - ) বাদ</td>
-          <td>সেপ্টি</td>
-          <td>মোট সেপ্টি</td>
+          <td>সিএফটি</td>
+          <td>মোট সিএফটি </td>
           <td>টোন</td>
           <td>দর</td>
           <td>কমিশন</td>
@@ -373,7 +373,7 @@ $sucMsg = "";
           <td>অবশিষ্ট</td>
           <td>গাড়ী ভাড়া / লেবার সহ</td>
         
-          <td>সেপ্টি</td>
+          <td> মোট সিএফটি</td>
           <td>টোন</td>
           <td>ব্যাংক নাম</td>
           <td>ফি</td>
@@ -445,7 +445,7 @@ $sucMsg = "";
             <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="Gari vara...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload">
+            <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload...">
           </td>
           <td>
             <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
@@ -528,7 +528,7 @@ $sucMsg = "";
             <input type="text" onkeypress="return isNumber(event)" name="height" class="form-control-balu value-calc" id="height" placeholder="Height '00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="Shifty '00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="Cft '00 mm'...">
           </td>
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu value-calc" id="inchi_minus" placeholder="-Inchi'00 mm'...">
@@ -543,10 +543,10 @@ $sucMsg = "";
             <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu value-calc" id="points_dropped_out" placeholder="-Point '00 mm'...">
           </td>
           <td>
-            <input type="text" name="shift" class="form-control-balu" id="shift" placeholder="shifty '00 mm'...">
+            <input type="text" name="shift" class="form-control-balu" id="shift" placeholder="Cft '00 mm'...">
           </td>
           <td>
-            <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-shifty '00 mm'...">
+            <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-cft '00 mm'...">
           </td>
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="ton" class="form-control-balu value-calc" id="ton" placeholder="Ton...">
@@ -570,7 +570,7 @@ $sucMsg = "";
           
 
           <td>
-            <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-shifty '00 mm'...">
+            <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-cft '00 mm'...">
           </td>
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="tons" name="tons" class="form-control-balu value-calc" id="tons" placeholder="Tons...">
@@ -579,7 +579,7 @@ $sucMsg = "";
             <input type="text" name="bank" class="form-control-balu" id="bank" placeholder="Bank name...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="fee" class="form-control-balu value-calc" id="fee" placeholder="Fee">
+            <input type="text" onkeypress="return isNumber(event)" name="fee" class="form-control-balu value-calc" id="fee" placeholder="Fee...">
           </td>
           <!-- <td colspan="2"></td> -->
         </tr>
@@ -631,20 +631,20 @@ if ($result) {
               <th>Length</th>
               <th>width</th>
               <th>Height</th>
-              <th>Shifty</th>
+              <th>Cft</th>
               <th>Inchi (-) Minus</th>
               <th>Cft ( - ) Dropped Out</th>
               <th>Inchi (+) Added</th>
               <th>Points ( - ) Dropped Out</th>
-              <th>Shift</th>
-              <th>Total Shift</th>
+              <th>Cft</th>
+              <th>Total Cft</th>
               <th>Para's</th>
               <th>Discount</th>
               <th>Credit</th>
               <th>Balance</th>
               <th>Cemeat's Para's</th>
               <th>Ton</th>
-              <th>Total Shift</th>
+              <th>Total Cft</th>
               <th>Tons</th>
               <th>Bank Name</th>
               <th>Fee</th>
@@ -674,20 +674,20 @@ if ($result) {
               <th>দৈর্ঘ্যের</th>
               <th>প্রস্ত</th>
               <th>উচাঁ</th>
-              <th>সেপ্টি</th>
+              <th>সিএফটি</th>
               <th>Inchi (-) বিয়োগ </th>
               <th>সিএফটি ( - ) বাদ</th>
               <th>Inchi (+) যোগ </th>
               <th>পয়েন্ট ( - ) বাদ</th>
-              <th>সেপ্টি</th>
-              <th>মোট সেপ্টি</th>
+              <th>সিএফটি</th>
+              <th>মোট সিএফটি</th>
               <th>দর</th>
               <th>কমিশন</th>
               <th>মূল</th>
               <th>অবশিষ্ট</th>
               <th>গাড়ী ভাড়া / লেবার সহ</th>
               <th>টোন</th>
-              <th>সেপ্টি</th>
+              <th> মোট সিএফটি</th>
               <th>টোন</th>
               <th>ব্যাংক নাম</th>
               <th>ফি</th>

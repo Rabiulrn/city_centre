@@ -158,8 +158,10 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
           /*transform: rotateX(180deg);*/
         }
         #detailsNewTable2 th, td{
-          border: 2px solid #ddd;
+          border: 1px solid #ddd;
           padding: 2px 5px;
+          margin-bottom: 0;
+          
         }
         #detailsNewTable2 tr:first-child th{
           text-align: center;
@@ -176,6 +178,12 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
         #detailsNewTable2 tr:nth-child(even) td {
             text-align: center;
             background-color: #d2df0d2e;
+            color: black;
+            padding: 5px 0px;
+        }
+        #detailsNewTable2 tr:nth-child(odd) td {
+            text-align: center;
+            background-color: white;
             color: black;
             padding: 5px 0px;
         }
@@ -326,21 +334,21 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             position: absolute;
             width: 408px;
             height: 45px;
-            right: 175px;
+            right: 15px;
             top: -6px;
         }
         .printBtnDlr{
             position: absolute;
             top: 0px;
-            right: 116px;
-            border: 1px solid #46b8da;
+            right: 1px;
+            border: 2px solid #46b8da;
         }
-        .printBtnDlrDown{
+        /* .printBtnDlrDown{
             position: absolute;
             top: 0px;
             right: 15px;
             border: 1px solid #46b8da;
-        }
+        } */
         @media print
         {    
           .no_print_media, .no_print_media *
@@ -566,8 +574,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead">হিসাব এন্ট্রি</h2>
-                <div class="items_all_con">
+                <h2 class="popupHead" style="color: Green;">বিক্রয় হিসাব এন্ট্রি</h2>
+                <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
                             <tr>
@@ -576,7 +584,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                     <?php
                                     $sql = "SELECT customer_id FROM customers_pathor";
                                     $all_custmr_id = $db->select($sql);
-                                    echo '<select name="customer_id" id="customer_id_popup" class="form-control">';
+                                    echo '<select name="customer_id" id="customer_id_popup" class="form-control" disabled >';
                                     echo '<option value="none">Select...</option>';
                                     if ($all_custmr_id->num_rows > 0) {
                                         while ($row = $all_custmr_id->fetch_assoc()) {
@@ -590,26 +598,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                     ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Type (টাইপ)</td>
-                                <td>
-                                    <?php
-                                    $sql = "SELECT DISTINCT type FROM details_pathor";
-                                    $all_custmr_id = $db->select($sql);
-                                    echo '<select name="type" id="type" class="form-control" style="width: 310px;">';
-                                    echo '<option value="none">Select...</option>';
-                                    if ($all_custmr_id->num_rows > 0) {
-                                        while ($row = $all_custmr_id->fetch_assoc()) {
-                                            $type = $row['type'];
-
-                                            echo '<option  value="' . $type . '">' . $type . '</option>';
-                                        }
-                                    } else {
-                                        echo '<option value="none">0 Result</option>';
-                                    }
-                                    echo '</select>';
-                                    ?>
-                            </tr>
+                            
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
                                 <td>
@@ -690,7 +679,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                     <input onkeypress="datecheckformatpopup(event)" type="text" name="dates" class="form-control" id="dates_popup" placeholder="dd-mm-yyyy">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Partculars (মারফোত নাম)</td>
                                 <td>
                                     <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
@@ -736,14 +725,14 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                     echo '</select> ';
                                     ?>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Debit (জমা টাকা)</td>
                                 <td>
                                     <input type="text" name="debit" class="form-control value-calc-popup" id="debit_popup" placeholder="Enter debit...">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Ton & Kg (টোন ও কেজি)</td>
                                 <td>
                                     <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg...">
@@ -808,7 +797,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                 <td>
                                     <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td> Para's (দর) </td>
                                 <td>
@@ -840,7 +829,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                     <input type="text" name="cemeats_paras" class="form-control" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
                             </tr>
-                            <td>Ton(টোন)</td>
+                            <!-- <td>Ton(টোন)</td>
                             <td>
                                 <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
                             </td>
@@ -856,7 +845,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                 <td>
                                     <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter total_paras...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Bank_name (ব্যাংক নাম)</td>
                                 <td>
@@ -957,7 +946,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                     $("#popUpNewBtn").click(function() {
                         $("#NewEntrySucMsg").html('');
                         $('#NewEntrySucMsgPopup').html('');
-                        $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
+                        // $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
 
                         $("#popupEntry").fadeIn(500);
                         $(".items_all_con").animate({
@@ -1271,7 +1260,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                         $('#bank_name_popup').val('');
                         $('#fee_popup').val('');
                         $('#NewEntrySucMsgPopup').html('');
-                        $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
+                        // $('#popup_save_update_btn').val('Save').attr("onclick", "valid('insert_popup')");
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -1416,7 +1405,9 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             $('#fee_popup').val(fee);
 
 
-            $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')");
+            $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
+                        $(".popupClose").trigger('click');
+                    });
             $("#popupEntry").fadeIn(500);
             $("#NewEntrySucMsgPopup").html('');
             $(".items_all_con").animate({
@@ -1918,7 +1909,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
         function myFunction() {
 
             var header = document.getElementById('city_center_id');
-            var summary = document.getElementById('panel');
+            // var summary = document.getElementById('panel');
             var details = document.getElementById('detailsNewTable2');
             var wme = window.open("", "", "width=900,height=700, scrollbars=yes");
 
@@ -1927,7 +1918,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             wme.document.write('<style>td, th{border: 1px solid #868686; padding: 4px; }#detailsNewTable2{border-collapse: collapse;}.text-center{text-align: center; margin: 6px 0px;}.summary{border-collapse: collapse; margin-bottom: 20px;}.no_print_media{display: none !important;}.hastext{text-align: right;}</style>');
 
             wme.document.write(header.outerHTML);
-            wme.document.write(summary.outerHTML);
+            // wme.document.write(summary.outerHTML);
             wme.document.write(details.outerHTML);
 
 
