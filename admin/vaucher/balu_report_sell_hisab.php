@@ -11,10 +11,11 @@
 	
 	$project_name_id = $_SESSION['project_name_id'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ক্রয় হিসাব রিপোর্ট</title>
+	<title>বিক্রয় হিসাব রিপোর্ট</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
@@ -63,7 +64,7 @@
     			<a href="../vaucher/balu_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
     			<a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-    			<a href="../vaucher/balu_report_dealer.php">ডিলার</a>
+    			<a href="../vaucher/balu_report_dealer.ph">ডিলার</a>
     			<!-- <a href="../vaucher/rod_report_customer.php">কাস্টমার</a> -->
     			<!-- <a href="../vaucher/rod_report_buyer.php">বায়ার</a> -->
 			</div>
@@ -86,11 +87,12 @@
 				} 
 		  	?>
 		  	<div class="project_heading text-center" >      
-		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">ক্রয় হিসাব</h2>
+		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">বিক্রয় হিসাব রিপোর্ট</h2>
+				<hr style="border: 1px solid grey; margin-top:0px;">
 		    </div>
 		  	<div class="backcircle">
 		      <a href="../vaucher/balu_index.php">
-		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
+		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="40px"> Back
 		      </a>
 		    </div>
 		    			    	
@@ -187,8 +189,9 @@
 	    					$i = 1;
 	    					while($row = $result->fetch_assoc()){
 	    						echo "<tr>";
-	    						echo "<td>".$i."</td>";
-                                echo "<td>".$row['id']."</td>";
+	    						// echo "<td>".$i."</td>";
+                                // echo "<td>".$row['id']."</td>";
+								echo "<td>".$row['customer_id']."</td>";
 	    						echo "<td>".$row['motor_name']."</td>";
 	    						echo "<td>".$row['driver_name']."</td>";
 	    						echo "<td>".$row['motor_vara']."</td>";

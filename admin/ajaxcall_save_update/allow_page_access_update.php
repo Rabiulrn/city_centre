@@ -35,6 +35,22 @@
 	$rod_customer 		= $_POST['rod_customer'];
 	$rod_buyer 			= $_POST['rod_buyer'];
 	$rod_report 		= $_POST['rod_report'];
+    // $balu_hisab 			= $_POST['balu_hisab']; Added by  Md. Mottaleb
+	$balu_kroy_hisab 	= $_POST['balu_kroy_hisab'];
+	$balu_bikroy_hisab 	= $_POST['balu_bikroy_hisab'];
+	$balu_category 		= $_POST['balu_category'];
+	$balu_dealer 		= $_POST['balu_dealer'];
+	$balu_customer 		= $_POST['balu_customer'];
+	$balu_buyer 			= $_POST['balu_buyer'];
+	$balu_report 		= $_POST['balu_report'];
+     // $pathor_hisab 			= $_POST['pathor_hisab']; Added by  Md. Mottaleb
+	$pathor_kroy_hisab 	= $_POST['rod_kroy_hisab'];
+	$pathor_bikroy_hisab 	= $_POST['pathor_bikroy_hisab'];
+	$pathor_category 		= $_POST['pathor_category'];
+	$pathor_dealer 		= $_POST['pathor_dealer'];
+	$pathor_customer 		= $_POST['pathor_customer'];
+	$pathor_buyer 			= $_POST['pathor_buyer'];
+	$_report 		= $_POST['pathor_report'];
 
 	$create_user 		= $_POST['create_user'];
 	$edit_data 			= $_POST['edit_data'];

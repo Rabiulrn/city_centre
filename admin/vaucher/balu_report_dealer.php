@@ -79,7 +79,7 @@
 				<a href="../vaucher/balu_report_buy_hisab.php" >ক্রয় হিসাব</a>
 				<a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-				<a href="../vaucher/balu_report_dealer.php" class="active">ডিলার</a>
+				<a href="../vaucher/balu_report_dealer.ph" class="active">ডিলার</a>
 				<!-- <a href="../vaucher/rod_report_customer.php">কাস্টমার</a> -->
 				<!-- <a href="../vaucher/rod_report_buyer.php">বায়ার</a> -->
 			</div>

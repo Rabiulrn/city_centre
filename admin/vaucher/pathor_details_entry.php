@@ -35,7 +35,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <style type="text/css">
-         .rodDetailsEnCon {
+        .rodDetailsEnCon {
             position: relative;
         }
 
@@ -49,34 +49,36 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         #detailsEtryTable {
             width: 293%;
             border: 1px solid #3e9309d4;
-            
+
         }
 
         #detailsEtryTable tr:first-child td {
             text-align: center;
-            background-color:#3e9309d4;
+            background-color: #3e9309d4;
             Color: white;
         }
 
         #detailsEtryTable tr:nth-child(2) td {
             text-align: center;
-            background-color:#3e9309d4;
+            background-color: #3e9309d4;
             Color: white;
         }
-     
+
         #detailsEtryTable tr:nth-child(3) td {
             border: 1px solid #3e9309d4;
             /* text-align: center; */
-            
+
             /* Color: black; */
             /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
         }
+
         #detailsEtryTable tr:nth-child(3) input {
             border: none;
             /* height: 39px; */
             /* border-radius: 10% 10% 0% 0%; */
             /* transition: border-bottom 1s linear ; */
         }
+
         #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
             /* outline: 1px solid skyblue; */
             outline: none;
@@ -84,13 +86,14 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             height: 30px;
             /* font-size: 1px; */
-            
+
         }
+
         #detailsEtryTable tr:nth-child(3) input[type=text]:focus::placeholder {
             color: transparent;
-            
+
             /* font-size: large; */
-            
+
         }
 
         #detailsEtryTable td {
@@ -159,17 +162,18 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             border: 1px solid #ddd;
             /*transform: rotateX(180deg);*/
         }
+
         .header {
-                        /* Background color */
-                        /* background-color: #ddd; */
+            /* Background color */
+            /* background-color: #ddd; */
 
-                        /* Stick to the top */
-                        position: sticky;
-                        top: 0;
+            /* Stick to the top */
+            position: sticky;
+            top: 0;
 
-                        /* Displayed on top of other rows when scrolling */
-                         z-index: 1; 
-                    }
+            /* Displayed on top of other rows when scrolling */
+            z-index: 1;
+        }
 
         #detailsNewTable2 th,
         td {
@@ -190,19 +194,21 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             padding: 5px 0px;
             color: #fff;
         }
+
         #detailsNewTable2 tr:nth-child(even) td {
             text-align: center;
             background-color: #d2df0d2e;
             color: black;
             padding: 5px 0px;
         }
+
         #detailsNewTable2 tr:nth-child(odd) td {
             text-align: center;
             background-color: white;
             color: black;
             padding: 5px 0px;
         }
-      
+
 
         .viewDetailsCon {
             width: 100%;
@@ -373,7 +379,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             top: 0px;
             right: 1px;
             border: 2px solid #46b8da;
-            
+
         }
 
         /* .printBtnDlrDown {
@@ -626,7 +632,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead"style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
+                <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
@@ -652,7 +658,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             </tr>
 
 
-                          
+
                             <!-- <input type="hidden" name="pathor_details_id" id="pathor_details_id"> -->
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
@@ -862,32 +868,32 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td> Para's (দর) </td>
                                 <td>
-                                    <input type="text" name="paras" class="form-control" id="paras_popup" placeholder="Enter Paras ...">
+                                    <input type="text" name="paras" class="form-control value-calc-popup" id="paras_popup" placeholder="Enter Paras ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Discount(কমিশন) </td>
                                 <td>
-                                    <input type="text" name="discount" class="form-control" id="discount_popup" placeholder="Enter Discount ...">
+                                    <input type="text" name="discount" class="form-control value-calc-popup" id="discount_popup" placeholder="Enter Discount ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Credit(মূল) </td>
                                 <td>
-                                    <input type="text" name="credit" class="form-control" id="credit_popup" placeholder="Enter Credit ...">
+                                    <input type="text" name="credit" class="form-control value-calc-popup" id="credit_popup" placeholder="Enter Credit ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Balance(অবশিষ্ট) </td>
                                 <td>
-                                    <input type="text" name="balance" class="form-control" id="balance_popup" placeholder="Enter Balance  ...">
+                                    <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup " placeholder="Enter Balance  ...">
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
                                 <td>
-                                    <input type="text" name="cemeats_paras" class="form-control" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
+                                    <input type="text" name="cemeats_paras" class="form-control value-calc-popup" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
                             </tr>
                             <!-- <td>Ton(টোন)</td>
@@ -916,21 +922,21 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
-                                    <input type="text" name="fee" class="form-control" id="fee_popup" placeholder="Enter Fee...">
+                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter Fee...">
                                 </td>
                             </tr>
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         <?php
-                            // $sql = "SELECT id FROM details_pathor";
-                            // $id = $db->select($sql);
-                            // if ($id->num_rows > 0) {
-                            //     while ($row = $id->fetch_assoc()) {
-                            //         $id2 = $row['id'];
-                            //        echo '<input type="hidden" name="pathor_details_id" id="pathor_details_id" value="' . $id2 . '">' ;
-                            //     }
-                            // } 
-                            ?>
+                        // $sql = "SELECT id FROM details_pathor";
+                        // $id = $db->select($sql);
+                        // if ($id->num_rows > 0) {
+                        //     while ($row = $id->fetch_assoc()) {
+                        //         $id2 = $row['id'];
+                        //        echo '<input type="hidden" name="pathor_details_id" id="pathor_details_id" value="' . $id2 . '">' ;
+                        //     }
+                        // } 
+                        ?>
                         <input type="hidden" name="pathor_details_id" id="pathor_details_id">
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
@@ -1479,8 +1485,8 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             $('#bank_name_popup').val(bank_name);
             $('#fee_popup').val(fee);
             $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
-                        $(".popupClose").trigger('click');
-                    });
+                $(".popupClose").trigger('click');
+            });
             $("#popupEntry").fadeIn(500);
             $("#NewEntrySucMsgPopup").html('');
             $(".items_all_con").animate({
@@ -1488,7 +1494,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }, "0");
         }
     </script>
-    <script type="text/javascript">
+ <script type="text/javascript">
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
             var kg = $('#kg').val();
@@ -1500,7 +1506,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             } else {
                 var credit = kg * paras;
                 //  alert(credit);
-                $('#credit').val(credit);
+                $('#credit').val(credit.toFixed(2));
             }
 
 
@@ -1528,24 +1534,35 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             // }
             else {
                 var shifty = length * width * height;
-                if(inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != ''){
-                     shifty = (length * width * height)-(length*width*inchi_minus/12)-cft_dropped_out+(length*width*inchi_minus/12)-points_dropped_out;
+                if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
+                    var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
+                    var shift2_to_ton = shifty2 / 23.5;
+                    // alert(credit);
+                    $('#shifty').val(shifty);
+                    $('#ton').val(shift2_to_ton);
+                    $('#tons').val(shift2_to_ton);
+                    $('#shift').val(shifty2);
+                    $('#total_shift').val(shifty2);
+                    $('#total_shifts').val(shifty2);
+                } else {
+                    var shift_to_ton = shifty / 23.5;
+                    // alert(credit);
+                    $('#shifty').val(shifty);
+                    $('#ton').val(shift_to_ton);
+                    $('#tons').val(shift_to_ton);
+                    $('#shift').val(shifty);
+                    $('#total_shift').val(shifty);
+                    $('#total_shifts').val(shifty);
+
                 }
-                var shift_to_ton = shifty / 23.5;
-                // alert(credit);
-                $('#shifty').val(shifty);
-                $('#ton').val(shift_to_ton);
-                $('#tons').val(shift_to_ton);
-                $('#shift').val(shifty);
-                $('#total_shift').val(shifty);
-                $('#total_shifts').val(shifty);
+
 
             }
             //ton and kg
             var ton = $('#ton').val();
             var ton_kg = $('#kg').val();
             var credit = $("#credit").val();
-            
+
             if (ton_kg != '') {
                 $("#length").attr("value", "not applicable");
                 // $('#length').val('not applicable');
@@ -1562,7 +1579,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             } else {
                 var credit = ton * paras;
                 // alert(credit);
-                $('#credit').val(credit);
+                $('#credit').val(credit.toFixed(3));
             }
             var discount = $("#discount").val();
             if (discount != '') {
@@ -1571,12 +1588,12 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }
             var fee = $("#fee").val();
             if (fee != '') {
-                var credit = parseInt(credit) + parseInt(fee);
-                $('#credit').val(credit);
+                var credit = parseFloat(credit) + parseFloat(fee);
+                $('#credit').val(credit.toFixed(3));
             }
 
 
-             
+
             // console.log(inchi_minus);
             // console.log(ton_kg);
 
@@ -1589,7 +1606,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
             // if (cft_dropped_out != '') {
             //     console.log(cft_dropped_out);
-           
+
             // }
 
 
@@ -1603,7 +1620,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             } else {
                 var balance = credit - debit;
                 // alert(balance);
-                $('#balance').val(balance);
+                $('#balance').val(balance.toFixed(3));
             }
 
             var motor_vara = $('#motor_vara').val();
@@ -1630,58 +1647,60 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                 $('#total_paras').val(total_paras);
             }
         });
-        $(document).on('input change paste keyup', '.value-calc_edit', function() {
-            var kg = $('#kg_edit').val();
-            var paras = $('#paras_edit').val();
-            if (kg == '') {
-                $('#credit_edit').val('0');
-            } else if (paras == '') {
-                $('#credit_edit').val('0');
-            } else {
-                var credit = kg * paras;
-                // alert(credit);
-                $('#credit_edit').val(credit);
-            }
+        // $(document).on('input change paste keyup', '.value-calc_edit', function() {
+        //     var kg = $('#kg_edit').val();
+        //     var paras = $('#paras_edit').val();
+        //     if (kg == '') {
+        //         $('#credit_edit').val('0');
+        //     } else if (paras == '') {
+        //         $('#credit_edit').val('0');
+        //     } else {
+        //         var credit = kg * paras;
+        //         // alert(credit);
+        //         $('#credit_edit').val(credit);
+        //     }
 
-            var debit = $("#debit_edit").val();
-            var credit = $("#credit_edit").val();
-            if (debit == '') {
-                $('#balance_edit').val('0');
-            } else if (credit == '') {
-                $('#balance_edit').val('0');
-            } else {
-                var balance = credit - debit;
-                // alert(balance);
-                $('#balance_edit').val(balance);
-            }
+        //     var debit = $("#debit_edit").val();
+        //     var credit = $("#credit_edit").val();
+        //     if (debit == '') {
+        //         $('#balance_edit').val('0');
+        //     } else if (credit == '') {
+        //         $('#balance_edit').val('0');
+        //     } else {
+        //         var balance = credit - debit;
+        //         // alert(balance);
+        //         $('#balance_edit').val(balance);
+        //     }
 
-            var motor_cash = $('#motor_cash_edit').val();
-            var unload = $('#unload_edit').val();
-            if (motor_cash == '') {
-                $('#car_rent_redeem_edit').val('0');
-            } else if (unload == '') {
-                $('#car_rent_redeem_edit').val('0');
-            } else {
-                var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
-                // alert(balance);
-                $('#car_rent_redeem_edit').val(car_rent_redeem);
-            }
+        //     var motor_cash = $('#motor_cash_edit').val();
+        //     var unload = $('#unload_edit').val();
+        //     if (motor_cash == '') {
+        //         $('#car_rent_redeem_edit').val('0');
+        //     } else if (unload == '') {
+        //         $('#car_rent_redeem_edit').val('0');
+        //     } else {
+        //         var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
+        //         // alert(balance);
+        //         $('#car_rent_redeem_edit').val(car_rent_redeem);
+        //     }
 
 
-            var car_rent_redeem = $('#car_rent_redeem_edit').val();
-            var credit = $("#credit_edit").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#total_paras_edit').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                $('#total_paras_edit').val(total_paras);
-            }
-        });
-        //End calculation
+        //     var car_rent_redeem = $('#car_rent_redeem_edit').val();
+        //     var credit = $("#credit_edit").val();
+        //     if (car_rent_redeem == '') {
+        //         var total_paras = credit;
+        //         $('#total_paras_edit').val(total_paras);
+        //     } else {
+        //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+        //         $('#total_paras_edit').val(total_paras);
+        //     }
+        // });
+        // //End calculation
         //Start calculation popup
         $(document).on('input change paste keyup', '.value-calc-popup', function() {
-            var kg = $('#kg_popup').val();
+
+            ////////////////////////////////////////////////////////////////
+            var kg = $('#tons_popup').val();
             var paras = $('#paras_popup').val();
             if (kg == '') {
                 $('#credit_popup').val('0');
@@ -1705,14 +1724,14 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                 $('#balance_popup').val(balance);
             }
 
-            var motor_cash = $('#motor_cash_popup').val();
+            var motor_vara = $('#motor_vara_popup').val();
             var unload = $('#unload_popup').val();
-            if (motor_cash == '') {
+            if (motor_vara == '') {
                 $('#car_rent_redeem_popup').val('0');
             } else if (unload == '') {
                 $('#car_rent_redeem_popup').val('0');
             } else {
-                var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
+                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
                 $('#car_rent_redeem_popup').val(car_rent_redeem);
             }
@@ -1722,14 +1741,109 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             var credit = $("#credit_popup").val();
             if (car_rent_redeem == '') {
                 var total_paras = credit;
-                $('#total_paras_popup').val(total_paras);
+                $('#cemeats_paras_popup').val(total_paras);
             } else {
                 var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                $('#total_paras_popup').val(total_paras);
+                $('#cemeats_paras_popup').val(total_paras);
             }
+
+
+            var discountp = $("#discount_popup").val();
+            var credit_with_dis = $("#credit_popup").val();
+            var discountp2 = parseFloat(discountp);
+            if (discountp == '') {
+                $('#discountp').val('0');
+            } else {
+                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                // alert(balance);
+                $('#credit_popup').val(credit_with_dis);
+            }
+
+
+            var fee = $("#fee_popup").val();
+            var credit = $("#credit_popup").val();
+            var fee = parseFloat(fee);
+            if (fee == '') {
+                $('#fee').val('0');
+            } else {
+                var credit_with_fee = parseFloat(credit) + fee;
+                // alert(balance);
+                $('#credit_popup').val(credit_with_fee);
+            }
+
+
+
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            //     // var kg = $('#kg_popup').val();
+            //     // var paras = $('#paras_popup').val();
+            //     // if (kg == '') {
+            //     //     $('#credit_popup').val('0');
+            //     // } else if (paras == '') {
+            //     //     $('#credit_popup').val('0');
+            //     // } else {
+            //     //     var credit = kg * paras;
+            //     //     // echo(kg);
+            //     //     // echo(paras);
+            //     //     // alert(credit);
+            //     //     $('#credit_popup').val(credit);
+            //     // }
+
+
+            //     var discountp = $("#discount_popup").val();
+            //     var creditp = $("#credit_popup").val();
+            //     var discountp2 = parseFloat(discountp);
+            //     if (discountp != '') {
+            //          creditp = creditp - ((discountp2 / 100) * creditp);
+            //         // alert(typeof(discountp2));
+            //         $('#credit_popup').val(creditp.toFixed(2));
+
+            //     }
+
+            //     // var fee = parseFloat($("#fee_popup").val()) ;
+            //     // if (fee != '') {
+            //     //  creditp = parseInt(creditp) + parseInt(fee);
+            //     //     $('#credit_popup').val(creditp);
+            //     // }
+            //     var debit = parseFloat($("#debit_popup").val()) ;
+            //     var creditp = $("#credit_popup").val();
+            //     if (debit == '') {
+            //         $('#balance_popup').val('0');
+            //     } else if (creditp == '') {
+            //         $('#balance_popup').val('0');
+            //     } else {
+            //         var balance = creditp - debit;
+            //         // alert(balance);
+            //         $('#balance_popup').val(balance);
+            //     }
+
+            //     var motor_cash = $('#motor_vara_popup').val();
+            //     var unload = $('#unload_popup').val();
+            //     if (motor_cash == '') {
+            //         $('#car_rent_redeem_popup').val('0');
+            //     } else if (unload == '') {
+            //         $('#car_rent_redeem_popup').val('0');
+            //     } else {
+            //         var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
+            //         // alert(balance);
+            //         $('#car_rent_redeem_popup').val(car_rent_redeem);
+            //         $('#cemeats_paras_popup').val(car_rent_redeem);
+            //     }
+
+
+            // //     var car_rent_redeem = $('#car_rent_redeem_popup').val();
+            // //     var credit = $("#credit_popup").val();
+            // //     if (car_rent_redeem == '') {
+            // //         var total_paras = credit;
+            // //         $('#total_paras_popup').val(total_paras);
+            // //     } else {
+            // //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+            // //         $('#total_paras_popup').val(total_paras);
+            // //     }
         });
         //End calculation popup
     </script>
+
 
     <script type="text/javascript">
         function getDataByDates(datestr, dealerId) {

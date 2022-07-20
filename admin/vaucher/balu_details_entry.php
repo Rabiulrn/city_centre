@@ -31,11 +31,11 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
-<!-- alert -->
+    <!-- alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
     <!-- download -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js" ></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+
     <style type="text/css">
         .rodDetailsEnCon {
             position: relative;
@@ -51,34 +51,36 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         #detailsEtryTable {
             width: 293%;
             border: 1px solid #3e9309d4;
-            
+
         }
 
         #detailsEtryTable tr:first-child td {
             text-align: center;
-            background-color:#3e9309d4;
+            background-color: #3e9309d4;
             Color: white;
         }
 
         #detailsEtryTable tr:nth-child(2) td {
             text-align: center;
-            background-color:#3e9309d4;
+            background-color: #3e9309d4;
             Color: white;
         }
-     
+
         #detailsEtryTable tr:nth-child(3) td {
-               border: 1px solid #3e9309d4; 
+            border: 1px solid #3e9309d4;
             /* text-align: center; */
-            
+
             /* Color: black; */
             /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
         }
+
         #detailsEtryTable tr:nth-child(3) input {
             border: none;
             /* height: 39px; */
             /* border-radius: 10% 10% 0% 0%; */
             /* transition: border-bottom 1s linear ; */
         }
+
         #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
             /* outline: 1px solid skyblue; */
             outline: none;
@@ -86,13 +88,14 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             height: 30px;
             /* font-size: 1px; */
-            
+
         }
+
         #detailsEtryTable tr:nth-child(3) input[type=text]:focus::placeholder {
             color: transparent;
-            
+
             /* font-size: large; */
-            
+
         }
 
         #detailsEtryTable td {
@@ -155,18 +158,19 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         .widthPercent3 {
             width: 3.7%;
         }
+
         .header {
-        /* Background color */
-        /* background-color: #ddd; */
+            /* Background color */
+            /* background-color: #ddd; */
 
-        /* Stick to the top */
-        position: sticky;
-        top: 0;
+            /* Stick to the top */
+            position: sticky;
+            top: 0;
 
-        /* Displayed on top of other rows when scrolling */
-          z-index: 1; 
-         }
-  
+            /* Displayed on top of other rows when scrolling */
+            z-index: 1;
+        }
+
 
         #detailsNewTable2 {
             width: 217%;
@@ -178,7 +182,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         td {
             border: 1px solid #ddd;
             padding: 2px 5px;
-               
+
         }
 
 
@@ -195,26 +199,28 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             padding: 5px 0px;
             color: #fff;
         }
+
         #detailsNewTable2 tr:nth-child(even) td {
             text-align: center;
             background-color: #d2df0d2e;
             color: black;
             padding: 5px 0px;
         }
+
         #detailsNewTable2 tr:nth-child(odd) td {
             text-align: center;
             background-color: white;
             color: black;
             padding: 5px 0px;
         }
-      
+
         .viewDetailsCon {
             width: 100%;
             max-height: 470px;
             overflow-x: auto;
             /*overflow-y: auto;*/
             /*margin-bottom: 50px;*/
-            
+
         }
 
         .ui-dialog-titlebar {
@@ -512,7 +518,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             height: calc(100% - 63px);
             overflow-y: scroll;
             padding: 15px;
-            
+
         }
 
         .pop_btn_con {
@@ -536,7 +542,6 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         .protidinHisab {
             margin-top: 13px;
         }
-       
     </style>
 </head>
 
@@ -606,7 +611,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             $sql = "SELECT DISTINCT dealer_name, dealer_id FROM balu_dealer";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
-                        
+
                             if ($all_custmr_id->num_rows > 0) {
                                 while ($row = $all_custmr_id->fetch_assoc()) {
                                     $id = $row['dealer_id'];
@@ -633,7 +638,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     <div class="bar_two"></div>
                 </div>
                 <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
-                <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;" >
+                <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
                             <tr>
@@ -906,13 +911,13 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                                 <td>
                                     <input type="text" name="total_shifts" class="form-control" id="total_shifts_popup" placeholder="Enter Total Shifts...">
                                 </td>
-                            </tr>
-                            <tr>
+                            </tr>-->
+                            <tr hidden>
                                 <td>Tons (টোন)</td>
                                 <td>
-                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons..." >
+                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons...">
                                 </td>
-                            </tr> -->
+                            </tr>
                             <tr>
                                 <td>Bank Name</td>
                                 <td>
@@ -1485,8 +1490,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             $('#bank_name_popup').val(bank_name);
             $('#fee_popup').val(fee);
             $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
-                        $(".popupClose").trigger('click');
-                    });
+                $(".popupClose").trigger('click');
+            });
             $("#popupEntry").fadeIn(500);
             $("#NewEntrySucMsgPopup").html('');
             $(".items_all_con").animate({
@@ -1495,8 +1500,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         }
     </script>
     <script type="text/javascript">
-       //Start calculation
-       $(document).on('input change paste keyup', '.value-calc', function() {
+        //Start calculation
+        $(document).on('input change paste keyup', '.value-calc', function() {
             var kg = $('#kg').val();
             var paras = $('#paras').val();
             if (kg == '') {
@@ -1506,7 +1511,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             } else {
                 var credit = kg * paras;
                 //  alert(credit);
-                $('#credit').val(credit);
+                $('#credit').val(credit.toFixed(2));
             }
 
 
@@ -1534,36 +1539,35 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             // }
             else {
                 var shifty = length * width * height;
-                if(inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != ''){
-                   var  shifty2 = (length * width * height)-(length*width*inchi_minus/12)-cft_dropped_out+(length*width*inchi_added/12)-points_dropped_out;
-                   var shift2_to_ton = shifty2 / 23.5;
-                // alert(credit);
-                $('#shifty').val(shifty);
-                $('#ton').val(shift2_to_ton);
-                $('#tons').val(shift2_to_ton);
-                $('#shift').val(shifty2);
-                $('#total_shift').val(shifty2);
-                $('#total_shifts').val(shifty2);
-                }
-                else{
+                if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
+                    var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
+                    var shift2_to_ton = shifty2 / 23.5;
+                    // alert(credit);
+                    $('#shifty').val(shifty);
+                    $('#ton').val(shift2_to_ton);
+                    $('#tons').val(shift2_to_ton);
+                    $('#shift').val(shifty2);
+                    $('#total_shift').val(shifty2);
+                    $('#total_shifts').val(shifty2);
+                } else {
                     var shift_to_ton = shifty / 23.5;
-                // alert(credit);
-                $('#shifty').val(shifty);
-                $('#ton').val(shift_to_ton);
-                $('#tons').val(shift_to_ton);
-                $('#shift').val(shifty);
-                $('#total_shift').val(shifty);
-                $('#total_shifts').val(shifty);
+                    // alert(credit);
+                    $('#shifty').val(shifty);
+                    $('#ton').val(shift_to_ton);
+                    $('#tons').val(shift_to_ton);
+                    $('#shift').val(shifty);
+                    $('#total_shift').val(shifty);
+                    $('#total_shifts').val(shifty);
 
                 }
-               
+
 
             }
             //ton and kg
             var ton = $('#ton').val();
             var ton_kg = $('#kg').val();
             var credit = $("#credit").val();
-            
+
             if (ton_kg != '') {
                 $("#length").attr("value", "not applicable");
                 // $('#length').val('not applicable');
@@ -1580,7 +1584,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             } else {
                 var credit = ton * paras;
                 // alert(credit);
-                $('#credit').val(credit);
+                $('#credit').val(credit.toFixed(3));
             }
             var discount = $("#discount").val();
             if (discount != '') {
@@ -1589,12 +1593,12 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             }
             var fee = $("#fee").val();
             if (fee != '') {
-                var credit = parseInt(credit) + parseInt(fee);
-                $('#credit').val(credit);
+                var credit = parseFloat(credit) + parseFloat(fee);
+                $('#credit').val(credit.toFixed(3));
             }
 
 
-             
+
             // console.log(inchi_minus);
             // console.log(ton_kg);
 
@@ -1607,7 +1611,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
             // if (cft_dropped_out != '') {
             //     console.log(cft_dropped_out);
-           
+
             // }
 
 
@@ -1621,7 +1625,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             } else {
                 var balance = credit - debit;
                 // alert(balance);
-                $('#balance').val(balance);
+                $('#balance').val(balance.toFixed(3));
             }
 
             var motor_vara = $('#motor_vara').val();
@@ -1698,73 +1702,150 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         // });
         // //End calculation
         //Start calculation popup
-        // $(document).on('input change paste keyup', '.value-calc-popup', function() {
-        //     // var kg = $('#kg_popup').val();
-        //     // var paras = $('#paras_popup').val();
-        //     // if (kg == '') {
-        //     //     $('#credit_popup').val('0');
-        //     // } else if (paras == '') {
-        //     //     $('#credit_popup').val('0');
-        //     // } else {
-        //     //     var credit = kg * paras;
-        //     //     // echo(kg);
-        //     //     // echo(paras);
-        //     //     // alert(credit);
-        //     //     $('#credit_popup').val(credit);
-        //     // }
+        $(document).on('input change paste keyup', '.value-calc-popup', function() {
+
+            ////////////////////////////////////////////////////////////////
+            var kg = $('#tons_popup').val();
+            var paras = $('#paras_popup').val();
+            if (kg == '') {
+                $('#credit_popup').val('0');
+            } else if (paras == '') {
+                $('#credit_popup').val('0');
+            } else {
+                var credit = kg * paras;
+                // alert(credit);
+                $('#credit_popup').val(credit);
+            }
+
+            var debit = $("#debit_popup").val();
+            var credit = $("#credit_popup").val();
+            if (debit == '') {
+                $('#balance_popup').val('0');
+            } else if (credit == '') {
+                $('#balance_popup').val('0');
+            } else {
+                var balance = credit - debit;
+                // alert(balance);
+                $('#balance_popup').val(balance);
+            }
+
+            var motor_vara = $('#motor_vara_popup').val();
+            var unload = $('#unload_popup').val();
+            if (motor_vara == '') {
+                $('#car_rent_redeem_popup').val('0');
+            } else if (unload == '') {
+                $('#car_rent_redeem_popup').val('0');
+            } else {
+                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+                // alert(balance);
+                $('#car_rent_redeem_popup').val(car_rent_redeem);
+            }
 
 
-        //     var discountp = $("#discount_popup").val();
-        //     var creditp = $("#credit_popup").val();
-        //     var discountp2 = parseFloat(discountp);
-        //     if (discountp != '') {
-        //          creditp = creditp - ((discountp2 / 100) * creditp);
-        //         // alert(typeof(discountp2));
-        //         $('#credit_popup').val(creditp.toFixed(2));
-            
-        //     }
-
-        //     // var fee = parseFloat($("#fee_popup").val()) ;
-        //     // if (fee != '') {
-        //     //  creditp = parseInt(creditp) + parseInt(fee);
-        //     //     $('#credit_popup').val(creditp);
-        //     // }
-        //     var debit = parseFloat($("#debit_popup").val()) ;
-        //     var creditp = $("#credit_popup").val();
-        //     if (debit == '') {
-        //         $('#balance_popup').val('0');
-        //     } else if (creditp == '') {
-        //         $('#balance_popup').val('0');
-        //     } else {
-        //         var balance = creditp - debit;
-        //         // alert(balance);
-        //         $('#balance_popup').val(balance);
-        //     }
-
-        //     var motor_cash = $('#motor_vara_popup').val();
-        //     var unload = $('#unload_popup').val();
-        //     if (motor_cash == '') {
-        //         $('#car_rent_redeem_popup').val('0');
-        //     } else if (unload == '') {
-        //         $('#car_rent_redeem_popup').val('0');
-        //     } else {
-        //         var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
-        //         // alert(balance);
-        //         $('#car_rent_redeem_popup').val(car_rent_redeem);
-        //         $('#cemeats_paras_popup').val(car_rent_redeem);
-        //     }
+            var car_rent_redeem = $('#car_rent_redeem_popup').val();
+            var credit = $("#credit_popup").val();
+            if (car_rent_redeem == '') {
+                var total_paras = credit;
+                $('#total_paras_popup').val(total_paras);
+            } else {
+                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+                $('#total_paras_popup').val(total_paras);
+            }
 
 
-        // //     var car_rent_redeem = $('#car_rent_redeem_popup').val();
-        // //     var credit = $("#credit_popup").val();
-        // //     if (car_rent_redeem == '') {
-        // //         var total_paras = credit;
-        // //         $('#total_paras_popup').val(total_paras);
-        // //     } else {
-        // //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-        // //         $('#total_paras_popup').val(total_paras);
-        // //     }
-        // });
+            var discountp = $("#discount_popup").val();
+            var credit_with_dis = $("#credit_popup").val();
+            var discountp2 = parseFloat(discountp);
+            if (discountp == '') {
+                $('#discountp').val('0');
+            } else {
+                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                // alert(balance);
+                $('#credit_popup').val(credit_with_dis);
+            }
+
+
+            var fee = $("#fee_popup").val();
+            var credit = $("#credit_popup").val();
+            var fee = parseFloat(fee);
+            if (fee == '') {
+                $('#fee').val('0');
+            } else {
+                var credit_with_fee = parseFloat(credit) + fee;
+                // alert(balance);
+                $('#credit_popup').val(credit_with_fee);
+            }
+
+
+
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            //     // var kg = $('#kg_popup').val();
+            //     // var paras = $('#paras_popup').val();
+            //     // if (kg == '') {
+            //     //     $('#credit_popup').val('0');
+            //     // } else if (paras == '') {
+            //     //     $('#credit_popup').val('0');
+            //     // } else {
+            //     //     var credit = kg * paras;
+            //     //     // echo(kg);
+            //     //     // echo(paras);
+            //     //     // alert(credit);
+            //     //     $('#credit_popup').val(credit);
+            //     // }
+
+
+            //     var discountp = $("#discount_popup").val();
+            //     var creditp = $("#credit_popup").val();
+            //     var discountp2 = parseFloat(discountp);
+            //     if (discountp != '') {
+            //          creditp = creditp - ((discountp2 / 100) * creditp);
+            //         // alert(typeof(discountp2));
+            //         $('#credit_popup').val(creditp.toFixed(2));
+
+            //     }
+
+            //     // var fee = parseFloat($("#fee_popup").val()) ;
+            //     // if (fee != '') {
+            //     //  creditp = parseInt(creditp) + parseInt(fee);
+            //     //     $('#credit_popup').val(creditp);
+            //     // }
+            //     var debit = parseFloat($("#debit_popup").val()) ;
+            //     var creditp = $("#credit_popup").val();
+            //     if (debit == '') {
+            //         $('#balance_popup').val('0');
+            //     } else if (creditp == '') {
+            //         $('#balance_popup').val('0');
+            //     } else {
+            //         var balance = creditp - debit;
+            //         // alert(balance);
+            //         $('#balance_popup').val(balance);
+            //     }
+
+            //     var motor_cash = $('#motor_vara_popup').val();
+            //     var unload = $('#unload_popup').val();
+            //     if (motor_cash == '') {
+            //         $('#car_rent_redeem_popup').val('0');
+            //     } else if (unload == '') {
+            //         $('#car_rent_redeem_popup').val('0');
+            //     } else {
+            //         var car_rent_redeem = parseInt(motor_cash) + parseInt(unload);
+            //         // alert(balance);
+            //         $('#car_rent_redeem_popup').val(car_rent_redeem);
+            //         $('#cemeats_paras_popup').val(car_rent_redeem);
+            //     }
+
+
+            // //     var car_rent_redeem = $('#car_rent_redeem_popup').val();
+            // //     var credit = $("#credit_popup").val();
+            // //     if (car_rent_redeem == '') {
+            // //         var total_paras = credit;
+            // //         $('#total_paras_popup').val(total_paras);
+            // //     } else {
+            // //         var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
+            // //         $('#total_paras_popup').val(total_paras);
+            // //     }
+        });
         //End calculation popup
     </script>
 
@@ -2054,20 +2135,16 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         }
 
         function myFunction2() {
-            var doc = new jsPDF();  //create jsPDF object
-  doc.fromHTML(document.getElementById("detailsNewTable2"), // page element which you want to print as PDF
-  15,
-  15, 
-  {
-    'width': 170  //set width
-  },
-  function(a) 
-   {
-    doc.save("HTML2PDF.pdf"); // save file name as HTML2PDF.pdf
-  });
+            var doc = new jsPDF(); //create jsPDF object
+            doc.fromHTML(document.getElementById("detailsNewTable2"), // page element which you want to print as PDF
+                15,
+                15, {
+                    'width': 170 //set width
+                },
+                function(a) {
+                    doc.save("HTML2PDF.pdf"); // save file name as HTML2PDF.pdf
+                });
         }
-
-
     </script>
     <script type="text/javascript">
         $('#delivery_date_popup').bind('keydown', function(e) {

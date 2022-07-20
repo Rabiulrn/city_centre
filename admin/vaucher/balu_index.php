@@ -244,13 +244,13 @@
 							}
 
 
-				  			if($_SESSION['balu_report'] == 'yes'){
+				  			if($_SESSION['rod_report'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_report_buy_hisab.php">
 				  						<h5 class="pannel_head" style="background-color: #0083A9;">
 				  							<img src="../img/logo/reportVector.svg" alt="logo" class="img_pannel">
-				  							পাথর,বালু রিপোর্ট
+				  							বালু রিপোর্ট
 				  						</h5>
 				  						<!-- <p class="img_pannel_con">
 				  							<img src="../img/logo/reportVector.svg" alt="logo" class="img_pannel">

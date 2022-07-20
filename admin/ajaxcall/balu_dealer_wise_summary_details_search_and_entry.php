@@ -625,7 +625,7 @@ if ($result) {
   $rowcount = mysqli_num_rows($result);
   if ($rowcount != 0) {
 ?>
-    <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
+     <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
       <div class="viewDetailsCon" id="viewDetails">
         <table id="detailsNewTable2" >
 

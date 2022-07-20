@@ -61,9 +61,9 @@
 			<div id="left_all_menu_con">
 				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
     			<a href="../vaucher/balu_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
-    			<a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
+    			 <a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-    			<a href="../vaucher/balu_report_dealer.php">ডিলার</a>
+    			<a href="../vaucher/balu_report_dealer.ph (wrong file name here)">ডিলার</a>
     			<!-- <a href="../vaucher/rod_report_customer.php">কাস্টমার</a> -->
     			<!-- <a href="../vaucher/rod_report_buyer.php">বায়ার</a> -->
 			</div>
@@ -86,11 +86,12 @@
 				} 
 		  	?>
 		  	<div class="project_heading text-center" >      
-		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">ক্রয় হিসাব</h2>
+		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">ক্রয় হিসাব রিপোর্ট</h2>
+				<hr style="border: 1px solid grey; margin-top:0px;">
 		    </div>
 		  	<div class="backcircle">
 		      <a href="../vaucher/balu_index.php">
-		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
+		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="40px"> Back
 		      </a>
 		    </div>
 		    			    	
@@ -119,16 +120,16 @@
                         <th>Length</th>
                         <th>width</th>
                         <th>Height</th>
-                        <th>Shifty</th>
+                        <th>Cft</th>
                         <th>Inchi (-) Minus</th>
                         <th>Cft ( - ) Dropped Out</th>
                         <th>Inchi (+) Added</th>
                         <th>Points ( - ) Dropped Out</th>
-                        <th>Shift</th>
-                        <th>Total Shift</th>
+                        <th>Cft</th>
+                        <th>Total Cft</th>
 	    				<th>Para's</th>
 	    				<th>Discount</th>
-                        <th> Credit </th>
+                        <th>Credit </th>
 	    				<th>Balance</th>
                         <th>Cemeat's Para's</th>
                         <th>Ton</th>
@@ -160,13 +161,13 @@
 	    				<th>দৈর্ঘ্যের</th>
                         <th>প্রস্ত</th>
                         <th>উচাঁ</th>
-                        <th>সেপ্টি</th>
+                        <th>সিএফটি </th>
                         <th>Inchi (-) বিয়োগ </th>
                         <th>সিএফটি ( - ) বাদ</th>
                         <th>Inchi (+) যোগ </th>
                         <th>পয়েন্ট ( - )  বাদ</th>
-                        <th>সেপ্টি</th>
-                        <th>মোট সেপ্টি</th>
+                        <th>সিএফটি</th>
+                        <th>মোট সিএফটি</th>
                         <th>দর</th>
                         <th>কমিশন</th>
                         <th>মূল</th>
@@ -189,8 +190,8 @@
 	    					$i = 1;
 	    					while($row = $result->fetch_assoc()){
 	    						echo "<tr>";
-	    						echo "<td>".$i."</td>";
-                                echo "<td>".$row['id']."</td>";
+	    						// echo "<td>".$i."</td>";
+                                // echo "<td>".$row['id']."</td>";
                                 echo "<td>".$row['buyer_id']."</td>";
                                 echo "<td>".$row['dealer_id']."</td>";
 	    						echo "<td>".$row['motor_name']."</td>";
@@ -231,6 +232,7 @@
 	    						echo "<td>".$row['paras']."</td>";
                                 echo "<td>".$row['discount']."</td>";
                                 echo "<td>".$row['credit']."</td>";
+								// echo "<td>".$row['balance']."</td>";
                                 echo "<td>".$row['cemeats_paras']."</td>";
                                 echo "<td>".$row['ton']."</td>";
                                 echo "<td>".$row['total_shifts']."</td>";

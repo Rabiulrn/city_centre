@@ -621,7 +621,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                             <tr>
                                 <td>Unload (আনলোড)</td>
                                 <td>
-                                    <input type="text" name="unload" class="form-control" id="unload_popup" placeholder="Unload">
+                                    <input type="text" name="unload" class="form-control value-calc-popup" id="unload_popup" placeholder="Unload">
                                 </td>
                             </tr>
                             <tr>
@@ -801,32 +801,32 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                             <tr>
                                 <td> Para's (দর) </td>
                                 <td>
-                                    <input type="text" name="paras" class="form-control" id="paras_popup" placeholder="Enter Paras ...">
+                                    <input type="text" name="paras" class="form-control value-calc-popup" id="paras_popup" placeholder="Enter Paras ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Discount(কমিশন) </td>
                                 <td>
-                                    <input type="text" name="discount" class="form-control" id="discount_popup" placeholder="Enter Discount ...">
+                                    <input type="text" name="discount" class="form-control value-calc-popup" id="discount_popup" placeholder="Enter Discount ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Credit(মূল) </td>
                                 <td>
-                                    <input type="text" name="credit" class="form-control" id="credit_popup" placeholder="Enter Credit ...">
+                                    <input type="text" name="credit" class="form-control value-calc-popup" id="credit_popup" placeholder="Enter Credit ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Balance(অবশিষ্ট) </td>
                                 <td>
-                                    <input type="text" name="balance" class="form-control" id="balance_popup" placeholder="Enter Balance  ...">
+                                    <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup" placeholder="Enter Balance  ...">
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
                                 <td>
-                                    <input type="text" name="cemeats_paras" class="form-control" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
+                                    <input type="text" name="cemeats_paras" class="form-control value-calc-popup" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
                             </tr>
                             <!-- <td>Ton(টোন)</td>
@@ -839,13 +839,13 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                 <td>
                                     <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter bundil...">
                                 </td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+                            <tr hidden>
                                 <td>Tons (টোন)</td>
                                 <td>
-                                    <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter total_paras...">
+                                    <input type="text" name="total_paras" class="form-control value-calc-popup" id="tons_popup" placeholder="Enter total_paras...">
                                 </td>
-                            </tr> -->
+                            </tr> 
                             <tr>
                                 <td>Bank_name (ব্যাংক নাম)</td>
                                 <td>
@@ -855,7 +855,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                             <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
-                                    <input type="text" name="fee" class="form-control" id="fee_popup" placeholder="Enter total_paras...">
+                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter total_paras...">
                                 </td>
                             </tr>
                         </table>
