@@ -579,7 +579,7 @@ use Mpdf\Language\ScriptToLanguage;
 	                      <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="Debit...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)"  name="kg" class="form-control-balu value-calc" id="kg" placeholder="Ton & kg...">
+	                      <input type="text" onkeypress="return isNumber(event)"  name="ton_kg" class="form-control-balu value-calc" id="kg" placeholder="Ton & kg...">
 	                    </td>
 	                    <td>
 	                      <input type="text" onkeypress="return isNumber(event)" name="length" class="form-control-balu value-calc" id="length" placeholder="Length'00 mm'...">

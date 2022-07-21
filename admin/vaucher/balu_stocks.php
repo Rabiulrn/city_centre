@@ -10,7 +10,7 @@
   $edit_data_permission   = $_SESSION['edit_data'];
   $delete_data_permission = $_SESSION['delete_data'];
 
-  $_SESSION['pageName'] = 'balu_table_headers';  
+  $_SESSION['pageName'] = 'balu_stocks';  
   $sucMsg = '';
 
  

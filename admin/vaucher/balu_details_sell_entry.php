@@ -1533,7 +1533,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
             }, "0");
         }
     </script>
-   <script type="text/javascript">
+    <script type="text/javascript">
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
             var kg = $('#kg').val();

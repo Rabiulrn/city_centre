@@ -52,7 +52,10 @@
         $_SESSION['raj_kajer_all_hisab']  = $row['raj_kajer_all_hisab'];
         $_SESSION['electric_kroy_bikroy']  = $row['electric_kroy_bikroy'];
         
-        
+        $_SESSION['balu_hisab']        = $row['balu_hisab'];
+        $_SESSION['balu_kroy_hisab']   = $row['balu_kroy_hisab'];
+        $_SESSION['balu_bikroy_hisab'] = $row['balu_bikroy_hisab'];
+
         $_SESSION['rod_hisab']        = $row['rod_hisab'];
         $_SESSION['rod_kroy_hisab']   = $row['rod_kroy_hisab'];
         $_SESSION['rod_bikroy_hisab'] = $row['rod_bikroy_hisab'];

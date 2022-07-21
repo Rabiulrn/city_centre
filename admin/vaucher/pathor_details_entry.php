@@ -672,7 +672,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                     <input type="text" name ="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
                                 </td>           
                             </tr> -->
-                            <tr>
+                            <!-- <tr> -->
                             <tr>
                                 <td>Driver Name (ড্রাইভারের নাম)</td>
                                 <td>
@@ -682,7 +682,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td>Motor Vara (গাড়ী ভাড়া)</td>
                                 <td>
-                                    <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara..." disabled>
+                                    <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara...">
                                 </td>
                             </tr>
                             <tr>
@@ -886,7 +886,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                             <tr>
                                 <td> Balance(অবশিষ্ট) </td>
                                 <td>
-                                    <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup " placeholder="Enter Balance  ...">
+                                    <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup" placeholder="Enter Balance  ...">
                                 </td>
                             </tr>
 
@@ -906,13 +906,13 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>
                                     <input type="text" name="total_shifts" class="form-control" id="total_shifts_popup" placeholder="Enter Total Shifts...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Tons (টোন)</td>
                                 <td>
                                     <input type="text" name="total_paras" class="form-control" id="tons_popup" placeholder="Enter Tons...">
                                 </td>
-                            </tr> -->
+                            </tr> 
                             <tr>
                                 <td>Bank Name</td>
                                 <td>
@@ -1741,10 +1741,10 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             var credit = $("#credit_popup").val();
             if (car_rent_redeem == '') {
                 var total_paras = credit;
-                $('#cemeats_paras_popup').val(total_paras);
+                $('#total_paras_popup').val(total_paras);
             } else {
                 var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                $('#cemeats_paras_popup').val(total_paras);
+                $('#total_paras_popup').val(total_paras);
             }
 
 

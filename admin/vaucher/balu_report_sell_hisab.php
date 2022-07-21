@@ -191,7 +191,7 @@
 	    						echo "<tr>";
 	    						// echo "<td>".$i."</td>";
                                 // echo "<td>".$row['id']."</td>";
-								echo "<td>".$row['customer_id']."</td>";
+								// echo "<td>".$row['customer_id']."</td>";
 	    						echo "<td>".$row['motor_name']."</td>";
 	    						echo "<td>".$row['driver_name']."</td>";
 	    						echo "<td>".$row['motor_vara']."</td>";

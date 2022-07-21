@@ -73,7 +73,7 @@
                         }
 
                       //   // inserted by mottaleb
-                        //  if($_SESSION['balu_hisab'] == 'yes'){
+                          if($_SESSION['balu_hisab'] == 'yes'){
                            echo '<li class="';
                           if($page == 'balu_hisab'){echo 'active';}
 
@@ -83,14 +83,14 @@
                           else if($_SESSION['pageName'] == 'balu_dealer_entry'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_customer_entry'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_buyer_entry'){echo 'active';}
-                          else if($_SESSION['pageName'] == 'balu_table_headers'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'balu_stocks'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_report_sell_hisab'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_report_dealer'){echo 'active';}
 
                           echo '"><a href="../vaucher/balu_index.php">বালু হিসাব</a>';
                           echo '</li>';
-                        // }
-                        // if($_SESSION['balu_hisab'] == 'yes'){
+                         }
+                       //  if($_SESSION['pathor_hisab'] == 'yes'){
                           echo '<li class="';
                          if($page == 'pathor_hisab'){echo 'active';}
 
@@ -100,7 +100,7 @@
                          else if($_SESSION['pageName'] == 'pathor_dealer_entry'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_customer_entry'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_buyer_entry'){echo 'active';}
-                         else if($_SESSION['pageName'] == 'pathor_table_headers'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_stocks'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_report_sell_hisab'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_report_dealer'){echo 'active';}
 

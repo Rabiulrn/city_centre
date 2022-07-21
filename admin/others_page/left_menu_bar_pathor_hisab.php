@@ -41,7 +41,7 @@
         }
         if($_SESSION['rod_customer'] == 'yes'){
             ?>
-            <a class="mnu_left <?php if($_SESSION['pageName'] == 'balu_cusotomer_entry'){echo 'mnu_active';}?>" href="../vaucher/pathor_stocks.php">
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_stocks'){echo 'mnu_active';}?>" href="../vaucher/pathor_stocks.php">
                 <img src="../img/logo/add5.png" alt="logo" class="img_mnu">
                 স্টক তথ্য
             </a>
