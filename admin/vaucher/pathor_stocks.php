@@ -156,7 +156,7 @@
                   <th>Edit</th> -->
                 </tr>
                 <?php
-                  $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_pathor WHERE partculars != '' AND project_name_id = '$project_name_id' GROUP BY partculars,particulars";
+                  $sql = "SELECT partculars,particulars,sum(ton) as 'ton' FROM stocks_pathor WHERE partculars != '' AND project_name_id = '$project_name_id' AND ton > 0 GROUP BY partculars,particulars";
                   $show = $db->select($sql);
                   if ($show) {
                       while ($rows = $show->fetch_assoc()){

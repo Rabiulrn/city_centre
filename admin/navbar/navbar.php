@@ -73,7 +73,7 @@
                         }
 
                       //   // inserted by mottaleb
-                          if($_SESSION['balu_hisab'] == 'yes'){
+                      //    if($_SESSION['balu_hisab'] == 'yes'){
                            echo '<li class="';
                           if($page == 'balu_hisab'){echo 'active';}
 
@@ -89,7 +89,7 @@
 
                           echo '"><a href="../vaucher/balu_index.php">বালু হিসাব</a>';
                           echo '</li>';
-                         }
+                        // }
                        //  if($_SESSION['pathor_hisab'] == 'yes'){
                           echo '<li class="';
                          if($page == 'pathor_hisab'){echo 'active';}

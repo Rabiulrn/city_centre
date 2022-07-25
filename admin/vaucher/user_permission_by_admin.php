@@ -216,9 +216,9 @@
                 }
             });
 
-
+            
 // manzu add raj_kajer_all_hisab here 
-            function userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report, create_user, edit_data, delete_data){
+            function userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, create_user, edit_data, delete_data){
                 $.ajax({
                 url: "../ajaxcall_save_update/allow_page_access_update.php",
                 type: "post",
@@ -244,6 +244,13 @@
                     rod_customer    : rod_customer,
                     rod_buyer       : rod_buyer,
                     rod_report      : rod_report,
+                    balu_kroy_hisab  : balu_kroy_hisab,
+                    balu_bikroy_hisab: balu_bikroy_hisab,
+                    balu_category    : balu_category,
+                    balu_dealer      : balu_dealer,
+                    balu_customer    : balu_customer,
+                    balu_buyer       : balu_buyer,
+                    balu_report      : balu_report,
                     create_user     : create_user,
                     edit_data       : edit_data,
                     delete_data     : delete_data
@@ -289,13 +296,20 @@
                 var rod_customer      = $('#rod_customer').val();
                 var rod_buyer         = $('#rod_buyer').val();
                 var rod_report        = $('#rod_report').val();
+                var balu_kroy_hisab    = $('#balu_kroy_hisab').val();
+                var balu_bikroy_hisab  = $('#balu_bikroy_hisab').val();
+                var balu_category      = $('#balu_category').val();
+                var balu_dealer        = $('#balu_dealer').val();
+                var balu_customer      = $('#balu_customer').val();
+                var balu_buyer         = $('#balu_buyer').val();
+                var balu_report        = $('#balu_report').val();
 
                 var create_user = $('#create_user').val();                
                 var edit_data   = $('#edit_data').val();                
                 var delete_data = $('#delete_data').val();                
                 // alert(create_user);
                  // manzu add raj_kajer_all_hisab here 
-                userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report, create_user, edit_data, delete_data);     
+                userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, create_user, edit_data, delete_data);     
             });
             
   </script>

@@ -843,7 +843,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                             <tr hidden>
                                 <td>Tons (টোন)</td>
                                 <td>
-                                    <input type="text" name="total_paras" class="form-control value-calc-popup" id="tons_popup" placeholder="Enter total_paras...">
+                                    <input type="text" name="tons" class="form-control value-calc-popup" id="tons_popup" placeholder="Enter total_paras...">
                                 </td>
                             </tr> 
                             <tr>
@@ -855,7 +855,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                             <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
-                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter total_paras...">
+                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter fee...">
                                 </td>
                             </tr>
                         </table>
@@ -1096,7 +1096,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                         },
                         buttons: {
                             Yes: function() {
-                                var urltxt = '../ajaxcall/pathor_rod_del_sell_entry_ajax.php';
+                                var urltxt = '../ajaxcall/pathor_del_sell_entry_ajax.php';
                                 $.ajax({
                                     url: urltxt,
                                     type: 'post',
@@ -1164,7 +1164,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                 }
                 var formElement = $('#form_entry')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/pathor_sell_rod_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_sell_details_entry_ajax.php';
 
             } else if (submit_type == 'insert_popup') {
                 var buyer_id = $('#buyer_id_popup').val();
@@ -1177,7 +1177,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/pathor_rod_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_details_entry_ajax.php';
 
             } else {
                 ////Horizontal Edit er code
@@ -1204,7 +1204,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/pathor_rod_update_sell_entry_ajax.php';
+                var urltxt = '../ajaxcall/pathor_update_sell_entry_ajax.php';
 
             }
 
@@ -1273,7 +1273,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
     <script type="text/javascript">
         function edit_rod_details(rod_id) {
             $('.rodDetailsEnCon').hide();
-            var urltxt = '../ajaxcall/pathor_rod_edit_entry_ajax.php';
+            var urltxt = '../ajaxcall/pathor_edit_entry_ajax.php';
             $.ajax({
                 url: urltxt,
                 type: 'post',
@@ -1460,8 +1460,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                     var shift2_to_ton = shifty2 / 23.5;
                     // alert(credit);
                     $('#shifty').val(shifty);
-                    $('#ton').val(shift2_to_ton);
-                    $('#tons').val(shift2_to_ton);
+                    $('#ton').val(shift2_to_ton.toFixed(2));
+                    $('#tons').val(shift2_to_ton.toFixed(2));
                     $('#shift').val(shifty2);
                     $('#total_shift').val(shifty2);
                     $('#total_shifts').val(shifty2);
@@ -1469,8 +1469,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                     var shift_to_ton = shifty / 23.5;
                     // alert(credit);
                     $('#shifty').val(shifty);
-                    $('#ton').val(shift_to_ton);
-                    $('#tons').val(shift_to_ton);
+                    $('#ton').val(shift_to_ton.toFixed(2));
+                    $('#tons').val(shift_to_ton.toFixed(2));
                     $('#shift').val(shifty);
                     $('#total_shift').val(shifty);
                     $('#total_shifts').val(shifty);
@@ -1562,10 +1562,10 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             var credit = $("#credit").val();
             if (car_rent_redeem == '') {
                 var total_paras = credit;
-                $('#total_paras').val(total_paras);
+                $('#credit').val(total_paras);
             } else {
-                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                $('#total_paras').val(total_paras);
+                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
+                $('#credit').val(total_paras);
             }
         });
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
@@ -1768,7 +1768,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
     <script type="text/javascript">
         function getDataByDates(datestr, dealerId) {
             $.ajax({
-                url: '../ajaxcall/pathor_rod_search_date_entry.php',
+                url: '../ajaxcall/pathor_search_date_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,
@@ -1788,7 +1788,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
 
         function getSummaryByDates(datestr, dealerId) {
             $.ajax({
-                url: '../ajaxcall/pathor_rod_search_date_wise_summary_entry.php',
+                url: '../ajaxcall/pathor_search_date_wise_summary_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,

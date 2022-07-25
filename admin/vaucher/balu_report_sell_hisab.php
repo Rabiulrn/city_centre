@@ -95,7 +95,7 @@
 		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="40px"> Back
 		      </a>
 		    </div>
-		    			    	
+		    		    	
     		<table class="tableshow">
     			<thead>
 	    			<tr>
@@ -191,7 +191,7 @@
 	    						echo "<tr>";
 	    						// echo "<td>".$i."</td>";
                                 // echo "<td>".$row['id']."</td>";
-								// echo "<td>".$row['customer_id']."</td>";
+								echo "<td>".$row['customer_id']."</td>";
 	    						echo "<td>".$row['motor_name']."</td>";
 	    						echo "<td>".$row['driver_name']."</td>";
 	    						echo "<td>".$row['motor_vara']."</td>";
@@ -247,6 +247,7 @@
     		</table>
 		</div>
 	</div>
+	
 
 	<script type="text/javascript">	
 		$('.left_side_bar').height($('.main_bar').innerHeight()).trigger('change');

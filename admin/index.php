@@ -55,6 +55,24 @@
         $_SESSION['balu_hisab']        = $row['balu_hisab'];
         $_SESSION['balu_kroy_hisab']   = $row['balu_kroy_hisab'];
         $_SESSION['balu_bikroy_hisab'] = $row['balu_bikroy_hisab'];
+        $_SESSION['balu_category']     = $row['balu_category'];
+        $_SESSION['balu_dealer']       = $row['balu_dealer'];
+        $_SESSION['balu_customer']     = $row['balu_customer'];
+        $_SESSION['balu_buyer']        = $row['balu_buyer'];
+        $_SESSION['balu_report']       = $row['balu_report'];
+        $_SESSION['balu_stocks']       = $row['balu_stocks'];
+
+
+        $_SESSION['pathor_hisab']        = $row['pathor_hisab'];
+        $_SESSION['pathor_kroy_hisab']   = $row['pathor_kroy_hisab'];
+        $_SESSION['pathor_bikroy_hisab'] = $row['pathor_bikroy_hisab'];
+        $_SESSION['pathor_category']     = $row['pathor_category'];
+        $_SESSION['pathor_dealer']       = $row['pathor_dealer'];
+        $_SESSION['pathor_customer']     = $row['pathor_customer'];
+        $_SESSION['pathor_buyer']        = $row['pathor_buyer'];
+        $_SESSION['pathor_report']       = $row['pathor_report'];
+        $_SESSION['pathor_stocks']       = $row['pathor_stocks'];
+
 
         $_SESSION['rod_hisab']        = $row['rod_hisab'];
         $_SESSION['rod_kroy_hisab']   = $row['rod_kroy_hisab'];

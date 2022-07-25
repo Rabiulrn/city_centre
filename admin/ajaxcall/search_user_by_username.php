@@ -39,15 +39,17 @@
           $rod_customer      = $row['rod_customer'];
           $rod_buyer         = $row['rod_buyer'];
           $rod_report        = $row['rod_report'];
-
-          
-
-          // Added By Mottaleb 
-          // $balu_hisab         = $row['balu_hisab'];
-          // $balu_kroy_hisab    = $row['balu_kroy_hisab'];
-
-
           $create_user       = $row['create_user'];
+
+          $balu_hisab         = $row['balu_hisab'];
+          $balu_kroy_hisab    = $row['balu_kroy_hisab'];
+          $balu_bikroy_hisab  = $row['balu_bikroy_hisab'];
+          $balu_category      = $row['balu_category'];
+          $balu_dealer        = $row['balu_dealer'];
+          $balu_customer      = $row['balu_customer'];
+          $balu_buyer         = $row['balu_buyer'];
+          $balu_report        = $row['balu_report'];
+
 
           $edit_data    = $row['edit_data'];
           $delete_data  = $row['delete_data'];
@@ -204,62 +206,8 @@
         <label>
       <input type="checkbox" name="electric_kroy_bikroy" id="electric_kroy_bikroy" onchange="checkUncheck(this)" value="<?php echo $electric_kroy_bikroy;?>" <?php echo ($electric_kroy_bikroy == 'yes' ? 'checked' : '');?>> ইলেকট্রিক মালামাল ক্রয় হিসাব
         </label>
-      </div> 
-
-     <!-- === Added by Mottaleb === -->
-
-      <div class="pagename">বালু হিসাব</div>
-      <!-- <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_hisab" id="rod_hisab" onchange="checkUncheck(this)" value="<?php //echo $rod_hisab; ?>" <?php //echo ($rod_hisab == 'yes' ? 'checked' : '');?>> রড হিসাব
-        </label>
-      </div> -->
-      
-      <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_kroy_hisab" id="rod_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $rod_kroy_hisab; ?>" <?php echo ($rod_kroy_hisab == 'yes' ? 'checked' : '');?>> ক্রয় হিসাব
-        </label>
-      </div>
-      <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_bikroy_hisab" id="rod_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $rod_bikroy_hisab; ?>" <?php echo ($rod_bikroy_hisab == 'yes' ? 'checked' : '');?>> বিক্রয় হিসাব
-        </label>
-      </div>
-      <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_category" id="rod_category" onchange="checkUncheck(this)" value="<?php echo $rod_category; ?>" <?php echo ($rod_category == 'yes' ? 'checked' : '');?>> ক্যাটাগরি এন্ট্রি
-        </label>
-      </div>
-      <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_dealer" id="rod_dealer" onchange="checkUncheck(this)" value="<?php echo $rod_dealer; ?>" <?php echo ($rod_dealer == 'yes' ? 'checked' : '');?>> ডিলার এন্ট্রি
-        </label>
-      </div>
-      <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_customer" id="rod_customer" onchange="checkUncheck(this)" value="<?php echo $rod_customer; ?>" <?php echo ($rod_customer == 'yes' ? 'checked' : '');?>> কাস্টমার এন্ট্রি
-        </label>
-      </div>
-      <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_buyer" id="rod_buyer" onchange="checkUncheck(this)" value="<?php echo $rod_buyer; ?>" <?php echo ($rod_buyer == 'yes' ? 'checked' : '');?>> বায়ার এন্ট্রি
-        </label>
-      </div>
-      <div class="check-group">
-        <label>
-            <input type="checkbox" name="rod_report" id="rod_report" onchange="checkUncheck(this)" value="<?php echo $rod_report; ?>" <?php echo ($rod_report == 'yes' ? 'checked' : '');?>> রিপোর্ট
-        </label>
-      </div>     
+      </div>      
   </div>
-
-<!-- <div class="pageCollumn" id="left-col">  -->
-
-      
-
-  
-
-  
-  
 
   <div class="pageCollumn" id="right-col">
       <div class="pagename">রড হিসাব</div>
@@ -305,9 +253,8 @@
         </label>
       </div>
 
-
-      <!-- Added by Mottaleb  -->
-      <div class="pagename">পাথর হিসাব</div>
+<!-- balu hisab -->
+<div class="pagename">balu হিসাব</div>
       <!-- <div class="check-group">
         <label>
             <input type="checkbox" name="rod_hisab" id="rod_hisab" onchange="checkUncheck(this)" value="<?php //echo $rod_hisab; ?>" <?php //echo ($rod_hisab == 'yes' ? 'checked' : '');?>> রড হিসাব
@@ -316,41 +263,41 @@
       
       <div class="check-group">
         <label>
-            <input type="checkbox" name="rod_kroy_hisab" id="rod_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $rod_kroy_hisab; ?>" <?php echo ($rod_kroy_hisab == 'yes' ? 'checked' : '');?>> ক্রয় হিসাব
+            <input type="checkbox" name="balu_kroy_hisab" id="balu_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $balu_kroy_hisab; ?>" <?php echo ($balu_kroy_hisab == 'yes' ? 'checked' : '');?>> ক্রয় হিসাব
         </label>
       </div>
       <div class="check-group">
         <label>
-            <input type="checkbox" name="rod_bikroy_hisab" id="rod_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $rod_bikroy_hisab; ?>" <?php echo ($rod_bikroy_hisab == 'yes' ? 'checked' : '');?>> বিক্রয় হিসাব
+            <input type="checkbox" name="balu_bikroy_hisab" id="balu_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $balu_bikroy_hisab; ?>" <?php echo ($balu_bikroy_hisab == 'yes' ? 'checked' : '');?>> বিক্রয় হিসাব
         </label>
       </div>
       <div class="check-group">
         <label>
-            <input type="checkbox" name="rod_category" id="rod_category" onchange="checkUncheck(this)" value="<?php echo $rod_category; ?>" <?php echo ($rod_category == 'yes' ? 'checked' : '');?>> ক্যাটাগরি এন্ট্রি
+            <input type="checkbox" name="balu_category" id="balu_category" onchange="checkUncheck(this)" value="<?php echo $balu_category; ?>" <?php echo ($balu_category == 'yes' ? 'checked' : '');?>> ক্যাটাগরি এন্ট্রি
         </label>
       </div>
       <div class="check-group">
         <label>
-            <input type="checkbox" name="rod_dealer" id="rod_dealer" onchange="checkUncheck(this)" value="<?php echo $rod_dealer; ?>" <?php echo ($rod_dealer == 'yes' ? 'checked' : '');?>> ডিলার এন্ট্রি
+            <input type="checkbox" name="balu_dealer" id="balu_dealer" onchange="checkUncheck(this)" value="<?php echo $balu_dealer; ?>" <?php echo ($balu_dealer == 'yes' ? 'checked' : '');?>> ডিলার এন্ট্রি
         </label>
       </div>
       <div class="check-group">
         <label>
-            <input type="checkbox" name="rod_customer" id="rod_customer" onchange="checkUncheck(this)" value="<?php echo $rod_customer; ?>" <?php echo ($rod_customer == 'yes' ? 'checked' : '');?>> কাস্টমার এন্ট্রি
+            <input type="checkbox" name="balu_customer" id="balu_customer" onchange="checkUncheck(this)" value="<?php echo $balu_customer; ?>" <?php echo ($balu_customer == 'yes' ? 'checked' : '');?>> কাস্টমার এন্ট্রি
         </label>
       </div>
       <div class="check-group">
         <label>
-            <input type="checkbox" name="rod_buyer" id="rod_buyer" onchange="checkUncheck(this)" value="<?php echo $rod_buyer; ?>" <?php echo ($rod_buyer == 'yes' ? 'checked' : '');?>> বায়ার এন্ট্রি
+            <input type="checkbox" name="balu_buyer" id="balu_buyer" onchange="checkUncheck(this)" value="<?php echo $balu_buyer; ?>" <?php echo ($balu_buyer == 'yes' ? 'checked' : '');?>> বায়ার এন্ট্রি
         </label>
       </div>
       <div class="check-group">
         <label>
-            <input type="checkbox" name="rod_report" id="rod_report" onchange="checkUncheck(this)" value="<?php echo $rod_report; ?>" <?php echo ($rod_report == 'yes' ? 'checked' : '');?>> রিপোর্ট
+            <input type="checkbox" name="balu_report" id="balu_report" onchange="checkUncheck(this)" value="<?php echo $balu_report; ?>" <?php echo ($balu_report == 'yes' ? 'checked' : '');?>> রিপোর্ট
         </label>
       </div>
 
-      <div class="pagename" style="margin-right: 15px;">অন্যান্য</div>
+      <div class="pagename" style="margin-right: 15px;">অন্যান্ন</div>
       <div class="check-group">
         <label>
             <input type="checkbox" name="create_user" id="create_user" onchange="checkUncheck(this)" value="<?php echo $create_user;?>" <?php echo ($create_user == 'yes' ? 'checked' : '');?>> Create User
@@ -372,4 +319,3 @@
 <div style="margin: 20px 0px 0px; float: left; width: 100%;" >
     <input type="button" class="btn btn-primary btn-block" name="sumbit" id="submitBtnId" value="Save" />
 </div>
-
