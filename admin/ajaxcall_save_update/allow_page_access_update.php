@@ -43,6 +43,7 @@
 	$balu_customer 		= $_POST['balu_customer'];
 	$balu_buyer 			= $_POST['balu_buyer'];
 	$balu_report 		= $_POST['balu_report'];
+	$balu_stocks  		= $_POST['balu_stocks'];
 
 	$pathor_kroy_hisab 	= $_POST['pathor_kroy_hisab'];
 	$pathor_bikroy_hisab 	= $_POST['pathor_bikroy_hisab'];
@@ -50,6 +51,7 @@
 	$pathor_dealer 		= $_POST['pathor_dealer'];
 	$pathor_customer 		= $_POST['pathor_customer'];
 	$pathor_buyer 			= $_POST['pathor_buyer'];
+	$pathor_stocks 			= $_POST['pathor_stocks'];
 	// $pathor_report 		= $_POST['pathor_report'];
 
 	$create_user 		= $_POST['create_user'];
@@ -61,10 +63,10 @@
 	$sql="UPDATE login SET protidiner_hisab = '$protidiner_hisab', modify_data = '$modify_data', joma_khat = '$joma_khat', khoros_khat = '$khoros_khat', khoros_khat_entry = '$khoros_khat_entry', nije_pabo = '$nije_pabo', paonader = '$paonader', report = '$report', agrim_hisab = '$agrim_hisab', cash_calculator = '$cash_calculator',raj_kajer_all_hisab ='$raj_kajer_all_hisab',electric_kroy_bikroy='$electric_kroy_bikroy', rod_kroy_hisab = '$rod_kroy_hisab', rod_bikroy_hisab = '$rod_bikroy_hisab', rod_category = '$rod_category',rod_dealer = '$rod_dealer', rod_customer = '$rod_customer',rod_buyer = '$rod_buyer', rod_report = '$rod_report',
 	balu_kroy_hisab = '$balu_kroy_hisab',balu_bikroy_hisab = '$balu_bikroy_hisab',
 	balu_category = '$balu_category', balu_dealer = '$balu_dealer', balu_customer = '$balu_customer',
-	balu_buyer = '$balu_buyer', balu_report = '$balu_report',
+	balu_buyer = '$balu_buyer', balu_report = '$balu_report',balu_stocks = '$balu_stocks',
 	pathor_kroy_hisab = '$pathor_kroy_hisab',pathor_bikroy_hisab = '$pathor_bikroy_hisab',
 	pathor_category = '$pathor_category', pathor_dealer = '$pathor_dealer', pathor_customer = '$pathor_customer',
-	pathor_buyer = '$pathor_buyer',
+	pathor_buyer = '$pathor_buyer',pathor_stocks = '$pathor_stocks',
 	  create_user = '$create_user', edit_data = '$edit_data', delete_data = '$delete_data', project_name_id = '$project_name_id' WHERE username = '$username'";
 
 	if ($db->update($sql) === TRUE) {
@@ -102,6 +104,7 @@
         	$balu_customer 		= $row['balu_customer'];
         	$balu_buyer	 		= $row['balu_buyer'];
         	$balu_report			= $row['balu_report'];
+			$balu_stocks			= $row['balu_stocks'];
 
 			$pathor_kroy_hisab 	= $row['pathor_kroy_hisab'];
         	$pathor_bikroy_hisab 	= $row['pathor_bikroy_hisab'];
@@ -109,12 +112,13 @@
         	$pathor_dealer 		= $row['pathor_dealer'];
         	$pathor_customer 		= $row['pathor_customer'];
         	$pathor_buyer	 		= $row['pathor_buyer'];
+			$pathor_stocks			= $row['pathor_stocks'];
         	// $pathor_report			= $row['pathor_report'];
 
 
         	if($protidiner_hisab == 'yes' || $modify_data == 'yes' || $joma_khat == 'yes' || $khoros_khat == 'yes' || $khoros_khat_entry == 'yes' || $nije_pabo == 'yes' || $paonader == 'yes' || $report == 'yes' || $agrim_hisab == 'yes' || $cash_calculator == 'yes' || $raj_kajer_all_hisab == 'yes'|| $electric_kroy_bikroy == 'yes' || $rod_kroy_hisab == 'yes' || $rod_bikroy_hisab == 'yes' || $rod_category == 'yes' || $rod_dealer == 'yes' || $rod_customer == 'yes' || $rod_buyer == 'yes' || $rod_report == 'yes' ||
-			 $balu_kroy_hisab == 'yes' || $balu_bikroy_hisab == 'yes' || $balu_category == 'yes' || $balu_dealer == 'yes' || $balu_customer == 'yes' || $balu_buyer == 'yes' || $balu_report == 'yes' ||
-			 $pathor_kroy_hisab == 'yes' || $pathor_bikroy_hisab == 'yes' || $pathor_category == 'yes' || $pathor_dealer == 'yes' || $pathor_customer == 'yes' || $pathor_buyer == 'yes' 
+			 $balu_kroy_hisab == 'yes' || $balu_bikroy_hisab == 'yes' || $balu_category == 'yes' || $balu_dealer == 'yes' || $balu_customer == 'yes' || $balu_buyer == 'yes' || $balu_report == 'yes' || $balu_stocks == 'yes' ||
+			 $pathor_kroy_hisab == 'yes' || $pathor_bikroy_hisab == 'yes' || $pathor_category == 'yes' || $pathor_dealer == 'yes' || $pathor_customer == 'yes' || $pathor_buyer == 'yes' || $pathor_stocks == 'yes' 
 			){
         		$sql_doinik_hisab_permission = "UPDATE login SET page_permission = 'yes' WHERE username = '$username'";
         		$update_result = $db->update($sql_doinik_hisab_permission);
@@ -172,6 +176,8 @@
 		$_SESSION['balu_customer']     = $row['balu_customer'];
 		$_SESSION['balu_buyer']        = $row['balu_buyer'];
 		$_SESSION['balu_report']       = $row['balu_report'];
+		$_SESSION['balu_stocks']       = $row['balu_stocks'];
+
 
 		$_SESSION['pathor_kroy_hisab']   = $row['pathor_kroy_hisab'];
 		$_SESSION['pathor_bikroy_hisab'] = $row['pathor_bikroy_hisab'];
@@ -179,6 +185,7 @@
 		$_SESSION['pathor_dealer']       = $row['pathor_dealer'];
 		$_SESSION['pathor_customer']     = $row['pathor_customer'];
 		$_SESSION['pathor_buyer']        = $row['pathor_buyer'];
+		$_SESSION['pathor_stocks']        = $row['pathor_stocks'];
 		// $_SESSION['pathor_report']       = $row['pathor_report'];
 
 

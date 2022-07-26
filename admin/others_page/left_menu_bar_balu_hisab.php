@@ -39,7 +39,7 @@
             </a>
             <?php
         }
-        if($_SESSION['balu_customer'] == 'yes'){
+        if($_SESSION['balu_stocks'] == 'yes'){
             ?>
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'balu_stocks'){echo 'mnu_active';}?>" href="../vaucher/balu_stocks.php">
                 <img src="../img/logo/add5.png" alt="logo" class="img_mnu">
