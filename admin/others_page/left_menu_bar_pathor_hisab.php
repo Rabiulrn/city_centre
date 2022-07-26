@@ -5,7 +5,7 @@
         পাথর হিসাব
     </a>
     <?php
-        if($_SESSION['rod_kroy_hisab'] == 'yes'){
+        if($_SESSION['pathor_kroy_hisab'] == 'yes'){
             ?>
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_kroy_hisab'){echo 'mnu_active';}?>" href="../vaucher/pathor_details_entry.php">
                 <img src="../img/logo/add1.png" alt="logo" class="img_mnu">
@@ -14,7 +14,7 @@
             </a>
             <?php
         }
-        if($_SESSION['rod_bikroy_hisab'] == 'yes'){
+        if($_SESSION['pathor_bikroy_hisab'] == 'yes'){
             ?>         
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_bikroy_hisab'){echo 'mnu_active';}?>" href="../vaucher/pathor_details_sell_entry.php">
                 <img src="../img/logo/add2.png" alt="logo" class="img_mnu">
@@ -23,7 +23,7 @@
             </a>
             <?php
         }
-        if($_SESSION['rod_category'] == 'yes'){
+        if($_SESSION['pathor_category'] == 'yes'){
             ?> 
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_hisab_entry'){echo 'mnu_active';}?>" href="../vaucher/pathor_hisab_entry.php">
                 <img src="../img/logo/add3.png" alt="logo" class="img_mnu">
@@ -31,7 +31,7 @@
             </a>
             <?php
         }
-        if($_SESSION['rod_dealer'] == 'yes'){
+        if($_SESSION['pathor_dealer'] == 'yes'){
             ?>
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_dealer_entry'){echo 'mnu_active';}?>" href="../vaucher/pathor_dealer_entry.php">
                 <img src="../img/logo/add4.png" alt="logo" class="img_mnu">
@@ -39,7 +39,7 @@
             </a>
             <?php
         }
-        if($_SESSION['rod_customer'] == 'yes'){
+        if($_SESSION['pathor_customer'] == 'yes'){
             ?>
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_stocks'){echo 'mnu_active';}?>" href="../vaucher/pathor_stocks.php">
                 <img src="../img/logo/add5.png" alt="logo" class="img_mnu">
@@ -47,7 +47,7 @@
             </a>
             <?php
         }
-        if($_SESSION['rod_buyer'] == 'yes'){
+        if($_SESSION['pathor_buyer'] == 'yes'){
             ?>
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_buyer_entry'){echo 'mnu_active';}?>" href="../vaucher/pathor_buyer_entry.php">
                 <img src="../img/logo/add6.png" alt="logo" class="img_mnu">
@@ -55,7 +55,7 @@
             </a>
             <?php
         }
-        if($_SESSION['rod_customer'] == 'yes'){
+        if($_SESSION['pathor_customer'] == 'yes'){
             ?>
             <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_customer_entry'){echo 'mnu_active';}?>" href="../vaucher/pathor_customer_entry.php">
                 <img src="../img/logo/add5.png" alt="logo" class="img_mnu">
@@ -63,7 +63,7 @@
             </a>
             <?php
         }
-        if($_SESSION['rod_report'] == 'yes'){
+        if($_SESSION['pathor_report'] == 'yes'){
             ?>
             <!-- <a class="mnu_left <?php if($_SESSION['pageName'] == '45'){echo 'mnu_active';}?>" href="../vaucher/balu_report_buy_hisab.php">
                 <img src="../img/logo/reportVector.svg" alt="logo" class="img_mnu">

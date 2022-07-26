@@ -50,6 +50,15 @@
           $balu_buyer         = $row['balu_buyer'];
           $balu_report        = $row['balu_report'];
 
+          $pathor_hisab         = $row['pathor_hisab'];
+          $pathor_kroy_hisab    = $row['pathor_kroy_hisab'];
+          $pathor_bikroy_hisab  = $row['pathor_bikroy_hisab'];
+          $pathor_category      = $row['pathor_category'];
+          $pathor_dealer        = $row['pathor_dealer'];
+          $pathor_customer      = $row['pathor_customer'];
+          $pathor_buyer         = $row['pathor_buyer'];
+          // $balu_report        = $row['balu_report'];
+
 
           $edit_data    = $row['edit_data'];
           $delete_data  = $row['delete_data'];
@@ -206,7 +215,48 @@
         <label>
       <input type="checkbox" name="electric_kroy_bikroy" id="electric_kroy_bikroy" onchange="checkUncheck(this)" value="<?php echo $electric_kroy_bikroy;?>" <?php echo ($electric_kroy_bikroy == 'yes' ? 'checked' : '');?>> ইলেকট্রিক মালামাল ক্রয় হিসাব
         </label>
-      </div>      
+      </div>  
+      
+      
+      <div class="pagename" style="margin-right: 15px;">pathor হিসাব</div>
+      <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_kroy_hisab" id="pathor_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $pathor_kroy_hisab; ?>" <?php echo ($pathor_kroy_hisab == 'yes' ? 'checked' : '');?>> ক্রয় হিসাব
+        </label>
+      </div>
+      <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_bikroy_hisab" id="pathor_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $pathor_bikroy_hisab; ?>" <?php echo ($pathor_bikroy_hisab == 'yes' ? 'checked' : '');?>> বিক্রয় হিসাব
+        </label>
+      </div>
+      <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_category" id="pathor_category" onchange="checkUncheck(this)" value="<?php echo $pathor_category; ?>" <?php echo ($pathor_category == 'yes' ? 'checked' : '');?>> ক্যাটাগরি এন্ট্রি
+        </label>
+      </div>
+      <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_dealer" id="pathor_dealer" onchange="checkUncheck(this)" value="<?php echo $pathor_dealer; ?>" <?php echo ($pathor_dealer == 'yes' ? 'checked' : '');?>> ডিলার এন্ট্রি
+        </label>
+      </div>
+      <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_customer" id="pathor_customer" onchange="checkUncheck(this)" value="<?php echo $pathor_customer; ?>" <?php echo ($pathor_customer == 'yes' ? 'checked' : '');?>> কাস্টমার এন্ট্রি
+        </label>
+      </div>
+      <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_buyer" id="pathor_buyer" onchange="checkUncheck(this)" value="<?php echo $pathor_buyer; ?>" <?php echo ($pathor_buyer == 'yes' ? 'checked' : '');?>> বায়ার এন্ট্রি
+        </label>
+      </div>
+      <!-- <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_report" id="balu_report" onchange="checkUncheck(this)" value="<?php echo $pathor_report; ?>" <?php echo ($pathor_report == 'yes' ? 'checked' : '');?>> রিপোর্ট
+        </label>
+      </div> -->
+
+
+
   </div>
 
   <div class="pageCollumn" id="right-col">

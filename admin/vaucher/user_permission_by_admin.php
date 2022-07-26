@@ -218,7 +218,9 @@
 
             
 // manzu add raj_kajer_all_hisab here 
-            function userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, create_user, edit_data, delete_data){
+            function userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, 
+            pathor_kroy_hisab, pathor_bikroy_hisab, pathor_category, pathor_dealer, pathor_customer, pathor_buyer,
+            create_user, edit_data, delete_data){
                 $.ajax({
                 url: "../ajaxcall_save_update/allow_page_access_update.php",
                 type: "post",
@@ -251,6 +253,13 @@
                     balu_customer    : balu_customer,
                     balu_buyer       : balu_buyer,
                     balu_report      : balu_report,
+                    pathor_kroy_hisab  : pathor_kroy_hisab,
+                    pathor_bikroy_hisab: pathor_bikroy_hisab,
+                    pathor_category    : pathor_category,
+                    pathor_dealer      : pathor_dealer,
+                    pathor_customer    : pathor_customer,
+                    pathor_buyer       : pathor_buyer,
+                    // pathor_report      : pathor_report,
                     create_user     : create_user,
                     edit_data       : edit_data,
                     delete_data     : delete_data
@@ -303,13 +312,22 @@
                 var balu_customer      = $('#balu_customer').val();
                 var balu_buyer         = $('#balu_buyer').val();
                 var balu_report        = $('#balu_report').val();
+                var pathor_kroy_hisab    = $('#pathor_kroy_hisab').val();
+                var pathor_bikroy_hisab  = $('#pathor_bikroy_hisab').val();
+                var pathor_category      = $('#pathor_category').val();
+                var pathor_dealer        = $('#pathor_dealer').val();
+                var pathor_customer      = $('#pathor_customer').val();
+                var pathor_buyer         = $('#pathor_buyer').val();
+                // var pathor_report        = $('#pathor_report').val();
 
                 var create_user = $('#create_user').val();                
                 var edit_data   = $('#edit_data').val();                
                 var delete_data = $('#delete_data').val();                
                 // alert(create_user);
                  // manzu add raj_kajer_all_hisab here 
-                userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, create_user, edit_data, delete_data);     
+                userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report,
+                pathor_kroy_hisab, pathor_bikroy_hisab, pathor_category, pathor_dealer, pathor_customer, pathor_buyer, 
+                 create_user, edit_data, delete_data);     
             });
             
   </script>
