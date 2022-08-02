@@ -7,7 +7,7 @@
 	require '../config/config.php';
 	require '../lib/database.php';
 	$db = new Database();
-	$_SESSION['pageName'] = 'rod_report_dealer';
+	$_SESSION['pageName'] = 'balu_report_dealer';
 	
 	$project_name_id = $_SESSION['project_name_id'];
 ?>
@@ -79,7 +79,7 @@
 				<a href="../vaucher/balu_report_buy_hisab.php" >ক্রয় হিসাব</a>
 				<a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-				<a href="../vaucher/balu_report_dealer.ph" class="active">ডিলার</a>
+				 <a href="../vaucher/balu_report_dealer.php" class="active">ডিলার</a>
 				<!-- <a href="../vaucher/rod_report_customer.php">কাস্টমার</a> -->
 				<!-- <a href="../vaucher/rod_report_buyer.php">বায়ার</a> -->
 			</div>
@@ -220,7 +220,7 @@
     						$rod500w = 0;
     						$rod400w = 0;
 
-    						$sql2 = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%500W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+    						$sql2 = "SELECT SUM(kg) as kg FROM details_balu WHERE particulars LIKE '%500W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 					        $result2 = $db->select($sql2);
 					        if($result2->num_rows > 0){
 					            while($row2 = $result2->fetch_assoc()){
@@ -232,7 +232,7 @@
 					        } else{
 					            $rod500w = 0;
 					        }
-					        $sql2 = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%400W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+					        $sql2 = "SELECT SUM(kg) as kg FROM details_balu WHERE particulars LIKE '%400W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 					        $result2 = $db->select($sql2);
 					        if($result2->num_rows > 0){
 					            while($row2 = $result2->fetch_assoc()){
@@ -248,7 +248,7 @@
     						
 					        // Start total total_motor
 					        	$total_motor = 0;
-						        $sql2 = "SELECT SUM(motor) as motor FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(motor) as motor FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -263,7 +263,7 @@
 						    // End total total_motor
 					        //Start Gari vara
 					        	$motor_cash = 0;
-						        $sql2 = "SELECT SUM(motor_cash) as motor_cash FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(motor_cash) as motor_cash FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -279,7 +279,7 @@
 
 						    //Start khalas/Unload
 						        $unload = 0;
-						        $sql2 = "SELECT SUM(unload) as unload FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(unload) as unload FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -295,7 +295,7 @@
 						    //End khalas/Unload
 						    // Start total total_credit/mot_mul
 						        $total_credit = 0;
-						        $sql2 = "SELECT SUM(credit) as credit FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(credit) as credit FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -311,7 +311,7 @@
 
 						    // Start total total_debit/joma
 						        $total_debit = 0;
-						        $sql2 = "SELECT SUM(debit) as debit FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(debit) as debit FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -327,7 +327,7 @@
 
 						    // Start total total_Balance/mot_jer
 						        $total_balance = 0;
-						        $sql2 = "SELECT SUM(balance) as balance FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(balance) as balance FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -342,7 +342,7 @@
 						    // End total total_Balance/mot_jer
 						    //Start GB Bank Ganti
 						        $gb_bank_ganti = 0;
-						        $sql2 = "SELECT SUM(debit) as debit, id FROM details WHERE particulars = 'BG' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(debit) as debit, id FROM details_balu WHERE particulars = 'BG' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -359,7 +359,7 @@
 						    //End GB Bank Ganti
 						//Start Total para/mot_mul_khoros_shoho
 						        $total_paras = 0;
-						        $sql2 = "SELECT SUM(total_paras) as total_paras FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(total_paras) as total_paras FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -467,7 +467,7 @@
 
 		function fromTodateSearch(fromdate, todate){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/rod_report_dealer_fromdate_todate_search.php",
+		        url: "../ajaxcall_balu_report/balu_report_dealer_fromdate_todate_search.php",
 		        type: "post",
 		        data: {
 		        	fromdate 	: fromdate, 
@@ -497,7 +497,7 @@
 
 		function yearMonthSearch(monthvalue, yearvalue){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/rod_report_dealer_year_month_search.php",
+		        url: "../ajaxcall_balu_report/balu_report_dealer_year_month_search.php",
 		        type: "post",
 		        data: {
 		        	monthvalue 	: monthvalue, 
@@ -534,7 +534,7 @@
 		$(document).on('input', '#search', function(){
 			function searchByDealerName(searchTxt){
 			    $.ajax({
-			        url: "../ajaxcall_rod_report/rod_report_dealer_search.php",
+			        url: "../ajaxcall_balu_report/balu_report_dealer_search.php",
 			        type: "post",
 			        data: { searchTxt : searchTxt },
 			        success: function (response) {
@@ -554,7 +554,7 @@
 
 		function dealerWiseSearch(searchDealer){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/rod_report_dealer_name_wise_search.php",
+		        url: "../ajaxcall_balu_report/balu_report_dealer_name_wise_search.php",
 		        type: "post",
 		        data: {
 		        	searchDealer 	: searchDealer,

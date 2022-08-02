@@ -67,9 +67,11 @@
             ?>
             <a class="mnu_left <?php if($_SESSION['pageName'] == '45'){echo 'mnu_active';}?>" href="../vaucher/balu_report_buy_hisab.php">
                 <img src="../img/logo/reportVector.svg" alt="logo" class="img_mnu">
-                বালু রিপোর্ট
-            </a> 
+                রিপোর্ট
+            </a>
             <?php
         }
+
+      
     ?>
 </div>

@@ -63,12 +63,12 @@
             </a>
             <?php
         }
-        if($_SESSION['pathor_report'] == 'yes'){
+        if($_SESSION['rod_report'] == 'yes'){
             ?>
-            <!-- <a class="mnu_left <?php if($_SESSION['pageName'] == '45'){echo 'mnu_active';}?>" href="../vaucher/balu_report_buy_hisab.php">
+             <a class="mnu_left <?php if($_SESSION['pageName'] == '45'){echo 'mnu_active';}?>" href="../vaucher/pathor_report_buy_hisab.php"> 
                 <img src="../img/logo/reportVector.svg" alt="logo" class="img_mnu">
-                পাথর ও বালু রিপোর্ট
-            </a> -->
+                রিপোর্ট
+            </a>
             <?php
         }
     ?>

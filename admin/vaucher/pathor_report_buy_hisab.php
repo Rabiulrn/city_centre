@@ -7,7 +7,7 @@
 	require '../config/config.php';
 	require '../lib/database.php';
 	$db = new Database();
-	$_SESSION['pageName'] = 'balu_report_buy_hisab';
+	$_SESSION['pageName'] = 'pathor_report_buy_hisab';
 	
 	$project_name_id = $_SESSION['project_name_id'];
 ?>
@@ -46,8 +46,6 @@
         .left_side_bar{
         	border-right: 0px solid transparent;
         }
-
-		
 	</style>
 </head>
 <body>
@@ -62,10 +60,10 @@
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
 				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
-    			<a href="../vaucher/balu_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
-    			 <a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
+    			<a href="../vaucher/pathor_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
+    			 <a href="../vaucher/pathor_report_sell_hisab.php">বিক্রয় হিসাব</a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-    			 <a href="../vaucher/balu_report_dealer.php">ডিলার</a>
+    			<a href="../vaucher/balu_report_dealer.php">ডিলার</a>
     			<!-- <a href="../vaucher/rod_report_customer.php">কাস্টমার</a> -->
     			<!-- <a href="../vaucher/rod_report_buyer.php">বায়ার</a> -->
 			</div>
@@ -91,15 +89,19 @@
 		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">ক্রয় হিসাব রিপোর্ট</h2>
 				<hr style="border: 1px solid grey; margin-top:0px;">
 		    </div>
-			
+            <!-- <div class="bar1"></div>
+            <div class="bar2"></div> -->
 		  	<div class="backcircle">
-		      <a href="../vaucher/balu_index.php">
+		      <a href="../vaucher/pathor_index.php">
 		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="40px"> Back
 		      </a>
 		    </div>
-			
-		    	    	
+
+        
+		    			    	
     		<table class="tableshow">
+               
+
     			<thead>
 	    			<tr>
 	    				<th>Buyer Id</th>
@@ -187,7 +189,7 @@
     			</thead>
     			<tbody>
 	    			<?php
-	    				$sql = "SELECT * FROM details_balu WHERE project_name_id = $project_name_id";
+	    				$sql = "SELECT * FROM details_pathor WHERE project_name_id = $project_name_id";
 	    				$result = $db->select($sql);
 	    				$row_number = mysqli_num_rows($result);
 	    				if($result && $row_number > 0){
@@ -253,7 +255,6 @@
 	    		</tbody>
     		</table>
 		</div>
-		
 	</div>
 
 	<script type="text/javascript">	

@@ -242,27 +242,28 @@
 								</div>
 							<?php
 							}
+							if($_SESSION['rod_report'] == 'yes'){
+								?>
+								<div class="pannel_con" >
+									<a href="../vaucher/balu_report_buy_hisab.php">
+										<h4 class="pannel_head" style="background-color: #0083A9;">
+											<img src="../img/logo/reportVector.svg" alt="logo" class="img_pannel">
+											রিপোর্ট
+										</h4>
+										<!-- <p class="img_pannel_con">
+											<img src="../img/logo/reportVector.svg" alt="logo" class="img_pannel">
+										</p> -->
+										<p class="pannel_foot" style="color: #0083A9;">
+											Click here
+											<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+										</p>
+									</a>	  					
+								</div>
+							<?php
+							}
 
 
-				  			if($_SESSION['rod_report'] == 'yes'){
-				  				?>
-				  				<div class="pannel_con" >
-				  					<a href="../vaucher/balu_report_buy_hisab.php">
-				  						<h5 class="pannel_head" style="background-color: #0083A9;">
-				  							<img src="../img/logo/reportVector.svg" alt="logo" class="img_pannel">
-				  							বালু রিপোর্ট
-				  						</h5>
-				  						<!-- <p class="img_pannel_con">
-				  							<img src="../img/logo/reportVector.svg" alt="logo" class="img_pannel">
-				  						</p> -->
-				  						<p class="pannel_foot" style="color: #0083A9;">
-				  							Click here
-				  							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-				  						</p>
-				  					</a>	  					
-				  				</div>
-				  			<?php
-				  			}
+				  			
 				  		?> 
 	  			</div>
 	  			

@@ -1614,7 +1614,16 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
             // }
 
-
+            var car_rent_redeem = $('#car_rent_redeem').val();
+            var credit = $("#credit").val();
+            if (car_rent_redeem == '') {
+                var total_paras = credit;
+                $('#credit').val(total_paras);
+            } else {
+                var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
+                $('#credit').val(total_paras);
+            }
+            // debit theke minus hote ai part tuku age dite hobe
 
             var debit = $("#debit").val();
             var credit = $("#credit").val();
@@ -1633,7 +1642,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             if (motor_vara == '') {
                 $('#car_rent_redeem').val('0');
             } else if (unload == '') {
-                $('#car_rent_redeem').val('0');
+                $('#unload').val(0);
             } else {
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
@@ -1642,15 +1651,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             }
 
 
-            var car_rent_redeem = $('#car_rent_redeem').val();
-            var credit = $("#credit").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
-                $('#credit').val(total_paras);
-            }
+         
         });
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
         //     var kg = $('#kg_edit').val();
@@ -1717,6 +1718,17 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#credit_popup').val(credit);
             }
 
+            var fee = $("#fee_popup").val();
+            var credit = $("#credit_popup").val();
+            var fee = parseFloat(fee);
+            if (fee == '') {
+                $('#fee').val('0');
+            } else {
+                var credit_with_fee = parseFloat(credit) + fee;
+                // alert(balance);
+                $('#credit_popup').val(credit_with_fee);
+            }
+
             var debit = $("#debit_popup").val();
             var credit = $("#credit_popup").val();
             if (debit == '') {
@@ -1765,16 +1777,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             }
 
 
-            var fee = $("#fee_popup").val();
-            var credit = $("#credit_popup").val();
-            var fee = parseFloat(fee);
-            if (fee == '') {
-                $('#fee').val('0');
-            } else {
-                var credit_with_fee = parseFloat(credit) + fee;
-                // alert(balance);
-                $('#credit_popup').val(credit_with_fee);
-            }
+           
 
 
 
@@ -2111,7 +2114,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         function myFunction() {
 
             var header = document.getElementById('city_center_id');
-            // var summary = document.getElementById('panel');
+            var summary = document.getElementById('panel');
             var details = document.getElementById('detailsNewTable2');
             var wme = window.open("", "", "width=900,height=700, scrollbars=yes");
 
@@ -2120,7 +2123,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             wme.document.write('<style>td, th{border: 1px solid #868686; padding: 4px; }#detailsNewTable2{border-collapse: collapse;}.text-center{text-align: center; margin: 6px 0px;}.summary{border-collapse: collapse; margin-bottom: 20px;}.no_print_media{display: none !important;}.hastext{text-align: right;}</style>');
 
             wme.document.write(header.outerHTML);
-            // wme.document.write(summary.outerHTML);
+            wme.document.write(summary.outerHTML);
             wme.document.write(details.outerHTML);
 
 

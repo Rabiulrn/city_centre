@@ -1609,7 +1609,15 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
             // }
 
-
+            var car_rent_redeem = $('#car_rent_redeem').val();
+            var credit = $("#credit").val();
+            if (car_rent_redeem == '') {
+                var total_paras = credit;
+                $('#credit').val(total_paras);
+            } else {
+                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
+                $('#credit').val(total_paras);
+            }
 
             var debit = $("#debit").val();
             var credit = $("#credit").val();
@@ -1628,7 +1636,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             if (motor_vara == '') {
                 $('#car_rent_redeem').val('0');
             } else if (unload == '') {
-                $('#car_rent_redeem').val('0');
+                $('#unload').val(0);
             } else {
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
@@ -1637,15 +1645,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }
 
 
-            var car_rent_redeem = $('#car_rent_redeem').val();
-            var credit = $("#credit").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit_paras').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
-                $('#credit_paras').val(total_paras);
-            }
+   
         });
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
         //     var kg = $('#kg_edit').val();
@@ -1712,6 +1712,18 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                 $('#credit_popup').val(credit);
             }
 
+            var fee = $("#fee_popup").val();
+            var credit = $("#credit_popup").val();
+            var fee = parseFloat(fee);
+            if (fee == '') {
+                $('#fee').val('0');
+            } else {
+                var credit_with_fee = parseFloat(credit) + fee;
+                // alert(balance);
+                $('#credit_popup').val(credit_with_fee);
+            }
+
+
             var debit = $("#debit_popup").val();
             var credit = $("#credit_popup").val();
             if (debit == '') {
@@ -1729,7 +1741,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             if (motor_vara == '') {
                 $('#car_rent_redeem_popup').val('0');
             } else if (unload == '') {
-                $('#car_rent_redeem_popup').val('0');
+                $('#unload_popup').val(0);
             } else {
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
@@ -1760,17 +1772,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }
 
 
-            var fee = $("#fee_popup").val();
-            var credit = $("#credit_popup").val();
-            var fee = parseFloat(fee);
-            if (fee == '') {
-                $('#fee').val('0');
-            } else {
-                var credit_with_fee = parseFloat(credit) + fee;
-                // alert(balance);
-                $('#credit_popup').val(credit_with_fee);
-            }
-
+        
 
 
 

@@ -7,14 +7,15 @@
 	require '../config/config.php';
 	require '../lib/database.php';
 	$db = new Database();
-	$_SESSION['pageName'] = 'balu_report_buy_hisab';
+	$_SESSION['pageName'] = 'pathor_report_sell_hisab';
 	
 	$project_name_id = $_SESSION['project_name_id'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ক্রয় হিসাব রিপোর্ট</title>
+	<title>বিক্রয় হিসাব রিপোর্ট</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
@@ -46,8 +47,6 @@
         .left_side_bar{
         	border-right: 0px solid transparent;
         }
-
-		
 	</style>
 </head>
 <body>
@@ -62,8 +61,8 @@
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
 				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
-    			<a href="../vaucher/balu_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
-    			 <a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
+    			<a href="../vaucher/pathor_report_buy_hisab.php" >ক্রয় হিসাব</a>
+    			<a href="../vaucher/pathor_report_sell_hisab.php" class="active">বিক্রয় হিসাব</a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
     			 <a href="../vaucher/balu_report_dealer.php">ডিলার</a>
     			<!-- <a href="../vaucher/rod_report_customer.php">কাস্টমার</a> -->
@@ -88,22 +87,19 @@
 				} 
 		  	?>
 		  	<div class="project_heading text-center" >      
-		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">ক্রয় হিসাব রিপোর্ট</h2>
+		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">বিক্রয় হিসাব রিপোর্ট</h2>
 				<hr style="border: 1px solid grey; margin-top:0px;">
 		    </div>
-			
 		  	<div class="backcircle">
-		      <a href="../vaucher/balu_index.php">
+		      <a href="../vaucher/pathor_index.php">
 		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="40px"> Back
 		      </a>
 		    </div>
-			
-		    	    	
+		    		    	
     		<table class="tableshow">
     			<thead>
 	    			<tr>
-	    				<th>Buyer Id</th>
-                        <th>Dealer Id</th>
+	    				<th>Customer Id</th>
 	    				<th>Motor Name</th>
 	    				<th>Driver Name</th>
 	    				<th>Motor Vara</th>
@@ -124,16 +120,16 @@
                         <th>Length</th>
                         <th>width</th>
                         <th>Height</th>
-                        <th>Cft</th>
+                        <th>Shifty</th>
                         <th>Inchi (-) Minus</th>
                         <th>Cft ( - ) Dropped Out</th>
                         <th>Inchi (+) Added</th>
                         <th>Points ( - ) Dropped Out</th>
-                        <th>Cft</th>
-                        <th>Total Cft</th>
+                        <th>Shift</th>
+                        <th>Total Shift</th>
 	    				<th>Para's</th>
 	    				<th>Discount</th>
-                        <th>Credit </th>
+                        <th> Credit </th>
 	    				<th>Balance</th>
                         <th>Cemeat's Para's</th>
                         <th>Ton</th>
@@ -143,9 +139,8 @@
 	    				<th>fee</th>
 	    			</tr>
 	    			<tr>
-	    				<th>বায়ার আই ডি</th>
-	    				<th>ডিলার আই ডি</th>
-                        <th>গাড়ী নাম</th>
+                        <th>কাষ্টমার আই ডি</th>
+	    				<th>গাড়ী নাম</th>
 	    				<th>ড্রাইভারের নাম</th>
 	    				<th>গাড়ী ভাড়া</th>
 	    				<th>আনলোড</th>
@@ -165,13 +160,13 @@
 	    				<th>দৈর্ঘ্যের</th>
                         <th>প্রস্ত</th>
                         <th>উচাঁ</th>
-                        <th>সিএফটি </th>
+                        <th>সেপ্টি</th>
                         <th>Inchi (-) বিয়োগ </th>
                         <th>সিএফটি ( - ) বাদ</th>
                         <th>Inchi (+) যোগ </th>
                         <th>পয়েন্ট ( - )  বাদ</th>
-                        <th>সিএফটি</th>
-                        <th>মোট সিএফটি</th>
+                        <th>সেপ্টি</th>
+                        <th>মোট সেপ্টি</th>
                         <th>দর</th>
                         <th>কমিশন</th>
                         <th>মূল</th>
@@ -187,7 +182,7 @@
     			</thead>
     			<tbody>
 	    			<?php
-	    				$sql = "SELECT * FROM details_balu WHERE project_name_id = $project_name_id";
+	    				$sql = "SELECT * FROM details_sell_pathor WHERE project_name_id = $project_name_id";
 	    				$result = $db->select($sql);
 	    				$row_number = mysqli_num_rows($result);
 	    				if($result && $row_number > 0){
@@ -196,8 +191,7 @@
 	    						echo "<tr>";
 	    						// echo "<td>".$i."</td>";
                                 // echo "<td>".$row['id']."</td>";
-                                echo "<td>".$row['buyer_id']."</td>";
-                                echo "<td>".$row['dealer_id']."</td>";
+								echo "<td>".$row['customer_id']."</td>";
 	    						echo "<td>".$row['motor_name']."</td>";
 	    						echo "<td>".$row['driver_name']."</td>";
 	    						echo "<td>".$row['motor_vara']."</td>";
@@ -236,7 +230,6 @@
 	    						echo "<td>".$row['paras']."</td>";
                                 echo "<td>".$row['discount']."</td>";
                                 echo "<td>".$row['credit']."</td>";
-								// echo "<td>".$row['balance']."</td>";
                                 echo "<td>".$row['cemeats_paras']."</td>";
                                 echo "<td>".$row['ton']."</td>";
                                 echo "<td>".$row['total_shifts']."</td>";
@@ -253,8 +246,8 @@
 	    		</tbody>
     		</table>
 		</div>
-		
 	</div>
+	
 
 	<script type="text/javascript">	
 		$('.left_side_bar').height($('.main_bar').innerHeight()).trigger('change');

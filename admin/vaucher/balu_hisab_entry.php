@@ -208,84 +208,84 @@
             <!-- <h4 class="company_header">Dealer Entry</h4> -->
             <div class="rodDelEnCon">        
             
-                <!-- <div class="backcircle">
-                  <a href="../vaucher/rod_index.php">
-                    <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
-                  </a>
-                </div> -->
-                
-                <form action="" method="post" onsubmit="return validation()">
-                    <table class="dealersTableCon">
-                        <tr>
-                          <!-- <th width="130px">Category Id</th> -->
-                          <th width="70%">Category Name</th>
-                          <!-- <th width="260px">Address</th>
-                          <th>Contact Person Name</th>
-                          <th>Mobile</th> -->
-                        </tr>
-                        <tr>
-                          <!-- <td>
-                            <input type="text" class="form-control" id="category_id" value="<?php echo $newId; ?>" disabled>
-                            <input type="hidden" name= "category_id" class="form-control" id="category_id_hidden" value="<?php echo $newId; ?>">
-                          </td> -->
-                          <td><input type="text" name = "category_name" class="form-control" id="category_name" placeholder="Enter category name..."></td>
-                          <!-- <td><textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter Company Address..." id='address' style="resize: none;"></textarea></td>
-                          <td><input type="text" name = "contact_person_name" class="form-control" id="contact_person" placeholder="Enter Contact Person Name..."></td>
-                          <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No..."></td> -->
-                        </tr>
-                        <tr>
-                          <td class="borderLess"></td>
-                          <td class="borderLess"><h4 id="companyNameErrMsg" class="text-danger"></h4></td>
-                          <!-- <td class="borderLess"><h4 id="addressErrMsg" class="text-danger"></h4></td>
-                          <td class="borderLess"><h4 id="contactPersonNameErrMsg" class="text-danger"></h4></td>
-                          <td class="borderLess"><h4 id="mobileErrMsg" class="text-danger"></h4></td> -->
-                        </tr>
-                    </table>
-                    <h4 class="text-center text-success"><?php echo $sucMsg; ?></h4>
-                    <input type="submit" name="submit" id="submitBtn" class="btn btn-primary" value="Save">
-                </form>
-            </div>
+            <!-- <div class="backcircle">
+              <a href="../vaucher/rod_index.php">
+                <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
+              </a>
+            </div> -->
+            
+            <form action="" method="post" onsubmit="return validation()">
+                <table class="dealersTableCon">
+                    <tr>
+                      <th width="130px">Category Id</th>
+                      <th width="130px">Category Name</th>
+                      <!-- <th width="260px">Address</th>
+                      <th>Contact Person Name</th>
+                      <th>Mobile</th> -->
+                    </tr>
+                    <tr>
+                      <td>
+                        <input type="text" class="form-control" id="category_id" value="<?php echo $newId; ?>" disabled>
+                        <input type="hidden" name= "category_id" class="form-control" id="category_id_hidden" value="<?php echo $newId; ?>">
+                      </td>
+                      <td><input type="text" name = "category_name" class="form-control" id="category_name" placeholder="Enter category name..."></td>
+                      <!-- <td><textarea name = "address" class = "form-control" rows = "2" placeholder = "Enter Company Address..." id='address' style="resize: none;"></textarea></td>
+                      <td><input type="text" name = "contact_person_name" class="form-control" id="contact_person" placeholder="Enter Contact Person Name..."></td>
+                      <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile No..."></td> -->
+                    </tr>
+                    <tr>
+                      <td class="borderLess"></td>
+                      <td class="borderLess"><h4 id="companyNameErrMsg" class="text-danger"></h4></td>
+                      <!-- <td class="borderLess"><h4 id="addressErrMsg" class="text-danger"></h4></td>
+                      <td class="borderLess"><h4 id="contactPersonNameErrMsg" class="text-danger"></h4></td>
+                      <td class="borderLess"><h4 id="mobileErrMsg" class="text-danger"></h4></td> -->
+                    </tr>
+                </table>
+                <h4 class="text-center text-success"><?php echo $sucMsg; ?></h4>
+                <input type="submit" name="submit" id="submitBtn" class="btn btn-primary" value="Save">
+            </form>
+        </div>
 
-            <div class="showDealerCon">
-              <table >
-                <tr class="bg-primary">
-                  <!-- <th>Category Id</th> -->
-                  <th>Category Name</th>
-                  <!-- <th>Address</th>
-                  <th>Contact Person Name</th>
-                  <th>Mobile</th> -->
-                  <th>Delete</th>
-                  <th>Edit</th>
-                </tr>
-                <?php
-                  $sql = "SELECT * FROM balu_category";
-                  $show = $db->select($sql);
-                  if ($show) {
-                      while ($rows = $show->fetch_assoc()){
-                          echo "<tr>";
-                              // echo "<td>". $rows['category_id'] . "</td>";
-                              echo "<td>". $rows['category_name'] . "</td>";
-                            //   echo "<td>". $rows['address'] . "</td>";
-                            //   echo "<td>". $rows['contact_person_name'] . "</td>";
-                            //   echo "<td>". $rows['mobile'] . "</td>";
-                              
-                              if($delete_data_permission == 'yes'){
-                                echo "<td width='78px'><a class='btn btn-danger dealerDelete' data_delete_id=" . $rows['id'] . ">Delete</a></td>";
-                              } else {
-                                echo '<td width="78px"><a class="btn btn-danger edPermit" disabled>Delete</a></td>';
-                              }
+        <div class="showDealerCon">
+          <table >
+            <tr class="bg-primary">
+              <th>Category Id</th>
+              <th>Category Name</th>
+              <!-- <th>Address</th>
+              <th>Contact Person Name</th>
+              <th>Mobile</th> -->
+              <th>Delete</th>
+              <th>Edit</th>
+            </tr>
+            <?php
+              $sql = "SELECT * FROM balu_category";
+              $show = $db->select($sql);
+              if ($show) {
+                  while ($rows = $show->fetch_assoc()){
+                      echo "<tr>";
+                          echo "<td>". $rows['category_id'] . "</td>";
+                          echo "<td>". $rows['category_name'] . "</td>";
+                        //   echo "<td>". $rows['address'] . "</td>";
+                        //   echo "<td>". $rows['contact_person_name'] . "</td>";
+                        //   echo "<td>". $rows['mobile'] . "</td>";
+                          
+                          if($delete_data_permission == 'yes'){
+                            echo "<td width='78px'><a class='btn btn-danger dealerDelete' data_delete_id=" . $rows['id'] . ">Delete</a></td>";
+                          } else {
+                            echo '<td width="78px"><a class="btn btn-danger edPermit" disabled>Delete</a></td>';
+                          }
 
-                              if($edit_data_permission == 'yes'){
-                                echo "<td width='60px'><a class='btn btn-success' onclick='displayupdate(this)'>Edit</a></td>";
-                              } else {
-                                echo '<td width="60px"><a class="btn btn-success edPermit" disabled>Edit</a></td>';
-                              }                              
-                          echo "</tr>";
-                      }
+                          if($edit_data_permission == 'yes'){
+                            echo "<td width='60px'><a class='btn btn-success' onclick='displayupdate(this)'>Edit</a></td>";
+                          } else {
+                            echo '<td width="60px"><a class="btn btn-success edPermit" disabled>Edit</a></td>';
+                          }                              
+                      echo "</tr>";
                   }
-                ?>
-              </table>
-            </div>
+              }
+            ?>
+          </table>
+        </div>
         </div>
     </div>
     <?php include '../others_page/delete_permission_modal.php';  ?>
