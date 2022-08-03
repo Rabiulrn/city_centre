@@ -84,6 +84,7 @@
                           else if($_SESSION['pageName'] == 'balu_customer_entry'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_buyer_entry'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_stocks'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'balu_report_buy_hisab'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_report_sell_hisab'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_report_dealer'){echo 'active';}
 
@@ -101,6 +102,7 @@
                          else if($_SESSION['pageName'] == 'pathor_customer_entry'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_buyer_entry'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_stocks'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_report_buy_hisab'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_report_sell_hisab'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_report_dealer'){echo 'active';}
 
@@ -235,6 +237,3 @@
   </form> -->
     </div>
 </nav>
-
-
-

@@ -16,246 +16,6 @@ $delete_data_permission = $_SESSION['delete_data'];
 $sucMsg = "";
 
 
-//Start Sql For Summary 500W/60G
-        //Buy table data
-        $mm0450_rod500_buy = 0;
-        $sql = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%500W%' AND (mm = '04.50 mm' OR mm = '04.50mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $mm0450_rod500_buy = $row['kg'];
-                if(is_null($mm0450_rod500_buy)){
-                    $mm0450_rod500_buy = 0;
-                }
-            }
-        } else{
-            $mm0450_rod500_buy = 0;
-        }
-
-
-        $mm06_rod500_buy = 0;
-        $mm08_rod500_buy = 0;
-        $mm10_rod500_buy = 0;
-        $mm12_rod500_buy = 0;
-        $mm16_rod500_buy = 0;
-        $mm20_rod500_buy = 0;
-        $mm22_rod500_buy = 0;
-        $mm25_rod500_buy = 0;
-        $mm32_rod500_buy = 0;
-        $mm42_rod500_buy = 0;
-
-        $mmRodArry = array('06','08','10','12','16','20', '22','25','32','42');
-        $arrlength = count($mmRodArry);
-
-        for($i=0; $i<$arrlength; $i++){
-            // echo $mmRodArry[$i];
-            // echo "<br>";
-
-            $sql = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%500W%' AND (mm = '$mmRodArry[$i] mm' OR mm = '$mmRodArry[$i]mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-            $result = $db->select($sql);
-            if($result->num_rows > 0){
-                while($row = $result->fetch_assoc()){
-                    ${"mm$mmRodArry[$i]_rod500_buy"} = $row['kg'];
-                    if(is_null(${"mm$mmRodArry[$i]_rod500_buy"})){
-                        ${"mm$mmRodArry[$i]_rod500_buy"} = 0;
-                    }
-                }
-            } else{
-                ${"mm$mmRodArry[$i]_rod500_buy"} = 0;
-            }
-        }
-        $total_kg_rod500_buy = $mm0450_rod500_buy + $mm06_rod500_buy + $mm08_rod500_buy + $mm10_rod500_buy + $mm12_rod500_buy + $mm16_rod500_buy + $mm20_rod500_buy + $mm22_rod500_buy + $mm25_rod500_buy + $mm32_rod500_buy + $mm42_rod500_buy;
-        
-
-        //sell table data
-        $mm0450_rod500_sell = 0;
-        $sql = "SELECT SUM(kg) as kg FROM details_sell WHERE particulars LIKE '%500W%' AND (mm = '04.50 mm' OR mm = '04.50mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $mm0450_rod500_sell = $row['kg'];
-                if(is_null($mm0450_rod500_sell)){
-                    $mm0450_rod500_sell = 0;
-                }
-            }
-        } else{
-            $mm0450_rod500_sell = 0;
-        }
-
-        
-
-
-        $mm06_rod500_sell = 0;
-        $mm08_rod500_sell = 0;
-        $mm10_rod500_sell = 0;
-        $mm12_rod500_sell = 0;
-        $mm16_rod500_sell = 0;
-        $mm20_rod500_sell = 0;
-        $mm22_rod500_sell = 0;
-        $mm25_rod500_sell = 0;
-        $mm32_rod500_sell = 0;
-        $mm42_rod500_sell = 0;
-
-        $mmRodArry = array('06','08','10','12','16','20', '22','25','32','42');
-        $arrlength = count($mmRodArry);
-
-        for($i=0; $i<$arrlength; $i++){
-            // echo $mmRodArry[$i];
-            // echo "<br>";
-
-            $sql = "SELECT SUM(kg) as kg FROM details_sell WHERE particulars LIKE '%500W%' AND (mm = '$mmRodArry[$i] mm' OR mm = '$mmRodArry[$i]mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-            $result = $db->select($sql);
-            if($result->num_rows > 0){
-                while($row = $result->fetch_assoc()){
-                    ${"mm$mmRodArry[$i]_rod500_sell"} = $row['kg'];
-                    if(is_null(${"mm$mmRodArry[$i]_rod500_sell"})){
-                        ${"mm$mmRodArry[$i]_rod500_sell"} = 0;
-                    }
-                }
-            } else{
-                ${"mm$mmRodArry[$i]_rod500_sell"} = 0;
-            }
-        }
-        
-        $total_kg_rod500_sell = $mm0450_rod500_sell + $mm06_rod500_sell + $mm08_rod500_sell + $mm10_rod500_sell + $mm12_rod500_sell + $mm16_rod500_sell + $mm20_rod500_sell + $mm22_rod500_sell + $mm25_rod500_sell + $mm32_rod500_sell + $mm42_rod500_sell;
-
-
-        $mm0450_rod500 = $mm0450_rod500_buy - $mm0450_rod500_sell;
-        $mm06_rod500 = $mm06_rod500_buy - $mm06_rod500_sell;
-        $mm08_rod500 = $mm08_rod500_buy - $mm08_rod500_sell;
-        // echo $mm8_rod500_buy.'<br>'.$mm8_rod500_sell;
-        $mm10_rod500 = $mm10_rod500_buy - $mm10_rod500_sell;
-        $mm12_rod500 = $mm12_rod500_buy - $mm12_rod500_sell;
-        $mm16_rod500 = $mm16_rod500_buy - $mm16_rod500_sell;
-        $mm20_rod500 = $mm20_rod500_buy - $mm20_rod500_sell;
-        $mm22_rod500 = $mm22_rod500_buy - $mm22_rod500_sell;
-        $mm25_rod500 = $mm25_rod500_buy - $mm25_rod500_sell;
-        $mm32_rod500 = $mm32_rod500_buy - $mm32_rod500_sell;
-        $mm42_rod500 = $mm42_rod500_buy - $mm42_rod500_sell;
-
-
-        $total_kg_rod500 = $total_kg_rod500_buy - $total_kg_rod500_sell;
-    //End Sql For Summary 500W/60G
-
-    //Start Sql For Summary 400W/60G
-        //Buy table data
-        $mm0450_rod400_buy = 0;
-        $sql = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%400W%' AND (mm = '04.50 mm' OR mm = '04.50mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $mm0450_rod400_buy = $row['kg'];
-                if(is_null($mm0450_rod400_buy)){
-                    $mm0450_rod400_buy = 0;
-                }
-            }
-        } else{
-            $mm0450_rod400_buy = 0;
-        }
-
-
-        $mm06_rod400_buy = 0;
-        $mm08_rod400_buy = 0;
-        $mm10_rod400_buy = 0;
-        $mm12_rod400_buy = 0;
-        $mm16_rod400_buy = 0;
-        $mm20_rod400_buy = 0;
-        $mm22_rod400_buy = 0;
-        $mm25_rod400_buy = 0;
-        $mm32_rod400_buy = 0;
-        $mm42_rod400_buy = 0;
-
-        $mmRodArry2 = array('06','08','10','12','16','20', '22','25','32','42');
-        $arrlength2 = count($mmRodArry2);
-
-        for($j=0; $j<$arrlength2; $j++){
-            // echo $mmRodArry2[$j];
-            // echo "<br>";
-
-            $sql = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%400W%' AND (mm = '$mmRodArry2[$j] mm' OR mm = '$mmRodArry2[$j]mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-            $result = $db->select($sql);
-            if($result->num_rows > 0){
-                while($row = $result->fetch_assoc()){
-                    ${"mm$mmRodArry2[$j]_rod400_buy"} = $row['kg'];
-                    if(is_null(${"mm$mmRodArry2[$j]_rod400_buy"})){
-                        ${"mm$mmRodArry2[$j]_rod400_buy"} = 0;
-                    }
-                }
-            } else{
-                ${"mm$mmRodArry2[$j]_rod400_buy"} = 0;
-            }
-        }
-        $total_kg_rod400_buy = $mm0450_rod400_buy + $mm06_rod400_buy + $mm08_rod400_buy + $mm10_rod400_buy + $mm12_rod400_buy + $mm16_rod400_buy + $mm20_rod400_buy + $mm22_rod400_buy + $mm25_rod400_buy + $mm32_rod400_buy + $mm42_rod400_buy;
-
-        //sell table data
-        $mm0450_rod400_sell = 0;
-        $sql = "SELECT SUM(kg) as kg FROM details_sell WHERE particulars LIKE '%400W%' AND (mm = '04.50 mm' OR mm = '04.50mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $mm0450_rod400_sell = $row['kg'];
-                if(is_null($mm0450_rod400_sell)){
-                    $mm0450_rod400_sell = 0;
-                }
-            }
-        } else{
-            $mm0450_rod400_sell = 0;
-        }
-
-
-        $mm06_rod400_sell = 0;
-        $mm08_rod400_sell = 0;
-        $mm10_rod400_sell = 0;
-        $mm12_rod400_sell = 0;
-        $mm16_rod400_sell = 0;
-        $mm20_rod400_sell = 0;
-        $mm22_rod400_sell = 0;
-        $mm25_rod400_sell = 0;
-        $mm32_rod400_sell = 0;
-        $mm42_rod400_sell = 0;
-
-        $mmRodArry2 = array('06','08','10','12','16','20', '22','25','32','42');
-        $arrlength2 = count($mmRodArry2);
-
-        for($j=0; $j<$arrlength2; $j++){
-            // echo $mmRodArry2[$j];
-            // echo "<br>";
-
-            $sql = "SELECT SUM(kg) as kg FROM details_sell WHERE particulars LIKE '%400W%' AND (mm = '$mmRodArry2[$j] mm' OR mm = '$mmRodArry2[$j]mm') AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-            $result = $db->select($sql);
-            if($result->num_rows > 0){
-                while($row = $result->fetch_assoc()){
-                    ${"mm$mmRodArry2[$j]_rod400_sell"} = $row['kg'];
-                    if(is_null(${"mm$mmRodArry2[$j]_rod400_sell"})){
-                        ${"mm$mmRodArry2[$j]_rod400_sell"} = 0;
-                    }
-                }
-            } else{
-                ${"mm$mmRodArry2[$j]_rod400_sell"} = 0;
-            }
-        }
-        $total_kg_rod400_sell = $mm0450_rod400_sell + $mm06_rod400_sell + $mm08_rod400_sell + $mm10_rod400_sell + $mm12_rod400_sell + $mm16_rod400_sell + $mm20_rod400_sell + $mm22_rod400_sell + $mm25_rod400_sell + $mm32_rod400_sell + $mm42_rod400_sell;
-
-
-
-
-        $mm0450_rod400 = $mm0450_rod400_buy - $mm0450_rod400_sell;
-        $mm06_rod400 = $mm06_rod400_buy - $mm06_rod400_sell;
-        $mm08_rod400 = $mm08_rod400_buy - $mm08_rod400_sell;
-        $mm10_rod400 = $mm10_rod400_buy - $mm10_rod400_sell;
-        $mm12_rod400 = $mm12_rod400_buy - $mm12_rod400_sell;
-        $mm16_rod400 = $mm16_rod400_buy - $mm16_rod400_sell;
-        $mm20_rod400 = $mm20_rod400_buy - $mm20_rod400_sell;
-        $mm22_rod400 = $mm22_rod400_buy - $mm22_rod400_sell;
-        $mm25_rod400 = $mm25_rod400_buy - $mm25_rod400_sell;
-        $mm32_rod400 = $mm32_rod400_buy - $mm32_rod400_sell;
-        $mm42_rod400 = $mm42_rod400_buy - $mm42_rod400_sell;
-
-
-        $total_kg_rod400 = $total_kg_rod400_buy - $total_kg_rod400_sell;
-
-    //End Sql For Summary 400W/60G
-
 
     //Start Gari vara
         $sql = "SELECT SUM(motor_vara) as motor_vara FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
@@ -289,33 +49,11 @@ $sucMsg = "";
     //End khalas/Unload
 
     // Start total total_motor
-        $sql = "SELECT SUM(motor) as motor FROM details_sell WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $total_motor = $row['motor'];
-                if(is_null($total_motor)){
-                    $total_motor = 0;
-                }
-            }
-        } else{
-            $total_motor = 0;
-        }
+       
     // End total total_motor
 
     //Start GB Bank Ganti
-        $sql = "SELECT SUM(debit) as debit FROM details_sell WHERE particulars = 'BG' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $gb_bank_ganti = $row['debit'];
-                if(is_null($gb_bank_ganti)){
-                    $gb_bank_ganti = 0;
-                }
-            }
-        } else{
-            $gb_bank_ganti = 0;
-        }
+      
         
     //End GB Bank Ganti
     // Start total total_kg
@@ -380,22 +118,14 @@ $sucMsg = "";
     // End total total_Balance/mot_jer
 
     //Start Total para/mot_mul_khoros_shoho
-        $sql = "SELECT SUM(total_paras) as total_paras FROM details_sell WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $total_paras = $row['total_paras'];
-                if(is_null($total_paras)){
-                    $total_paras = 0;
-                }
-            }
-        } else{
-            $total_paras = 0;
-        }
+
+    $vara_credit = $motor_vara_and_unload + $total_credit;
+
+
+       
     //End Total para/mot_mul_khoros_shoho
 
-    $nij_paona = $total_debit - $total_credit;
-    $company_paona = ($total_debit - $total_credit) - $gb_bank_ganti;
+   
 ?>
 
 
@@ -529,7 +259,7 @@ $sucMsg = "";
 			<td class="hastext">25mm 400W/60G</td>
 			<td><?php echo $mm25_rod400; ?></td> -->
 			<td class="hastext">ম‌োট মূল খরচ সহঃ</td>
-            <td><?php echo $total_paras; ?></td>
+            <td><?php echo $vara_credit; ?></td>
 			<td></td>			
             <td></td>
 		</tr>
@@ -582,15 +312,16 @@ $sucMsg = "";
           <!-- <td width="150">Dealer ID</td> -->
           <!-- <td class="widthPercent1">Type</td> -->
         
-          <td class="widthPercent1">Information</td>
+          <!-- <td class="widthPercent1">Information</td> -->
           <td class="widthPercent1">Motor Name</td>
           <td class="widthPercent1">Driver Name</td>
           <td class="widthPercent1">Motor Vara</td>
           <td class="widthPercent1">Unload</td>
           <td class="widthPercent1">Cars rent & Redeem</td>
+          <td class="widthPercent1">Information</td>
          
           <td class="widthPercent1">SL</td>
-          <td class="widthPercent2">Particulars</td>
+          <!-- <td class="widthPercent2">Particulars</td> -->
           <td class="widthPercent1">Voucher No.</td>
           <td class="widthPercent1">Address</td>
           <td class="widthPercent1">Motor Number</td>
@@ -598,6 +329,7 @@ $sucMsg = "";
           <td class="widthPercent1">Delivery Date</td>
           <td class="widthPercent2">Date</td>
           <td class="widthPercent2">Partculars</td>
+          <td class="widthPercent2">Particulars</td>
           <td class="widthPercent2">Debit</td>
           <td class="widthPercent3">Ton & Kg</td>
           <td class="widthPercent3">Length</td>
@@ -615,10 +347,10 @@ $sucMsg = "";
           <td class="widthPercent3">Discount</td>
           <td class="widthPercent3">Credit</td>
           <td class="widthPercent3">Balance</td>
-          <td class="widthPercent3">Cemeat's Para's</td>
+          <td style="display:none;" class="widthPercent3">Cemeat's Para's</td>
          
-          <td class="widthPercent3">Total Cft</td>
-          <td class="widthPercent3">Tons</td>
+          <td style="display:none;" class="widthPercent3">Total Cft</td>
+          <td style="display:none;" class="widthPercent3">Tons</td>
           <td class="widthPercent3">Bank Name</td>
           <td class="widthPercent3">Fee</td>
         </tr>
@@ -627,15 +359,16 @@ $sucMsg = "";
           <!-- <td>ডিলার আই ডি</td> -->
           <!-- <td>টাইপ</td> -->
          
-          <td>মালের বিবরণ</td>
+          <!-- <td>মালের বিবরণ</td> -->
           <td>গাড়ী নাম</td>
           <td>ড্রাইভারের নাম</td>
           <td>গাড়ী ভাড়া</td>
           <td>আনলোড</td>
           <td>গাড়ী ভাড়া ও খালাস</td>
+          <td>মালের বিবরণ</td>
         
           <td>ক্রমিক</td>
-          <td>ব‌িবরণ</td>
+          <!-- <td>ব‌িবরণ</td> -->
           <td>ভাউচার নং</td>
           <td>ঠিকানা</td>
           <td>গাড়ী নাম্বার</td>
@@ -643,8 +376,9 @@ $sucMsg = "";
           <td>ডেলিভারী তারিখ</td>
           <td>তারিখ</td>
           <td>মারফ‌োত নাম</td>
+          <td>ব‌িবরণ</td>
           <td>জমা টাকা</td>
-          <td>টোন ও কেজি</td>
+          <td>টন ও কেজি</td>
           <td>দৈর্ঘ্যের</td>
           <td>প্রস্ত</td>
           <td>উচাঁ</td>
@@ -655,15 +389,15 @@ $sucMsg = "";
           <td>পয়েন্ট ( - ) বাদ</td>
           <td>সিএফটি</td>
           <td>মোট সিএফটি</td>
-          <td>টোন</td>
+          <td>টন</td>
           <td>দর</td>
           <td>কমিশন</td>
           <td>মূল</td>
           <td>অবশিষ্ট</td>
-          <td>গাড়ী ভাড়া / লেবার সহ</td>
+          <td style="display:none;">গাড়ী ভাড়া / লেবার সহ</td>
         
-          <td>মোট সিএফটি</td>
-          <td>টোন</td>
+          <td style="display:none;">মোট সিএফটি</td>
+          <td style="display:none;">টন</td>
           <td>ব্যাংক নাম</td>
           <td>ফি</td>
 
@@ -701,9 +435,9 @@ $sucMsg = "";
          
          
 
-          <td>
+          <!-- <td>
             <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter information...">
-          </td>
+          </td> -->
 
           <!-- <td> -->
           <!-- <input type="text" name="delear_id" class="form-control-balu" id="delear_id" placeholder="Enter delear_id..."> -->
@@ -739,6 +473,9 @@ $sucMsg = "";
           <td>
             <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
           </td>
+          <td>
+            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter information...">
+          </td>
   
 <?PHP
           $sql = "SELECT sl FROM details_balu ORDER BY id DESC LIMIT 1";
@@ -758,25 +495,7 @@ $sucMsg = "";
           <td>
             <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no..." style="cursor:not-allowed;">
           </td>
-          <td>
-                      <?php
-                        // var parti_val = $('#car_rent_redeem').val();
-	                        $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
-	                        $all_particular = $db->select($sql);
-	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
-	                          echo '<option value="none">Select...</option>';
-	                          if($all_particular->num_rows > 0){
-	                              while($row = $all_particular->fetch_assoc()){
-                                    $particulars = $row['category_name'];
-	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
-	                              }
-	                            } else{
-	                              echo '<option value="none">0 Result</option>';
-	                            }
-	                          echo '</select>';
-	                      ?>
-
-	                    </td>
+         
           <td>
             <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter voucher no..." required>
           </td>
@@ -798,6 +517,25 @@ $sucMsg = "";
           <td>
             <input type="text" name="partculars" class="form-control-balu" id="partculars" placeholder="Marfot...">
           </td>
+          <td>
+                      <?php
+                        // var parti_val = $('#car_rent_redeem').val();
+	                        $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
+	                        $all_particular = $db->select($sql);
+	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
+	                          echo '<option value="none">Select...</option>';
+	                          if($all_particular->num_rows > 0){
+	                              while($row = $all_particular->fetch_assoc()){
+                                    $particulars = $row['category_name'];
+	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
+	                              }
+	                            } else{
+	                              echo '<option value="none">0 Result</option>';
+	                            }
+	                          echo '</select>';
+	                      ?>
+
+	                    </td>
 
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="Debit...">
@@ -851,15 +589,15 @@ $sucMsg = "";
           <td>
             <input type="text" name="balance" class="form-control-balu value-calc" id="balance" placeholder="Balance...">
           </td>
-          <td>
+          <td style="display:none;">
             <input type="text" onkeypress="return isNumber(event)" name="cemeats_paras" class="form-control-balu value-calc" id="cemeats_paras" placeholder="Cemeats_paras...">
           </td>
           
 
-          <td>
+          <td style="display:none;">
             <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-cft '00 mm'...">
           </td>
-          <td>
+          <td style="display:none;">
             <input type="text" onkeypress="return isNumber(event)" name="tons" name="tons" class="form-control-balu value-calc" id="tons" placeholder="Tons...">
           </td>
           <td>

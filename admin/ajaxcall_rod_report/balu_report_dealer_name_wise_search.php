@@ -45,63 +45,63 @@
 			
 
 			// Details Showing Code Here
-			$rod500w = 0;
-			$rod400w = 0;
+			// $rod500w = 0;
+			// $rod400w = 0;
 
-			$sql2 = "SELECT SUM(kg) as kg FROM details_balu WHERE particulars LIKE '%500W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
-	        $result2 = $db->select($sql2);
-	        if($result2->num_rows > 0){
-	            while($row2 = $result2->fetch_assoc()){
-	                $rod500w = $row2['kg'];
-	                if(is_null($rod500w)){
-	                    $rod500w = 0;
-	                }
-	            }
-	        } else{
-	            $rod500w = 0;
-	        }
-	        $sql2 = "SELECT SUM(kg) as kg FROM details_balu WHERE particulars LIKE '%400W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
-	        $result2 = $db->select($sql2);
-	        if($result2->num_rows > 0){
-	            while($row2 = $result2->fetch_assoc()){
-	                $rod400w = $row2['kg'];
-	                if(is_null($rod400w)){
-	                    $rod400w = 0;
-	                }
-	            }
-	        } else{
-	            $rod400w = 0;
-	        }
-	        $rod_total_500w_400W = $rod400w + $rod500w;
+			// $sql2 = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%500W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+	        // $result2 = $db->select($sql2);
+	        // if($result2->num_rows > 0){
+	        //     while($row2 = $result2->fetch_assoc()){
+	        //         $rod500w = $row2['kg'];
+	        //         if(is_null($rod500w)){
+	        //             $rod500w = 0;
+	        //         }
+	        //     }
+	        // } else{
+	        //     $rod500w = 0;
+	        // }
+	        // $sql2 = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%400W%' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+	        // $result2 = $db->select($sql2);
+	        // if($result2->num_rows > 0){
+	        //     while($row2 = $result2->fetch_assoc()){
+	        //         $rod400w = $row2['kg'];
+	        //         if(is_null($rod400w)){
+	        //             $rod400w = 0;
+	        //         }
+	        //     }
+	        // } else{
+	        //     $rod400w = 0;
+	        // }
+	        // $rod_total_500w_400W = $rod400w + $rod500w;
 			
-	        // Start total total_motor
-	        	$total_motor = 0;
-		        $sql2 = "SELECT SUM(motor) as motor FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
-		        $result2 = $db->select($sql2);
-		        if($result2->num_rows > 0){
-		            while($row2 = $result2->fetch_assoc()){
-		                $total_motor = $row2['motor'];
-		                if(is_null($total_motor)){
-		                    $total_motor = 0;
-		                }
-		            }
-		        } else{
-		            $total_motor = 0;
-		        }
+	        // // Start total total_motor
+	        // 	$total_motor = 0;
+		    //     $sql2 = "SELECT SUM(motor) as motor FROM details WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+		    //     $result2 = $db->select($sql2);
+		    //     if($result2->num_rows > 0){
+		    //         while($row2 = $result2->fetch_assoc()){
+		    //             $total_motor = $row2['motor'];
+		    //             if(is_null($total_motor)){
+		    //                 $total_motor = 0;
+		    //             }
+		    //         }
+		    //     } else{
+		    //         $total_motor = 0;
+		    //     }
 		    // End total total_motor
 	        //Start Gari vara
 	        	$motor_cash = 0;
-		        $sql2 = "SELECT SUM(motor_cash) as motor_cash FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
-		                $motor_cash = $row2['motor_cash'];
-		                if(is_null($motor_cash)){
-		                    $motor_cash = 0;
+		                $motor_cash = $row2['motor_vara'];
+		                if(is_null($motor_vara)){
+		                    $motor_vara = 0;
 		                }
 		            }
 		        } else{
-		            $motor_cash = 0;
+		            $motor_vara = 0;
 		        }
 		    //End Gari vara
 
@@ -119,7 +119,7 @@
 		        } else{
 		            $unload = 0;
 		        }
-		        $motor_cash_and_unload = $motor_cash + $unload;
+		        $motor_vara_and_unload = $motor_vara + $unload;
 		    //End khalas/Unload
 		    // Start total total_credit/mot_mul
 		        $total_credit = 0;
@@ -186,18 +186,18 @@
 		        
 		    //End GB Bank Ganti
 		//Start Total para/mot_mul_khoros_shoho
-		        $total_paras = 0;
-		        $sql2 = "SELECT SUM(total_paras) as total_paras FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+		        $paras = 0;
+		        $sql2 = "SELECT SUM(paras) as paras FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
-		                $total_paras = $row2['total_paras'];
-		                if(is_null($total_paras)){
-		                    $total_paras = 0;
+		                $total_paras = $row2['paras'];
+		                if(is_null($paras)){
+		                    $paras = 0;
 		                }
 		            }
 		        } else{
-		            $total_paras = 0;
+		            $paras = 0;
 		        }
 		    //End Total para/mot_mul_khoros_shoho
 
@@ -209,10 +209,10 @@
 		        echo "<table style='width: 100%; border-collapse:collapse;'>";
 		        echo "<tr><td colspan='8' style='border: 0px; height: 15px;'></td></tr>";
 		        echo "<tr>";
-		        echo "<td style='width: 170px; border: 1px solid #777 !important;'>Rod 500W/60G, Total Kg:</td>";
-		        echo "<td style='border: 1px solid #777 !important;'>".$rod500w." kg</td>";
-		        echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ীঃ</td>";
-		        echo "<td style='border: 1px solid #777 !important;'>".$total_motor." টি</td>";
+		        // echo "<td style='width: 170px; border: 1px solid #777 !important;'>Rod 500W/60G, Total Kg:</td>";
+		        // echo "<td style='border: 1px solid #777 !important;'>".$rod500w." kg</td>";
+		        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ীঃ</td>";
+		        // echo "<td style='border: 1px solid #777 !important;'>".$total_motor." টি</td>";
 		        echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
 		        echo "<td style='border: 1px solid #777 !important;'>".$motor_cash." টাকা</td>";
 		        echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
@@ -221,8 +221,8 @@
 
 
 		        echo "<tr>";
-		        echo "<td style='border: 1px solid #777 !important;'>Rod 400W/60G, Total Kg:</td>";
-		        echo "<td style='border: 1px solid #777 !important;'>".$rod400w." kg</td>";
+		        // echo "<td style='border: 1px solid #777 !important;'>Rod 400W/60G, Total Kg:</td>";
+		        // echo "<td style='border: 1px solid #777 !important;'>".$rod400w." kg</td>";
 		        echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
 		        echo "<td style='border: 1px solid #777 !important;'>".$total_credit." টাকা</td>";
 		        echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট জমাঃ</td>";
@@ -233,8 +233,8 @@
 
 
 		        echo "<tr>";
-		        echo "<td style='text-align: right; border: 1px solid #777 !important;'>Total Kg:</td>";
-		        echo "<td style='border: 1px solid #777 !important;'>".$rod_total_500w_400W." kg</td>";
+		        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>Total Kg:</td>";
+		        // echo "<td style='border: 1px solid #777 !important;'>".$rod_total_500w_400W." kg</td>";
 		        echo "<td style='text-align: right; border: 1px solid #777 !important;'>কোম্পানি পাওনাঃ</td>";
 		        echo "<td style='border: 1px solid #777 !important;'>". $company_paona." kg</td>";
 		        echo "<td style='text-align: right; border: 1px solid #777 !important;'>নিজ পাওনাঃ</td>";

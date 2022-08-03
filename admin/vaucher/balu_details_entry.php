@@ -1514,6 +1514,20 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#credit').val(credit.toFixed(2));
             }
 
+if(kg == ''){
+    $('#paras').attr("placeholder", "per cft");
+    var kg = $('#shifty').val();
+            var paras = $('#paras').val();
+            if (kg == '') {
+                $('#credit').val('0');
+            } else if (paras == '') {
+                $('#credit').val('0');
+            } else {
+                var credit = kg * paras;
+                //  alert(credit);
+                $('#credit').val(credit.toFixed(2));
+            }
+}
 
             //shifty
             var length = $('#length').val();
@@ -1526,11 +1540,13 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var points_dropped_out = $('#points_dropped_out').val();
             if (length == '') {
                 $('#shifty').val('0');
-            } else if (width == '') {
-                $('#shifty').val('0');
-            } else if (height == '') {
-                $('#shifty').val('0');
-            }
+                $("#kg").attr("readonly", false);
+            } 
+            // else if (width == '') {
+            //     $('#shifty').val('0');
+            // } else if (height == '') {
+            //     $('#shifty').val('0');
+            // }
             // else if (inchi_minus == '') {
             //     $('#shifty').val('0');
             // }
@@ -1538,6 +1554,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             //     $('#kg').val('0');
             // }
             else {
+                $("#kg").attr("placeholder", "not applicable").attr("readonly", true);
+                $("#kg").attr("readonly", true);
                 var shifty = length * width * height;
                 if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
                     var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
@@ -1569,10 +1587,23 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var credit = $("#credit").val();
 
             if (ton_kg != '') {
-                $("#length").attr("value", "not applicable");
+                $("#length").attr("placeholder", "not applicable").attr("readonly", true);
+                $("#length").attr("readonly", true);
                 // $('#length').val('not applicable');
-                $('#width').val('not applicable');
-                $('#height').val('not applicable');
+                $('#width').attr("placeholder", "not applicable");
+                $("#width").attr("readonly", true);
+                $('#height').attr("placeholder", "not applicable");
+                $("#height").attr("readonly", true);
+                // $('#').attr("value", "not applicable");
+                $('#inchi_minus').attr("placeholder", "not applicable");
+                $("#inchi_minus").attr("readonly", true);
+                $('#cft_dropped_out').attr("placeholder", "not applicable");
+                $("#cft_dropped_out").attr("readonly", true);
+                $('#inchi_added').attr("placeholder", "not applicable");
+                $("#inchi_added").attr("readonly", true);
+                $('#points_dropped_out').attr("placeholder", "not applicable");
+                $("#points_dropped_out").attr("readonly", true);
+                // $('#').attr("value", "not applicable");
                 $('#ton').val(ton_kg);
                 $('#tons').val(ton_kg);
 
@@ -1582,6 +1613,22 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#total_shift').val(ton_to_cft);
                 $('#total_shifts').val(ton_to_cft);
             } else {
+                $("#length").attr("placeholder", "length");
+                $("#length").attr("readonly", false);
+                // $('#length').val('not applicable');
+                $('#width').attr("placeholder", "width");
+                $("#width").attr("readonly", false);
+                $('#height').attr("placeholder", "height");
+                $("#height").attr("readonly", false);
+                $('#inchi_minus').attr("placeholder", "inchi_minus");
+                $("#inchi_minus").attr("readonly", false);
+                $('#cft_dropped_out').attr("placeholder", "cft_dropped_out");
+                $("#cft_dropped_out").attr("readonly", false);
+                $('#inchi_added').attr("placeholder", "inchi_added");
+                $("#inchi_added").attr("readonly", false);
+                $('#points_dropped_out').attr("placeholder", "points_dropped_out");
+                $("#points_dropped_out").attr("readonly", false);
+
                 var credit = ton * paras;
                 // alert(credit);
                 $('#credit').val(credit.toFixed(3));
