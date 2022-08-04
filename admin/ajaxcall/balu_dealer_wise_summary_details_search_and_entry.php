@@ -348,7 +348,7 @@ $sucMsg = "";
           <td class="widthPercent3">Credit</td>
           <td class="widthPercent3">Balance</td>
           <td style="display:none;" class="widthPercent3">Cemeat's Para's</td>
-         
+          <td style="display:none;" class="widthPercent3">Ton</td>
           <td style="display:none;" class="widthPercent3">Total Cft</td>
           <td style="display:none;" class="widthPercent3">Tons</td>
           <td class="widthPercent3">Bank Name</td>
@@ -395,7 +395,7 @@ $sucMsg = "";
           <td>মূল</td>
           <td>অবশিষ্ট</td>
           <td style="display:none;">গাড়ী ভাড়া / লেবার সহ</td>
-        
+          <td style="display:none;">টন</td>
           <td style="display:none;">মোট সিএফটি</td>
           <td style="display:none;">টন</td>
           <td>ব্যাংক নাম</td>

@@ -230,7 +230,7 @@
 	    						echo "<td>".$row['height']."</td>";
 	    						echo "<td>".$row['shifty']."</td>";
 	    						echo "<td>".$row['inchi (-)_minus']."</td>";
-                                echo "<td>".$row['cft (-)_dropped Out']."</td>";
+                                echo "<td>".$row['cft (-)_dropped out']."</td>";
                                 echo "<td>".$row['inchi (+)_added']."</td>";
                                 echo "<td>".$row['points ( - )_dropped out']."</td>";
 	    						echo "<td>".$row['shift']."</td>";

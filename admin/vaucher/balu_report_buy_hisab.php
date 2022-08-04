@@ -61,12 +61,14 @@
 		<img src="../img/loader_used.png" id="loader_img" style="display: none;" width="80px">
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
+			
 				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
+				
     			<a href="../vaucher/balu_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
     			 <a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
     			 <a href="../vaucher/balu_report_dealer.php">ডিলার</a>
-    			<!-- <a href="../vaucher/rod_report_customer.php">কাস্টমার</a> -->
+    			<a href="../vaucher/balu_report_customer.php">কাস্টমার</a>
     			<!-- <a href="../vaucher/rod_report_buyer.php">বায়ার</a> -->
 			</div>
 		</div>
@@ -228,7 +230,7 @@
 	    						echo "<td>".$row['height']."</td>";
 	    						echo "<td>".$row['shifty']."</td>";
 	    						echo "<td>".$row['inchi (-)_minus']."</td>";
-                                echo "<td>".$row['cft (-)_dropped Out']."</td>";
+                                echo "<td>".$row['cft (-)_dropped out']."</td>";
                                 echo "<td>".$row['inchi (+)_added']."</td>";
                                 echo "<td>".$row['points ( - )_dropped out']."</td>";
 	    						echo "<td>".$row['shift']."</td>";
