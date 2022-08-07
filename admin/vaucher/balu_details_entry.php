@@ -178,10 +178,11 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             /*transform: rotateX(180deg);*/
         }
 
-        #detailsNewTable2 th,
-        td {
+        #detailsNewTable2 th, td {
             border: 1px solid #ddd;
-            padding: 2px 5px;
+            padding: 5px 5px;
+            text-align: center;
+           
 
         }
 
@@ -189,14 +190,17 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         #detailsNewTable2 tr:first-child th {
             text-align: center;
             background-color: #363636;
-            padding: 5px 0px;
+            padding: 5px 23px;
+
             color: #fff;
+          
         }
 
         #detailsNewTable2 tr:nth-child(2) th {
             text-align: center;
             background-color: #363636;
-            padding: 5px 0px;
+            padding: 5px 23px;
+
             color: #fff;
         }
 
@@ -204,14 +208,14 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             text-align: center;
             background-color: #d2df0d2e;
             color: black;
-            padding: 5px 0px;
+            padding: 5px 5px;
         }
 
         #detailsNewTable2 tr:nth-child(odd) td {
             text-align: center;
             background-color: white;
             color: black;
-            padding: 5px 0px;
+            /* padding: 5px 0px; */
         }
 
         .viewDetailsCon {
