@@ -7,14 +7,14 @@
 	require '../config/config.php';
 	require '../lib/database.php';
 	$db = new Database();
-	$_SESSION['pageName'] = 'balu_report_dealer';
+	$_SESSION['pageName'] = 'balu_report_buyer';
 	
 	$project_name_id = $_SESSION['project_name_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ডিলার রিপোর্ট হিসাব</title>
+	<title>বায়ার হিসাব রিপোর্ট</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
@@ -79,9 +79,9 @@
 				<a href="../vaucher/balu_report_buy_hisab.php" >ক্রয় হিসাব</a>
 				<a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-				 <a href="../vaucher/balu_report_dealer.php" class="active">ডিলার হিসাব</a>
-				 <a href="../vaucher/balu_report_customer.php">কাস্টমার হিসাব</a> 
-				 <a href="../vaucher/balu_report_buyer.php">বায়ার হিসাব</a>
+				 <a href="../vaucher/balu_report_dealer.php">ডিলার হিসাব</a>
+				 <a href="../vaucher/balu_report_buyer.php">কাস্টমার হিসাব</a> 
+				<a href="../vaucher/balu_report_buyer.php" class="active">বায়ার হিসাব</a> 
 			</div>
 		</div>
 		<div class="main_bar">
@@ -102,10 +102,10 @@
 				} 
 		  	?>
 		  	<div class="project_heading text-center" >      
-		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">ডিলার হিসাব রিপোর্ট</h2>
+		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">বায়ার হিসাব রিপোর্ট</h2>
 		    </div>
 		  	<div class="backcircle">
-		      <a href="../vaucher/rod_index.php">
+		      <a href="../vaucher/balu_index.php">
 		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
 		      </a>
 		    </div>
@@ -114,15 +114,15 @@
 					<div class="optionsCon">
 						<span style="position: relative; top: -13px;">
 		    				<b>Search:</b>
-		    				<select class="selctpik2" id="searchDealer">
-		    					<option value="alldealers">All Dealers</option>
+		    				<select class="selctpik2" id="searchBuyer">
+		    					<option value="allbuyer">All Buyers</option>
 		    					<?php
-		    						$sql = "SELECT DISTINCT dealer_id, dealer_name FROM balu_dealer WHERE project_name_id = '$project_name_id' ORDER BY dealer_name ASC";
+		    						$sql = "SELECT DISTINCT buyer_id, buyer_name FROM balu_buyers WHERE project_name_id = '$project_name_id' ORDER BY buyer_name ASC";
 		    						$rslt = $db->select($sql);
 						            $row_no = mysqli_num_rows($rslt);
 						            if ($rslt && $row_no > 0) {
 						            	while ($row = $rslt->fetch_assoc()){
-						            		echo "<option value='".$row['dealer_id']."'>".$row['dealer_name'] ."</option>";
+						            		echo "<option value='".$row['buyer_id']."'>".$row['buyer_name'] ."</option>";
 						            	}
 						            }
 		    					?>
@@ -181,14 +181,14 @@
 				</button>
     			<!-- <span class="printText" id="download"><b>&nbsp;&nbsp;Download</b></span> -->
     			<span class="seachright">
-    				<b>Search by Dealer Name</b>
+    				<b>Search by Buyers Name</b>
     				<input type="text" name="search" id="search" class="form-control option-contol-search" placeholder="Search...">	    				
     			</span>
     		</div>
     		<table class="tableshow" id="tableshow" style="border-collapse: collapse; border: 1px solid #777 !important;">
     			
     			<?php
-    				$sql = "SELECT * FROM balu_dealer WHERE project_name_id = '$project_name_id'";
+    				$sql = "SELECT * FROM balu_buyers WHERE project_name_id = '$project_name_id'";
     				$result = $db->select($sql);
     				$row_number = mysqli_num_rows($result);
     				if($result && $row_number > 0){
@@ -196,26 +196,29 @@
     					$i = 1;
     					
     					while($row = $result->fetch_assoc()){
-    						$dealer_id = $row['dealer_id'];
+    						$buyer_id = $row['buyer_id'];
     						echo "<tr>";
-    						echo "<td colspan='5' style='border: 1px solid #777 !important; text-align: center; font-size: 28px; background-color: #ddd;'>".$row['dealer_name']."</td>";
+    						echo "<td colspan='5' style='border: 1px solid #777 !important; text-align: center; font-size: 28px; background-color: #ddd;'>".$row['buyer_name']."</td>";
 							echo "</tr>";
 
     						echo "<tr>";
 			    			echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
-			    			echo "<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>";
-			    			echo "<th style='border: 1px solid #777 !important;'>ঠিকানা</th>";
-			    			echo "<th style='border: 1px solid #777 !important;'>যোগাযোগ ব্যাক্তির নাম</th>";
+			    			echo "<th style='border: 1px solid #777 !important;'>বায়ার আই.ডি</th>";
+			    			echo "<th style='border: 1px solid #777 !important;'>বায়ার নাম</th>";
+                            echo "<th style='border: 1px solid #777 !important;'>ঠিকানা</th>";
 			    			echo "<th style='border: 1px solid #777 !important;'>মোবাইল</th>";
+			    			echo "<th style='border: 1px solid #777 !important;'>কেনার ধরন</th>";
 			    			echo "</tr>";
 
 
     						echo "<tr>";
     						echo "<td style='border: 1px solid #777 !important;'></td>";
-    						echo "<td style='border: 1px solid #777 !important;'>".$dealer_id."</td>";	    						
+    						echo "<td style='border: 1px solid #777 !important;'>".$buyer_id."</td>";
+                            echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_name']."</td>";	    						
     						echo "<td style='border: 1px solid #777 !important;'>".$row['address']."</td>";
-    						echo "<td style='border: 1px solid #777 !important;'>".$row['contact_person_name']."</td>";
-    						echo "<td style='border: 1px solid #777 !important;'>".$row['mobile']."</td>";
+                            echo "<td style='border: 1px solid #777 !important;'>".$row['mobile']."</td>";
+    						echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_type']."</td>";
+    						
     						echo "</tr>";
     						
     						
@@ -267,11 +270,11 @@
 						    // End total total_motor
 					        //Start Gari vara
 					        	$motor_vara = 0;
-						        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_balu WHERE buyer_id = '$buyer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
-						                $motor_cash = $row2['motor_vara'];
+						                $motor_vara = $row2['motor_vara'];
 						                if(is_null($motor_vara)){
 						                    $motor_vara = 0;
 						                }
@@ -283,7 +286,7 @@
 
 						    //Start khalas/Unload
 						        $unload = 0;
-						        $sql2 = "SELECT SUM(unload) as unload FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(unload) as unload FROM details_balu WHERE buyer_id = '$buyer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -299,7 +302,7 @@
 						    //End khalas/Unload
 						    // Start total total_credit/mot_mul
 						        $total_credit = 0;
-						        $sql2 = "SELECT SUM(credit) as credit FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(credit) as credit FROM details_balu WHERE buyer_id = '$buyer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -315,7 +318,7 @@
 
 						    // Start total total_debit/joma
 						        $total_debit = 0;
-						        $sql2 = "SELECT SUM(debit) as debit FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(debit) as debit FROM details_balu WHERE buyer_id = '$buyer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -331,7 +334,7 @@
 
 						    // Start total total_Balance/mot_jer
 						        $total_balance = 0;
-						        $sql2 = "SELECT SUM(balance) as balance FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(balance) as balance FROM details_balu WHERE buyer_id = '$buyer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -346,7 +349,7 @@
 						    // End total total_Balance/mot_jer
 						    //Start GB Bank Ganti
 						        $gb_bank_ganti = 0;
-						        $sql2 = "SELECT SUM(debit) as debit, id FROM details_balu WHERE particulars = 'BG' AND dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(debit) as debit, id FROM details_balu WHERE particulars = 'BG' AND buyer_id = '$buyer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -363,7 +366,7 @@
 						    //End GB Bank Ganti
 						//Start Total para/mot_mul_khoros_shoho
 						        $paras = 0;
-						        $sql2 = "SELECT SUM(paras) as paras FROM details_balu WHERE dealer_id = '$dealer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(paras) as paras FROM details_balu WHERE buyer_id = '$buyer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -390,7 +393,7 @@
 						        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ীঃ</td>";
 						        // echo "<td style='border: 1px solid #777 !important;'>".$total_motor." টি</td>";
 						        echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
-						        echo "<td style='border: 1px solid #777 !important;'>".$motor_cash." টাকা</td>";
+						        echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
 						        echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
 						        echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";
 						        echo "</tr>";
@@ -422,7 +425,7 @@
 
 						        echo "<tr>";
 						        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট টোনঃ</td>";
-						        // echo "<td style='border: 1px solid #777 !important;'>".($rod_total_500w_400W/100)." tonne</td>";
+						        // echo "<td style='border: 1px solid #777 !important;'>".($rod_total_500w_400W/100)." ton</td>";
 								echo "</tr>";
 						        echo "</table>";
 					        echo "</td></tr>";
@@ -471,7 +474,7 @@
 
 		function fromTodateSearch(fromdate, todate){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/balu_report_dealer_fromdate_todate_search.php",
+		        url: "../ajaxcall_rod_report/balu_report_buyer_fromdate_todate_search.php",
 		        type: "post",
 		        data: {
 		        	fromdate 	: fromdate, 
@@ -501,7 +504,7 @@
 
 		function yearMonthSearch(monthvalue, yearvalue){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/balu_report_dealer_year_month_search.php",
+		        url: "../ajaxcall_rod_report/balu_report_buyer_year_month_search.php",
 		        type: "post",
 		        data: {
 		        	monthvalue 	: monthvalue, 
@@ -536,9 +539,9 @@
 	</script>
 	<script type="text/javascript">
 		$(document).on('input', '#search', function(){
-			function searchByDealerName(searchTxt){
+			function searchBybuyerName(searchTxt){
 			    $.ajax({
-			        url: "../ajaxcall_rod_report/balu_report_dealer_search.php",
+			        url: "../ajaxcall_rod_report/balu_report_buyer_search.php",
 			        type: "post",
 			        data: { searchTxt : searchTxt },
 			        success: function (response) {
@@ -551,17 +554,17 @@
 			    });
 			}
 			var searchTxt = $('#search').val();
-			searchByDealerName(searchTxt);
+			searchBybuyerName(searchTxt);
 		
 		});
 
 
-		function dealerWiseSearch(searchDealer){
+		function buyerWiseSearch(searchBuyer){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/balu_report_dealer_name_wise_search.php",
+		        url: "../ajaxcall_rod_report/balu_report_buyer_name_wise_search.php",
 		        type: "post",
 		        data: {
-		        	searchDealer 	: searchDealer,
+		        	searchBuyer 	: searchBuyer,
 		        },
 		        success: function (response) {
 		          // alert(response);
@@ -573,12 +576,12 @@
 		        }
 		    });
 		}
-		$(document).on('change', '#searchDealer', function(){
-			var searchDealer 	= $("#searchDealer").val();
-			if(searchDealer == 'alldealers'){
-				window.location = '../vaucher/balu_report_dealer.php';
+		$(document).on('change', '#searchBuyer', function(){
+			var searchBuyer 	= $("#searchBuyer").val();
+			if(searchBuyer == 'allbuyers'){
+				window.location = '../vaucher/balu_report_buyer.php';
 			} else {
-				dealerWiseSearch(searchDealer);
+				buyerWiseSearch(searchBuyer);
 			}
 			
 		});

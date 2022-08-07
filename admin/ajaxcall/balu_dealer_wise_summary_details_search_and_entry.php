@@ -17,115 +17,115 @@ $sucMsg = "";
 
 
 
-    //Start Gari vara
-        $sql = "SELECT SUM(motor_vara) as motor_vara FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $motor_vara = $row['motor_vara'];
-                if(is_null($motor_vara)){
-                    $motor_vara = 0;
-                }
-            }
-        } else{
-            $motor_vara = 0;
-        }
-    //End Gari vara
+//Start Gari vara
+$sql = "SELECT SUM(motor_vara) as motor_vara FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $motor_vara = $row['motor_vara'];
+    if (is_null($motor_vara)) {
+      $motor_vara = 0;
+    }
+  }
+} else {
+  $motor_vara = 0;
+}
+//End Gari vara
 
-    //Start khalas/Unload
-        $sql = "SELECT SUM(unload) as unload FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $unload = $row['unload'];
-                if(is_null($unload)){
-                    $unload = 0;
-                }
-            }
-        } else{
-            $unload = 0;
-        }
-        $motor_vara_and_unload = $motor_vara + $unload;
-    //End khalas/Unload
+//Start khalas/Unload
+$sql = "SELECT SUM(unload) as unload FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $unload = $row['unload'];
+    if (is_null($unload)) {
+      $unload = 0;
+    }
+  }
+} else {
+  $unload = 0;
+}
+$motor_vara_and_unload = $motor_vara + $unload;
+//End khalas/Unload
 
-    // Start total total_motor
-       
-    // End total total_motor
+// Start total total_motor
 
-    //Start GB Bank Ganti
-      
-        
-    //End GB Bank Ganti
-    // Start total total_kg
-        $sql = "SELECT SUM(total_shift) as shift FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $total_shift = $row['shift'];
-                if(is_null($total_shift)){
-                    $total_shift = 0;
-                }
-            }
-        } else{
-            $total_shift = 0;
-        }
-        $total_ton = $total_shift/23.5;
-    // End total total_kg
+// End total total_motor
 
-    // Start total total_credit/mot_mul
-        $sql = "SELECT SUM(credit) as credit FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $total_credit = $row['credit'];
-                if(is_null($total_credit)){
-                    $total_credit = 0;
-                }
-            }
-        } else{
-            $total_credit = 0;
-        }
-    // End total total_credit/mot_mul
-
-    // Start total total_debit/joma
-        $sql = "SELECT SUM(debit) as debit FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $total_debit = $row['debit'];
-                if(is_null($total_debit)){
-                    $total_debit = 0;
-                }
-            }
-        } else{
-            $total_debit = 0;
-        }
-    // End total total_debit/joma
-
-    // Start total total_Balance/mot_jer
-        $sql = "SELECT SUM(balance) as balance FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-        $result = $db->select($sql);
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $total_balance = $row['balance'];
-                if(is_null($total_balance)){
-                    $total_balance = 0;
-                }
-            }
-        } else{
-            $total_balance = 0;
-        }
-    // End total total_Balance/mot_jer
-
-    //Start Total para/mot_mul_khoros_shoho
-
-    $vara_credit = $motor_vara_and_unload + $total_credit;
+//Start GB Bank Ganti
 
 
-       
-    //End Total para/mot_mul_khoros_shoho
+//End GB Bank Ganti
+// Start total total_kg
+$sql = "SELECT SUM(total_shift) as shift FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_shift = $row['shift'];
+    if (is_null($total_shift)) {
+      $total_shift = 0;
+    }
+  }
+} else {
+  $total_shift = 0;
+}
+$total_ton = $total_shift / 23.5;
+// End total total_kg
 
-   
+// Start total total_credit/mot_mul
+$sql = "SELECT SUM(credit) as credit FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_credit = $row['credit'];
+    if (is_null($total_credit)) {
+      $total_credit = 0;
+    }
+  }
+} else {
+  $total_credit = 0;
+}
+// End total total_credit/mot_mul
+
+// Start total total_debit/joma
+$sql = "SELECT SUM(debit) as debit FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_debit = $row['debit'];
+    if (is_null($total_debit)) {
+      $total_debit = 0;
+    }
+  }
+} else {
+  $total_debit = 0;
+}
+// End total total_debit/joma
+
+// Start total total_Balance/mot_jer
+$sql = "SELECT SUM(balance) as balance FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_balance = $row['balance'];
+    if (is_null($total_balance)) {
+      $total_balance = 0;
+    }
+  }
+} else {
+  $total_balance = 0;
+}
+// End total total_Balance/mot_jer
+
+//Start Total para/mot_mul_khoros_shoho
+
+$vara_credit = $motor_vara_and_unload + $total_credit;
+
+
+
+//End Total para/mot_mul_khoros_shoho
+
+
 ?>
 
 
@@ -165,135 +165,135 @@ $sucMsg = "";
               </select> -->
     </div>
     <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-        <!-- <button onclick="myFunction2()" class="btn printBtnDlrDown">Download</button> -->
+    <!-- <button onclick="myFunction2()" class="btn printBtnDlrDown">Download</button> -->
   </div>
 </div>
 <div id="panel">
-	<table width="100%" class="summary">
-		<tr>
-			<!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
+  <table width="100%" class="summary">
+    <tr>
+      <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
 			<td class="hastext" width="150px">04.50mm 400W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td> -->
-            <td class="hastext">মোট সেপ্টি </td>
-            <td style="min-width: 85px"><?php echo $total_shift; ?></td>
-			<!-- <td class="hastext">জ‌িব‌ি ব্যাংক গ্যান্ট‌িঃ</td>
+      <td class="hastext">মোট সেপ্টি </td>
+      <td style="min-width: 85px"><?php echo $total_shift; ?></td>
+      <!-- <td class="hastext">জ‌িব‌ি ব্যাংক গ্যান্ট‌িঃ</td>
 			<td style="min-width: 85px"><?php echo $gb_bank_ganti; ?></td> -->
-						
-		</tr>
-		<tr>
-			<!-- <td class="hastext">06mm 500W/60G</td>
+
+    </tr>
+    <tr>
+      <!-- <td class="hastext">06mm 500W/60G</td>
 			<td><?php echo $mm06_rod500; ?></td>
 			<td class="hastext">06mm 400W/60G</td>
 			<td><?php echo $mm06_rod400; ?></td> -->
-            <td class="hastext">মোট টোনঃ</td>
-            <td><?php echo $total_ton; ?></td>			
-			<!-- <td class="hastext">কোম্পানী পাওনাঃ</td>
+      <td class="hastext">মোট টোনঃ</td>
+      <td><?php echo $total_ton; ?></td>
+      <!-- <td class="hastext">কোম্পানী পাওনাঃ</td>
 			<td><?php echo $company_paona; ?></td>			 -->
-		</tr>
-		<tr>
-			<!-- <td class="hastext">08mm 500W/60G</td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext">08mm 500W/60G</td>
 			<td><?php echo $mm08_rod500; ?></td>
 			<td class="hastext">08mm 400W/60G</td>
 			<td><?php echo $mm08_rod400; ?></td> -->
-			<!-- <td class="hastext">মোট গাড়ীঃ</td>
+      <!-- <td class="hastext">মোট গাড়ীঃ</td>
             <td><?php echo $total_motor; ?></td>
 			<td class="hastext">নিজ পাওনাঃ</td>
 			<td><?php echo $nij_paona; ?></td>											 -->
-		</tr>
-		<tr>
-			<!-- <td class="hastext">10mm 500W/60G</td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext">10mm 500W/60G</td>
 			<td><?php echo $mm10_rod500; ?></td>
 			<td class="hastext">10mm 400W/60G</td>
 			<td><?php echo $mm10_rod400; ?></td> -->
-			<td></td>
-            <td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<!-- <td class="hastext">12mm 500W/60G</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext">12mm 500W/60G</td>
 			<td><?php echo $mm12_rod500; ?></td>
 			<td class="hastext">12mm 400W/60G</td>
 			<td><?php echo $mm12_rod400; ?></td> -->
-			<td style="background-color: #bcbcbc;"></td>
-			<td style="background-color: #bcbcbc;"></td>
-			<td style="background-color: #bcbcbc;"></td>
-			<td style="background-color: #bcbcbc;"></td>
-		</tr>
-		<!-- Ekhan theke -->
-		<tr>
-			<!-- <td class="hastext">16mm 500W/60G</td>
+      <td style="background-color: #bcbcbc;"></td>
+      <td style="background-color: #bcbcbc;"></td>
+      <td style="background-color: #bcbcbc;"></td>
+      <td style="background-color: #bcbcbc;"></td>
+    </tr>
+    <!-- Ekhan theke -->
+    <tr>
+      <!-- <td class="hastext">16mm 500W/60G</td>
 			<td><?php echo $mm16_rod500; ?></td>
 			<td class="hastext">16mm 400W/60G</td>
 			<td><?php echo $mm16_rod400; ?></td> -->
-			<td class="hastext">মোট গাড়ী ভাড়াঃ</td>
-            <td><?php echo $motor_vara; ?></td>
-			<td class="hastext">ম‌োট মূলঃ</td>
-			<td><?php echo $total_credit; ?></td>			
-		</tr>
-		<tr>
-			<!-- <td class="hastext">20mm 500W/60G</td>
+      <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
+      <td><?php echo $motor_vara; ?></td>
+      <td class="hastext">ম‌োট মূলঃ</td>
+      <td><?php echo $total_credit; ?></td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext">20mm 500W/60G</td>
 			<td><?php echo $mm20_rod500; ?></td>
 			<td class="hastext">20mm 400W/60G</td>
 			<td><?php echo $mm20_rod400; ?></td> -->
-			<td class="hastext">মোট খালাস খরচঃ</td>
-            <td><?php echo $unload; ?></td>
-			<td class="hastext">ম‌োট জমাঃ</td>
-			<td><?php echo $total_debit; ?></td>
-		</tr>
-        <tr>
-            <!-- <td class="hastext">22mm 500W/60G</td>
+      <td class="hastext">মোট খালাস খরচঃ</td>
+      <td><?php echo $unload; ?></td>
+      <td class="hastext">ম‌োট জমাঃ</td>
+      <td><?php echo $total_debit; ?></td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext">22mm 500W/60G</td>
             <td><?php echo $mm22_rod500; ?></td>
             <td class="hastext">22mm 400W/60G</td>
             <td><?php echo $mm22_rod400; ?></td> -->
-            <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
-            <td><?php echo $motor_vara_and_unload; ?></td>
-            <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
-            <td><?php echo $total_balance; ?></td>
-            
-        </tr>
-		<tr>
-			<!-- <td class="hastext">25mm 500W/60G</td>
+      <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
+      <td><?php echo $motor_vara_and_unload; ?></td>
+      <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
+      <td><?php echo $total_balance; ?></td>
+
+    </tr>
+    <tr>
+      <!-- <td class="hastext">25mm 500W/60G</td>
 			<td><?php echo $mm25_rod500; ?></td>
 			<td class="hastext">25mm 400W/60G</td>
 			<td><?php echo $mm25_rod400; ?></td> -->
-			<td class="hastext">ম‌োট মূল খরচ সহঃ</td>
-            <td><?php echo $vara_credit; ?></td>
-			<td></td>			
-            <td></td>
-		</tr>
-		<tr>
-			<!-- <td class="hastext">32mm 500W/60G</td>
+      <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
+      <td><?php echo $vara_credit; ?></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext">32mm 500W/60G</td>
 			<td><?php echo $mm32_rod500; ?></td>
 			<td class="hastext">32mm 400W/60G</td>
 			<td><?php echo $mm32_rod400; ?></td> -->
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<!-- <td class="hastext">42mm 500W/60G</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext">42mm 500W/60G</td>
 			<td><?php echo $mm42_rod500; ?></td>
 			<td class="hastext">42mm 400W/60G</td>
 			<td><?php echo $mm42_rod400; ?></td> -->
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<!-- <td class="hastext"><b>Total Kg:</b></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <!-- <td class="hastext"><b>Total Kg:</b></td>
 			<td><b><?php echo $total_kg_rod500; ?></b></td>
 			<td class="hastext"><b>Total Kg:</b></td>
 			<td><b><?php echo $total_kg_rod400; ?></b></td> -->
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
 </div>
 
 <div class="rodDetailsEnCon" style="display: block;">
@@ -311,7 +311,7 @@ $sucMsg = "";
           <td class="widthPercent1">Buyer ID</td>
           <!-- <td width="150">Dealer ID</td> -->
           <!-- <td class="widthPercent1">Type</td> -->
-        
+
           <!-- <td class="widthPercent1">Information</td> -->
           <td class="widthPercent1">Motor Name</td>
           <td class="widthPercent1">Driver Name</td>
@@ -319,7 +319,7 @@ $sucMsg = "";
           <td class="widthPercent1">Unload</td>
           <td class="widthPercent1">Cars rent & Redeem</td>
           <td class="widthPercent1">Information</td>
-         
+
           <td class="widthPercent1">SL</td>
           <!-- <td class="widthPercent2">Particulars</td> -->
           <td class="widthPercent1">Voucher No.</td>
@@ -348,17 +348,17 @@ $sucMsg = "";
           <td class="widthPercent3">Credit</td>
           <td class="widthPercent3">Balance</td>
           <td style="display:none;" class="widthPercent3">Cemeat's Para's</td>
-         
+          <td style="display:none;" class="widthPercent3">Ton</td>
           <td style="display:none;" class="widthPercent3">Total Cft</td>
           <td style="display:none;" class="widthPercent3">Tons</td>
           <td class="widthPercent3">Bank Name</td>
           <td class="widthPercent3">Fee</td>
         </tr>
         <tr>
-          <td>বায়ার আই ডি</td>
+          <td>বায়ার আইডি</td>
           <!-- <td>ডিলার আই ডি</td> -->
           <!-- <td>টাইপ</td> -->
-         
+
           <!-- <td>মালের বিবরণ</td> -->
           <td>গাড়ী নাম</td>
           <td>ড্রাইভারের নাম</td>
@@ -366,7 +366,7 @@ $sucMsg = "";
           <td>আনলোড</td>
           <td>গাড়ী ভাড়া ও খালাস</td>
           <td>মালের বিবরণ</td>
-        
+
           <td>ক্রমিক</td>
           <!-- <td>ব‌িবরণ</td> -->
           <td>ভাউচার নং</td>
@@ -395,14 +395,14 @@ $sucMsg = "";
           <td>মূল</td>
           <td>অবশিষ্ট</td>
           <td style="display:none;">গাড়ী ভাড়া / লেবার সহ</td>
-        
+          <td style="display:none;">টন</td>
           <td style="display:none;">মোট সিএফটি</td>
           <td style="display:none;">টন</td>
           <td>ব্যাংক নাম</td>
           <td>ফি</td>
 
         </tr>
-        <tr style = "position: relative;">
+        <tr style="position: relative;">
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
@@ -432,8 +432,8 @@ $sucMsg = "";
 
 
 
-         
-         
+
+
 
           <!-- <td>
             <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter information...">
@@ -468,7 +468,7 @@ $sucMsg = "";
             <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="Gari vara...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="unload"  class="form-control-balu value-calc" id="unload" placeholder="Unload...">
+            <input type="text" onkeypress="return isNumber(event)" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload...">
           </td>
           <td>
             <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
@@ -476,26 +476,26 @@ $sucMsg = "";
           <td>
             <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter information...">
           </td>
-  
-<?PHP
+
+          <?PHP
           $sql = "SELECT sl FROM details_balu ORDER BY id DESC LIMIT 1";
           $customersId = $db->select($sql);
-          if($customersId->num_rows > 0){
-              $row = $customersId->fetch_assoc();
-              $largestId = $row['sl'];
+          if ($customersId->num_rows > 0) {
+            $row = $customersId->fetch_assoc();
+            $largestId = $row['sl'];
           } else {
-                $largestId = 'sl-100000';
+            $largestId = 'sl-100000';
           }
           $matches = preg_replace('/\D/', '', $largestId);
           $newNumber = $matches + 1;
           $newId = 'SL-' . $newNumber;
-?>
+          ?>
 
 
           <td>
             <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no..." style="cursor:not-allowed;">
           </td>
-         
+
           <td>
             <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter voucher no..." required>
           </td>
@@ -518,24 +518,24 @@ $sucMsg = "";
             <input type="text" name="partculars" class="form-control-balu" id="partculars" placeholder="Marfot...">
           </td>
           <td>
-                      <?php
-                        // var parti_val = $('#car_rent_redeem').val();
-	                        $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
-	                        $all_particular = $db->select($sql);
-	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
-	                          echo '<option value="none">Select...</option>';
-	                          if($all_particular->num_rows > 0){
-	                              while($row = $all_particular->fetch_assoc()){
-                                    $particulars = $row['category_name'];
-	                                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
-	                              }
-	                            } else{
-	                              echo '<option value="none">0 Result</option>';
-	                            }
-	                          echo '</select>';
-	                      ?>
+            <?php
+            // var parti_val = $('#car_rent_redeem').val();
+            $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
+            $all_particular = $db->select($sql);
+            echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
+            echo '<option value="none">Select...</option>';
+            if ($all_particular->num_rows > 0) {
+              while ($row = $all_particular->fetch_assoc()) {
+                $particulars = $row['category_name'];
+                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
+              }
+            } else {
+              echo '<option value="none">0 Result</option>';
+            }
+            echo '</select>';
+            ?>
 
-	                    </td>
+          </td>
 
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="Debit...">
@@ -556,16 +556,16 @@ $sucMsg = "";
             <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="Cft '00 mm'...">
           </td>
           <td>
-            <input type="text"  onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu value-calc" id="inchi_minus" placeholder="-Inchi'00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu value-calc" id="inchi_minus" placeholder="-Inchi'00 mm'...">
           </td>
           <td>
-            <input type="text"  onkeypress="return isNumber(event)" name="cft(-)_dropped_out" class="form-control-balu value-calc" id="cft_dropped_out" placeholder="-Cft'00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="cft(-)_dropped_out" class="form-control-balu value-calc" id="cft_dropped_out" placeholder="-Cft'00 mm'...">
           </td>
           <td>
-            <input type="text"  onkeypress="return isNumber(event)" name="inchi(+)_added" class="form-control-balu value-calc" id="inchi_added" placeholder="+Inchi '00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="inchi(+)_added" class="form-control-balu value-calc" id="inchi_added" placeholder="+Inchi '00 mm'...">
           </td>
           <td>
-            <input type="text"  onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu value-calc" id="points_dropped_out" placeholder="-Point '00 mm'...">
+            <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu value-calc" id="points_dropped_out" placeholder="-Point '00 mm'...">
           </td>
           <td>
             <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="Cft '00 mm'...">
@@ -580,7 +580,7 @@ $sucMsg = "";
             <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="Paras per ton...">
           </td>
           <td>
-            <input type="text"  onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
+            <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
           </td>
           <td>
             <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="Credit...">
@@ -592,7 +592,7 @@ $sucMsg = "";
           <td style="display:none;">
             <input type="text" onkeypress="return isNumber(event)" name="cemeats_paras" class="form-control-balu value-calc" id="cemeats_paras" placeholder="Cemeats_paras...">
           </td>
-          
+
 
           <td style="display:none;">
             <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-cft '00 mm'...">
@@ -630,18 +630,18 @@ if ($result) {
   $rowcount = mysqli_num_rows($result);
   if ($rowcount != 0) {
 ?>
-     <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
+    <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
       <div class="viewDetailsCon" id="viewDetails">
-        <table id="detailsNewTable2" >
+        <table id="detailsNewTable2">
 
           <thead class="header">
-            <tr >
+            <tr>
               <th>Buyer ID</th>
               <th>Motor Name</th>
               <th>Driver Name</th>
               <th>Motor Vara</th>
               <th>Unload</th>
-              <th>Cars rent & Redeem</th>
+              <th>Cars&nbsp;rent&nbsp;& Redeem</th>
               <th>Information</th>
               <th>SL</th>
               <th>Voucher No.</th>
@@ -653,15 +653,15 @@ if ($result) {
               <th>Partculars</th>
               <th>Particulars</th>
               <th>Debit</th>
-              <th>Ton & Kg</th>
+              <th>Ton&nbsp;& Kg</th>
               <th>Length</th>
               <th>width</th>
               <th>Height</th>
               <th>Cft</th>
-              <th>Inchi (-) Minus</th>
-              <th>Cft ( - ) Dropped Out</th>
-              <th>Inchi (+) Added</th>
-              <th>Points ( - ) Dropped Out</th>
+              <th>Inchi&nbsp;(-) Minus</th>
+              <th>Cft ( - ) Dropped&nbsp;Out</th>
+              <th>Inchi&nbsp;(+) Added</th>
+              <th>Points ( - ) Dropped&nbsp;Out</th>
               <th>Cft</th>
               <th>Total Cft </th>
               <th>Para's</th>
@@ -674,17 +674,17 @@ if ($result) {
               <th>Tons</th>
               <th>Bank Name</th>
               <th>Fee</th>
-              <th></th>
+           
               <th class='no_print_media'></th>
               <th class='no_print_media'></th>
             </tr>
             <tr>
-              <th>বায়ার আই ডি</th>
+              <th>বায়ার আইডি</th>
               <th>গাড়ী নাম</th>
               <th>ড্রাইভারের নাম</th>
               <th>গাড়ী ভাড়া</th>
               <th>আনলোড</th>
-              <th>গাড়ী ভাড়া ও খালাস</th>
+              <th>গাড়ী&nbsp;ভাড়া ও খালাস</th>
               <th>মালের বিবরণ</th>
               <th>ক্রমিক</th>
               <th>ভাউচার নং</th>
@@ -696,12 +696,12 @@ if ($result) {
               <th>মারফ‌োত নাম</th>
               <th>ব‌িবরণ</th>
               <th>জমা টাকা</th>
-              <th>টোন ও কেজি</th>
+              <th>টোন&nbsp;ও কেজি</th>
               <th>দৈর্ঘ্যের</th>
               <th>প্রস্ত</th>
               <th>উচাঁ</th>
               <th>সিএফটি</th>
-              <th>Inchi (-) বিয়োগ </th>
+              <th>Inchi&nbsp;(-) বিয়োগ </th>
               <th>সিএফটি ( - ) বাদ</th>
               <th>Inchi (+) যোগ </th>
               <th>পয়েন্ট ( - ) বাদ</th>
@@ -711,13 +711,13 @@ if ($result) {
               <th>কমিশন</th>
               <th>মূল</th>
               <th>অবশিষ্ট</th>
-              <th>গাড়ী ভাড়া / লেবার সহ</th>
+              <th>গাড়ী&nbsp;ভাড়া&nbsp;লেবার সহ</th>
               <th>টোন</th>
               <th>মোট সিএফটি</th>
               <th>টোন</th>
               <th>ব্যাংক নাম</th>
               <th>ফি</th>
-              <th></th>
+              
               <th class='no_print_media'></th>
               <th class='no_print_media'></th>
             </tr>

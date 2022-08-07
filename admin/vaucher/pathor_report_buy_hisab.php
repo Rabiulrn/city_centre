@@ -46,6 +46,14 @@
         .left_side_bar{
         	border-right: 0px solid transparent;
         }
+
+		/* added by rabiul */
+ 
+.back-button{
+  font-size: 20px;
+			cursor: pointer;
+
+}
 	</style>
 </head>
 <body>
@@ -59,7 +67,7 @@
 		<img src="../img/loader_used.png" id="loader_img" style="display: none;" width="80px">
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
-				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
+			<h4 class="reportHeader" style="text-align: left;"><span class="back-button"><b >&#x2190;</b></span>&nbsp;&nbsp;<b>   রিপোর্ট</b></h4>
     			<a href="../vaucher/pathor_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
     			 <a href="../vaucher/pathor_report_sell_hisab.php">বিক্রয় হিসাব</a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
@@ -230,7 +238,7 @@
 	    						echo "<td>".$row['height']."</td>";
 	    						echo "<td>".$row['shifty']."</td>";
 	    						echo "<td>".$row['inchi (-)_minus']."</td>";
-                                echo "<td>".$row['cft (-)_dropped Out']."</td>";
+                                echo "<td>".$row['cft (-)_dropped out']."</td>";
                                 echo "<td>".$row['inchi (+)_added']."</td>";
                                 echo "<td>".$row['points ( - )_dropped out']."</td>";
 	    						echo "<td>".$row['shift']."</td>";
@@ -274,6 +282,14 @@
 		        $('.left_side_bar').height(700);
 		    }
 	    }
+	</script>
+	<script type="text/javascript">
+		$('.back-button').click(function() {
+			location.href = "pathor_index.php"; 
+    // Do your stuff.
+    // The below line prevents the 'href' on the anchor to be followed.
+    return false;
+});
 	</script>
 	<script src="../js/common_js.js"> </script>
 </body>

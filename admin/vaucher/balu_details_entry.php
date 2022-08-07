@@ -178,10 +178,11 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             /*transform: rotateX(180deg);*/
         }
 
-        #detailsNewTable2 th,
-        td {
+        #detailsNewTable2 th, td {
             border: 1px solid #ddd;
-            padding: 2px 5px;
+            padding: 5px 5px;
+            text-align: center;
+           
 
         }
 
@@ -189,14 +190,17 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         #detailsNewTable2 tr:first-child th {
             text-align: center;
             background-color: #363636;
-            padding: 5px 0px;
+            padding: 5px 23px;
+
             color: #fff;
+          
         }
 
         #detailsNewTable2 tr:nth-child(2) th {
             text-align: center;
             background-color: #363636;
-            padding: 5px 0px;
+            padding: 5px 23px;
+
             color: #fff;
         }
 
@@ -204,14 +208,14 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             text-align: center;
             background-color: #d2df0d2e;
             color: black;
-            padding: 5px 0px;
+            padding: 5px 5px;
         }
 
         #detailsNewTable2 tr:nth-child(odd) td {
             text-align: center;
             background-color: white;
             color: black;
-            padding: 5px 0px;
+            /* padding: 5px 0px; */
         }
 
         .viewDetailsCon {
@@ -1502,7 +1506,9 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
     <script type="text/javascript">
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
-            var kg = $('#kg').val();
+            if(kg != ''){
+                $('#paras').attr("placeholder", "per ton");
+                var kg = $('#kg').val();
             var paras = $('#paras').val();
             if (kg == '') {
                 $('#credit').val('0');
@@ -1513,20 +1519,25 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 //  alert(credit);
                 $('#credit').val(credit.toFixed(2));
             }
+            }
+           
 
-if(kg == ''){
+if(length != ''){
     $('#paras').attr("placeholder", "per cft");
-    var kg = $('#shifty').val();
+    var t_s = $('#total_shift').val();
             var paras = $('#paras').val();
-            if (kg == '') {
+            if (t_s == '') {
                 $('#credit').val('0');
             } else if (paras == '') {
                 $('#credit').val('0');
             } else {
-                var credit = kg * paras;
+                var credit_ts = t_s * paras;
                 //  alert(credit);
-                $('#credit').val(credit.toFixed(2));
+                $('#credit').val(credit_ts.toFixed(2));
             }
+}
+else{
+   
 }
 
             //shifty
@@ -1538,13 +1549,18 @@ if(kg == ''){
             var cft_dropped_out = $('#cft_dropped_out').val();
             var inchi_added = $('#inchi_added').val();
             var points_dropped_out = $('#points_dropped_out').val();
-            if (length == '') {
+            if (length == '' ) {
+                $("#kg").attr("placeholder", "ton and kg");
+                $("#kg").prop("disabled", false);
                 $('#shifty').val('0');
-                $("#kg").attr("readonly", false);
             } 
-            // else if (width == '') {
-            //     $('#shifty').val('0');
-            // } else if (height == '') {
+        //     else if (width == '') {
+        //         $("#kg").attr("placeholder", "ton and kg");
+        //         $("#kg").prop("disabled", false);
+        //         $('#shifty').val('0');
+            
+        // } 
+        //else if (height == '') {
             //     $('#shifty').val('0');
             // }
             // else if (inchi_minus == '') {
@@ -1554,8 +1570,8 @@ if(kg == ''){
             //     $('#kg').val('0');
             // }
             else {
-                $("#kg").attr("placeholder", "not applicable").attr("readonly", true);
-                $("#kg").attr("readonly", true);
+                $("#kg").attr("placeholder", "not applicable").prop("disabled", true);
+               
                 var shifty = length * width * height;
                 if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
                     var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
@@ -1587,21 +1603,31 @@ if(kg == ''){
             var credit = $("#credit").val();
 
             if (ton_kg != '') {
-                $("#length").attr("placeholder", "not applicable").attr("readonly", true);
+                $("#length").attr("placeholder", "not applicable").prop("disabled", true);
                 $("#length").attr("readonly", true);
+                // if($("#length").click){
+                //     Swal.fire("Should be enter a number value");
+                // }
                 // $('#length').val('not applicable');
-                $('#width').attr("placeholder", "not applicable");
+                $('#width').attr("placeholder", "not applicable").prop("disabled", true);
                 $("#width").attr("readonly", true);
-                $('#height').attr("placeholder", "not applicable");
+                $('#height').attr("placeholder", "not applicable").prop("disabled", true);
                 $("#height").attr("readonly", true);
+
+                $('#shifty').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#shift').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#ton').attr("placeholder", "not applicable").prop("disabled", true);
+                // $('#height').attr("placeholder", "not applicable").prop("disabled", true).css("background-color","gray");
+                // $("#height").attr("readonly", true);
                 // $('#').attr("value", "not applicable");
-                $('#inchi_minus').attr("placeholder", "not applicable");
+                $('#inchi_minus').attr("placeholder", "not applicable").prop("disabled", true);
                 $("#inchi_minus").attr("readonly", true);
-                $('#cft_dropped_out').attr("placeholder", "not applicable");
+                $('#cft_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
                 $("#cft_dropped_out").attr("readonly", true);
-                $('#inchi_added').attr("placeholder", "not applicable");
+                $('#inchi_added').attr("placeholder", "not applicable").prop("disabled", true);
                 $("#inchi_added").attr("readonly", true);
-                $('#points_dropped_out').attr("placeholder", "not applicable");
+                $('#points_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
                 $("#points_dropped_out").attr("readonly", true);
                 // $('#').attr("value", "not applicable");
                 $('#ton').val(ton_kg);
@@ -1613,21 +1639,27 @@ if(kg == ''){
                 $('#total_shift').val(ton_to_cft);
                 $('#total_shifts').val(ton_to_cft);
             } else {
-                $("#length").attr("placeholder", "length");
+                $("#length").attr("placeholder", "length").prop("disabled", false);
                 $("#length").attr("readonly", false);
                 // $('#length').val('not applicable');
-                $('#width').attr("placeholder", "width");
+                $('#width').attr("placeholder", "width").prop("disabled", false);
                 $("#width").attr("readonly", false);
-                $('#height').attr("placeholder", "height");
+                $('#height').attr("placeholder", "height").prop("disabled", false);
                 $("#height").attr("readonly", false);
-                $('#inchi_minus').attr("placeholder", "inchi_minus");
+                $('#inchi_minus').attr("placeholder", "inchi_minus").prop("disabled", false);
                 $("#inchi_minus").attr("readonly", false);
-                $('#cft_dropped_out').attr("placeholder", "cft_dropped_out");
+                $('#cft_dropped_out').attr("placeholder", "cft_dropped_out").prop("disabled", false);
                 $("#cft_dropped_out").attr("readonly", false);
-                $('#inchi_added').attr("placeholder", "inchi_added");
+                $('#inchi_added').attr("placeholder", "inchi_added").prop("disabled", false);
                 $("#inchi_added").attr("readonly", false);
-                $('#points_dropped_out').attr("placeholder", "points_dropped_out");
+                $('#points_dropped_out').attr("placeholder", "points_dropped_out").prop("disabled", false);
                 $("#points_dropped_out").attr("readonly", false);
+
+
+                $('#shifty').prop("disabled", false);
+                $('#shift').prop("disabled", false);
+                $('#total_shift').prop("disabled", false);
+                $('#ton').prop("disabled", false);
 
                 var credit = ton * paras;
                 // alert(credit);

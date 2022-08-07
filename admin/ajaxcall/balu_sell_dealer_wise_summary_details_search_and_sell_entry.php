@@ -824,7 +824,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
                           echo "<td>". $rows['height'] ."</td>";
                           echo "<td>". $rows['shifty'] ."</td>";
                           echo "<td>". $rows['inchi (-)_minus'] ."</td>";
-                          echo "<td>". $rows['cft (-)_dropped out'] ."</td>";
+                          echo "<td>". $rows['cft (-)_dropped Out'] ."</td>";
                           echo "<td>". $rows['inchi (+)_added'] ."</td>";
                           echo "<td>". $rows['points ( - )_dropped out'] ."</td>";
                           echo "<td>". $rows['shift'] ."</td>";
