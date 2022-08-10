@@ -64,12 +64,12 @@
 			
 				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
 				
-    			<a href="../vaucher/balu_report_buy_hisab.php" class="active">ক্রয় হিসাব</a>
-    			 <a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
+    			<a href="../vaucher/balu_report_buy_hisab.php" class="active">ক্রয় অনুযায়ী </a>
+    			 <a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় অনুযায়ী </a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-    			 <a href="../vaucher/balu_report_dealer.php">ডিলার হিসাব </a>
-    			<a href="../vaucher/balu_report_customer.php">কাস্টমার হিসাব</a>
-    			<a href="../vaucher/balu_report_buyer.php">বায়ার হিসাব</a>
+    			 <a href="../vaucher/balu_report_dealer.php">ডিলার অনুযায়ী  </a>
+    			<a href="../vaucher/balu_report_customer.php">কাস্টমার অনুযায়ী </a>
+    			<a href="../vaucher/balu_report_buyer.php">বায়ার অনুযায়ী </a>
 			</div>
 		</div>
 		<div class="main_bar">

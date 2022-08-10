@@ -1719,7 +1719,7 @@ else{
             var motor_vara = $('#motor_vara').val();
             var unload = $('#unload').val();
             if (motor_vara == '') {
-                $('#car_rent_redeem').val('0');
+                $('#motor_vara').val('0');
             } else if (unload == '') {
                 $('#unload').val(0);
             } else {

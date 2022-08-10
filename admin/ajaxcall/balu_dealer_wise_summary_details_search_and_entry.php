@@ -342,7 +342,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td class="widthPercent3">Points ( - ) Dropped Out</td>
           <td class="widthPercent3">Cft</td>
           <td class="widthPercent3">Total Cft</td>
-          <td class="widthPercent3">Ton</td>
+          <td style="display:none;" class="widthPercent3">Ton</td>
           <td class="widthPercent3">Para's</td>
           <td class="widthPercent3">Discount</td>
           <td class="widthPercent3">Credit</td>
@@ -389,7 +389,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>পয়েন্ট ( - ) বাদ</td>
           <td>সিএফটি</td>
           <td>মোট সিএফটি</td>
-          <td>টন</td>
+          <td style="display:none;">টন</td>
           <td>দর</td>
           <td>কমিশন</td>
           <td>মূল</td>
@@ -573,7 +573,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-cft '00 mm'...">
           </td>
-          <td>
+          <td style="display:none;">
             <input type="text" onkeypress="return isNumber(event)" name="ton" class="form-control-balu value-calc" id="ton" placeholder="Ton...">
           </td>
           <td>

@@ -76,12 +76,12 @@
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
 				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
-				<a href="../vaucher/balu_report_buy_hisab.php" >ক্রয় হিসাব</a>
-				<a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় হিসাব</a>
+				<a href="../vaucher/balu_report_buy_hisab.php" >ক্রয় অনুযায়ী </a>
+				<a href="../vaucher/balu_report_sell_hisab.php">বিক্রয় অনুযায়ী </a>
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-				 <a href="../vaucher/balu_report_dealer.php">ডিলার হিসাব</a>
-				 <a href="../vaucher/balu_report_customer.php" class="active">কাস্টমার হিসাব</a> 
-				 <a href="../vaucher/balu_report_buyer.php">বায়ার হিসাব</a>
+				 <a href="../vaucher/balu_report_dealer.php">ডিলার অনুযায়ী </a>
+				 <a href="../vaucher/balu_report_customer.php" class="active">কাস্টমার অনুযায়ী </a> 
+				 <a href="../vaucher/balu_report_buyer.php">বায়ার অনুযায়ী </a>
 			</div>
 		</div>
 		<div class="main_bar">
@@ -105,7 +105,7 @@
 		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">কাস্টমার হিসাব রিপোর্ট</h2>
 		    </div>
 		  	<div class="backcircle">
-		      <a href="../vaucher/rod_index.php">
+		      <a href="../vaucher/balu_index.php">
 		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
 		      </a>
 		    </div>
@@ -144,7 +144,7 @@
 		    			</span>
 		    			<span class="monthYearcon" id="monthYearcon" style="position: relative; top: -13px;">
 		    				<div class="separator"></div>
-		    				<b>Month</b>
+		    				<!-- <b>Month</b>
 		    				<select class="selctpik" id="monthvalue" style="width: 80px;">
 		    					<option value="">Select...</option>
 		    					<option value="01">January</option>
@@ -168,7 +168,7 @@
 			    						echo "<option value='".$i."'>".$i."</option>";
 			    					}
 		    					?>
-		    				</select>
+		    				</select> -->
 		    			</span>
 					</div>
 				</div>
@@ -207,7 +207,7 @@
 			    			echo "<th style='border: 1px solid #777 !important;'>কাস্টমার নাম</th>";
                             echo "<th style='border: 1px solid #777 !important;'>ঠিকানা</th>";
 			    			echo "<th style='border: 1px solid #777 !important;'>মোবাইল</th>";
-			    			echo "<th style='border: 1px solid #777 !important;'>কেনার ধরন</th>";
+			    			// echo "<th style='border: 1px solid #777 !important;'>কেনার ধরন</th>";
 			    			echo "</tr>";
 
 
@@ -217,7 +217,7 @@
                             echo "<td style='border: 1px solid #777 !important;'>".$row['customer_name']."</td>";	    						
     						echo "<td style='border: 1px solid #777 !important;'>".$row['address']."</td>";
                             echo "<td style='border: 1px solid #777 !important;'>".$row['mobile']."</td>";
-    						echo "<td style='border: 1px solid #777 !important;'>".$row['buying_type']."</td>";
+    						// echo "<td style='border: 1px solid #777 !important;'>".$row['buying_type']."</td>";
     						
     						echo "</tr>";
     						
@@ -299,7 +299,10 @@
 						            $unload = 0;
 						        }
 						        $motor_vara_and_unload = $motor_vara + $unload;
+
 						    //End khalas/Unload
+
+							
 						    // Start total total_credit/mot_mul
 						        $total_credit = 0;
 						        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
@@ -393,21 +396,26 @@
 						        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ীঃ</td>";
 						        // echo "<td style='border: 1px solid #777 !important;'>".$total_motor." টি</td>";
 						        echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
-						        echo "<td style='border: 1px solid #777 !important;'>".$motor_cash." টাকা</td>";
+						        echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
 						        echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
 						        echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";
+								echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
+						        echo "<td style='border: 1px solid #777 !important;'>".$total_credit." টাকা</td>";
+								
 						        echo "</tr>";
 
 
 						        echo "<tr>";
 						        // echo "<td style='border: 1px solid #777 !important;'>Rod 400W/60G, Total Kg:</td>";
 						        // echo "<td style='border: 1px solid #777 !important;'>".$rod400w." kg</td>";
-						        echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
-						        echo "<td style='border: 1px solid #777 !important;'>".$total_credit." টাকা</td>";
+						        // echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
+						        // echo "<td style='border: 1px solid #777 !important;'>".$total_credit." টাকা</td>";
 						        echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট জমাঃ</td>";
 						        echo "<td style='border: 1px solid #777 !important;'>".$total_debit." টাকা</td>";
 						        echo "<td style='border: 1px solid #777 !important; text-align: right;'>মো‌ট জেরঃ</td>";
 						        echo "<td style='border: 1px solid #777 !important;'>".$total_balance." টাকা</td>";
+								echo "<td style='text-align: right; border: 1px solid #777 !important;'>নিজ পাওনাঃ</td>";
+						        echo "<td style='border: 1px solid #777 !important;'>".$nij_paona." টাকা</td>";
 						        echo "</tr>";
 
 
@@ -416,8 +424,8 @@
 						        // echo "<td style='border: 1px solid #777 !important;'>".$rod_total_500w_400W." kg</td>";
 						        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>কোম্পানি পাওনাঃ</td>";
 						        // echo "<td style='border: 1px solid #777 !important;'>". $company_paona." kg</td>";
-						        echo "<td style='text-align: right; border: 1px solid #777 !important;'>নিজ পাওনাঃ</td>";
-						        echo "<td style='border: 1px solid #777 !important;'>".$nij_paona." টাকা</td>";
+						        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>নিজ পাওনাঃ</td>";
+						        // echo "<td style='border: 1px solid #777 !important;'>".$nij_paona." টাকা</td>";
 						        // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট মূল খরচ সহঃ</td>";
 						        // echo "<td style='border: 1px solid #777 !important;'>".$total_paras." টাকা</td>";
 						        echo "</tr>";
