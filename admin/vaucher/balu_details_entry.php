@@ -612,7 +612,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     <tr>
                         <td><b>Select a Dealer Name</b></td>
                         <td><?php
-                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM balu_dealer";
+                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM balu_dealer WHERE project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
 
@@ -1703,7 +1703,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var discount = $("#discount").val();
             if (discount != '') {
                 var credit = credit - ((discount / 100) * credit);
-                $('#credit').val(credit);
+                $('#credit').val(credit.toFixed(3));
             }
             var fee = $("#fee").val();
             if (fee != '') {
@@ -1728,15 +1728,15 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
             // }
 
-            var car_rent_redeem = $('#car_rent_redeem').val();
-            var credit = $("#credit").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit').val(total_paras);
-            } else {
-                var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
-                $('#credit').val(total_paras);
-            }
+            // var car_rent_redeem = $('#car_rent_redeem').val();
+            // var credit = $("#credit").val();
+            // if (car_rent_redeem == '') {
+            //     var total_paras = credit;
+            //     $('#credit').val(total_paras);
+            // } else {
+            //     var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
+            //     $('#credit').val(total_paras);
+            // }
             // debit theke minus hote ai part tuku age dite hobe
 
             var debit = $("#debit").val();

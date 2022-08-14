@@ -87,6 +87,8 @@
                           else if($_SESSION['pageName'] == 'balu_report_buy_hisab'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_report_sell_hisab'){echo 'active';}
                           else if($_SESSION['pageName'] == 'balu_report_dealer'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'balu_report_customer'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'balu_report_buyer'){echo 'active';}
 
                           echo '"><a href="../vaucher/balu_index.php">বালু হিসাব</a>';
                           echo '</li>';

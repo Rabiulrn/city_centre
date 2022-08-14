@@ -115,7 +115,7 @@
 						<span style="position: relative; top: -13px;">
 		    				<b>Search:</b>
 		    				<select class="selctpik2" id="searchCustomer">
-		    					<option value="allcustomer">All Customers</option>
+		    					<option value="alldealers">All Customers</option>
 		    					<?php
 		    						$sql = "SELECT DISTINCT customer_id, customer_name FROM customers_balu WHERE project_name_id = '$project_name_id' ORDER BY customer_name ASC";
 		    						$rslt = $db->select($sql);
@@ -453,7 +453,7 @@
 					        // echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
 							echo "<tr>";
     						//  echo "<td style='border: 1px solid #777 !important;'></td>";
-    					    echo "<td style='border: 1px solid #777 !important;'>".$row['customer_id']."</td>";
+    					    echo "<td style='border: 1px solid #777 !important;'>".$customer_id."</td>";
 							echo "<td style='border: 1px solid #777 !important;'>".$row['customer_name']."</td>";
 							echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
 			                echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";	
@@ -609,7 +609,7 @@
 		}
 		$(document).on('change', '#searchCustomer', function(){
 			var searchCustomer 	= $("#searchCustomer").val();
-			if(searchCustomer == 'allcustomers'){
+			if(searchCustomer == 'alldealerss'){
 				window.location = '../vaucher/balu_report_customer.php';
 			} else {
 				customerWiseSearch(searchCustomer);

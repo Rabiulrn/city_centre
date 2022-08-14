@@ -416,7 +416,7 @@ if ($fromdate == '') {
 
 			 echo "<tr>";
 			//  echo "<td style='border: 1px solid #777 !important;'></td>";
-			echo "<td style='border: 1px solid #777 !important;'>".$row['dealer_id']."</td>";
+			echo "<td style='border: 1px solid #777 !important;'>". $dealer_id ."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$row['dealer_name']."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";	

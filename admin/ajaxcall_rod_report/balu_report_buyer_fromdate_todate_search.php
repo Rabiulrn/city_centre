@@ -401,7 +401,7 @@ if ($fromdate == '') {
 			// echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
 			echo "<tr>";
     						//  echo "<td style='border: 1px solid #777 !important;'></td>";
-    					    echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_id']."</td>";
+    					    echo "<td style='border: 1px solid #777 !important;'>".$buyer_id."</td>";
 							echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_name']."</td>";
 							echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
 			                echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";	
