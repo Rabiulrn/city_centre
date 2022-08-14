@@ -24,31 +24,43 @@ if ($fromdate == '') {
 	if ($result && $row_number > 0) {
 		// echo $row_number;
 		$i = 1;
+		echo "<tr>";
+		// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
+		echo "<th style='border: 1px solid #777 !important;'>বায়ার আই.ডি</th>";
+		echo "<th style='border: 1px solid #777 !important;'>বায়ার নাম</th>";
+		echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
+		echo "<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
+
+		echo "<th style='border: 1px solid #777 !important;'>মোট মূলঃ</th>";
+		echo "<th style='border: 1px solid #777 !important;'>মোট জমাঃ</th>";
+		echo "<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>";
+		echo "<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>";
+		 echo "</tr>";
 
 		
 		while ($row = $result->fetch_assoc()) {
 			$buyer_id = $row['buyer_id'];
-			echo "<tr>";
-			echo "<td colspan='5' style='border: 1px solid #777 !important; text-align: center; font-size: 28px; background-color: #ddd;'>" . $row['dealer_name'] . "</td>";
-			echo "</tr>";
+			// echo "<tr>";
+			// echo "<td colspan='5' style='border: 1px solid #777 !important; text-align: center; font-size: 28px; background-color: #ddd;'>" . $row['dealer_name'] . "</td>";
+			// echo "</tr>";
 
-			echo "<tr>";
-			echo "<th style='border: 1px solid #777 !important;'>" . $i . "</th>";
-            echo "<th style='border: 1px solid #777 !important;'>বায়ার আই.ডি</th>";
-			echo "<th style='border: 1px solid #777 !important;'>ঠিকানা</th>";
-			echo "<th style='border: 1px solid #777 !important;'>যোগাযোগ ব্যাক্তির নাম</th>";
-			echo "<th style='border: 1px solid #777 !important;'>মোবাইল</th>";
+			// echo "<tr>";
+			// echo "<th style='border: 1px solid #777 !important;'>" . $i . "</th>";
+            // echo "<th style='border: 1px solid #777 !important;'>বায়ার আই.ডি</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>ঠিকানা</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>যোগাযোগ ব্যাক্তির নাম</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>মোবাইল</th>";
 			
-			echo "</tr>";
+			// echo "</tr>";
 
 
-			echo "<tr>";
-			echo "<td style='border: 1px solid #777 !important;'></td>";
-			echo "<td style='border: 1px solid #777 !important;'>".$buyer_id."</td>";	    						
-			echo "<td style='border: 1px solid #777 !important;'>".$row['address']."</td>";
-			echo "<td style='border: 1px solid #777 !important;'>".$row['contact_person_name']."</td>";
-			echo "<td style='border: 1px solid #777 !important;'>".$row['mobile']."</td>";
-			echo "</tr>";
+			// echo "<tr>";
+			// echo "<td style='border: 1px solid #777 !important;'></td>";
+			// echo "<td style='border: 1px solid #777 !important;'>".$buyer_id."</td>";	    						
+			// echo "<td style='border: 1px solid #777 !important;'>".$row['address']."</td>";
+			// echo "<td style='border: 1px solid #777 !important;'>".$row['contact_person_name']."</td>";
+			// echo "<td style='border: 1px solid #777 !important;'>".$row['mobile']."</td>";
+			// echo "</tr>";
 
 
 
@@ -335,59 +347,69 @@ if ($fromdate == '') {
 			$company_paona = ($total_debit - $total_credit) - $gb_bank_ganti;
 
 			//Nested table
-			echo "<tr><td colspan='5' style='border: 1px solid #777 !important;'>";
-			echo "<table style='width: 100%; border-collapse:collapse;'>";
-			echo "<tr><td colspan='8' style='border: 0px; height: 15px;'></td></tr>";
-			echo "<tr>";
-			// echo "<td style='width: 170px; border: 1px solid #777 !important;'>Rod 500W/60G, Total Kg:</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $rod500w . " kg</td>";
-			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ীঃ</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $total_motor . " টি</td>";
-			echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
-			echo "<td style='border: 1px solid #777 !important;'>" . $motor_vara . " টাকা</td>";
-			echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
-			echo "<td style='border: 1px solid #777 !important;'>" . $unload . " টাকা</td>";
-			echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
-			echo "<td style='border: 1px solid #777 !important;'>" . $total_credit . " টাকা</td>";
-			echo "</tr>";
-
-
-			echo "<tr>";
-			// echo "<td style='border: 1px solid #777 !important;'>Rod 400W/60G, Total Kg:</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $rod400w . " kg</td>";
+			// echo "<tr><td colspan='5' style='border: 1px solid #777 !important;'>";
+			// echo "<table style='width: 100%; border-collapse:collapse;'>";
+			// echo "<tr><td colspan='8' style='border: 0px; height: 15px;'></td></tr>";
+			// echo "<tr>";
+			// // echo "<td style='width: 170px; border: 1px solid #777 !important;'>Rod 500W/60G, Total Kg:</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $rod500w . " kg</td>";
+			// // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ীঃ</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $total_motor . " টি</td>";
+			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
+			// echo "<td style='border: 1px solid #777 !important;'>" . $motor_vara . " টাকা</td>";
+			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
+			// echo "<td style='border: 1px solid #777 !important;'>" . $unload . " টাকা</td>";
 			// echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
 			// echo "<td style='border: 1px solid #777 !important;'>" . $total_credit . " টাকা</td>";
-			echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট জমাঃ</td>";
-			echo "<td style='border: 1px solid #777 !important;'>" . $total_debit . " টাকা</td>";
-			echo "<td style='border: 1px solid #777 !important; text-align: right;'>মো‌ট জেরঃ</td>";
-			echo "<td style='border: 1px solid #777 !important;'>" . $total_balance . " টাকা</td>";
-			echo "<td style='text-align: right; border: 1px solid #777 !important;'>নিজ পাওনাঃ</td>";
-			echo "<td style='border: 1px solid #777 !important;'>" . $nij_paona . " টাকা</td>";
-			echo "</tr>";
+			// echo "</tr>";
 
 
-			echo "<tr>";
-			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>Total Kg:</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $rod_total_500w_400W . " kg</td>";
-			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>কোম্পানি পাওনাঃ</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $company_paona . " kg</td>";
+			// echo "<tr>";
+			// // echo "<td style='border: 1px solid #777 !important;'>Rod 400W/60G, Total Kg:</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $rod400w . " kg</td>";
+			// // echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $total_credit . " টাকা</td>";
+			// echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট জমাঃ</td>";
+			// echo "<td style='border: 1px solid #777 !important;'>" . $total_debit . " টাকা</td>";
+			// echo "<td style='border: 1px solid #777 !important; text-align: right;'>মো‌ট জেরঃ</td>";
+			// echo "<td style='border: 1px solid #777 !important;'>" . $total_balance . " টাকা</td>";
 			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>নিজ পাওনাঃ</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $nij_paona . " kg</td>";
-			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট মূল খরচ সহঃ</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $vara_credit . " টাকা</td>";
-			echo "</tr>";
+			// echo "<td style='border: 1px solid #777 !important;'>" . $nij_paona . " টাকা</td>";
+			// echo "</tr>";
 
 
+			// echo "<tr>";
+			// // echo "<td style='text-align: right; border: 1px solid #777 !important;'>Total Kg:</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $rod_total_500w_400W . " kg</td>";
+			// // echo "<td style='text-align: right; border: 1px solid #777 !important;'>কোম্পানি পাওনাঃ</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $company_paona . " kg</td>";
+			// // echo "<td style='text-align: right; border: 1px solid #777 !important;'>নিজ পাওনাঃ</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $nij_paona . " kg</td>";
+			// // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট মূল খরচ সহঃ</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $vara_credit . " টাকা</td>";
+			// echo "</tr>";
+
+
+			// echo "<tr>";
+			// // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট টোনঃ</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $total_ton . " tonne</td>";
+			// // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট cft :</td>";
+			// // echo "<td style='border: 1px solid #777 !important;'>" . $total_shift . " tonne</td>";
+			// echo "</tr>";
+			// echo "</table>";
+			// echo "</td></tr>";
+			// echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
 			echo "<tr>";
-			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট টোনঃ</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $total_ton . " tonne</td>";
-			// echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট cft :</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>" . $total_shift . " tonne</td>";
-			echo "</tr>";
-			echo "</table>";
-			echo "</td></tr>";
-			echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
-
+    						//  echo "<td style='border: 1px solid #777 !important;'></td>";
+    					    echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_id']."</td>";
+							echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_name']."</td>";
+							echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
+			                echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";	
+							echo "<td style='border: 1px solid #777 !important;'>".$total_credit." টাকা</td>";
+							echo "<td style='border: 1px solid #777 !important;'>".$total_debit." টাকা</td>";
+							echo "<td style='border: 1px solid #777 !important;'>".$total_balance." টাকা</td>";
+							echo "<td style='border: 1px solid #777 !important;'>".$nij_paona." টাকা</td>";
+    						 echo "</tr>";
 
 
 

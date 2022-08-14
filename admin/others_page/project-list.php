@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
     //  else {
     //   $errMsg = 'Failed Create Project !';
     // }
-  } 
+  }
   // else {
   //   $query = "UPDATE project_heading SET heading='$heading', subheading='$subheading' WHERE id = '$project_id'";
 
@@ -154,7 +154,7 @@ if (isset($_GET['remove_id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
   <link rel="stylesheet" href="../css/voucher.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -268,8 +268,8 @@ if (isset($_GET['remove_id'])) {
 
     <!-- form remove -->
 
-    <div class="showProjectsCon">
-      <table width="100%" border="1px">
+    <div class="showProjectsCon" >
+      <table width="100%" border="1px" >
         <tr class="bg-primary">
           <th width="50px" class="text-center">Sl No</th>
           <th class="text-center">Project Name</th>
@@ -314,8 +314,8 @@ if (isset($_GET['remove_id'])) {
     </div>
 
 
-    <div  class="table" >
-      <table id="timeline-view" style="display: none; width:100%" >
+    <div class="table">
+      <table id="timeline-view" style="display: none; width:100%">
         <thead>
           <th scope="col">project name</th>
           <th scope="col">kaj name</th>
@@ -339,77 +339,48 @@ if (isset($_GET['remove_id'])) {
       </table>
 
 
-      <!-- <table id="timeline-view" style="display: none;" class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table> -->
+      
     </div>
 
     <form action="" method="POST" onsubmit="return validation()">
-        <div class="create_user_con" id="timeline">
-            <div class="pannel ">
-                <div class="form-group">
-                    <div class="new_user_heading bg-primary" id="project-heading" name="project-heading"></div>
-                    <div class="new_user_heading bg-primary" id="project-subheading" name="project-subheading" style="font-size:14px ;"></div>
-                   <input type="hidden" id="p-heading" name="p-heading">
-                   <input type="hidden" id="p-subheading" name="p-subheading">
-                    <div class="errorMsg" id="errorShow"  style="text-align: center;"><?php echo $errMsg; ?></div>
-                    <div class="successMsg" id="sucShow"><?php echo $sucMsg; ?></div>
-                </div>
-                <div class="form-group">
-                    <label for="username" class="">Project Task1:</label><br>
-                    <input type="text" name="task1" class="form-control" id = "task1" placeholder="..."/>
-                    <input type="hidden" name="project_id" id="project_id">
-                    <label for="username" class="">From:</label>
-                    <input type="date" name="task1_date1" id=""><span>&nbsp;&nbsp;</span>
-                    <label for="username" class="">To:</label>
-                    <input type="date" name="task1_date2" id="">
-                    <!-- <div id="unameMsg" class="errorMsg"></div> -->
-                </div>
-                <div class="form-group">
-                    <label for="Mobile" class="">Project Task2:</label><br>
-                    <input type="text" name="task2" class="form-control" id = "task2" placeholder="..."/>
-                    <label for="username" class="">From:</label>
-                    <input type="date" name="task2_date1" id=""><span>&nbsp;&nbsp;</span>
-                    <label for="username" class="">To:</label>
-                    <input type="date" name="task2_date2" id="">
-                    <!-- <div id="mobileMsg" class="errorMsg"></div> -->
-                </div>
-                  
+      <div class="create_user_con" id="timeline">
+        <div class="pannel ">
+          <div class="form-group">
+            <div class="new_user_heading bg-primary" id="project-heading" name="project-heading"></div>
+            <div class="new_user_heading bg-primary" id="project-subheading" name="project-subheading" style="font-size:14px ;"></div>
+            <input type="hidden" id="p-heading" name="p-heading">
+            <input type="hidden" id="p-subheading" name="p-subheading">
+            <div class="errorMsg" id="errorShow" style="text-align: center;"><?php echo $errMsg; ?></div>
+            <div class="successMsg" id="sucShow"><?php echo $sucMsg; ?></div>
+          </div>
+          <div class="form-group">
+            <label for="username" class="">Project Task1:</label><br>
+            <input type="text" name="task1" class="form-control" id="task1" placeholder="..." />
+            <input type="hidden" name="project_id" id="project_id">
+            <label for="username" class="">From:</label>
+            <input type="date" name="task1_date1" id=""><span>&nbsp;&nbsp;</span>
+            <label for="username" class="">To:</label>
+            <input type="date" name="task1_date2" id="">
+            <!-- <div id="unameMsg" class="errorMsg"></div> -->
+          </div>
+          <div class="form-group">
+            <label for="Mobile" class="">Project Task2:</label><br>
+            <input type="text" name="task2" class="form-control" id="task2" placeholder="..." />
+            <label for="username" class="">From:</label>
+            <input type="date" name="task2_date1" id=""><span>&nbsp;&nbsp;</span>
+            <label for="username" class="">To:</label>
+            <input type="date" name="task2_date2" id="">
+            <!-- <div id="mobileMsg" class="errorMsg"></div> -->
+          </div>
 
-                <div class="form-group" style="margin-bottom: 0px;">
-                    <input type="submit" name="submit" id="submitBtn" class="btn btn-primary btn-block" value="Create Timeline">
-                </div>
-                
-            </div>            
+
+          <div class="form-group" style="margin-bottom: 0px;">
+            <input type="submit" name="submit" id="submitBtn" class="btn btn-primary btn-block" value="Create Timeline">
+          </div>
+
         </div>
-      </form>
+      </div>
+    </form>
   </div>
   <?php include 'delete_permission_modal.php';  ?>
   <script type="text/javascript">
@@ -475,50 +446,48 @@ if (isset($_GET['remove_id'])) {
   </script>
 
 
-<!-- project heading -->
+  <!-- project heading -->
 
 
   <script type="text/javascript">
- function timeplan(element) {
-  var td_2 = $(element).closest('tr').find('td:eq(1)').text();
-  var td_3 = $(element).closest('tr').find('td:eq(2)').text();
-  $('#project-heading').text(td_2);
-  $('#project-subheading').text(td_3);
-  
+    function timeplan(element) {
+      var td_2 = $(element).closest('tr').find('td:eq(1)').text();
+      var td_3 = $(element).closest('tr').find('td:eq(2)').text();
+      $('#project-heading').text(td_2);
+      $('#project-subheading').text(td_3);
+
       $('#p-heading').val(td_2);
       $('#p-subheading').val(td_3);
-      $('#timeline').css("display","block");
-      $('#timeline-view').css("display","none");
- console.log('clicked')
- }
+      $('#timeline').css("display", "block");
+      $('#timeline-view').css("display", "none");
+      console.log('clicked')
+    }
 
-//     $(document).ready(function(){
+    //     $(document).ready(function(){
 
-//       $('#set-timeline').click(function(){
-//   // var td_2 = $(element).closest('tr').find('td:eq(1)').text();
-//  $('#project-heading').text('aaaa');
-//  console.log('clicked')
-// });
+    //       $('#set-timeline').click(function(){
+    //   // var td_2 = $(element).closest('tr').find('td:eq(1)').text();
+    //  $('#project-heading').text('aaaa');
+    //  console.log('clicked')
+    // });
 
-// });
-
-
-    </script>
+    // });
+  </script>
 
 
-<script type="text/javascript">
- function timeplanView(element) {
-  // var td_2 = $(element).closest('tr').find('td:eq(1)').text();
-  // var td_3 = $(element).closest('tr').find('td:eq(2)').text();
-  // $('#project-heading').text(td_2);
-  // $('#project-subheading').text(td_3);
-  
-      $('#timeline-view').css("display","block");
-      $('#timeline').css("display","none");
+  <script type="text/javascript">
+    function timeplanView(element) {
+      // var td_2 = $(element).closest('tr').find('td:eq(1)').text();
+      // var td_3 = $(element).closest('tr').find('td:eq(2)').text();
+      // $('#project-heading').text(td_2);
+      // $('#project-subheading').text(td_3);
+
+      $('#timeline-view').css("display", "block");
+      $('#timeline').css("display", "none");
       // $('#p-subheading').val(td_3);
- console.log('clicked')
- }
- </script>
+      console.log('clicked')
+    }
+  </script>
 
 
   <script type="text/javascript">

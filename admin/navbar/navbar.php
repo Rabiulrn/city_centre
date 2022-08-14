@@ -179,12 +179,14 @@
             $sub_mnu_active4 = '';
             $sub_mnu_active5 = '';
             $sub_mnu_active6 = '';
+            $sub_mnu_active7 = '';
             if($_SESSION['pageName'] == 'user_permision_by_admin'){echo 'active'; $sub_mnu_active = 'sub_mnu_active';}
             else if($_SESSION['pageName'] == 'page_setting'){echo 'active'; $sub_mnu_active2 = 'sub_mnu_active';}
             else if($_SESSION['pageName'] == 'create_project'){echo 'active'; $sub_mnu_active3 = 'sub_mnu_active';}
             else if($_SESSION['pageName'] == 'create_user'){echo 'active'; $sub_mnu_active4 = 'sub_mnu_active';}
             else if($_SESSION['pageName'] == 'user_setting'){echo 'active'; $sub_mnu_active5 = 'sub_mnu_active';}
             else if($_SESSION['pageName'] == 'change_password'){echo 'active'; $sub_mnu_active6 = 'sub_mnu_active';}
+            else if($_SESSION['pageName'] == 'project-list'){echo 'active'; $sub_mnu_active7 = 'sub_mnu_active';}
             
         ?>">
             <a href="" data-toggle="dropdown" style="padding: 3px 10px 3px 3px;">
