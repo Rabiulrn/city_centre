@@ -1516,7 +1516,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
 
             if(kg != ''){
-                $('#paras').attr("placeholder", "per ton");
+                $('#paras').attr("placeholder", "rate");
                 var kg = $('#kg').val();
             var paras = $('#paras').val();
             if (kg == '') {
@@ -1563,7 +1563,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $("#kg").attr("placeholder", "ton and kg");
                 $("#kg").prop("disabled", false);
                 $('#shift').attr("placeholder", "not applicable");
-                $('#shifty').val('0');
+                $('#shifty').attr("placeholder", "not applicable");
                 // $('#total_shifty').val('0');
 
             } 
@@ -1593,7 +1593,9 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     $('#shifty').val(shifty.toFixed(3));
                     $('#ton').val(shift2_to_ton.toFixed(2));
                     $('#tons').val(shift2_to_ton.toFixed(2));
-                    // $('#shift').val(shifty2);
+                    $('#shift').val(shifty2.toFixed(3));
+                   
+                    // $('#shift').attr('value', 'shifty2.toFixed(3)');
                     // $('#total_shift').val(shifty2.toFixed(2));
                     // $('#total_shifts').val(shifty2.toFixed(2));
                 } else {

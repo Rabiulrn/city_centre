@@ -24,6 +24,20 @@ if ($fromdate == '') {
 	if ($result && $row_number > 0) {
 		// echo $row_number;
 		$i = 1;
+		echo "<tr>";
+						// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
+						echo "<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>";
+						echo "<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>";
+						echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
+						echo "<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
+
+						echo "<th style='border: 1px solid #777 !important;'>মোট মূলঃ</th>";
+						echo "<th style='border: 1px solid #777 !important;'>মোট জমাঃ</th>";
+						echo "<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>";
+						echo "<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>";
+						 echo "</tr>"; 
+
+
 
 		
 		while ($row = $result->fetch_assoc()) {
@@ -386,18 +400,18 @@ if ($fromdate == '') {
 			// echo "</table>";
 			// echo "</td></tr>";
 			// echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
-			echo "<tr>";
-			// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
-			echo "<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>";
-			echo "<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>";
-			echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
-			echo "<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
+			// echo "<tr>";
+			// // echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
+			// echo "<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
 
-			echo "<th style='border: 1px solid #777 !important;'>মোট মূলঃ</th>";
-			echo "<th style='border: 1px solid #777 !important;'>মোট জমাঃ</th>";
-			echo "<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>";
-			echo "<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>";
-			 echo "</tr>"; 
+			// echo "<th style='border: 1px solid #777 !important;'>মোট মূলঃ</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>মোট জমাঃ</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>";
+			//  echo "</tr>"; 
 
 
 			 echo "<tr>";
