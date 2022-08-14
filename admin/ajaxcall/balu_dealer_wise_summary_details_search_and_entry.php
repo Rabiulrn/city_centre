@@ -341,12 +341,13 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td class="widthPercent3">Inchi (+) Added</td>
           <td class="widthPercent3">Points ( - ) Dropped Out</td>
           <td class="widthPercent3">Cft</td>
+          <td class="widthPercent3">Para's</td>
           <td class="widthPercent3">Total Cft</td>
           <td style="display:none;" class="widthPercent3">Ton</td>
-          <td class="widthPercent3">Para's</td>
+        
           <td class="widthPercent3">Discount</td>
           <td class="widthPercent3">Credit</td>
-          <td class="widthPercent3">Balance</td>
+          <td style="display:none;" class="widthPercent3" >Balance</td>
           <td style="display:none;" class="widthPercent3">Cemeat's Para's</td>
           <td style="display:none;" class="widthPercent3">Ton</td>
           <td style="display:none;" class="widthPercent3">Total Cft</td>
@@ -388,12 +389,13 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>Inchi (+) যোগ </td>
           <td>পয়েন্ট ( - ) বাদ</td>
           <td>সিএফটি</td>
+          <td>দর</td>
           <td>মোট সিএফটি</td>
           <td style="display:none;">টন</td>
-          <td>দর</td>
+         
           <td>কমিশন</td>
           <td>মূল</td>
-          <td>অবশিষ্ট</td>
+          <td style="display:none;">অবশিষ্ট</td>
           <td style="display:none;">গাড়ী ভাড়া / লেবার সহ</td>
           <td style="display:none;">টন</td>
           <td style="display:none;">মোট সিএফটি</td>
@@ -571,14 +573,15 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="Cft '00 mm'...">
           </td>
           <td>
+            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="Paras per ton...">
+          </td>
+          <td>
             <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-cft '00 mm'...">
           </td>
           <td style="display:none;">
             <input type="text" onkeypress="return isNumber(event)" name="ton" class="form-control-balu value-calc" id="ton" placeholder="Ton...">
           </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="Paras per ton...">
-          </td>
+       
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
           </td>
@@ -586,7 +589,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="Credit...">
           </td>
 
-          <td>
+          <td style="display:none;">
             <input type="text" name="balance" class="form-control-balu value-calc" id="balance" placeholder="Balance...">
           </td>
           <td style="display:none;">
