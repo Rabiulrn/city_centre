@@ -107,6 +107,8 @@
                          else if($_SESSION['pageName'] == 'pathor_report_buy_hisab'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_report_sell_hisab'){echo 'active';}
                          else if($_SESSION['pageName'] == 'pathor_report_dealer'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_report_customer'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'pathor_report_buyer'){echo 'active';}
 
                          echo '"><a href="../vaucher/pathor_index.php">পাথর হিসাব</a>';
                          echo '</li>';
@@ -215,7 +217,7 @@
                             echo '<li class="text-right '. $sub_mnu_active .'"><a href="../vaucher/user_permission_by_admin.php">ইউজার পেইজের অনুমতি</a></li>';
                             echo '<li class="text-right '. $sub_mnu_active2 .'"><a href="../others_page/page_setting.php">পেইজ সেটিং</a></li>';
                             echo '<li class="text-right '. $sub_mnu_active3 .'"><a href="../others_page/create_project.php">প্রজেক্ট তৈরি করা</a></li>';
-                            echo '<li class="text-right '. $sub_mnu_active7 .'"><a href="../others_page/project-list.php">প্রজেক্ট তালিকা and বাজেট</a></li>';
+                            echo '<li class="text-right '. $sub_mnu_active7 .'"><a href="../others_page/project-list.php">প্রজেক্ট তালিকা এবং বাজেট</a></li>';
                         }
 
                         // if($_SESSION['create_user'] == 'yes'){

@@ -115,7 +115,7 @@
 						<span style="position: relative; top: -13px;">
 		    				<b>Search:</b>
 		    				<select class="selctpik2" id="searchCustomer">
-		    					<option value="alldealers">All Customers</option>
+		    					<option value="allcustomers">All Customers</option>
 		    					<?php
 		    						$sql = "SELECT DISTINCT customer_id, customer_name FROM customers_balu WHERE project_name_id = '$project_name_id' ORDER BY customer_name ASC";
 		    						$rslt = $db->select($sql);
@@ -195,7 +195,7 @@
     					// echo $row_number;
     					$i = 1;
 						echo "<tr>";
-						// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
+					    // echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
 						echo "<th style='border: 1px solid #777 !important;'>কাস্টমার আই.ডি</th>";
 						echo "<th style='border: 1px solid #777 !important;'>কাস্টমার নাম</th>";
 						echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
@@ -609,7 +609,7 @@
 		}
 		$(document).on('change', '#searchCustomer', function(){
 			var searchCustomer 	= $("#searchCustomer").val();
-			if(searchCustomer == 'alldealerss'){
+			if(searchCustomer == 'allcustomerss'){
 				window.location = '../vaucher/balu_report_customer.php';
 			} else {
 				customerWiseSearch(searchCustomer);

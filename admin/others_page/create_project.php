@@ -10,6 +10,12 @@ $db = new Database();
 $edit_data_permission   = $_SESSION['edit_data'];
 $delete_data_permission = $_SESSION['delete_data'];
 
+
+// .................added by rabiul.................................
+$project_name_id = $_SESSION['project_name_id'];
+// echo $project_name_id;
+// echo "Study PHP at " . $project_name_id . "<br>";
+
 $_SESSION['pageName'] = 'create_project';
 $sucMsg = '';
 $errMsg = '';
@@ -20,11 +26,13 @@ if(isset($_POST['submit'])) {
     $project_id = $_POST['project_id'];
 
     if($_POST['submit'] == 'Create New Project'){
-        $query = "INSERT INTO project_heading (heading, subheading) VALUES('$heading', '$subheading')";
+        $query = "INSERT INTO project_heading_2 (heading, subheading,project_name_id) VALUES('$heading', '$subheading','$project_name_id') ";
+        // $query = "INSERT INTO project_heading (heading, subheading) VALUES('$heading', '$subheading')";
         $result = $db->select($query);
         if ($result)  {   
             $project_id ='0';
-            $query = "SELECT id FROM project_heading WHERE heading ='$heading' AND subheading = '$subheading'";
+            // $query = "SELECT id FROM project_heading WHERE heading ='$heading' AND subheading = '$subheading'";
+            $query = "SELECT id FROM project_heading_2 WHERE heading ='$heading' AND subheading = '$subheading'";
             $result = $db->select($query);
             if($result){
                 while ($rows = $result->fetch_assoc()){
@@ -41,7 +49,8 @@ if(isset($_POST['submit'])) {
           $errMsg = 'Failed Create Project !';
         }
     } else {
-        $query = "UPDATE project_heading SET heading='$heading', subheading='$subheading' WHERE id = '$project_id'";
+        // $query = "UPDATE project_heading SET heading='$heading', subheading='$subheading' WHERE id = '$project_id'";
+        $query = "UPDATE project_heading_2 SET heading='$heading', subheading='$subheading' WHERE id = '$project_id'";
 
         $result = $db->select($query);
         if ($result) {   
@@ -55,7 +64,8 @@ if(isset($_POST['submit'])) {
 
 if(isset($_GET['remove_id'])){
     $project_delete_id = $_GET['remove_id'];
-    $sql = "DELETE FROM project_heading WHERE id = '$project_delete_id'";
+    // $sql = "DELETE FROM project_heading WHERE id = '$project_delete_id'";
+    $sql = "DELETE FROM project_heading_2 WHERE id = '$project_delete_id'";
     if($db->select($sql) === TRUE) {
         $sql = "DELETE FROM due WHERE project_name_id = '$project_delete_id'";
         if ($db->select($sql) === TRUE) {
@@ -279,7 +289,8 @@ if(isset($_GET['remove_id'])){
             <th></th>
           </tr>
           <?php
-            $sql = "SELECT * FROM project_heading";
+            // $sql = "SELECT * FROM project_heading";
+            $sql = "SELECT * FROM project_heading_2 WHERE project_name_id = '$project_name_id'";
             $show = $db->select($sql);
             if ($show) {
               $i=1;

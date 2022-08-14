@@ -10,6 +10,8 @@ $db = new Database();
 $edit_data_permission   = $_SESSION['edit_data'];
 $delete_data_permission = $_SESSION['delete_data'];
 
+$project_name_id = $_SESSION['project_name_id'];
+
 $_SESSION['pageName'] = 'project-list';
 $sucMsg = '';
 $errMsg = '';
@@ -67,7 +69,7 @@ if (isset($_POST['submit'])) {
 
 if (isset($_GET['remove_id'])) {
   $project_delete_id = $_GET['remove_id'];
-  $sql = "DELETE FROM project_heading WHERE id = '$project_delete_id'";
+  $sql = "DELETE FROM project_heading_2 WHERE id = '$project_delete_id'";
   if ($db->select($sql) === TRUE) {
     $sql = "DELETE FROM due WHERE project_name_id = '$project_delete_id'";
     if ($db->select($sql) === TRUE) {
@@ -278,7 +280,7 @@ if (isset($_GET['remove_id'])) {
           <th></th>
         </tr>
         <?php
-        $sql = "SELECT * FROM project_heading";
+        $sql = "SELECT * FROM project_heading_2 WHERE project_name_id = '$project_name_id'";
         $show = $db->select($sql);
         if ($show) {
           $i = 1;
