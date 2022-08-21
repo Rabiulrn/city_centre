@@ -9,7 +9,7 @@
   $project_name_id = $_SESSION['project_name_id'];
   $edit_data_permission   = $_SESSION['edit_data'];
   $delete_data_permission = $_SESSION['delete_data'];
-
+echo $project_name_id;
   $_SESSION['pageName'] = 'balu_dealer_entry';  
   $sucMsg = '';
 

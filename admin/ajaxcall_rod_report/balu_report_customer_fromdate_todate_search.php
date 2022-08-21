@@ -26,6 +26,7 @@ if ($fromdate == '') {
 		$i = 1;
 		echo "<tr>";
 						// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
+						echo "<th style='border: 1px solid #777 !important;'>#</th>";
 						echo "<th style='border: 1px solid #777 !important;'>কাস্টমার আই.ডি</th>";
 						echo "<th style='border: 1px solid #777 !important;'>কাস্টমার নাম</th>";
 						echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
@@ -110,18 +111,18 @@ if ($fromdate == '') {
 			//         }
 			//     // End total total_motor
 			//     //Start Gari vara
-			//     	$motor_cash = 0;
+			//     	$motor_vara = 0;
 			//         $sql2 = "SELECT SUM(motor_cash) as motor_cash FROM details WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 			//         $result2 = $db->select($sql2);
 			//         if($result2->num_rows > 0){
 			//             while($row2 = $result2->fetch_assoc()){
-			//                 $motor_cash = $row2['motor_cash'];
-			//                 if(is_null($motor_cash)){
-			//                     $motor_cash = 0;
+			//                 $motor_vara = $row2['motor_cash'];
+			//                 if(is_null($motor_vara)){
+			//                     $motor_vara = 0;
 			//                 }
 			//             }
 			//         } else{
-			//             $motor_cash = 0;
+			//             $motor_vara = 0;
 			//         }
 			//     //End Gari vara
 
@@ -139,7 +140,7 @@ if ($fromdate == '') {
 			//         } else{
 			//             $unload = 0;
 			//         }
-			//         $motor_cash_and_unload = $motor_cash + $unload;
+			//         $motor_vara_and_unload = $motor_vara + $unload;
 			//     //End khalas/Unload
 			//     // Start total total_credit/mot_mul
 			//         $total_credit = 0;
@@ -228,123 +229,120 @@ if ($fromdate == '') {
 
 
 			//Start Gari vara
-			$sql = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_balu WHERE customer_id = '$customerId' AND project_name_id = '$project_name_id'";
-			$result = $db->select($sql);
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					$motor_vara = $row['motor_vara'];
-					if (is_null($motor_vara)) {
+			$motor_vara = 0;
+			$sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$result2 = $db->select($sql2);
+			if($result2->num_rows > 0){
+				while($row2 = $result2->fetch_assoc()){
+					$motor_vara = $row2['motor_vara'];
+					if(is_null($motor_vara)){
 						$motor_vara = 0;
 					}
 				}
-			} else {
+			} else{
 				$motor_vara = 0;
 			}
-			//End Gari vara
+		//End Gari vara
 
-			//Start khalas/Unload
-			$sql = "SELECT SUM(unload) as unload FROM details_sell_balu WHERE customer_id = '$customerId' AND project_name_id = '$project_name_id'";
-			$result = $db->select($sql);
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					$unload = $row['unload'];
-					if (is_null($unload)) {
+		//Start khalas/Unload
+			$unload = 0;
+			$sql2 = "SELECT SUM(unload) as unload FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$result2 = $db->select($sql2);
+			if($result2->num_rows > 0){
+				while($row2 = $result2->fetch_assoc()){
+					$unload = $row2['unload'];
+					if(is_null($unload)){
 						$unload = 0;
 					}
 				}
-			} else {
+			} else{
 				$unload = 0;
 			}
 			$motor_vara_and_unload = $motor_vara + $unload;
-			//End khalas/Unload
-
-			// Start total total_motor
-
-			// End total total_motor
-
-			//Start GB Bank Ganti
-
-
-			//End GB Bank Ganti
-			// Start total total_kg
-			$sql = "SELECT SUM(total_shift) as shift FROM details_sell_balu WHERE customer_id = '$customerId' AND project_name_id = '$project_name_id'";
-			$result = $db->select($sql);
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					$total_shift = $row['shift'];
-					if (is_null($total_shift)) {
-						$total_shift = 0;
-					}
-				}
-			} else {
-				$total_shift = 0;
-			}
-			$total_ton = $total_shift / 23.5;
-			// End total total_kg
-
-			// Start total total_credit/mot_mul
-			$sql = "SELECT SUM(credit) as credit FROM details_sell_balu WHERE customer_id = '$customerId' AND project_name_id = '$project_name_id'";
-			$result = $db->select($sql);
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					$total_credit = $row['credit'];
-					if (is_null($total_credit)) {
+		//End khalas/Unload
+		// Start total total_credit/mot_mul
+			$total_credit = 0;
+			$sql2 = "SELECT SUM(credit) as credit FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$result2 = $db->select($sql2);
+			if($result2->num_rows > 0){
+				while($row2 = $result2->fetch_assoc()){
+					$total_credit = $row2['credit'];
+					if(is_null($total_credit)){
 						$total_credit = 0;
 					}
 				}
-			} else {
+			} else{
 				$total_credit = 0;
 			}
-			// End total total_credit/mot_mul
+		// End total total_credit/mot_mul
 
-			// Start total total_debit/joma
-			$sql = "SELECT SUM(debit) as debit FROM details_sell_balu WHERE customer_id = '$customerId' AND project_name_id = '$project_name_id'";
-			$result = $db->select($sql);
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					$total_debit = $row['debit'];
-					if (is_null($total_debit)) {
+		// Start total total_debit/joma
+			$total_debit = 0;
+			$sql2 = "SELECT SUM(debit) as debit FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$result2 = $db->select($sql2);
+			if($result2->num_rows > 0){
+				while($row2 = $result2->fetch_assoc()){
+					$total_debit = $row2['debit'];
+					if(is_null($total_debit)){
 						$total_debit = 0;
 					}
 				}
-			} else {
+			} else{
 				$total_debit = 0;
 			}
-			// End total total_debit/joma
+		// End total total_debit/joma
 
-			// Start total total_Balance/mot_jer
-			$sql = "SELECT SUM(balance) as balance FROM details_sell_balu WHERE customer_id = '$customerId' AND project_name_id = '$project_name_id'";
-			$result = $db->select($sql);
-			if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-					$total_balance = $row['balance'];
-					if (is_null($total_balance)) {
+		// Start total total_Balance/mot_jer
+			$total_balance = 0;
+			$sql2 = "SELECT SUM(balance) as balance FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$result2 = $db->select($sql2);
+			if($result2->num_rows > 0){
+				while($row2 = $result2->fetch_assoc()){
+					$total_balance = $row2['balance'];
+					if(is_null($total_balance)){
 						$total_balance = 0;
 					}
 				}
-			} else {
+			} else{
 				$total_balance = 0;
 			}
-			// End total total_Balance/mot_jer
+		// End total total_Balance/mot_jer
+		//Start GB Bank Ganti
+			$gb_bank_ganti = 0;
+			$sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_balu WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$result2 = $db->select($sql2);
+			if($result2->num_rows > 0){
+				while($row2 = $result2->fetch_assoc()){
+					$gb_bank_ganti = $row2['debit'];
+					$gb_bank_ganti_db_id = $row2['id'];
+					if(is_null($gb_bank_ganti)){
+						$gb_bank_ganti = 0;
+					}
+				}
+			} else{
+				$gb_bank_ganti = 0;
+			}
+			
+		//End GB Bank Ganti
+	//Start Total para/mot_mul_khoros_shoho
+			$paras = 0;
+			$sql2 = "SELECT SUM(paras) as paras FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$result2 = $db->select($sql2);
+			if($result2->num_rows > 0){
+				while($row2 = $result2->fetch_assoc()){
+					$total_paras = $row2['paras'];
+					if(is_null($paras)){
+						$paras = 0;
+					}
+				}
+			} else{
+				$paras = 0;
+			}
+		//End Total para/mot_mul_khoros_shoho
 
-			//Start Total para/mot_mul_khoros_shoho
-
-			$vara_credit = $motor_vara_and_unload + $total_credit;
-
-
-
-			//End Total para/mot_mul_khoros_shoho
-
-
-
-
-
-
-
-
-
-			$nij_paona = $total_debit - $total_credit;
-			$company_paona = ($total_debit - $total_credit) - $gb_bank_ganti;
+		$nij_paona = $total_debit - $total_credit;
+		$company_paona = ($total_debit - $total_credit) - $gb_bank_ganti;
+			
 
 			//Nested table
 			// echo "<tr><td colspan='5' style='border: 1px solid #777 !important;'>";
@@ -401,6 +399,7 @@ if ($fromdate == '') {
 			// echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
             echo "<tr>";
 			//  echo "<td style='border: 1px solid #777 !important;'></td>";
+			echo "<td  style='border: 1px solid #777 !important;'>".$i."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$customer_id."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$row['customer_name']."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";

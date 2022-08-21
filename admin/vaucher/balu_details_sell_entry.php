@@ -55,13 +55,13 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
         #detailsEtryTable tr:first-child td {
             text-align: center;
-            background-color: #3e9309d4;
+            background-color: #3e9309ba;
             color: white;
         }
 
         #detailsEtryTable tr:nth-child(2) td {
             text-align: center;
-            background-color: #3e9309d4;
+            background-color: #3e9309ba;
             Color: white;
         }
 
@@ -183,14 +183,14 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
         #detailsNewTable2 tr:first-child th {
             text-align: center;
-            background-color: #363636;
+            background-color: #363636db;
             color: #fff;
             padding: 5px 0px;
         }
 
         #detailsNewTable2 tr:nth-child(2) th {
             text-align: center;
-            background-color: #363636;
+            background-color: #363636db;
             padding: 5px 0px;
             color: #fff;
         }

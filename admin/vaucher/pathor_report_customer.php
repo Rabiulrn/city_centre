@@ -609,7 +609,7 @@
 		}
 		$(document).on('change', '#searchCustomer', function(){
 			var searchCustomer 	= $("#searchCustomer").val();
-			if(searchCustomer == 'allcustomerss'){
+			if(searchCustomer == 'allcustomers'){
 				window.location = '../vaucher/pathor_report_customer.php';
 			} else {
 				customerWiseSearch(searchCustomer);

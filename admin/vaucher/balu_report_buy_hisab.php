@@ -106,24 +106,24 @@
 	    			<tr>
 	    				<th>Buyer Id</th>
                         <th>Dealer Id</th>
-	    				<th>Motor Name</th>
-	    				<th>Driver Name</th>
+	    				<!-- <th>Motor Name</th>
+	    				<th>Driver Name</th> -->
 	    				<th>Motor Vara</th>
 	    				<th>Unload</th>
 	    				<th>Cars Rent & Redeem</th>
                         <th>Information </th>
-                        <th>SL</th>
-                        <th>Voucher No.</th>
+                        <!-- <th>SL</th> -->
+                        <!-- <th>Voucher No.</th>
 	    				<th>Address</th>
 	    				<th>Motor No</th>
-                        <th>Motor SL</th>
-	    				<th>Delivery Date</th>
-	    				<th>Date</th>
+                        <th>Motor SL</th> -->
+	    				<!-- <th>Delivery Date</th> -->
+	    				<!-- <th>Date</th> -->
 	    				<th>Partculars</th>
 	    				<th>Particulars</th>
 	    				<th>Debit</th>
 	    				<th>Ton & Kg</th>
-                        <th>Length</th>
+                        <!-- <th>Length</th>
                         <th>width</th>
                         <th>Height</th>
                         <th>Cft</th>
@@ -131,40 +131,40 @@
                         <th>Cft ( - ) Dropped Out</th>
                         <th>Inchi (+) Added</th>
                         <th>Points ( - ) Dropped Out</th>
-                        <th>Cft</th>
-                        <th>Total Cft</th>
+                        <th>Cft</th> -->
+                        <!-- <th>Total Cft</th> -->
 	    				<th>Para's</th>
 	    				<th>Discount</th>
                         <th>Credit </th>
 	    				<th>Balance</th>
                         <th>Cemeat's Para's</th>
                         <th>Ton</th>
-                        <th>Total Shifts</th>
+                        <th>Total Cft</th>
                         <th>Tons</th>
-	    				<th>Bank Name</th>
-	    				<th>fee</th>
+	    				<!-- <th>Bank Name</th> -->
+	    				<th> Bank fee</th>
 	    			</tr>
 	    			<tr>
 	    				<th>বায়ার আই ডি</th>
 	    				<th>ডিলার আই ডি</th>
-                        <th>গাড়ী নাম</th>
-	    				<th>ড্রাইভারের নাম</th>
+                        <!-- <th>গাড়ী নাম</th>
+	    				<th>ড্রাইভারের নাম</th> -->
 	    				<th>গাড়ী ভাড়া</th>
 	    				<th>আনলোড</th>
 	    				<th>গাড়ী ভাড়া ও খালাস</th>
 	    				<th>মালের বিবরণ</th>
-	    				<th>ক্রমিক</th>
-	    				<th>ভাউচার নং</th>
+	    				<!-- <th>ক্রমিক</th> -->
+	    				<!-- <th>ভাউচার নং</th>
                         <th>ঠিকানা</th>
 	    				<th>গাড়ী নাম্বার</th>
-	    				<th>গাড়ী নং</th>
-	    				<th>ডেলিভারী তারিখ</th>
-	    				<th>তারিখ</th>
+	    				<th>গাড়ী নং</th> -->
+	    				<!-- <th>ডেলিভারী তারিখ</th> -->
+	    				<!-- <th>তারিখ</th> -->
 	    				<th>মারফোত নাম</th>
 	    				<th>বিবরণ</th>
 	    				<th>জমা টাকা</th>
-	    				<th>টোন ও কেজি</th>
-	    				<th>দৈর্ঘ্যের</th>
+	    				<th>টন ও কেজি</th>
+	    				<!-- <th>দৈর্ঘ্যের</th>
                         <th>প্রস্ত</th>
                         <th>উচাঁ</th>
                         <th>সিএফটি </th>
@@ -172,18 +172,18 @@
                         <th>সিএফটি ( - ) বাদ</th>
                         <th>Inchi (+) যোগ </th>
                         <th>পয়েন্ট ( - )  বাদ</th>
-                        <th>সিএফটি</th>
-                        <th>মোট সিএফটি</th>
+                        <th>সিএফটি</th> -->
+                        <!-- <th>মোট সিএফটি</th> -->
                         <th>দর</th>
                         <th>কমিশন</th>
                         <th>মূল</th>
                         <th>অবশিষ্ট</th>
 	    				<th>গাড়ী ভাড়া / লেবার সহ</th>
-                        <th>টোন</th>
-                        <th>সেপ্টি</th>
-	    				<th>টোন</th>
-	    				<th>ব্যাংক নাম</th>
-	    				<th>ফি</th>
+                        <th>টন</th>
+                        <th>মোট সিএফটি</th>
+	    				<th>টন</th>
+	    				<!-- <th>ব্যাংক নাম</th> -->
+	    				<th>ব্যাংক ফি</th>
 	    				
 	    			</tr>
     			</thead>
@@ -200,50 +200,50 @@
                                 // echo "<td>".$row['id']."</td>";
                                 echo "<td>".$row['buyer_id']."</td>";
                                 echo "<td>".$row['dealer_id']."</td>";
-	    						echo "<td>".$row['motor_name']."</td>";
-	    						echo "<td>".$row['driver_name']."</td>";
+	    						// echo "<td>".$row['motor_name']."</td>";
+	    						// echo "<td>".$row['driver_name']."</td>";
 	    						echo "<td>".$row['motor_vara']."</td>";
 	    						echo "<td>".$row['unload']."</td>";
 	    						echo "<td>".$row['cars_rent_redeem']."</td>";
 	    						echo "<td>".$row['information']."</td>";
-	    						echo "<td>".$row['sl']."</td>";
-	    						echo "<td>".$row['voucher_no']."</td>";
-	    						echo "<td>".$row['address']."</td>";
-	    						echo "<td>".$row['motor_no']."</td>";
-	    						echo "<td>".$row['motor_sl']."</td>";
-								if($row['delivery_date'] =='0000-00-00') {
-									echo "<td></td>";
-	    						} else {
-	    							echo "<td>".date("d-m-Y", strtotime($row['delivery_date']))."</td>"; 
-	    						};
-	    						if($row['dates'] == '0000-00-00'){
-	    							echo "<td></td>";
-	    						} else {
-	    							echo "<td>".date("d-m-Y", strtotime($row['dates']))."</td>"; 
-	    						}
+	    						// echo "<td>".$row['sl']."</td>";
+	    						// echo "<td>".$row['voucher_no']."</td>";
+	    						// echo "<td>".$row['address']."</td>";
+	    						// echo "<td>".$row['motor_no']."</td>";
+	    						// echo "<td>".$row['motor_sl']."</td>";
+								// if($row['delivery_date'] =='0000-00-00') {
+								// 	echo "<td></td>";
+	    						// } else {
+	    						// 	echo "<td>".date("d-m-Y", strtotime($row['delivery_date']))."</td>"; 
+	    						// };
+	    						// if($row['dates'] == '0000-00-00'){
+	    						// 	echo "<td></td>";
+	    						// } else {
+	    						// 	echo "<td>".date("d-m-Y", strtotime($row['dates']))."</td>"; 
+	    						// }
 	    						echo "<td>".$row['partculars']."</td>";
 	    						echo "<td>".$row['particulars']."</td>";
 	    						echo "<td>".$row['debit']."</td>";
 	    						echo "<td>".$row['ton & kg']."</td>";
-	    						echo "<td>".$row['length']."</td>";
-	    						echo "<td>".$row['width']."</td>";
-	    						echo "<td>".$row['height']."</td>";
-	    						echo "<td>".$row['shifty']."</td>";
-	    						echo "<td>".$row['inchi (-)_minus']."</td>";
-                                echo "<td>".$row['cft (-)_dropped out']."</td>";
-                                echo "<td>".$row['inchi (+)_added']."</td>";
-                                echo "<td>".$row['points ( - )_dropped out']."</td>";
-	    						echo "<td>".$row['shift']."</td>";
-                                echo "<td>".$row['total_shift']."</td>";
+	    						// echo "<td>".$row['length']."</td>";
+	    						// echo "<td>".$row['width']."</td>";
+	    						// echo "<td>".$row['height']."</td>";
+	    						// echo "<td>".$row['shifty']."</td>";
+	    						// echo "<td>".$row['inchi (-)_minus']."</td>";
+                                // echo "<td>".$row['cft (-)_dropped out']."</td>";
+                                // echo "<td>".$row['inchi (+)_added']."</td>";
+                                // echo "<td>".$row['points ( - )_dropped out']."</td>";
+	    						// echo "<td>".$row['shift']."</td>";
+                                // echo "<td>".$row['total_shift']."</td>";
 	    						echo "<td>".$row['paras']."</td>";
                                 echo "<td>".$row['discount']."</td>";
                                 echo "<td>".$row['credit']."</td>";
-								// echo "<td>".$row['balance']."</td>";
+							    echo "<td>".$row['balance']."</td>";
                                 echo "<td>".$row['cemeats_paras']."</td>";
                                 echo "<td>".$row['ton']."</td>";
                                 echo "<td>".$row['total_shifts']."</td>";
                                 echo "<td>".$row['tons']."</td>";
-                                echo "<td>".$row['bank_name']."</td>";
+                                // echo "<td>".$row['bank_name']."</td>";
                                 echo "<td>".$row['fee']."</td>";
 
                                 

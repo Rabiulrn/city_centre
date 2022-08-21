@@ -8,11 +8,11 @@
 	$db = new Database();
 
 	$project_name_id = $_SESSION['project_name_id'];
-	$searchTxt = $_POST['searchTxt'];
+	$customer_id = $_POST['searchCustomer'];
 ?>
 
 <?php
-	$sql = "SELECT * FROM customers_balu WHERE customer_name LIKE '%$searchTxt%' AND project_name_id = '$project_name_id'";
+	$sql = "SELECT * FROM customers_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 	$result = $db->select($sql);
 	$row_number = mysqli_num_rows($result);
 	if($result && $row_number > 0){
@@ -20,7 +20,6 @@
 		$i = 1;
 		echo "<tr>";
 						// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
-						// echo "<th style='border: 1px solid #777 !important;'>#</th>";
 						echo "<th style='border: 1px solid #777 !important;'>কাস্টমার আই.ডি</th>";
 						echo "<th style='border: 1px solid #777 !important;'>কাস্টমার নাম</th>";
 						echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
@@ -30,29 +29,30 @@
 						echo "<th style='border: 1px solid #777 !important;'>মোট জমাঃ</th>";
 						echo "<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>";
 						echo "<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>";
-						 echo "</tr>"; 
 		
 		while($row = $result->fetch_assoc()){
 			$customer_id = $row['customer_id'];
 			// echo "<tr>";
-			// echo "<td colspan='5' style='border: 1px solid #777 !important; text-align: center; font-size: 28px; background-color: #ddd;'>".$row['customer_name']."</td>";
+			// echo "<td colspan='5' style='border: 1px solid #777 !important; text-align: center; font-size: 28px; background-color: #ddd;'>".$row['dealer_name']."</td>";
 			// echo "</tr>";
 
 			// echo "<tr>";
 			// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
 			// echo "<th style='border: 1px solid #777 !important;'>কাস্টমার আই.ডি</th>";
 			// echo "<th style='border: 1px solid #777 !important;'>কাস্টমার নাম</th>";
-            // echo "<th style='border: 1px solid #777 !important;'>ঠিকানা</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>ঠিকানা</th>";
 			// echo "<th style='border: 1px solid #777 !important;'>মোবাইল</th>";
+			//     			// echo "<th style='border: 1px solid #777 !important;'>কেনার ধরন</th>";
 			// echo "</tr>";
 
 
 			// echo "<tr>";
 			// echo "<td style='border: 1px solid #777 !important;'></td>";
-			// echo "<td style='border: 1px solid #777 !important;'>".$customer_id."</td>";	    						
+			// echo "<td style='border: 1px solid #777 !important;'>".$customer_id."</td>";
+			// echo "<td style='border: 1px solid #777 !important;'>".$row['customer_name']."</td>";	    						
 			// echo "<td style='border: 1px solid #777 !important;'>".$row['address']."</td>";
-			// echo "<td style='border: 1px solid #777 !important;'>".$row['contact_person_name']."</td>";
 			// echo "<td style='border: 1px solid #777 !important;'>".$row['mobile']."</td>";
+    		// 				// echo "<td style='border: 1px solid #777 !important;'>".$row['buying_type']."</td>";
 			// echo "</tr>";
 			
 			
@@ -61,7 +61,7 @@
 			// $rod500w = 0;
 			// $rod400w = 0;
 
-			// $sql2 = "SELECT SUM(kg) as kg FROM details_sell_balu WHERE particulars LIKE '%500W%' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			// $sql2 = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%500W%' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 	        // $result2 = $db->select($sql2);
 	        // if($result2->num_rows > 0){
 	        //     while($row2 = $result2->fetch_assoc()){
@@ -73,7 +73,7 @@
 	        // } else{
 	        //     $rod500w = 0;
 	        // }
-	        // $sql2 = "SELECT SUM(kg) as kg FROM details_sell_balu WHERE particulars LIKE '%400W%' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+	        // $sql2 = "SELECT SUM(kg) as kg FROM details WHERE particulars LIKE '%400W%' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 	        // $result2 = $db->select($sql2);
 	        // if($result2->num_rows > 0){
 	        //     while($row2 = $result2->fetch_assoc()){
@@ -89,7 +89,7 @@
 			
 	        // // Start total total_motor
 	        // 	$total_motor = 0;
-		    //     $sql2 = "SELECT SUM(motor) as motor FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		    //     $sql2 = "SELECT SUM(motor) as motor FROM details WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		    //     $result2 = $db->select($sql2);
 		    //     if($result2->num_rows > 0){
 		    //         while($row2 = $result2->fetch_assoc()){
@@ -103,12 +103,12 @@
 		    //     }
 		    // End total total_motor
 	        //Start Gari vara
-	        	$motor_vara = 0;
-		        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+	        	$motor_cash = 0;
+		        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
-		                $motor_vara = $row2['motor_vara'];
+		                $motor_cash = $row2['motor_vara'];
 		                if(is_null($motor_vara)){
 		                    $motor_vara = 0;
 		                }
@@ -120,7 +120,7 @@
 
 		    //Start khalas/Unload
 		        $unload = 0;
-		        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -136,7 +136,7 @@
 		    //End khalas/Unload
 		    // Start total total_credit/mot_mul
 		        $total_credit = 0;
-		        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -152,7 +152,7 @@
 
 		    // Start total total_debit/joma
 		        $total_debit = 0;
-		        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -168,7 +168,7 @@
 
 		    // Start total total_Balance/mot_jer
 		        $total_balance = 0;
-		        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -183,7 +183,7 @@
 		    // End total total_Balance/mot_jer
 		    //Start GB Bank Ganti
 		        $gb_bank_ganti = 0;
-		        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_balu WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_pathor WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -200,7 +200,7 @@
 		    //End GB Bank Ganti
 		//Start Total para/mot_mul_khoros_shoho
 		        $paras = 0;
-		        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_balu WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -227,7 +227,7 @@
 		    //     // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ীঃ</td>";
 		    //     // echo "<td style='border: 1px solid #777 !important;'>".$total_motor." টি</td>";
 		    //     echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
-		    //     echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
+		    //     echo "<td style='border: 1px solid #777 !important;'>".$motor_cash." টাকা</td>";
 		    //     echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
 		    //     echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";
 			// 	echo "<td style='border: 1px solid #777 !important; text-align: right;'>মোট মূলঃ</td>";
@@ -258,7 +258,7 @@
 		    //     // echo "<td style='border: 1px solid #777 !important;'>".$nij_paona." kg</td>";
 		    //     // echo "<td style='text-align: right; border: 1px solid #777 !important;'>মোট মূল খরচ সহঃ</td>";
 		    //     // echo "<td style='border: 1px solid #777 !important;'>".$total_paras." টাকা</td>";
-		    //     echo "</tr>";
+		    //     // echo "</tr>";
 
 
 		    //     echo "<tr>";
@@ -268,18 +268,17 @@
 		    //     echo "</table>";
 	        // echo "</td></tr>";
 	        // echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
-            echo "<tr>";
-    						//  echo "<td style='border: 1px solid #777 !important;'></td>";
-							// echo "<td  style='border: 1px solid #777 !important;'>".$i."</td>";
-    					    echo "<td style='border: 1px solid #777 !important;'>".$row['customer_id']."</td>";
-							echo "<td style='border: 1px solid #777 !important;'>".$row['customer_name']."</td>";
-							echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
-			                echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";	
-							echo "<td style='border: 1px solid #777 !important;'>".$total_credit." টাকা</td>";
-							echo "<td style='border: 1px solid #777 !important;'>".$total_debit." টাকা</td>";
-							echo "<td style='border: 1px solid #777 !important;'>".$total_balance." টাকা</td>";
-							echo "<td style='border: 1px solid #777 !important;'>".$nij_paona." টাকা</td>";
-    						 echo "</tr>";
+			echo "<tr>";
+			//  echo "<td style='border: 1px solid #777 !important;'></td>";
+			echo "<td style='border: 1px solid #777 !important;'>".$customer_id."</td>";
+			echo "<td style='border: 1px solid #777 !important;'>".$row['customer_name']."</td>";
+			echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
+			echo "<td style='border: 1px solid #777 !important;'>".$unload." টাকা</td>";	
+			echo "<td style='border: 1px solid #777 !important;'>".$total_credit." টাকা</td>";
+			echo "<td style='border: 1px solid #777 !important;'>".$total_debit." টাকা</td>";
+			echo "<td style='border: 1px solid #777 !important;'>".$total_balance." টাকা</td>";
+			echo "<td style='border: 1px solid #777 !important;'>".$nij_paona." টাকা</td>";
+			 echo "</tr>";
 
 
 
@@ -288,3 +287,4 @@
 		}
 	}
 ?>
+

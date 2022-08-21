@@ -115,7 +115,7 @@
 						<span style="position: relative; top: -13px;">
 		    				<b>Search:</b>
 		    				<select class="selctpik2" id="searchBuyer">
-		    					<option value="allbuyer">All Buyers</option>
+		    					<option value="allbuyers">All Buyers</option>
 		    					<?php
 		    						$sql = "SELECT DISTINCT buyer_id, buyer_name FROM balu_buyers WHERE project_name_id = '$project_name_id' ORDER BY buyer_name ASC";
 		    						$rslt = $db->select($sql);
@@ -196,7 +196,8 @@
     					$i = 1;
 						echo "<tr>";
 						// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
-						echo "<th style='border: 1px solid #777 !important;'>বায়ার আই.ডি</th>";
+						echo "<th style='border: 1px solid #777 !important;'>#</th>";
+						echo "<th style='border: 1px solid #777 !important;'>বায়ারআই.ডি</th>";
 						echo "<th style='border: 1px solid #777 !important;'>বায়ার নাম</th>";
 						echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
 						echo "<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
@@ -295,6 +296,20 @@
 						        } else{
 						            $motor_vara = 0;
 						        }
+
+								$total_motor_vara = 0;
+						        $sql3 = "SELECT SUM(motor_vara) as motor_vara FROM details_balu WHERE project_name_id = '$project_name_id'";
+						        $result3 = $db->select($sql3);
+						        if($result3->num_rows > 0){
+						            while($row3 = $result3->fetch_assoc()){
+						                $total_motor_vara = $row3['motor_vara'];
+						                if(is_null($total_motor_vara)){
+						                    $total_motor_vara = 0;
+						                }
+						            }
+						        } else{
+						            $total_motor_vara = 0;
+						        }
 						    //End Gari vara
 
 						    //Start khalas/Unload
@@ -312,6 +327,20 @@
 						            $unload = 0;
 						        }
 						        $motor_vara_and_unload = $motor_vara + $unload;
+
+								$total_unload = 0;
+								$sql3 = "SELECT SUM(unload) as unload FROM details_balu WHERE  project_name_id = '$project_name_id'";
+								$result3 = $db->select($sql3);
+								if($result3->num_rows > 0){
+									while($row3 = $result3->fetch_assoc()){
+										$total_unload = $row3['unload'];
+									   if(is_null($total_unload)){
+										  $total_unload = 0;
+									  }
+								   }
+								} else{
+								   $total_unload = 0;
+								}
 						    //End khalas/Unload
 						    // Start total total_credit/mot_mul
 						        $total_credit = 0;
@@ -326,6 +355,20 @@
 						            }
 						        } else{
 						            $total_credit = 0;
+						        }
+
+								$total1_credit = 0;
+						        $sql3 = "SELECT SUM(credit) as credit FROM details_balu WHERE project_name_id = '$project_name_id'";
+						        $result3 = $db->select($sql3);
+						        if($result3->num_rows > 0){
+						            while($row3 = $result3->fetch_assoc()){
+						                $total1_credit = $row3['credit'];
+						                if(is_null($total1_credit)){
+						                    $total1_credit = 0;
+						                }
+						            }
+						        } else{
+						            $total1_credit = 0;
 						        }
 						    // End total total_credit/mot_mul
 
@@ -343,6 +386,20 @@
 						        } else{
 						            $total_debit = 0;
 						        }
+
+								$total1_debit = 0;
+						        $sql3 = "SELECT SUM(debit) as debit FROM details_balu WHERE project_name_id = '$project_name_id'";
+						        $result3 = $db->select($sql3);
+						        if($result3->num_rows > 0){
+						            while($row3 = $result3->fetch_assoc()){
+						                $total1_debit = $row3['debit'];
+						                if(is_null($total1_debit)){
+						                    $total1_debit = 0;
+						                }
+						            }
+						        } else{
+						            $total1_debit = 0;
+						        }
 						    // End total total_debit/joma
 
 						    // Start total total_Balance/mot_jer
@@ -358,6 +415,20 @@
 						            }
 						        } else{
 						            $total_balance = 0;
+						        }
+
+								$total1_balance = 0;
+						        $sql3 = "SELECT SUM(balance) as balance FROM details_balu WHERE  project_name_id = '$project_name_id'";
+						        $result3 = $db->select($sql3);
+						        if($result3->num_rows > 0){
+						            while($row3 = $result3->fetch_assoc()){
+						                $total1_balance = $row3['balance'];
+						                if(is_null($total1_balance)){
+						                    $total1_balance = 0;
+						                }
+						            }
+						        } else{
+						            $total1_balance = 0;
 						        }
 						    // End total total_Balance/mot_jer
 						    //Start GB Bank Ganti
@@ -394,6 +465,7 @@
 						    //End Total para/mot_mul_khoros_shoho
 
 						    $nij_paona = $total_debit - $total_credit;
+							$total_nij_paona = $total1_debit - $total1_credit;
 						    $company_paona = ($total_debit - $total_credit) - $gb_bank_ganti;
 
 					        //Nested table
@@ -449,6 +521,7 @@
 					        // echo "<tr><td colspan='6' style='border-left: 1px solid transparent; border-right: 1px solid transparent; border-bottm: 1px solid #777; border-top: 1px solid #777; height: 70px;'></td></tr>";
 							echo "<tr>";
     						//  echo "<td style='border: 1px solid #777 !important;'></td>";
+							echo "<td  style='border: 1px solid #777 !important;'>".$i."</td>";
     					    echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_id']."</td>";
 							echo "<td style='border: 1px solid #777 !important;'>".$row['buyer_name']."</td>";
 							echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
@@ -466,7 +539,21 @@
     					}
     				}
     			?>
-    		</table>
+    		<!-- </table> -->
+			<?php
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_motor_vara. " টাকা</td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_unload. " টাকা</td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_credit." টাকা </td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_debit." টাকা </td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_balance." টাকা </td>";
+			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_nij_paona." টাকা </td>";
+			
+	        // <!-- echo "<td style='border: 1px solid #777 !important;'>"" tonne</td>"; -->
+			?>
+
 		</div>
 	</div>
 

@@ -79,7 +79,7 @@
 				<a href="../vaucher/pathor_report_buy_hisab.php" >ক্রয় অনুযায়ী </a>
 				<a href="../vaucher/pathor_report_sell_hisab.php">বিক্রয় অনুযায়ী </a>
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-				 <a href="../vaucher/bpathorreport_dealer.php">ডিলার অনুযায়ী </a>
+				 <a href="../vaucher/pathor_report_dealer.php">ডিলার অনুযায়ী </a>
 				 <a href="../vaucher/pathor_report_customer.php">কাস্টমার অনুযায়ী </a> 
 				<a href="../vaucher/pathor_report_buyer.php" class="active">বায়ার অনুযায়ী </a> 
 			</div>
@@ -115,9 +115,9 @@
 						<span style="position: relative; top: -13px;">
 		    				<b>Search:</b>
 		    				<select class="selctpik2" id="searchBuyer">
-		    					<option value="allbuyer">All Buyers</option>
+		    					<option value="allbuyers">All Buyers</option>
 		    					<?php
-		    						$sql = "SELECT DISTINCT buyer_id, buyer_name FROM balu_buyers WHERE project_name_id = '$project_name_id' ORDER BY buyer_name ASC";
+		    						$sql = "SELECT DISTINCT buyer_id, buyer_name FROM pathor_buyers WHERE project_name_id = '$project_name_id' ORDER BY buyer_name ASC";
 		    						$rslt = $db->select($sql);
 						            $row_no = mysqli_num_rows($rslt);
 						            if ($rslt && $row_no > 0) {
@@ -188,7 +188,7 @@
     		<table class="tableshow" id="tableshow" style="border-collapse: collapse; border: 1px solid #777 !important;">
     			
     			<?php
-    				$sql = "SELECT * FROM balu_buyers WHERE project_name_id = '$project_name_id'";
+    				$sql = "SELECT * FROM pathor_buyers WHERE project_name_id = '$project_name_id'";
     				$result = $db->select($sql);
     				$row_number = mysqli_num_rows($result);
     				if($result && $row_number > 0){

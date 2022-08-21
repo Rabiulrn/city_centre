@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
 
 if (isset($_GET['remove_id'])) {
   $project_delete_id = $_GET['remove_id'];
-  $sql = "DELETE FROM project_heading_2 WHERE id = '$project_delete_id'";
+  $sql = "DELETE FROM project_heading_3 WHERE id = '$project_delete_id'";
   if ($db->select($sql) === TRUE) {
     $sql = "DELETE FROM due WHERE project_name_id = '$project_delete_id'";
     if ($db->select($sql) === TRUE) {
@@ -242,6 +242,32 @@ if (isset($_GET['remove_id'])) {
     .showProjectsCon table td {
       padding: 2px 5px;
     }
+
+
+#timeline-view{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+
+#timeline-view td, #timeline-view th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#timeline-view tr:nth-child(even){background-color: #f2f2f2;}
+
+#timeline-view tr:hover {background-color: #ddd;}
+
+#timeline-view th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
   </style>
 </head>
 
@@ -280,7 +306,7 @@ if (isset($_GET['remove_id'])) {
           <th></th>
         </tr>
         <?php
-        $sql = "SELECT * FROM project_heading_2 WHERE project_name_id = '$project_name_id'";
+        $sql = "SELECT * FROM project_heading_3 WHERE project_name_id = '$project_name_id'";
         $show = $db->select($sql);
         if ($show) {
           $i = 1;
@@ -316,9 +342,9 @@ if (isset($_GET['remove_id'])) {
     </div>
 
 
-    <div class="table">
-      <table id="timeline-view" style="display: none; width:100%">
-        <thead>
+    <div>
+      <table id="timeline-view" style="display: none;">
+        <tr>
           <th scope="col">project name</th>
           <th scope="col">kaj name</th>
           <th scope="col">task1 name</th>
@@ -327,17 +353,30 @@ if (isset($_GET['remove_id'])) {
           <th scope="col">task2 name</th>
           <th scope="col">From</th>
           <th scope="col">to</th>
-        </thead>
-        <tbody>
+          <th scope="col">Budget</th>
+        </tr>
+
+        <!-- <?php
+// $sql = "SELECT * FROM timeline WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
+// $result = $db->select($sql);
+// if ($result) {
+//   $rowcount = mysqli_num_rows($result);
+//   if ($rowcount != 0) {
+// ?>
+    <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
+      <div class="viewDetailsCon" id="viewDetails">
+        <table id="detailsNewTable2"> -->
+
+        <tr>
+          <td>#</td>
+          <td>#</td>
           <td>#</td>
           <td></td>
           <td></td>
           <td></td>
           <td></td>
           <td></td>
-          <td></td>
-          <td></td>
-        </tbody>
+      </tr>
       </table>
 
 
@@ -363,6 +402,7 @@ if (isset($_GET['remove_id'])) {
             <input type="date" name="task1_date1" id=""><span>&nbsp;&nbsp;</span>
             <label for="username" class="">To:</label>
             <input type="date" name="task1_date2" id="">
+
             <!-- <div id="unameMsg" class="errorMsg"></div> -->
           </div>
           <div class="form-group">
@@ -371,8 +411,10 @@ if (isset($_GET['remove_id'])) {
             <label for="username" class="">From:</label>
             <input type="date" name="task2_date1" id=""><span>&nbsp;&nbsp;</span>
             <label for="username" class="">To:</label>
-            <input type="date" name="task2_date2" id="">
+            <input type="date" name="task2_date2" id=""><br><br>
             <!-- <div id="mobileMsg" class="errorMsg"></div> -->
+            <label for="budget" class="">Budget:</label><br>
+            <input type="text" name="budget1" class="form-control" id="budget1" placeholder="..." />
           </div>
 
 

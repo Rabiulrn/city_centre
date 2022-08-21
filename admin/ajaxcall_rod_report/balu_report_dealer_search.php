@@ -20,6 +20,7 @@
 		$i = 1;
 		echo "<tr>";
 			// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
+			// echo "<th style='border: 1px solid #777 !important;'>#</th>";
 			echo "<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>";
 			echo "<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>";
 			echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
@@ -116,6 +117,8 @@
 		        } else{
 		            $motor_vara = 0;
 		        }
+
+			
 		    //End Gari vara
 
 		    //Start khalas/Unload
@@ -133,6 +136,8 @@
 		            $unload = 0;
 		        }
 		        $motor_vara_and_unload = $motor_vara + $unload;
+
+				
 		    //End khalas/Unload
 		    // Start total total_credit/mot_mul
 		        $total_credit = 0;
@@ -148,6 +153,8 @@
 		        } else{
 		            $total_credit = 0;
 		        }
+
+				
 		    // End total total_credit/mot_mul
 
 		    // Start total total_debit/joma
@@ -164,6 +171,7 @@
 		        } else{
 		            $total_debit = 0;
 		        }
+				
 		    // End total total_debit/joma
 
 		    // Start total total_Balance/mot_jer
@@ -180,6 +188,7 @@
 		        } else{
 		            $total_balance = 0;
 		        }
+				
 		    // End total total_Balance/mot_jer
 		    //Start GB Bank Ganti
 		        $gb_bank_ganti = 0;
@@ -215,6 +224,7 @@
 		    //End Total para/mot_mul_khoros_shoho
 
 		    $nij_paona = $total_debit - $total_credit;
+			
 		    $company_paona = ($total_debit - $total_credit) - $gb_bank_ganti;
 
 	        //Nested table
@@ -285,6 +295,7 @@
 
 			 echo "<tr>";
 			//  echo "<td style='border: 1px solid #777 !important;'></td>";
+			// echo "<td  style='border: 1px solid #777 !important;'>".$i."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$row['dealer_id']."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$row['dealer_name']."</td>";	
 			echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";
@@ -303,3 +314,4 @@
 		}
 	}
 ?>
+
