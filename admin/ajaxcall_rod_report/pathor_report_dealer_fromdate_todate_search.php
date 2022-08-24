@@ -26,6 +26,7 @@ if ($fromdate == '') {
 		$i = 1;
 		echo "<tr>";
 						// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
+						echo "<th style='border: 1px solid #777 !important;'>#</th>";
 						echo "<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>";
 						echo "<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>";
 						echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
@@ -414,6 +415,7 @@ if ($fromdate == '') {
 
 			 echo "<tr>";
 			//  echo "<td style='border: 1px solid #777 !important;'></td>";
+			echo "<td  style='border: 1px solid #777 !important;'>".$i."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$dealer_id."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$row['dealer_name']."</td>";
 			echo "<td style='border: 1px solid #777 !important;'>".$motor_vara." টাকা</td>";

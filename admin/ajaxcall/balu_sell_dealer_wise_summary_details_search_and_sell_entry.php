@@ -7,7 +7,7 @@ use Mpdf\Language\ScriptToLanguage;
     require '../lib/database.php';
     $db = new Database();
 
-    $dealerId	= $_POST['dealerId'];
+    $dealerId	= $_POST['dealerId'];             //dealer is thakleo customer hishebe chaliye deoya.
     $_SESSION['dealerIdInput'] = $_POST['dealerId'];
 	// echo $dealerId;
     $project_name_id = $_SESSION['project_name_id'];
@@ -21,7 +21,7 @@ use Mpdf\Language\ScriptToLanguage;
 
 
     //Start Gari vara
-    $sql = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+    $sql = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
@@ -36,7 +36,7 @@ use Mpdf\Language\ScriptToLanguage;
 //End Gari vara
 
 //Start khalas/Unload
-    $sql = "SELECT SUM(unload) as unload FROM details_sell_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+    $sql = "SELECT SUM(unload) as unload FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
@@ -50,17 +50,26 @@ use Mpdf\Language\ScriptToLanguage;
     }
     $motor_vara_and_unload = $motor_vara + $unload;
 //End khalas/Unload
-
 // Start total total_motor
-   
-// End total total_motor
+$sql = "SELECT SUM(motor_no) as motor FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_motor = $row['motor'];
+    if (is_null($total_motor)) {
+      $total_motor = 0;
+    }
+  }
+} else {
+  $total_motor = 0;
+}
 
 //Start GB Bank Ganti
   
     
 //End GB Bank Ganti
 // Start total total_kg
-    $sql = "SELECT SUM(total_shift) as shift FROM details_sell_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+    $sql = "SELECT SUM(total_shift) as shift FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
@@ -74,9 +83,23 @@ use Mpdf\Language\ScriptToLanguage;
     }
     $total_ton = $total_shift/23.5;
 // End total total_kg
+// Start total total_kg
+$sql = "SELECT SUM(tons) as ton_kg FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_ton_kg = $row['ton_kg'];
+    if (is_null($total_ton_kg)) {
+      $total_ton_kg = 0;
+    }
+  }
+} else {
+  $total_ton_kg = 0;
+}
+
 
 // Start total total_credit/mot_mul
-    $sql = "SELECT SUM(credit) as credit FROM details_sell_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+    $sql = "SELECT SUM(credit) as credit FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
@@ -91,7 +114,7 @@ use Mpdf\Language\ScriptToLanguage;
 // End total total_credit/mot_mul
 
 // Start total total_debit/joma
-    $sql = "SELECT SUM(debit) as debit FROM details_sell_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+    $sql = "SELECT SUM(debit) as debit FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
@@ -106,7 +129,7 @@ use Mpdf\Language\ScriptToLanguage;
 // End total total_debit/joma
 
 // Start total total_Balance/mot_jer
-    $sql = "SELECT SUM(balance) as balance FROM details_sell_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+    $sql = "SELECT SUM(balance) as balance FROM details_sell_balu WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
@@ -193,7 +216,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td class="hastext">06mm 400W/60G</td>
 			<td><?php echo $mm06_rod400; ?></td> -->
             <td class="hastext">মোট টোনঃ</td>
-            <td><?php echo $total_ton; ?></td>			
+            <td><?php echo $total_ton_kg; ?></td>			
 			<!-- <td class="hastext">কোম্পানী পাওনাঃ</td>
 			<td><?php echo $company_paona; ?></td>			 -->
 		</tr>
@@ -228,6 +251,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td style="background-color: #bcbcbc;"></td>
 		</tr>
 		<!-- Ekhan theke -->
+    <tr>
+      <td class="hastext">মোট গাড়ীঃ</td>
+      <td><?php echo $total_motor; ?></td>
+    </tr>
 		<tr>
 			<!-- <td class="hastext">16mm 500W/60G</td>
 			<td><?php echo $mm16_rod500; ?></td>
@@ -362,7 +389,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
                       <td class="widthPercent3">Fee</td>
 	              </tr>
 	              <tr>
-	                    <td>customer আই ডি</td>
+	                    <td>কাস্টমার আই ডি</td>
 	                    <!-- <td>ডিলার আই ডি</td> -->
 	                    <!-- <td>টাইপ</td> -->
                       
@@ -373,8 +400,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 	                    <td>গাড়ী ভাড়া</td>
 	                    <td>আনলোড</td>                  
 	                    <td>গাড়ী ভাড়া ও খালাস</td>
-	                    <td>ক্রমিক</td>
+	                   
                       <td>ব‌িবরণ</td>
+                      <td>ক্রমিক</td>
 	                    <td>ভাউচার নং</td>
 	                    <td>ঠিকানা</td>
 	                    <td>গাড়ী নাম্বার</td>
@@ -496,6 +524,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 	                      <input type="text" name = "car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
 	                    </td>
                       <td>
+            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter information...">
+                          </td>
+                      <!-- <td>
 	                      <?php
                         // var parti_val = $('#car_rent_redeem').val();
                         echo '<script type="text/JavaScript"> 
@@ -521,7 +552,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 	                      ?>
 
 	                    </td>
-	               
+	                -->
                       <?PHP
           $sql = "SELECT sl FROM details_sell_balu ORDER BY id DESC LIMIT 1";
           $customersId = $db->select($sql);
@@ -603,7 +634,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 	                    <td>
 	                      <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="Debit...">
 	                    </td>
-                      <td>
+                      <td id="td_kg">
 	                      <input type="text" onkeypress="return isNumber(event)"  name="ton_kg" class="form-control-balu value-calc" id="kg" placeholder="Ton & kg...">
 	                    </td>
 	                    <td>
@@ -619,16 +650,16 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 	                      <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="Cft '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu" id="inchi(-)_minus" placeholder="-Inchi'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu" id="inchi_minus" placeholder="-Inchi'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)"   name="cft(-)_dropped_out" class="form-control-balu" id="cft(-)_dropped_out" placeholder="-Cft'00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)"   name="cft(-)_dropped_out" class="form-control-balu" id="cft_dropped_out" placeholder="-Cft'00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)"  name="inchi(+)_added" class="form-control-balu" id="inchi(+)_added" placeholder="+Inchi '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)"  name="inchi(+)_added" class="form-control-balu" id="inchi_added" placeholder="+Inchi '00 mm'...">
 	                    </td>
                       <td>
-	                      <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu" id="points(-)_dropped_out" placeholder="-Point '00 mm'...">
+	                      <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu" id="points_dropped_out" placeholder="-Point '00 mm'...">
 	                    </td>
                       <td>
 	                      <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="Cft '00 mm'...">
@@ -659,7 +690,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
                       <td>
 	                      <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-cft '00 mm'...">
 	                    </td>
-                      <td>
+                      <td style="">
 	                      <input type="text" onkeypress="return isNumber(event)" name = "tons" name="tons" class="form-control-balu value-calc" id="tons" placeholder="Tons...">
 	                    </td>
                       <td>

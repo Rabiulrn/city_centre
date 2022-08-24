@@ -103,12 +103,12 @@
 		    //     }
 		    // End total total_motor
 	        //Start Gari vara
-	        	$motor_cash = 0;
+	        	$motor_vara = 0;
 		        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
-		                $motor_cash = $row2['motor_vara'];
+		                $motor_vara = $row2['motor_vara'];
 		                if(is_null($motor_vara)){
 		                    $motor_vara = 0;
 		                }

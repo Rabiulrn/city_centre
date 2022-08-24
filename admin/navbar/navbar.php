@@ -93,7 +93,7 @@
                           echo '"><a href="../vaucher/balu_index.php">বালু হিসাব</a>';
                           echo '</li>';
                         // }
-                       //  if($_SESSION['pathor_hisab'] == 'yes'){
+                       //  if($_SESSION['cement_hisab'] == 'yes'){
                           echo '<li class="';
                          if($page == 'pathor_hisab'){echo 'active';}
 
@@ -113,6 +113,48 @@
                          echo '"><a href="../vaucher/pathor_index.php">পাথর হিসাব</a>';
                          echo '</li>';
                       //  }
+                        //  if($_SESSION['cement_hisab'] == 'yes'){
+                          echo '<li class="';
+                         if($page == 'cement_hisab'){echo 'active';}
+
+                         if($_SESSION['pageName'] == 'cement_kroy_hisab'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'cement_bikroy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_hisab_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_dealer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_customer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_buyer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_stocks'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_report_buy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_report_sell_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_report_dealer'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_report_customer'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'cement_report_buyer'){echo 'active';}
+
+                         echo '"><a href="../vaucher/cement_index.php">সিমেন্ট হিসাব</a>';
+                         echo '</li>';
+                      //  }
+
+
+                      //  //  if($_SESSION['cement_hisab'] == 'yes'){
+                      //     echo '<li class="';
+                      //    if($page == 'cement_hisab'){echo 'active';}
+
+                      //    if($_SESSION['pageName'] == 'pathor_kroy_hisab'){echo 'active';}
+                      //     else if($_SESSION['pageName'] == 'pathor_bikroy_hisab'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'cement_hisab_entry'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_dealer_entry'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_customer_entry'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_buyer_entry'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_stocks'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_report_buy_hisab'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_report_sell_hisab'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_report_dealer'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_report_customer'){echo 'active';}
+                      //    else if($_SESSION['pageName'] == 'pathor_report_buyer'){echo 'active';}
+
+                      //    echo '"><a href="../vaucher/pathor_index.php">cement হিসাব</a>';
+                      //    echo '</li>';
+                      // //  }
 
                     
                      

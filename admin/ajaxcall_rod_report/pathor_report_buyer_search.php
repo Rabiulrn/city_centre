@@ -108,7 +108,7 @@
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
-		                $motor_cash = $row2['motor_vara'];
+		                $motor_vara = $row2['motor_vara'];
 		                if(is_null($motor_vara)){
 		                    $motor_vara = 0;
 		                }

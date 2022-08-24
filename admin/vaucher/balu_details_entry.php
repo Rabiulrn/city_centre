@@ -610,7 +610,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             ?>
             <div class="dealerIdSelect">
                 <table>
-                    <tr>
+                    <tr >
                         <td><b>Select a Dealer Name</b></td>
                         <td><?php
                             $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer ";
@@ -1752,9 +1752,10 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
             var discount = $("#discount").val();
             if (discount != '') {
-                var credit = credit - ((discount / 100) * credit);
+                var credit = credit - discount;
+                // var credit = credit - ((discount / 100) * credit);
                 $('#credit').val(credit.toFixed(3));
-                if (discount > 100) {
+                if (discount > balance) {
                     $('#discount').focus(function() {
                         $('#discount').val("");
                     });
@@ -1976,7 +1977,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - discountp2;
+                // var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }

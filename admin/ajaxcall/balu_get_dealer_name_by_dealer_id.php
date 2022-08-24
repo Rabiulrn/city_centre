@@ -33,7 +33,7 @@
 <?php
 	} else{
 ?>
-		To view select a dealer name, <span class="protidinHisab"> ক্রয় হিসাব</span>
+		<!-- To view select a dealer name, <span class="protidinHisab"> ক্রয় হিসাব</span> -->
 <?php
 	}
 ?>
