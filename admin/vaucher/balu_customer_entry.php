@@ -278,7 +278,7 @@
 						<th>Edit</th>
 					</tr>
 					<?php
-						$sql = "SELECT * FROM customers_balu";
+						$sql = "SELECT * FROM customers_balu WHERE project_name_id = '$project_name_id'";
 						$show = $db->select($sql);
 						if ($show) 
 						{

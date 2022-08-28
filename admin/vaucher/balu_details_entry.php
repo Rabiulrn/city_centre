@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
 require '../config/config.php';
 require '../lib/database.php';
 $db = new Database();
+$project_name_id = $_SESSION['project_name_id'];
 $_SESSION['pageName'] = 'balu_kroy_hisab';
 // $sucMsgPopup = '';
 ?>
@@ -610,11 +611,11 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             ?>
             <div class="dealerIdSelect">
                 <table>
-                    <tr >
+                    <tr>
                         <td><b>Select a Dealer Name</b></td>
                         <td><?php
-                            $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer ";
-                            // $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer WHERE project_name_id = '$project_name_id'";
+                            // $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer ";
+                            $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer WHERE project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
 
@@ -1225,6 +1226,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var returnValid = false;
 
             if (submit_type == 'insert') {
+                var dealer_id = $('#dealer_id').val();
                 var buyer_id = $('#buyer_id').val();
                 var partculars = $('#partculars').val();
                 var particulars = $('#particulars').val();
@@ -1236,12 +1238,12 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     returnValid = true;
                 }
 
-                // if (partculars == 'none') {
-                //     alert('Please select a marfot name');
-                //     returnValid = false;
-                // } else {
-                //     returnValid = true;
-                // }
+                if (dealer_id == 'none') {
+                    alert('Please select a dealer id');
+                    returnValid = false;
+                } else {
+                    returnValid = true;
+                }
 
                 if (particulars == 'none') {
                     alert('Please select a particular');
@@ -1561,42 +1563,14 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var cft_dropped_out = $('#cft_dropped_out').val();
             var inchi_added = $('#inchi_added').val();
             var points_dropped_out = $('#points_dropped_out').val();
-            var cft = $('#shifty').val();
-            if (cft == 0 || cft != 0) {
-                $("#shifty").attr("placeholder", "cft");
-                $("#shifty_td").prop("disabled", true);
-
-                $("#shifty_td").click(function() {
-                    Swal.fire({
-                        //   icon: 'error',
-                        title: 'not editable!',
-                        title: 'If needed, place value in Total Cft',
-                        timer: 3000,
-                        // footer: "<a href='#total_shift_td'>For edit go Total Cft</a>"
-                    });
-                    $("#total_shift").focus();
-                });
-            }
-            var cft_m = $('#shift').val();
-            if (cft_m == 0 || cft_m != 0) {
-                $("#shift").attr("placeholder", "cft");
-                $("#shift_td").prop("disabled", true);
-
-                $("#shift_td").click(function() {
-                    Swal.fire({
-                        //   icon: 'error',
-                        title: 'not editable!',
-                        // footer: "<a href='#total_shift_td'>For edit go Total Cft</a>"
-                    });
-                    $("#total_shift").focus();
-                });
-            }
 
 
             if (length != '' || width != '' || height != '') {
 
                 $("#kg").attr("placeholder", "not applicable").prop("disabled", true);
-                console.log(length);
+                $("#td_kg").click(function() {
+                    Swal.fire("Clear cft first");
+                });
                 var shifty = length * width * height;
                 if (inchi_minus > shifty) {
                     Swal.fire("Not acceptable. Value should be less then cft");
@@ -1700,7 +1674,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#ton').val(ton_kg);
                 $('#tons').val(ton_kg);
 
-                var ton_to_cft = ton_kg * 23.5;
+                var ton_to_cft = (ton_kg * 23.5).toFixed(3);
                 // $('#shifty').val(ton_to_cft);
                 // $('#shift').val(ton_to_cft);
                 // $('#total_shift').val(ton_to_cft);
@@ -1752,10 +1726,9 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
             var discount = $("#discount").val();
             if (discount != '') {
-                var credit = credit - discount;
-                // var credit = credit - ((discount / 100) * credit);
+                var credit = credit - ((discount / 100) * credit);
                 $('#credit').val(credit.toFixed(3));
-                if (discount > balance) {
+                if (discount > 100) {
                     $('#discount').focus(function() {
                         $('#discount').val("");
                     });
@@ -1977,8 +1950,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - discountp2;
-                // var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }
@@ -2423,14 +2395,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var charCode = (evt.which) ? evt.which : evt.keyCode;
             // if ((charCode > 31 || charCode < 46)&& charCode == 47 && (charCode < 48 || charCode > 57)) {
             if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Please...',
-                    width: 600,
-                    // fontSize:50,
-                    text: 'Enter a number!',
-                    //   footer: '<a href="">Why do I have this issue?</a>'
-                })
+                Swal.fire("Should be enter a number value");
                 // alert("Should be enter a number value");
                 console.log("Workkkkk", evt);
                 return false;

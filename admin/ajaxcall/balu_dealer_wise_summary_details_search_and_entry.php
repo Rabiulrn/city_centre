@@ -48,19 +48,19 @@ if ($result->num_rows > 0) {
 $motor_vara_and_unload = $motor_vara + $unload;
 //End khalas/Unload
 
-// Start total total_motor
-$sql = "SELECT SUM(motor_no) as motor FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_motor = $row['motor'];
-    if (is_null($total_motor)) {
-      $total_motor = 0;
-    }
-  }
-} else {
-  $total_motor = 0;
-}
+ // Start total total_motor
+ $sql = "SELECT SUM(motor_no) as motor FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+ $result = $db->select($sql);
+ if($result->num_rows > 0){
+     while($row = $result->fetch_assoc()){
+         $total_motor = $row['motor'];
+         if(is_null($total_motor)){
+             $total_motor = 0;
+         }
+     }
+ } else{
+     $total_motor = 0;
+ }
 // End total total_motor
 
 //Start GB Bank Ganti
@@ -126,21 +126,23 @@ if ($result->num_rows > 0) {
 } else {
   $total_debit = 0;
 }
+$total_balance = $total_debit-$total_credit ;
 // End total total_debit/joma
 
-// Start total total_Balance/mot_jer
-$sql = "SELECT SUM(balance) as balance FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_balance = $row['balance'];
-    if (is_null($total_balance)) {
-      $total_balance = 0;
-    }
-  }
-} else {
-  $total_balance = 0;
-}
+// // Start total total_Balance/mot_jer
+// $sql = "SELECT SUM(balance) as balance FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+// $result = $db->select($sql);
+// if ($result->num_rows > 0) {
+//   while ($row = $result->fetch_assoc()) {
+//     $total_balance = $row['balance'];
+    
+//     if (is_null($total_balance)) {
+//       $total_balance = 0;
+//     }
+//   }
+// } else {
+//   $total_balance = 0;
+// }
 // End total total_Balance/mot_jer
 
 //Start Total para/mot_mul_khoros_shoho
@@ -246,19 +248,19 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
-
+      
     </tr>
     <!-- Ekhan theke -->
     <tr>
-      <td class="hastext">মোট গাড়ীঃ</td>
-      <td><?php echo $total_motor; ?></td>
+    <td class="hastext">মোট গাড়ীঃ</td>
+            <td><?php echo $total_motor; ?></td>
     </tr>
     <tr>
       <!-- <td class="hastext">16mm 500W/60G</td>
 			<td><?php echo $mm16_rod500; ?></td>
 			<td class="hastext">16mm 400W/60G</td>
 			<td><?php echo $mm16_rod400; ?></td> -->
-
+          
       <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
       <td><?php echo $motor_vara; ?></td>
       <td class="hastext">ম‌োট মূলঃ</td>
@@ -282,7 +284,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
       <td><?php echo $motor_vara_and_unload; ?></td>
       <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
-      <td><?php echo $total_balance; ?></td>
+      <td><?php echo  $total_balance ; ?></td>
 
     </tr>
     <tr>
@@ -340,7 +342,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
                 <div class="scrollsign_plus" id="entry_scroll1">+</div>                   -->
       <table border="1" id="detailsEtryTable">
         <tr>
-          <td class="widthPercent1">Dealer ID</td>
+          <td class="widthPercent1">Buyer ID</td>
           <!-- <td width="150">Dealer ID</td> -->
           <!-- <td class="widthPercent1">Type</td> -->
 
@@ -376,10 +378,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td class="widthPercent3">Para's</td>
           <td class="widthPercent3">Total Cft</td>
           <td style="display:none;" class="widthPercent3">Ton</td>
-
-          <td class="widthPercent3">Discount</td>
+         
+          <td class="widthPercent3">Discount(%)</td>
           <td class="widthPercent3">Credit</td>
-          <td style="display:none;" class="widthPercent3">Balance</td>
+          <td style="display:none;" class="widthPercent3" >Balance</td>
           <td style="display:none;" class="widthPercent3">Cemeat's Para's</td>
           <td style="display:none;" class="widthPercent3">Ton</td>
           <td style="display:none;" class="widthPercent3">Total Cft</td>
@@ -388,7 +390,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td class="widthPercent3">Fee</td>
         </tr>
         <tr>
-          <td>ডিলার আইডি</td>
+          <td>বায়ার আইডি</td>
           <!-- <td>ডিলার আই ডি</td> -->
           <!-- <td>টাইপ</td> -->
 
@@ -424,8 +426,8 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>দর</td>
           <td>মোট সিএফটি</td>
           <td style="display:none;">টন</td>
-
-          <td>কমিশন</td>
+         
+          <td>কমিশন(%)</td>
           <td>মূল</td>
           <td style="display:none;">অবশিষ্ট</td>
           <td style="display:none;">গাড়ী ভাড়া / লেবার সহ</td>
@@ -440,13 +442,13 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT dealer_id FROM balu_dealer";
+            $sql = "SELECT buyer_id FROM balu_buyers WHERE project_name_id ='$project_name_id'";
             $all_custmr_id = $db->select($sql);
-            echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
+            echo '<select name="buyer_id" id="buyer_id" class="form-control" style="width: 140px; required">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {
-                $id = $row['dealer_id'];
+                $id = $row['buyer_id'];
                 echo '<option value="' . $id . '">' . $id . '</option>';
               }
             } else {
@@ -499,10 +501,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" name="driver_name" class="form-control-balu" id="driver_name" placeholder="Driver name...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="Gari vara...">
+            <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-balu value-calc" id="motor_vara"  placeholder="Gari vara...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload...">
+            <input type="text" onkeypress="return isNumber(event)" name="unload" class="form-control-balu value-calc" id="unload"  placeholder="Unload...">
           </td>
           <td>
             <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
@@ -554,7 +556,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
+            $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != '' AND project_name_id ='$project_name_id'";
             $all_particular = $db->select($sql);
             echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
             echo '<option value="none">Select...</option>';
@@ -613,7 +615,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td style="display:none;">
             <input type="text" onkeypress="return isNumber(event)" name="ton" class="form-control-balu value-calc" id="ton" placeholder="Ton...">
           </td>
-
+         
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="discount in percentage" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
           </td>
@@ -700,7 +702,7 @@ if ($result) {
               <th>Cft</th>
               <th>Total Cft </th>
               <th>Para's</th>
-              <th>Discount</th>
+              <th>Discount(%)</th>
               <th>Credit</th>
               <th>Balance</th>
               <th>Cemeat's Para's</th>
@@ -709,7 +711,7 @@ if ($result) {
               <th>Tons</th>
               <th>Bank Name</th>
               <th>Fee</th>
-
+           
               <th class='no_print_media'></th>
               <th class='no_print_media'></th>
             </tr>
@@ -743,7 +745,7 @@ if ($result) {
               <th>সিএফটি</th>
               <th>মোট সিএফটি</th>
               <th>দর</th>
-              <th>কমিশন</th>
+              <th>কমিশন(%)</th>
               <th>মূল</th>
               <th>অবশিষ্ট</th>
               <th>গাড়ী&nbsp;ভাড়া&nbsp;লেবার সহ</th>
@@ -752,7 +754,7 @@ if ($result) {
               <th>টোন</th>
               <th>ব্যাংক নাম</th>
               <th>ফি</th>
-
+              
               <th class='no_print_media'></th>
               <th class='no_print_media'></th>
             </tr>

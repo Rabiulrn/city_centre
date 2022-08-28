@@ -15,7 +15,19 @@ $delete_data_permission = $_SESSION['delete_data'];
 
 $sucMsg = "";
 
-
+// Start total total_kg
+$sql = "SELECT SUM(tons) as ton_kg FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_ton_kg = $row['ton_kg'];
+    if (is_null($total_ton_kg)) {
+      $total_ton_kg = 0;
+    }
+  }
+} else {
+  $total_ton_kg = 0;
+}
     //Start Gari vara
     $sql = "SELECT SUM(motor_vara) as motor_vara FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
@@ -200,6 +212,11 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td style="background-color: #bcbcbc;"></td>
 		</tr>
 		<!-- Ekhan theke -->
+    <tr>
+    <td class="hastext">মোট গাড়ীঃ</td>
+            <td><?php echo $total_motor; ?></td>
+    </tr>
+    <tr>
 		<tr>
 			<!-- <td class="hastext">16mm 500W/60G</td>
 			<td><?php echo $mm16_rod500; ?></td>

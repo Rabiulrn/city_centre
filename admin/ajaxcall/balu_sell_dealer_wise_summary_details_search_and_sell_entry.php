@@ -440,7 +440,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 	              <tr>
                 <td>
 	                      <?php
-	                        $sql = "SELECT customer_id, customer_name FROM customers_balu";
+	                        $sql = "SELECT customer_id, customer_name FROM customers_balu WHERE project_name_id ='$project_name_id'";
 	                        $all_custmr_id = $db->select($sql);
 	                        echo '<select name="customer_id" id="customer_id" class="form-control" style="width: 140px;">';
 	                          echo '<option value="none">Select...</option>';
@@ -595,7 +595,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 	                    </td> -->
                       <td>
 	                      <?php
-	                        $sql = "SELECT DISTINCT partculars FROM details_balu WHERE partculars != '' ";
+	                        $sql = "SELECT DISTINCT partculars FROM details_balu WHERE partculars != '' AND project_name_id ='$project_name_id'";
 	                        $all_partcular = $db->select($sql);
 	                        echo '<select name="partculars" id="partculars" class="form-control" style="width: 140px;">';
 	                          echo '<option value="none">Select...</option>';
@@ -615,7 +615,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
                       <td>
                       <?php
                         // var parti_val = $('#car_rent_redeem').val();
-	                        $sql = "SELECT DISTINCT particulars FROM details_balu WHERE  particulars != ''";
+	                        $sql = "SELECT DISTINCT particulars FROM details_balu WHERE  particulars != '' AND project_name_id ='$project_name_id'";
 	                        $all_particular = $db->select($sql);
 	                        echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
 	                          echo '<option value="none">Select...</option>';
@@ -717,7 +717,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 <?php
     // $sql ="SELECT * FROM details_balu WHERE dealer_id='$dealerId' ";
-    $sql ="SELECT * FROM details_sell_balu WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
+    $sql ="SELECT * FROM details_sell_balu WHERE customer_id='$dealerId' AND project_name_id = '$project_name_id'";
     $result = $db->select($sql);
     if ($result) {
         $rowcount=mysqli_num_rows($result);

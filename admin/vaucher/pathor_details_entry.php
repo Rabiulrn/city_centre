@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
 require '../config/config.php';
 require '../lib/database.php';
 $db = new Database();
+$project_name_id = $_SESSION['project_name_id'];
 $_SESSION['pageName'] = 'pathor_kroy_hisab';
 // $sucMsgPopup = '';
 ?>
@@ -603,7 +604,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                     <tr>
                         <td><b>Select a Dealer Name :</b></td>
                         <td><?php
-                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM pathor_dealer WHERE dealer_name != ''";
+                            $sql = "SELECT DISTINCT dealer_name, dealer_id FROM pathor_dealer WHERE dealer_name != '' AND  project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="delear_id" id="delear_id" class="form-control form-control-dealer" style="width: 222px;">';
                             // echo '<option value=""></option>';
@@ -640,7 +641,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>Buyer ID(বায়ার আই ডি)</td>
                                 <td>
                                     <?php
-                                    $sql = "SELECT buyer_id FROM pathor_buyers";
+                                    $sql = "SELECT buyer_id FROM pathor_buyers WHERE  project_name_id = '$project_name_id'";
                                     $all_custmr_id = $db->select($sql);
                                     echo '<select name="buyer_id" id="buyer_id_popup" class="form-control" disabled>';
                                     echo '<option value="none">Select...</option>';
