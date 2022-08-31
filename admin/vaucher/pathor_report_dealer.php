@@ -82,7 +82,7 @@
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
 				 <a href="../vaucher/pathor_report_dealer.php" class="active">ডিলার অনুযায়ী </a>
 				 <a href="../vaucher/pathor_report_customer.php">কাস্টমার অনুযায়ী </a> 
-				 <a href="../vaucher/pathor_report_buyer.php">বায়ার অনুযায়ী </a>
+				 <!-- <a href="../vaucher/pathor_report_buyer.php">বায়ার অনুযায়ী </a> -->
 			</div>
 		</div>
 		<div class="main_bar">
@@ -187,7 +187,19 @@
     			</span>
     		</div>
     		<table class="tableshow" id="tableshow" style="border-collapse: collapse; border: 1px solid #777 !important;">
-    			
+			
+						
+						<th style='border: 1px solid #777 !important;'>#</th>
+						<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>
+						<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>
+						<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>
+						<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>
+
+						<th style='border: 1px solid #777 !important;'>মোট মূলঃ</th>
+						<th style='border: 1px solid #777 !important;'>মোট জমাঃ</th>
+						<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>
+						<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>
+						
     			<?php
     				$sql = "SELECT * FROM pathor_dealer WHERE project_name_id = '$project_name_id'";
     				$result = $db->select($sql);
@@ -195,19 +207,7 @@
     				if($result && $row_number > 0){
     					// echo $row_number;
     					$i = 1;
-						echo "<tr>";
-						// echo "<th style='border: 1px solid #777 !important;'>".$i."</th>";
-						echo "<th style='border: 1px solid #777 !important;'>#</th>";
-						echo "<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>";
-						echo "<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>";
-						echo "<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>";
-						echo "<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>";
-
-						echo "<th style='border: 1px solid #777 !important;'>মোট মূলঃ</th>";
-						echo "<th style='border: 1px solid #777 !important;'>মোট জমাঃ</th>";
-						echo "<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>";
-						echo "<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>";
-						 echo "</tr>"; 
+						
     					
     					while($row = $result->fetch_assoc()){
     						$dealer_id = $row['dealer_id'];
@@ -538,22 +538,23 @@
 
 					        $i++;
     					}
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_motor_vara. "টাকা</td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_unload. "টাকা</td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_credit." টাকা </td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_debit." টাকা </td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_balance." টাকা </td>";
+						echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_nij_paona." টাকা </td>";	
     				}
     			?>
     		<!-- </table> -->
-			<?php
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'></td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_motor_vara. "টাকা</td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_unload. "টাকা</td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_credit." টাকা </td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_debit." টাকা </td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total1_balance." টাকা </td>";
-			echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_nij_paona." টাকা </td>";
 			
-	        // <!-- echo "<td style='border: 1px solid #777 !important;'>"" tonne</td>"; -->
-			?>
+
+			
+	         <!-- echo "<td style='border: 1px solid #777 !important;'>"" tonne</td>"; -->
+			
 		</div>
 	</div>
 

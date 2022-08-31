@@ -10,7 +10,7 @@
 
 
     $buyer_id       = trim($_POST['buyer_id']);
-    $type = trim($_POST['type']);
+    // $type = trim($_POST['type']);
     $motor_name           = trim($_POST['motor_name']);
     $driver_name           = trim($_POST['driver_name']);
     $motor_vara          = trim($_POST['motor_vara']);
@@ -20,17 +20,23 @@
     // $delear_id      = trim($_POST['delear_id']);
     $dealer_id      = trim($_SESSION['dealerIdInput']);
     $sl      = trim($_POST['sl_no']);
-    $voucher_no     = trim($_POST['delivery_no']);
+    $challan_no     = trim($_POST['challan_no']);
     $address        = trim($_POST['address']);
     $motor_no          = trim($_POST['motor']);
     $motor_sl    = trim($_POST['motor_no']);
   
     // $delivery_date  = trim($_POST['delivery_date']);
-    if($_POST['delivery_date'] == ''){
-      $delivery_date = $_POST['delivery_date'];
+    if($_POST['challan_date'] == ''){
+      $challan_date = $_POST['challan_date'];
     } else {
-      $postDateArr    = explode('-', $_POST['delivery_date']);
-      $delivery_date  = $postDateArr['2'].'-'.$postDateArr['1'].'-'.$postDateArr['0'];
+      $postDateArr    = explode('-', $_POST['challan_date']);
+      $challan_date  = $postDateArr['2'].'-'.$postDateArr['1'].'-'.$postDateArr['0'];
+    }
+    if($_POST['so_date'] == ''){
+      $so_date = $_POST['so_date'];
+    } else {
+      $postDateArr    = explode('-', $_POST['so_date']);
+      $so_date  = $postDateArr['2'].'-'.$postDateArr['1'].'-'.$postDateArr['0'];
     }
     // $dates          = trim($_POST['dates']);
     if($_POST['dates'] == ''){
@@ -42,37 +48,31 @@
     $partculars     = trim($_POST['partculars']);
     $particulars    = trim($_POST['particulars']);
     $debit        = trim($_POST['debit']);
-    $ton_kg          = trim($_POST['kg']);
-    $length         = trim($_POST['length']);
-    $width        = trim($_POST['width']);
-    $height     = trim($_POST['height']);
-    $shifty     = trim($_POST['shifty']);
-    $inchi_minus        = trim($_POST['inchi(-)_minus']);
-    $cft_dropped_out    = trim($_POST['cft(-)_dropped_out']);
-    $inchi_added    = trim($_POST['inchi(+)_added']);
-    $points_dropped_out      = trim($_POST['points(-)_dropped_out']);
-    $shift      = trim($_POST['shift']);
-    $total_shift      = trim($_POST['total_shift']);
+    $count          = trim($_POST['count']);
+    $fee  = trim($_POST['fee']);
+   
    
     $paras      = trim($_POST['paras']);
     $discount     = trim($_POST['discount']);
     $credit      = trim($_POST['credit']);
     $balance      = trim($_POST['balance']);
-    $cemeats_paras      = trim($_POST['cemeats_paras']);
-    $ton    = trim($_POST['ton']);
-    $total_shifts  = trim($_POST['total_shifts']);
-    $tons  = trim($_POST['tons']);
-    $bank_name  = trim($_POST['bank']);
-    $fee  = trim($_POST['fee']);
+    $total_credit = trim($_POST['total_credit']);
+    $weight      = trim($_POST['weight']);
+   
 
     // $sql = "INSERT INTO details_balu (motor_name, driver_name, motor_vara, unload, cars_rent_redeem, information, buyer_id, dealer_id, voucher_no, address, motor_no, motor_sl, delivery_date, dates, partculars, debit, ton & kg, length, width , height, inchi(-)_minus, credit, cft(-)_dropped_out, inchi(+)_added, points(-)_dropped_out, shift, total_shift, paras, discount, credit, cemeats_paras, ton, total_shifts, tons, bank_name, fee, project_name_id) 
     // VALUES('$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information', '$buyer_id', '$delear_id', '$voucher_no', '$address', '$motor_no', '$motor_sl', '$delivery_date', '$dates', '$partculars', '$particulars', '$debit', '$ton_kg', '$length', '$width', '$height ','$inchi_minus','$cft_dropped_out', '$inchi_added', '$points_dropped_out', '$shift', '$total_shift', '$paras', '$discount', '$credit', '$cemeats_paras', '$ton', '$total_shifts', '$tons', '$bank_name', '$fee', '$project_name_id')";
     if($buyer_id != 'none'){
-    $sql = "INSERT INTO `details_pathor`
-           (`buyer_id`,`dealer_id`,`type`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `voucher_no`, `address`, `motor_no`, `motor_sl`, `delivery_date`, `dates`, `partculars`, `particulars`, `debit`, `ton & kg`, `length`, `width`, `height`, `shifty`, `inchi (-)_minus`, `cft (-)_dropped Out`, `inchi (+)_added`, `points ( - )_dropped out`, `shift`, `total_shift`, `paras`, `discount`, `credit`,`balance`, `cemeats_paras`, `ton`, `total_shifts`, `tons`, `bank_name`, `fee`,`project_name_id`) 
-    VALUES ('$buyer_id', '$dealer_id','$type', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$voucher_no', '$address', '$motor_no', '$motor_sl', '$delivery_date', '$dates', '$partculars', '$particulars', '$debit', '$ton_kg', '$length', '$width', '$height ', '$shifty', '$inchi_minus','$cft_dropped_out', '$inchi_added', '$points_dropped_out', '$shift', '$total_shift', '$paras', '$discount', '$credit','$balance', '$cemeats_paras', '$ton', '$total_shifts', '$tons', '$bank_name', '$fee','$project_name_id')";
+    $sql = "INSERT INTO `details_cement`
+    (`buyer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`, `so_date`, `dates`, `partculars`, `particulars`, `debit`, `total_credit`, `paras`, `discount`, `credit`, `balance`, `weight`, `count`, `fee`,`project_name_id`) 
+    VALUES ('$buyer_id', '$dealer_id', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$challan_no', '$address', '$motor_no', '$motor_sl', '$so_date', '$dates', '$partculars', '$particulars', '$debit', '$total_credit', '$paras', '$discount', '$credit', '$balance', '$weight','$count', '$fee','$project_name_id')";
+    
+// $sql = "INSERT INTO `details_cement`
+// (`buyer_id`, `dealer_id`, `motor_name`, `driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`, `so_date`, `dates`, `partculars`, `particulars`, `debit`, `challan_date`, `count`, `total_credit`, `weight`, `paras`, `discount`, `credit`, `balance`, `fee`, `project_name_id`) 
+// VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20],[value-21],[value-22],[value-23],[value-24],[value-25],[value-26],[value-27],[value-28],[value-29])
 
-$sql2 = "INSERT INTO `stocks_pathor` (`stock_id`, `partculars`, `particulars`, `ton`,`project_name_id`) VALUES ('','$partculars', '$particulars', '$ton','$project_name_id')";
+
+$sql2 = "INSERT INTO `stocks_cement` (`stock_id`, `partculars`, `particulars`, `weight`,`project_name_id`) VALUES ('','$partculars', '$particulars', '$weight','$project_name_id')";
 
     $result = $db->insert($sql);
     if ($result) 
@@ -84,15 +84,15 @@ $sql2 = "INSERT INTO `stocks_pathor` (`stock_id`, `partculars`, `particulars`, `
         echo "Error: " . $sql . "<br>" . $db->error;
     }
   
-    $result = $db->insert($sql2);
-    if ($result) 
-    {
-        $sucMsg = "Stocks Saved Successfully.";
-        $sucMsgPopup = "Stocks Saved Successfully.";
-        echo $sucMsg;
-    } else{
-        echo "Error: " . $sql . "<br>" . $db->error;
-    }
+    // $result = $db->insert($sql2);
+    // if ($result) 
+    // {
+    //     $sucMsg = "Stocks Saved Successfully.";
+    //     $sucMsgPopup = "Stocks Saved Successfully.";
+    //     echo $sucMsg;
+    // } else{
+    //     echo "Error: " . $sql . "<br>" . $db->error;
+    // }
   
     }
   ?>

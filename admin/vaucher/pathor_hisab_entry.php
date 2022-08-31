@@ -36,7 +36,7 @@
 
       if($submitBtn_value == 'Save'){
           $category_id     = $newId;
-          $sql="INSERT INTO pathor_category (category_id, category_name) VALUES ('$category_id','$category_name')";
+          $sql="INSERT INTO pathor_category (category_id, category_name,project_name_id) VALUES ('$category_id','$category_name','$project_name_id')";
 
           if ($db->select($sql) === TRUE) {
               $sql = "SELECT category_id FROM pathor_category ORDER BY id DESC LIMIT 1";
@@ -258,7 +258,7 @@
                   <th>Edit</th>
                 </tr>
                 <?php
-                  $sql = "SELECT * FROM pathor_category";
+                  $sql = "SELECT * FROM pathor_category  WHERE project_name_id = '$project_name_id' ";
                   $show = $db->select($sql);
                   if ($show) {
                       while ($rows = $show->fetch_assoc()){

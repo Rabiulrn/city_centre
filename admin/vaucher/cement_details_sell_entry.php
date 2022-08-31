@@ -7,7 +7,7 @@ require '../config/config.php';
 require '../lib/database.php';
 $db = new Database();
 $project_name_id = $_SESSION['project_name_id'];
-$_SESSION['pageName'] = 'balu_bikroy_hisab';
+$_SESSION['pageName'] = 'cement_bikroy_hisab';
 // $sucMsgPopup = '';
 ?>
 
@@ -18,7 +18,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 <html>
 
 <head>
-    <title>বালু বিক্রয় হিসাব</title>
+    <title>পাথর বিক্রয় হিসাব</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -179,8 +179,9 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
         td {
             border: 1px solid #ddd;
             padding: 2px 5px;
-        }
+            margin-bottom: 0;
 
+        }
 
         #detailsNewTable2 tr:first-child th {
             text-align: center;
@@ -210,12 +211,6 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
             padding: 5px 0px;
         }
 
-        /* #detailsNewTable2 tr:nth-child(odd) td {
-            text-align: center;
-            background-color: #d2df0d2e;
-            color: grey;
-            padding: 5px 0px;
-        } */
         .viewDetailsCon {
             width: 100%;
             max-height: 470px;
@@ -385,7 +380,6 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
             top: 0px;
             right: 1px;
             border: 2px solid #46b8da;
-
         }
 
         /* .printBtnDlrDown{
@@ -581,7 +575,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
     <div class="bar_con">
         <div class="left_side_bar">
-            <?php require '../others_page/left_menu_bar_balu_hisab.php'; ?>
+            <?php require '../others_page/left_menu_bar_cement_hisab.php'; ?>
         </div>
         <div class="main_bar" style="padding-bottom: 30px;">
             <?php
@@ -608,7 +602,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                     <tr>
                         <td><b>Select a Customer Name</b></td>
                         <td><?php
-                            $sql = "SELECT customer_name,customer_id FROM customers_balu WHERE project_name_id = '$project_name_id'";
+                            $sql = "SELECT customer_name,customer_id FROM customers_cement WHERE project_name_id = '$project_name_id'";
                             // $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer WHERE project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="customer_id" id="delear_id" class="form-control" style="width: 222px;">';
@@ -646,9 +640,9 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                                 <td>Customer ID(Customer আই ডি)</td>
                                 <td>
                                     <?php
-                                    $sql = "SELECT customer_id FROM customers_balu";
+                                    $sql = "SELECT customer_id FROM customers_pathor";
                                     $all_custmr_id = $db->select($sql);
-                                    echo '<select name="customer_id" id="customer_id_popup" class="form-control" disabled>';
+                                    echo '<select name="customer_id" id="customer_id_popup" class="form-control" disabled >';
                                     echo '<option value="none">Select...</option>';
                                     if ($all_custmr_id->num_rows > 0) {
                                         while ($row = $all_custmr_id->fetch_assoc()) {
@@ -662,25 +656,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                                     ?>
                                 </td>
                             </tr>
-                            <!-- <tr>
-                                <td>Particulars (বিবরণ)</td>
-                                <td>
-                                    <?php
-                                    // var parti_val = $('#car_rent_redeem').val();
-                                    $sql = "SELECT DISTINCT particulars FROM details_balu WHERE  particulars != ''";
-                                    $all_particular = $db->select($sql);
-                                    echo '<select name="particulars" id="particulars" class="form-control" required>';
-                                    echo '<option value="none">Select...</option>';
-                                    if ($all_particular->num_rows > 0) {
-                                        while ($row = $all_particular->fetch_assoc()) {
-                                            $particulars = $row['particulars'];
-                                            echo '<option value="' . $particulars . '">' . $particulars . '</option>';
-                                        }
-                                    } else {
-                                    }
-                                    echo '</select>';
-                                    ?>
-                            </tr> -->
+
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
                                 <td>
@@ -715,35 +691,13 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                             <tr>
                                 <td>Information (মালের বিবরণ)</td>
                                 <td>
-                                    <?php
-                                    // var parti_val = $('#car_rent_redeem').val();
-                                    echo '<script type="text/JavaScript"> 
-                        var myElement = document.getElementById("particulars");
-                        var myElement2 = myElement.options[myElement.selectedIndex].value;
-                        console.log("hello");
-                        console.log(myElement2);
-     </script>';
-                                    $sql = "SELECT DISTINCT information FROM details_balu WHERE information != ''";
-                                    $all_particular = $db->select($sql);
-                                    echo '<select name="information" id="information" class="form-control" required>';
-                                    echo '<option value="none">Select...</option>';
-                                    if ($all_particular->num_rows > 0) {
-                                        while ($row = $all_particular->fetch_assoc()) {
-                                            $information = $row['information'];
-                                            echo '<option value="' . $information . '">' . $information . '</option>';
-                                        }
-                                    } else {
-                                        echo '<option value="none">0 Result</option>';
-                                    }
-                                    echo '</select>';
-                                    ?>
-
+                                    <input type="text" name="information" class="form-control" id="information_popup" placeholder="Enter information...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>SL (ক্রমিক)</td>
                                 <td>
-                                    <input type="text" name="sl" class="form-control" id="sl_popup" placeholder="Enter SL...">
+                                    <input type="text" name="sl_no" class="form-control" id="sl_popup" placeholder="Enter SL...">
                                 </td>
                             </tr>
                             <tr>
@@ -783,56 +737,40 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                                     <input onkeypress="datecheckformatpopup(event)" type="text" name="dates" class="form-control" id="dates_popup" placeholder="dd-mm-yyyy">
                                 </td>
                             </tr>
-                            <tr hidden>
+                            <!-- <tr>
                                 <td>Partculars (মারফোত নাম)</td>
                                 <td>
-                                    <?php
-                                    $sql = "SELECT DISTINCT partculars,particulars FROM details_balu WHERE partculars != '' ";
-                                    $all_partcular = $db->select($sql);
-                                    echo '<select name="partculars" id="partculars" class="form-control" >';
-                                    echo '<option value="none">Select...</option>';
-                                    if ($all_partcular->num_rows > 0) {
-                                        while ($row = $all_partcular->fetch_assoc()) {
-                                            $partculars = $row['partculars'];
-                                            echo '<option value="' . $partculars . '">' . $partculars . '</option>';
-                                        }
-                                    } else {
-                                        echo '<option value="none">0 Result</option>';
-                                    }
-                                    echo '</select>';
-                                    ?>
-
+                                    <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
                                 </td>
-
                             </tr>
-                            <!-- <tr>
+                            <tr>
                                 <td>Particulars (বিবরণ)</td>
-                                <td disabled>                          
+                                <td>
                                     <?php
-                                    $balu_catgry_sql = "SELECT * FROM balu_category";
-                                    $rslt_balu_catgry = $db->select($balu_catgry_sql);
+                                    $pathor_catgry_sql = "SELECT * FROM pathor_category";
+                                    $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
 
                                     echo '<select name="particulars" id="particulars_popup" class="form-control">';
                                     echo '<option value="">Select...</option>';
-                                    if ($rslt_balu_catgry->num_rows > 0) {
-                                        while ($row = $rslt_balu_catgry->fetch_assoc()) {
-                                            $balu_category_id = $row['id'];
-                                            $balu_category_name = $row['category_name'];
+                                    if ($rslt_pathor_catgry->num_rows > 0) {
+                                        while ($row = $rslt_pathor_catgry->fetch_assoc()) {
+                                            $pathor_category_id = $row['id'];
+                                            $pathor_category_name = $row['category_name'];
 
-                                            echo '<option style="font-weight: bold;">' . $balu_category_name . '</option> disabled';
+                                            echo '<option style="font-weight: bold;">' . $pathor_category_name . '</option>';
 
-                                            $balu_lbl_sql = "SELECT * FROM balu_and_other_label";
-                                            $rslt_balu_lbl = $db->select($balu_lbl_sql);
-                                            if ($rslt_balu_lbl->num_rows > 0) {
+                                            $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
+                                            $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
+                                            if ($rslt_pathor_lbl->num_rows > 0) {
 
-                                                while ($row2 = $rslt_balu_lbl->fetch_assoc()) {
+                                                while ($row2 = $rslt_pathor_lbl->fetch_assoc()) {
                                                     $raol_id = $row2['id'];
-                                                    $raol_balu_label = $row2['balu_label'];
-                                                    $raol_balu_category_id = $row2['balu_category_id'];
+                                                    $raol_pathor_label = $row2['pathor_label'];
+                                                    $raol_pathor_category_id = $row2['pathor_category_id'];
 
 
-                                                    if ($balu_category_id == $raol_balu_category_id) {
-                                                        echo "<option value='" . $raol_balu_label . "'>" . $raol_balu_label . "</option> disabled";
+                                                    if ($pathor_category_id == $pathor_balu_category_id) {
+                                                        echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
                                                     }
                                                 }
                                             } else {
@@ -845,7 +783,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                                     echo '</select> ';
                                     ?>
                                 </td>
-                            </tr>  -->
+                            </tr> -->
                             <tr>
                                 <td>Debit (জমা টাকা)</td>
                                 <td>
@@ -897,25 +835,25 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                             <tr>
                                 <td>Inchi (+) Added (Inchi (+) যোগ) </td>
                                 <td>
-                                <input type="text" name="inchi_added" class="form-control" id="inchi_added_popup" placeholder="Enter Inchi (+) Added ...">
+                                    <input type="text" name="inchi_added" class="form-control" id="inchi_added_popup" placeholder="Enter Inchi (+) Added ...">
                                 </td>
                             </tr>
                             <tr>
-                                <td>Points ( - ) Dropped Out (পয়েন্ট ( - )  বাদ) </td>
+                                <td>Points ( - ) Dropped Out (পয়েন্ট ( - ) বাদ) </td>
                                 <td>
-                                <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
+                                    <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td> Shift(সেপ্টি) </td>
                                 <td>
-                                <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
+                                    <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total Shift(মোট সেপ্টি) </td>
                                 <td>
-                                <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
+                                    <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
                                 </td>
                             </tr> -->
                             <tr>
@@ -950,9 +888,9 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                                 </td>
                             </tr>
                             <!-- <td>Ton(টোন)</td>
-                                <td>
-                                    <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
-                                </td>
+                            <td>
+                                <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
+                            </td>
                             </tr>
                             <tr>
                                 <td>Total Shift(সেপ্টি)</td>
@@ -975,13 +913,13 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                             <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
-                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter total_paras...">
+                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter fee...">
                                 </td>
                             </tr>
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
 
-                        <input type="hidden" name="balu_details_id" id="balu_details_id">
+                        <input type="hidden" name="pathor_details_id" id="pathor_details_id">
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
@@ -1011,7 +949,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
     <script type="text/javascript">
         function dealerWiseSummaryDetailsSearchAndEntry(dlrId, restext = false) {
             $.ajax({
-                url: '../ajaxcall/balu_sell_dealer_wise_summary_details_search_and_sell_entry.php',
+                url: '../ajaxcall/cement_sell_dealer_wise_summary_details_search_and_entry.php',
                 type: 'post',
                 data: {
                     dealerId: dlrId,
@@ -1131,7 +1069,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
         function getDealerNameByDealerId(dlrIda) {
             $.ajax({
-                url: '../ajaxcall/balu_get_dealer_name_by_dealer_id.php',
+                url: '../ajaxcall/cement_get_dealer_name_by_dealer_id.php',
                 type: 'post',
                 data: {
                     dealerId: dlrIda,
@@ -1216,7 +1154,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                         },
                         buttons: {
                             Yes: function() {
-                                var urltxt = '../ajaxcall/balu_del_sell_entry_ajax.php';
+                                var urltxt = '../ajaxcall/cement_del_sell_entry_ajax.php';
                                 $.ajax({
                                     url: urltxt,
                                     type: 'post',
@@ -1269,12 +1207,12 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                     returnValid = true;
                 }
 
-                // if (partculars == 'none') {
-                //     alert('Please select a marfot name');
-                //     returnValid = false;
-                // } else {
-                //     returnValid = true;
-                // }
+                if (partculars == 'none') {
+                    alert('Please select a marfot name');
+                    returnValid = false;
+                } else {
+                    returnValid = true;
+                }
 
                 if (particulars == 'none') {
                     alert('Please select a particular');
@@ -1284,7 +1222,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                 }
                 var formElement = $('#form_entry')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_sell_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/cement_sell_details_entry_ajax.php';
 
             } else if (submit_type == 'insert_popup') {
                 var buyer_id = $('#buyer_id_popup').val();
@@ -1297,7 +1235,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/cement_details_entry_ajax.php';
 
             } else {
                 ////Horizontal Edit er code
@@ -1324,7 +1262,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/balu_update_sell_entry_ajax.php';
+                var urltxt = '../ajaxcall/cement_update_sell_entry_ajax.php';
 
             }
 
@@ -1393,7 +1331,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
     <script type="text/javascript">
         function edit_rod_details(rod_id) {
             $('.rodDetailsEnCon').hide();
-            var urltxt = '../ajaxcall/balu_edit_entry_ajax.php';
+            var urltxt = '../ajaxcall/cement_edit_entry_ajax.php';
             $.ajax({
                 url: urltxt,
                 type: 'post',
@@ -1401,7 +1339,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                 // processData: false,
                 // contentType: false,
                 data: {
-                    'balu_details_id': rod_id
+                    'pathor_details_id': rod_id
                 },
                 success: function(res) {
                     console.log(res);
@@ -1484,7 +1422,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
 
             // alert(buyr_id);
-            $('#balu_details_id').val(rowid);
+            $('#pathor_details_id').val(rowid);
             $('#customer_id_popup').val(customer_id);
             $('#motor_name_popup').val(motor_name);
             $('#driver_name_popup').val(driver_name);
@@ -1535,7 +1473,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
             }, "0");
         }
     </script>
- <script type="text/javascript">
+    <script type="text/javascript">
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
 
@@ -1547,16 +1485,20 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
 
 
-            if (kg != '') {
+            if (count != '') {
                 $('#paras').attr("placeholder", "rate");
-                var kg = $('#kg').val();
+                var count = $('#count').val();
                 var paras = $('#paras').val();
-                if (kg == '') {
+
+                var weight = count / 20;
+                $('#weight').val(weight.toFixed(2));
+
+                if (count == '') {
                     $('#credit').val('0');
                 } else if (paras == '') {
                     $('#credit').val('0');
                 } else {
-                    var credit = kg * paras;
+                    var credit = count * paras;
                     //  alert(credit);
                     $('#credit').val(credit.toFixed(2));
                 }
@@ -1582,174 +1524,174 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
             // }
 
-            //shifty
-            var length = $('#length').val();
-            var width = $('#width').val();
-            var height = $('#height').val();
+            // //shifty
+            // var length = $('#length').val();
+            // var width = $('#width').val();
+            // var height = $('#height').val();
 
-            var inchi_minus = $("#inchi_minus").val();
-            var cft_dropped_out = $('#cft_dropped_out').val();
-            var inchi_added = $('#inchi_added').val();
-            var points_dropped_out = $('#points_dropped_out').val();
+            // var inchi_minus = $("#inchi_minus").val();
+            // var cft_dropped_out = $('#cft_dropped_out').val();
+            // var inchi_added = $('#inchi_added').val();
+            // var points_dropped_out = $('#points_dropped_out').val();
 
 
-            if (length != '' || width != '' || height != '') {
+            // if (length != '' || width != '' || height != '') {
 
-                $("#kg").attr("placeholder", "not applicable").prop("disabled", true);
-                $("#td_kg").click(function() {
-                    Swal.fire("Clear cft first");
-                });
-                var shifty = length * width * height;
-                if (inchi_minus > shifty) {
-                    Swal.fire("Not acceptable. Value should be less then cft");
-                    $('#inchi_minus').val("");
-                }
-                if (cft_dropped_out > shifty) {
-                    Swal.fire("Not acceptable. Value should be less then cft");
-                    $('#cft_dropped_out').val("");
-                }
-                if (points_dropped_out > shifty) {
-                    Swal.fire("Not acceptable. Value should be less then cft");
-                    $('#points_dropped_out').val("");
-                }
-                if (shifty < 0) {
-                    $('#shifty').val("");
-                }
-                if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
-                    var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
-                    var shift2_to_ton = shifty2 / 23.5;
-                    // alert(credit);
-                    $('#shifty').val(shifty.toFixed(3));
-                    $('#ton').val(shift2_to_ton.toFixed(2));
-                    $('#tons').val(shift2_to_ton.toFixed(2));
-                    $('#shift').val(shifty2.toFixed(3));
+            //     $("#kg").attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#td_kg").click(function() {
+            //         Swal.fire("Clear cft first");
+            //     });
+            //     var shifty = length * width * height;
+            //     if (inchi_minus > shifty) {
+            //         Swal.fire("Not acceptable. Value should be less then cft");
+            //         $('#inchi_minus').val("");
+            //     }
+            //     if (cft_dropped_out > shifty) {
+            //         Swal.fire("Not acceptable. Value should be less then cft");
+            //         $('#cft_dropped_out').val("");
+            //     }
+            //     if (points_dropped_out > shifty) {
+            //         Swal.fire("Not acceptable. Value should be less then cft");
+            //         $('#points_dropped_out').val("");
+            //     }
+            //     if (shifty < 0) {
+            //         $('#shifty').val("");
+            //     }
+            //     if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
+            //         var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
+            //         var shift2_to_ton = shifty2 / 23.5;
+            //         // alert(credit);
+            //         $('#shifty').val(shifty.toFixed(3));
+            //         $('#ton').val(shift2_to_ton.toFixed(2));
+            //         $('#tons').val(shift2_to_ton.toFixed(2));
+            //         $('#shift').val(shifty2.toFixed(3));
 
-                    // $('#shift').attr('value', 'shifty2.toFixed(3)');
-                    // $('#total_shift').val(shifty2.toFixed(2));
-                    // $('#total_shifts').val(shifty2.toFixed(2));
-                } else {
-                    var shift_to_ton = shifty / 23.5;
-                    // alert(credit);
-                    $('#shifty').val(shifty.toFixed(3));
-                    $('#ton').val(shift_to_ton.toFixed(2));
-                    $('#tons').val(shift_to_ton.toFixed(2));
-                    $('#shift').val(shifty.toFixed(3));
-                    // $('#total_shift').val(shifty.toFixed(2));
-                    // $('#total_shifts').val(shifty.toFixed(2));
+            //         // $('#shift').attr('value', 'shifty2.toFixed(3)');
+            //         // $('#total_shift').val(shifty2.toFixed(2));
+            //         // $('#total_shifts').val(shifty2.toFixed(2));
+            //     } else {
+            //         var shift_to_ton = shifty / 23.5;
+            //         // alert(credit);
+            //         $('#shifty').val(shifty.toFixed(3));
+            //         $('#ton').val(shift_to_ton.toFixed(2));
+            //         $('#tons').val(shift_to_ton.toFixed(2));
+            //         $('#shift').val(shifty.toFixed(3));
+            //         // $('#total_shift').val(shifty.toFixed(2));
+            //         // $('#total_shifts').val(shifty.toFixed(2));
 
-                }
-            } else if (width == '') {
-                $("#kg").attr("placeholder", "ton and kg");
-                $("#kg").prop("disabled", false);
-                $('#shift').attr("placeholder", "not applicable");
-                $('#shifty').attr("placeholder", "not applicable");
+            //     }
+            // } else if (width == '') {
+            //     $("#kg").attr("placeholder", "ton and kg");
+            //     $("#kg").prop("disabled", false);
+            //     $('#shift').attr("placeholder", "not applicable");
+            //     $('#shifty').attr("placeholder", "not applicable");
 
-            } else if (height == '') {
-                $("#kg").attr("placeholder", "ton and kg");
-                $("#kg").prop("disabled", false);
-                $('#shift').attr("placeholder", "not applicable");
-                $('#shifty').attr("placeholder", "not applicable");
-            } else if (length == '') {
-                $("#kg").attr("placeholder", "ton and kg");
-                $("#kg").prop("disabled", false);
-                $('#shift').attr("placeholder", "not applicable");
-                $('#shifty').attr("placeholder", "not applicable");
-                // $('#total_shifty').val('0');
-            }
-            // else if(length != ''){
-            //     $('#kg').val('0');
+            // } else if (height == '') {
+            //     $("#kg").attr("placeholder", "ton and kg");
+            //     $("#kg").prop("disabled", false);
+            //     $('#shift').attr("placeholder", "not applicable");
+            //     $('#shifty').attr("placeholder", "not applicable");
+            // } else if (length == '') {
+            //     $("#kg").attr("placeholder", "ton and kg");
+            //     $("#kg").prop("disabled", false);
+            //     $('#shift').attr("placeholder", "not applicable");
+            //     $('#shifty').attr("placeholder", "not applicable");
+            //     // $('#total_shifty').val('0');
             // }
-            else {
+            // // else if(length != ''){
+            // //     $('#kg').val('0');
+            // // }
+            // else {
 
 
 
-            }
+            // }
 
 
-            //ton and kg
-            var shifty = $('#shift').val();
-            var ton_kg = $('#kg').val();
-            var credit = $("#credit").val();
+            // //ton and kg
+            // var shifty = $('#shift').val();
+            // var ton_kg = $('#kg').val();
+            // var credit = $("#credit").val();
 
-            if (ton_kg != '') {
-                $("#length").attr("placeholder", "not applicable").prop("disabled", true);
-                $("#length").attr("readonly", true);
-                // if($("#length").click){
-                //     Swal.fire("Should be enter a number value");
-                // }
-                // $('#length').val('not applicable');
-                $('#width').attr("placeholder", "not applicable").prop("disabled", true);
-                $("#width").attr("readonly", true);
-                $('#height').attr("placeholder", "not applicable").prop("disabled", true);
-                $("#height").attr("readonly", true);
+            // if (ton_kg != '') {
+            //     $("#length").attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#length").attr("readonly", true);
+            //     // if($("#length").click){
+            //     //     Swal.fire("Should be enter a number value");
+            //     // }
+            //     // $('#length').val('not applicable');
+            //     $('#width').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#width").attr("readonly", true);
+            //     $('#height').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#height").attr("readonly", true);
 
-                $('#shifty').attr("placeholder", "not applicable").prop("disabled", true);
-                $('#shift').attr("placeholder", "not applicable").prop("disabled", true);
-                $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
-                $('#ton').attr("placeholder", "not applicable").prop("disabled", true);
-                // $('#height').attr("placeholder", "not applicable").prop("disabled", true).css("background-color","gray");
-                // $("#height").attr("readonly", true);
-                // $('#').attr("value", "not applicable");
-                $('#inchi_minus').attr("placeholder", "not applicable").prop("disabled", true);
-                $("#inchi_minus").attr("readonly", true);
-                $('#cft_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
-                $("#cft_dropped_out").attr("readonly", true);
-                $('#inchi_added').attr("placeholder", "not applicable").prop("disabled", true);
-                $("#inchi_added").attr("readonly", true);
-                $('#points_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
-                $("#points_dropped_out").attr("readonly", true);
-                // $('#').attr("value", "not applicable");
-                $('#ton').val(ton_kg);
-                $('#tons').val(ton_kg);
+            //     $('#shifty').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $('#shift').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $('#ton').attr("placeholder", "not applicable").prop("disabled", true);
+            //     // $('#height').attr("placeholder", "not applicable").prop("disabled", true).css("background-color","gray");
+            //     // $("#height").attr("readonly", true);
+            //     // $('#').attr("value", "not applicable");
+            //     $('#inchi_minus').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#inchi_minus").attr("readonly", true);
+            //     $('#cft_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#cft_dropped_out").attr("readonly", true);
+            //     $('#inchi_added').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#inchi_added").attr("readonly", true);
+            //     $('#points_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
+            //     $("#points_dropped_out").attr("readonly", true);
+            //     // $('#').attr("value", "not applicable");
+            //     $('#ton').val(ton_kg);
+            //     $('#tons').val(ton_kg);
 
-                var ton_to_cft = (ton_kg * 23.5).toFixed(3);
-                // $('#shifty').val(ton_to_cft);
-                // $('#shift').val(ton_to_cft);
-                // $('#total_shift').val(ton_to_cft);
-                // $('#total_shifts').val(ton_to_cft);
-            } else {
-                $("#length").attr("placeholder", "length").prop("disabled", false);
-                $("#length").attr("readonly", false);
-                // $('#length').val('not applicable');
-                $('#width').attr("placeholder", "width").prop("disabled", false);
-                $("#width").attr("readonly", false);
-                $('#height').attr("placeholder", "height").prop("disabled", false);
-                $("#height").attr("readonly", false);
-                $('#inchi_minus').attr("placeholder", "inchi_minus").prop("disabled", false);
-                $("#inchi_minus").attr("readonly", false);
-                $('#cft_dropped_out').attr("placeholder", "cft_dropped_out").prop("disabled", false);
-                $("#cft_dropped_out").attr("readonly", false);
-                $('#inchi_added').attr("placeholder", "inchi_added").prop("disabled", false);
-                $("#inchi_added").attr("readonly", false);
-                $('#points_dropped_out').attr("placeholder", "points_dropped_out").prop("disabled", false);
-                $("#points_dropped_out").attr("readonly", false);
+            //     var ton_to_cft = (ton_kg * 23.5).toFixed(3);
+            //     // $('#shifty').val(ton_to_cft);
+            //     // $('#shift').val(ton_to_cft);
+            //     // $('#total_shift').val(ton_to_cft);
+            //     // $('#total_shifts').val(ton_to_cft);
+            // } else {
+            //     $("#length").attr("placeholder", "length").prop("disabled", false);
+            //     $("#length").attr("readonly", false);
+            //     // $('#length').val('not applicable');
+            //     $('#width').attr("placeholder", "width").prop("disabled", false);
+            //     $("#width").attr("readonly", false);
+            //     $('#height').attr("placeholder", "height").prop("disabled", false);
+            //     $("#height").attr("readonly", false);
+            //     $('#inchi_minus').attr("placeholder", "inchi_minus").prop("disabled", false);
+            //     $("#inchi_minus").attr("readonly", false);
+            //     $('#cft_dropped_out').attr("placeholder", "cft_dropped_out").prop("disabled", false);
+            //     $("#cft_dropped_out").attr("readonly", false);
+            //     $('#inchi_added').attr("placeholder", "inchi_added").prop("disabled", false);
+            //     $("#inchi_added").attr("readonly", false);
+            //     $('#points_dropped_out').attr("placeholder", "points_dropped_out").prop("disabled", false);
+            //     $("#points_dropped_out").attr("readonly", false);
 
 
-                $('#shifty').prop("disabled", true);
-                $('#shift').prop("disabled", true);
-                $('#total_shift').prop("disabled", false);
-                $('#ton').prop("disabled", false);
+            //     $('#shifty').prop("disabled", true);
+            //     $('#shift').prop("disabled", true);
+            //     $('#total_shift').prop("disabled", false);
+            //     $('#ton').prop("disabled", false);
 
-                var credit = shifty * paras;
-                // alert(credit);
-                $('#credit').val(credit.toFixed(3));
-            }
+            //     var credit = shifty * paras;
+            //     // alert(credit);
+            //     $('#credit').val(credit.toFixed(3));
+            // }
 
-            var total_input_cft = $('#total_shift').val();
-            if (total_input_cft != '') {
-                $('#paras').attr("placeholder", "per cft");
+            // var total_input_cft = $('#total_shift').val();
+            // if (total_input_cft != '') {
+            //     $('#paras').attr("placeholder", "per cft");
 
-                var paras = $('#paras').val();
-                // if (kg == '') {
-                //     $('#credit').val('0');
-                // } else if (paras == '') {
-                //     $('#credit').val('0');
-                // } else {
-                var credit = total_input_cft * paras;
-                //  alert(credit);
-                $('#credit').val(credit.toFixed(2));
-                // }
-            }
+            //     var paras = $('#paras').val();
+            //     // if (kg == '') {
+            //     //     $('#credit').val('0');
+            //     // } else if (paras == '') {
+            //     //     $('#credit').val('0');
+            //     // } else {
+            //     var credit = total_input_cft * paras;
+            //     //  alert(credit);
+            //     $('#credit').val(credit.toFixed(2));
+            //     // }
+            // }
 
 
             var discount = $("#discount").val();
@@ -1763,39 +1705,39 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                     Swal.fire("Not acceptable. Value should be less then credit");
                 }
             }
-            var fee = $("#fee").val();
-            if (fee != '') {
-                var credit = parseFloat(credit) + parseFloat(fee);
-                $('#credit').val(credit.toFixed(3));
-            }
-
-
-
-            // console.log(inchi_minus);
-            // console.log(ton_kg);
-
-            // if (inchi_minus != '') {
-            //     console.log(inchi_minus);
-            //     $('#shift').val(inchi_minus);
-            //     $('#total_shift').val('test');
-
+            // var fee = $("#fee").val();
+            // if (fee != '') {
+            //     var credit = parseFloat(credit) + parseFloat(fee);
+            //     $('#credit').val(credit.toFixed(3));
             // }
 
-            // if (cft_dropped_out != '') {
-            //     console.log(cft_dropped_out);
 
-            // }
 
-            // var car_rent_redeem = $('#car_rent_redeem').val();
-            // var credit = $("#credit").val();
-            // if (car_rent_redeem == '') {
-            //     var total_paras = credit;
-            //     $('#credit').val(total_paras);
-            // } else {
-            //     var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
-            //     $('#credit').val(total_paras);
-            // }
-            // debit theke minus hote ai part tuku age dite hobe
+            // // console.log(inchi_minus);
+            // // console.log(ton_kg);
+
+            // // if (inchi_minus != '') {
+            // //     console.log(inchi_minus);
+            // //     $('#shift').val(inchi_minus);
+            // //     $('#total_shift').val('test');
+
+            // // }
+
+            // // if (cft_dropped_out != '') {
+            // //     console.log(cft_dropped_out);
+
+            // // }
+
+            // // var car_rent_redeem = $('#car_rent_redeem').val();
+            // // var credit = $("#credit").val();
+            // // if (car_rent_redeem == '') {
+            // //     var total_paras = credit;
+            // //     $('#credit').val(total_paras);
+            // // } else {
+            // //     var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
+            // //     $('#credit').val(total_paras);
+            // // }
+            // // debit theke minus hote ai part tuku age dite hobe
 
             var debit = $("#debit").val();
             var credit = $("#credit").val();
@@ -1809,54 +1751,54 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
                 $('#balance').val(balance.toFixed(3));
             }
 
-            var motor_vara = $('#motor_vara').val();
-            var unload = $('#unload').val();
-            if (motor_vara == '') {
-                $('#motor_vara').attr("placeholder", "motor vara");
-                //  $('#motor_vara').attr("value", "0");
-                //  $('#motor_vara').val(0);
-
-                $('#car_rent_redeem').val(unload);
-                $('#cemeats_paras').val(unload);
-            } else if (unload == '') {
-                $('#unload').attr("placeholder", "unload");
-                //  $('#unload').attr("value", "0");
-                //  $('#unload').val(0);
-
-                $('#car_rent_redeem').val(motor_vara);
-                $('#cemeats_paras').val(motor_vara);
-            } else if (unload == 0 && motor_vara == 0) {
-                $('#car_rent_redeem').val(0);
-            } else {
-
-
-                //                 $('#motor_vara').focus(function(){
-                //                     $('#motor_vara').value('')
-                // });
-
-                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
-                // alert(balance);
-                $('#car_rent_redeem').val(car_rent_redeem);
-                $('#cemeats_paras').val(car_rent_redeem);
-            }
-
-
-
-
+            // var motor_vara = $('#motor_vara').val();
+            // var unload = $('#unload').val();
             // if (motor_vara == '') {
-            //     $('#motor_vara').val()=null;
+            //     $('#motor_vara').attr("placeholder", "motor vara");
+            //     //  $('#motor_vara').attr("value", "0");
+            //     //  $('#motor_vara').val(0);
+
+            //     $('#car_rent_redeem').val(unload);
+            //     $('#cemeats_paras').val(unload);
             // } else if (unload == '') {
-            //     $('#unload').val()=null;
+            //     $('#unload').attr("placeholder", "unload");
+            //     //  $('#unload').attr("value", "0");
+            //     //  $('#unload').val(0);
+
+            //     $('#car_rent_redeem').val(motor_vara);
+            //     $('#cemeats_paras').val(motor_vara);
+            // } else if (unload == 0 && motor_vara == 0) {
+            //     $('#car_rent_redeem').val(0);
             // } else {
-            //     $('#motor_vara').val()=null;
-            // $('#unload').val()=null;
-            //     var tar = motor_vara?$('#motor_vara').val():'0';
-            //     var tar2 = motor_vara?$('#unload').val():'0';
-            //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
+
+
+            //     //                 $('#motor_vara').focus(function(){
+            //     //                     $('#motor_vara').value('')
+            //     // });
+
+            //     var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
             //     // alert(balance);
             //     $('#car_rent_redeem').val(car_rent_redeem);
             //     $('#cemeats_paras').val(car_rent_redeem);
             // }
+
+
+
+
+            // // if (motor_vara == '') {
+            // //     $('#motor_vara').val()=null;
+            // // } else if (unload == '') {
+            // //     $('#unload').val()=null;
+            // // } else {
+            // //     $('#motor_vara').val()=null;
+            // // $('#unload').val()=null;
+            // //     var tar = motor_vara?$('#motor_vara').val():'0';
+            // //     var tar2 = motor_vara?$('#unload').val():'0';
+            // //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
+            // //     // alert(balance);
+            // //     $('#car_rent_redeem').val(car_rent_redeem);
+            // //     $('#cemeats_paras').val(car_rent_redeem);
+            // // }
 
 
         });
@@ -2058,12 +2000,10 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
         });
         //End calculation popup
     </script>
-
-
     <script type="text/javascript">
         function getDataByDates(datestr, dealerId) {
             $.ajax({
-                url: '../ajaxcall/balu_search_date_entry.php',
+                url: '../ajaxcall/cement_search_date_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,
@@ -2083,7 +2023,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
         function getSummaryByDates(datestr, dealerId) {
             $.ajax({
-                url: '../ajaxcall/balu_search_date_wise_summary_entry.php',
+                url: '../ajaxcall/cement_search_date_wise_summary_entry.php',
                 type: 'post',
                 data: {
                     optionDate: datestr,
@@ -2204,7 +2144,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
 
         function gbbank_update(id, gbvalue) {
             $.ajax({
-                url: '../ajaxcall_save_update/balu_gb_bank_update.php',
+                url: '../ajaxcall_save_update/cement_gb_bank_update.php',
                 type: 'post',
                 data: {
                     details_id: id,

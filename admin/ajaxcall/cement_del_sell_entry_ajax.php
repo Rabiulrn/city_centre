@@ -29,7 +29,7 @@
     // }
 
 
-      $sql = "DELETE FROM details_sell_pathor WHERE id = '$rod_details_id'";
+      $sql = "DELETE FROM details_sell_cement WHERE id = '$rod_details_id'";
       if ($db->select($sql) === TRUE) {
         $sucDel = "Details sell entry deleted successfully.Stocks not restored";
         echo $sucDel;

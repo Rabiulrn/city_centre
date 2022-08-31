@@ -92,7 +92,8 @@
       
         
         if($_SESSION['verification'] == 'no'){
-            header('location: verify_email_address.php', true, 301);
+            header("Location: vaucher/doinik_all_hisab.php", true, 301);
+            // header('location: verify_email_address.php', true, 301);
             exit;
         } else {
             if($_SESSION['page_permission'] == 'no'){

@@ -272,7 +272,7 @@
 						<th>Edit</th>
 					</tr>
 					<?php
-						$sql = "SELECT * FROM customers_pathor";
+						$sql = "SELECT * FROM customers_pathor WHERE project_name_id = '$project_name_id'";
 						$show = $db->select($sql);
 						if ($show) 
 						{

@@ -81,7 +81,7 @@
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
 				 <a href="../vaucher/pathor_report_dealer.php">ডিলার অনুযায়ী </a>
 				 <a href="../vaucher/pathor_report_customer.php">কাস্টমার অনুযায়ী </a> 
-				<a href="../vaucher/pathor_report_buyer.php" class="active">বায়ার অনুযায়ী </a> 
+				<!-- <a href="../vaucher/pathor_report_buyer.php" class="active">বায়ার অনুযায়ী </a>  -->
 			</div>
 		</div>
 		<div class="main_bar">

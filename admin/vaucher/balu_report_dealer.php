@@ -82,7 +82,7 @@
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
 				 <a href="../vaucher/balu_report_dealer.php" class="active">ডিলার অনুযায়ী </a>
 				 <a href="../vaucher/balu_report_customer.php">কাস্টমার অনুযায়ী </a> 
-				 <a href="../vaucher/balu_report_buyer.php">বায়ার অনুযায়ী </a>
+				 <!-- <a href="../vaucher/balu_report_buyer.php">বায়ার অনুযায়ী </a> -->
 			</div>
 		</div>
 		<div class="main_bar">
@@ -428,19 +428,19 @@
 						        }
 
 
-								$total1_debit = 0;
-						        $sql3 = "SELECT SUM(debit) as debit FROM details_balu WHERE project_name_id = '$project_name_id'";
-						        $result3 = $db->select($sql3);
-						        if($result3->num_rows > 0){
-						            while($row3 = $result3->fetch_assoc()){
-						                $total1_debit = $row3['debit'];
-						                if(is_null($total1_debit)){
-						                    $total1_debit = 0;
-						                }
-						            }
-						        } else{
-						            $total1_debit = 0;
-						        }
+								// $total1_debit = 0;
+						        // $sql3 = "SELECT SUM(debit) as debit FROM details_balu WHERE project_name_id = '$project_name_id'";
+						        // $result3 = $db->select($sql3);
+						        // if($result3->num_rows > 0){
+						        //     while($row3 = $result3->fetch_assoc()){
+						        //         $total1_debit = $row3['debit'];
+						        //         if(is_null($total1_debit)){
+						        //             $total1_debit = 0;
+						        //         }
+						        //     }
+						        // } else{
+						        //     $total1_debit = 0;
+						        // }
 						    // End total total_Balance/mot_jer
 						    //Start GB Bank Ganti
 						        $gb_bank_ganti = 0;
@@ -574,6 +574,25 @@
 			<!-- </table> -->
 		</div>
 	</div>
+	<script>
+		
+
+var num1 = parseFloat('$total_motor_vara').toFixed(2);
+var num2 = parseFloat("$total_unload").toFixed(2);
+var num3 = parseFloat("$total1_credit").toFixed(2);
+var num4 = parseFloat("$total1_debit").toFixed(2);
+var num5 = parseFloat("$total1_balance").toFixed(2);
+var num6 = parseFloat("$total_nij_paona").toFixed(2);
+
+
+
+
+console.log(num1);
+console.log(num2);
+console.log(num3);
+console.log(num4);
+console.log(num5);
+		</script>
 
 	<script type="text/javascript">	
 		var height = $('.content').height();

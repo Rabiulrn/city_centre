@@ -49,7 +49,7 @@ $motor_vara_and_unload = $motor_vara + $unload;
 //End khalas/Unload
 
  // Start total total_motor
- $sql = "SELECT SUM(motor_no) as motor FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+ $sql = "SELECT COUNT(motor_no) as motor FROM details_balu WHERE dealer_id = '$dealerId' AND motor_no != '' AND project_name_id = '$project_name_id'";
  $result = $db->select($sql);
  if($result->num_rows > 0){
      while($row = $result->fetch_assoc()){
@@ -126,7 +126,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_debit = 0;
 }
-$total_balance = $total_debit-$total_credit ;
+$total_balance = $total_debit-$total_credit -$motor_vara_and_unload ;
 // End total total_debit/joma
 
 // // Start total total_Balance/mot_jer
@@ -197,7 +197,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
   </div>
 </div>
 <div id="panel">
-  <table width="100%" class="summary">
+<table width="100%" class="summary">
     <tr>
       <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
@@ -215,7 +215,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td class="hastext">06mm 400W/60G</td>
 			<td><?php echo $mm06_rod400; ?></td> -->
       <td class="hastext">মোট টোনঃ</td>
-      <td><?php echo $total_ton_kg; ?></td>
+      <td><?php
+          $format_number1 = number_format($total_ton_kg, 2);
+          echo $format_number1; ?></td>
       <!-- <td class="hastext">কোম্পানী পাওনাঃ</td>
 			<td><?php echo $company_paona; ?></td>			 -->
     </tr>
@@ -248,19 +250,17 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
-      
     </tr>
     <!-- Ekhan theke -->
     <tr>
-    <td class="hastext">মোট গাড়ীঃ</td>
-            <td><?php echo $total_motor; ?></td>
+      <td class="hastext">মোট গাড়ীঃ</td>
+      <td><?php echo $total_motor; ?></td>
     </tr>
     <tr>
       <!-- <td class="hastext">16mm 500W/60G</td>
 			<td><?php echo $mm16_rod500; ?></td>
 			<td class="hastext">16mm 400W/60G</td>
 			<td><?php echo $mm16_rod400; ?></td> -->
-          
       <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
       <td><?php echo $motor_vara; ?></td>
       <td class="hastext">ম‌োট মূলঃ</td>
@@ -273,8 +273,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm20_rod400; ?></td> -->
       <td class="hastext">মোট খালাস খরচঃ</td>
       <td><?php echo $unload; ?></td>
-      <td class="hastext">ম‌োট জমাঃ</td>
-      <td><?php echo $total_debit; ?></td>
+      <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
+      <td><?php echo $vara_credit; ?></td>
+      
     </tr>
     <tr>
       <!-- <td class="hastext">22mm 500W/60G</td>
@@ -283,8 +284,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <td><?php echo $mm22_rod400; ?></td> -->
       <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
       <td><?php echo $motor_vara_and_unload; ?></td>
-      <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
-      <td><?php echo  $total_balance ; ?></td>
+      <td class="hastext">ম‌োট জমাঃ</td>
+      <td><?php echo $total_debit; ?></td>
+    
 
     </tr>
     <tr>
@@ -292,10 +294,12 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm25_rod500; ?></td>
 			<td class="hastext">25mm 400W/60G</td>
 			<td><?php echo $mm25_rod400; ?></td> -->
-      <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
-      <td><?php echo $vara_credit; ?></td>
       <td></td>
       <td></td>
+      <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
+      <td><?php echo $total_balance; ?></td>
+      
+    
     </tr>
     <tr>
       <!-- <td class="hastext">32mm 500W/60G</td>
@@ -342,7 +346,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
                 <div class="scrollsign_plus" id="entry_scroll1">+</div>                   -->
       <table border="1" id="detailsEtryTable">
         <tr>
-          <td class="widthPercent1">Buyer ID</td>
+          <td class="widthPercent1">Dealer ID</td>
           <!-- <td width="150">Dealer ID</td> -->
           <!-- <td class="widthPercent1">Type</td> -->
 
@@ -379,7 +383,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td class="widthPercent3">Total Cft</td>
           <td style="display:none;" class="widthPercent3">Ton</td>
          
-          <td class="widthPercent3">Discount(%)</td>
+          <td class="widthPercent3">Discount</td>
           <td class="widthPercent3">Credit</td>
           <td style="display:none;" class="widthPercent3" >Balance</td>
           <td style="display:none;" class="widthPercent3">Cemeat's Para's</td>
@@ -390,7 +394,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td class="widthPercent3">Fee</td>
         </tr>
         <tr>
-          <td>বায়ার আইডি</td>
+          <td>ডিলার আইডি</td>
           <!-- <td>ডিলার আই ডি</td> -->
           <!-- <td>টাইপ</td> -->
 
@@ -427,7 +431,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>মোট সিএফটি</td>
           <td style="display:none;">টন</td>
          
-          <td>কমিশন(%)</td>
+          <td>কমিশন</td>
           <td>মূল</td>
           <td style="display:none;">অবশিষ্ট</td>
           <td style="display:none;">গাড়ী ভাড়া / লেবার সহ</td>
@@ -442,13 +446,13 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT buyer_id FROM balu_buyers WHERE project_name_id ='$project_name_id'";
+            $sql = "SELECT dealer_id FROM balu_dealer WHERE project_name_id ='$project_name_id'";
             $all_custmr_id = $db->select($sql);
-            echo '<select name="buyer_id" id="buyer_id" class="form-control" style="width: 140px; required">';
+            echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {
-                $id = $row['buyer_id'];
+                $id = $row['dealer_id'];
                 echo '<option value="' . $id . '">' . $id . '</option>';
               }
             } else {
@@ -673,7 +677,7 @@ if ($result) {
 
           <thead class="header">
             <tr>
-              <th>Buyer ID</th>
+              <th>Dealer ID</th>
               <th>Motor Name</th>
               <th>Driver Name</th>
               <th>Motor Vara</th>
@@ -716,7 +720,7 @@ if ($result) {
               <th class='no_print_media'></th>
             </tr>
             <tr>
-              <th>বায়ার আইডি</th>
+              <th>ডিলার আইডি</th>
               <th>গাড়ী নাম</th>
               <th>ড্রাইভারের নাম</th>
               <th>গাড়ী ভাড়া</th>
@@ -775,7 +779,7 @@ if ($result) {
                 $format_dates = date("d-m-Y", strtotime($dates));
               }
               echo "<tr>";
-              echo "<td>" . $rows['buyer_id'] . "</td>";
+              echo "<td>" . $rows['dealer_id'] . "</td>";
               echo "<td>" . $rows['motor_name'] . "</td>";
               echo "<td>" . $rows['driver_name'] . "</td>";
               echo "<td>" . $rows['motor_vara'] . "</td>";

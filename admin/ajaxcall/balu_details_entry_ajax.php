@@ -10,6 +10,7 @@
 
 
     $buyer_id       = trim($_POST['buyer_id']);
+    $dealer_id       = trim($_POST['dealer_id']);
     $type = trim($_POST['type']);
     $motor_name           = trim($_POST['motor_name']);
     $driver_name           = trim($_POST['driver_name']);
@@ -18,7 +19,7 @@
     $car_rent_redeem  = trim($_POST['car_rent_redeem']);
     $information      = trim($_POST['information']);
     // $delear_id      = trim($_POST['delear_id']);
-    $dealer_id      = trim($_SESSION['dealerIdInput']);
+    // $dealer_id      = trim($_SESSION['dealerIdInput']);
     $sl      = trim($_POST['sl_no']);
     $voucher_no     = trim($_POST['delivery_no']);
     $address        = trim($_POST['address']);

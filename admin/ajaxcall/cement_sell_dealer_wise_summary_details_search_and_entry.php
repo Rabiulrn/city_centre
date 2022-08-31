@@ -1,10 +1,13 @@
 <?php
+
+use Mpdf\Language\ScriptToLanguage;
+
 session_start();
 require '../config/config.php';
 require '../lib/database.php';
 $db = new Database();
 
-$dealerId  = $_POST['dealerId'];
+$dealerId  = $_POST['dealerId'];             //dealer is thakleo customer hishebe chaliye deoya.
 $_SESSION['dealerIdInput'] = $_POST['dealerId'];
 // echo $dealerId;
 $project_name_id = $_SESSION['project_name_id'];
@@ -15,8 +18,9 @@ $delete_data_permission = $_SESSION['delete_data'];
 
 $sucMsg = "";
 
-// Start total total_kg
-$sql = "SELECT COUNT(motor_no) as motor FROM details_pathor WHERE dealer_id = '$dealerId'AND motor_no != '' AND project_name_id = '$project_name_id'";
+
+// Start total total_motor
+$sql = "SELECT COUNT(motor_no) as motor FROM details_sell_cement WHERE customer_id = '$dealerId'AND motor_no != '' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -29,20 +33,8 @@ if ($result->num_rows > 0) {
   $total_motor = 0;
 }
 
-$sql = "SELECT SUM(tons) as ton_kg FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_ton_kg = $row['ton_kg'];
-    if (is_null($total_ton_kg)) {
-      $total_ton_kg = 0;
-    }
-  }
-} else {
-  $total_ton_kg = 0;
-}
 //Start Gari vara
-$sql = "SELECT SUM(motor_vara) as motor_vara FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -57,7 +49,7 @@ if ($result->num_rows > 0) {
 //End Gari vara
 
 //Start khalas/Unload
-$sql = "SELECT SUM(unload) as unload FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(unload) as unload FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -72,32 +64,32 @@ if ($result->num_rows > 0) {
 $motor_vara_and_unload = $motor_vara + $unload;
 //End khalas/Unload
 
-// Start total total_motor
+// // Start total total_motor
 
-// End total total_motor
+// // End total total_motor
 
-//Start GB Bank Ganti
+// //Start GB Bank Ganti
 
 
-//End GB Bank Ganti
-// Start total total_kg
-$sql = "SELECT SUM(total_shift) as shift FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_shift = $row['shift'];
-    if (is_null($total_shift)) {
-      $total_shift = 0;
-    }
-  }
-} else {
-  $total_shift = 0;
-}
-$total_ton = $total_shift / 23.5;
-// End total total_kg
+// //End GB Bank Ganti
+// // Start total total_kg
+// $sql = "SELECT SUM(total_shift) as shift FROM details_sell_pathor WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+// $result = $db->select($sql);
+// if ($result->num_rows > 0) {
+//   while ($row = $result->fetch_assoc()) {
+//     $total_shift = $row['shift'];
+//     if (is_null($total_shift)) {
+//       $total_shift = 0;
+//     }
+//   }
+// } else {
+//   $total_shift = 0;
+// }
+// $total_ton = $total_shift / 23.5;
+// // End total total_kg
 
 // Start total total_credit/mot_mul
-$sql = "SELECT SUM(credit) as credit FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -112,7 +104,7 @@ if ($result->num_rows > 0) {
 // End total total_credit/mot_mul
 
 // Start total total_debit/joma
-$sql = "SELECT SUM(debit) as debit FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -125,22 +117,21 @@ if ($result->num_rows > 0) {
   $total_debit = 0;
 }
 // End total total_debit/joma
-
-// Start total total_Balance/mot_jer
 $total_balance = $total_debit - $total_credit - $motor_vara_and_unload;
-// $sql = "SELECT SUM(balance) as balance FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-// $result = $db->select($sql);
-// if($result->num_rows > 0){
-//     while($row = $result->fetch_assoc()){
-//         $total_balance = $row['balance'];
-//         if(is_null($total_balance)){
-//             $total_balance = 0;
+// // Start total total_Balance/mot_jer
+//     $sql = "SELECT SUM(balance) as balance FROM details_sell_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+//     $result = $db->select($sql);
+//     if($result->num_rows > 0){
+//         while($row = $result->fetch_assoc()){
+//             $total_balance = $row['balance'];
+//             if(is_null($total_balance)){
+//                 $total_balance = 0;
+//             }
 //         }
+//     } else{
+//         $total_balance = 0;
 //     }
-// } else{
-//     $total_balance = 0;
-// }
-// End total total_Balance/mot_jer
+// // End total total_Balance/mot_jer
 
 //Start Total para/mot_mul_khoros_shoho
 
@@ -170,6 +161,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
     <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
     <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
   </div>
+  <!-- <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
+        <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+</div>
 </div>
 
 <div id="panel">
@@ -179,8 +173,8 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
 			<td class="hastext" width="150px">04.50mm 400W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td> -->
-      <td class="hastext">মোট সেপ্টি </td>
-      <td style="min-width: 85px"><?php echo $total_shift; ?></td>
+      <!-- <td class="hastext">মোট সেপ্টি </td>
+      <td style="min-width: 85px"><?php echo $total_shift; ?></td> -->
       <!-- <td class="hastext">জ‌িব‌ি ব্যাংক গ্যান্ট‌িঃ</td>
 			<td style="min-width: 85px"><?php echo $gb_bank_ganti; ?></td> -->
 
@@ -315,20 +309,20 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
     <!-- <h2 class="ce_header bg-primary">Details Entry</h2> -->
     <div class="scrolling-div" id="scrolling-entry-div">
       <!-- <div id="popUpNewBtn">
-        <img src="../img/others/new_entry.png" width="100%" height="100%">
-      </div> -->
+                    <img src="../img/others/new_entry.png" width="100%" height="100%">
+                </div> -->
       <!-- <div class="scrollsign_plus" id="entry_scroll3">+</div> 
                 <div class="scrollsign_plus" id="entry_scroll2">+</div>                  
                 <div class="scrollsign_plus" id="entry_scroll1">+</div>                   -->
       <table border="1" id="detailsEtryTable">
         <tr>
-          <td class="widthPercent1">Dealer ID</td>
+          <td class="widthPercent1">Customer ID</td>
           <!-- <td width="150">Dealer ID</td> -->
           <!-- <td class="widthPercent1">Type</td> -->
 
-          <!-- <td class="widthPercent1">Information</td> -->
-          <td class="widthPercent1">Motor Name</td>
+
           <td class="widthPercent1">Driver Name</td>
+          <td class="widthPercent1">Motor Name</td>
           <td class="widthPercent1">Motor Vara</td>
           <td class="widthPercent1">Unload</td>
           <td class="widthPercent1">Cars rent & Redeem</td>
@@ -336,105 +330,83 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
           <td class="widthPercent1">SL</td>
           <!-- <td class="widthPercent2">Particulars</td> -->
-          <td class="widthPercent1">Voucher No.</td>
           <td class="widthPercent1">Address</td>
-          <td class="widthPercent1">Motor Number</td>
+          <td class="widthPercent1">Challan No.</td>
           <td class="widthPercent1">Motor SL</td>
-          <td class="widthPercent1">Delivery Date</td>
+          <td class="widthPercent1">Motor Number</td>
+
+          <td class="widthPercent1">Challan Date</td>
+          <td class="widthPercent2">SO Date</td>
           <td class="widthPercent2">Date</td>
           <td class="widthPercent2">Partculars</td>
           <td class="widthPercent2">Particulars</td>
           <td class="widthPercent2">Debit</td>
-          <td class="widthPercent3">Ton & Kg</td>
-          <td class="widthPercent3">Length</td>
-          <td class="widthPercent3">width</td>
-          <td class="widthPercent3">Height</td>
-          <td class="widthPercent3">Cft</td>
-          <td class="widthPercent3"> Inchi (-) Minus</td>
-          <td class="widthPercent3">Cft ( - ) Dropped Out</td>
-          <td class="widthPercent3">Inchi (+) Added</td>
-          <td class="widthPercent3">Points ( - ) Dropped Out</td>
-          <td class="widthPercent3">Cft</td>
+          <td class="widthPercent3">Count</td>
+          <td class="widthPercent3">Fee</td>
           <td class="widthPercent3">Para's</td>
-          <td class="widthPercent3">Total Cft</td>
-          <td style="display:none;"  class="widthPercent3">Ton</td>
-       
           <td class="widthPercent3">Discount</td>
           <td class="widthPercent3">Credit</td>
-          <td style="display:none;"  class="widthPercent3">Balance</td>
-          <td style="display:none;"  class="widthPercent3">Cemeat's Para's</td>
-
-          <td style="display:none;"  class="widthPercent3">Total Cft</td>
-          <td style="display:none;"  class="widthPercent3">Tons</td>
-          <td class="widthPercent3">Bank Name</td>
-          <td class="widthPercent3">Fee</td>
+          <td class="widthPercent3">Balance</td>
+          <td class="widthPercent3">Total Credit</td>
+          <td class="widthPercent3">Weight ( MT )</td>
         </tr>
         <tr>
-          <td>ডিলার আই ডি</td>
+          <td>customer আই ডি</td>
           <!-- <td>ডিলার আই ডি</td> -->
           <!-- <td>টাইপ</td> -->
 
-          <!-- <td>মালের বিবরণ</td> -->
-          <td>গাড়ী নাম</td>
+
           <td>ড্রাইভারের নাম</td>
+          <td>গাড়ী নাম</td>
+
           <td>গাড়ী ভাড়া</td>
           <td>আনলোড</td>
           <td>গাড়ী ভাড়া ও খালাস</td>
           <td>মালের বিবরণ</td>
 
-          <td>ক্রমিক</td>
-          <td>ভাউচার নং</td>
+          <td>ক্রমিক নং</td>
           <td>ঠিকানা</td>
+          <td>ভাউচার নং</td>
+
           <td>গাড়ী নাম্বার</td>
           <td>গাড়ী নং</td>
-          <td>ডেলিভারী তারিখ</td>
+          <td>ভাউচার তারিখ</td>
+          <td>অর্ডার তারিখ</td>
           <td>তারিখ</td>
           <td>মারফ‌োত নাম</td>
           <td>ব‌িবরণ</td>
           <td>জমা টাকা</td>
-          <td>টন ও কেজি</td>
-          <td>দৈর্ঘ্যের</td>
-          <td>প্রস্ত</td>
-          <td>উচাঁ</td>
-          <td>সিএফটি</td>
-          <td>Inchi (-) বিয়োগ </td>
-          <td>সিএফটি ( - ) বাদ</td>
-          <td>Inchi (+) যোগ </td>
-          <td>পয়েন্ট ( - ) বাদ</td>
-          <td>সিএফটি</td>
+          <td>পরিমান‌</td>
+          <td>ফি</td>
           <td>দর</td>
-          <td>মোট সিএফটি </td>
-          <td style="display:none;" >টন</td>
-        
           <td>কমিশন</td>
           <td>মূল</td>
-          <td style="display:none;" >অবশিষ্ট</td>
-          <td style="display:none;" >গাড়ী ভাড়া / লেবার সহ</td>
-
-          <td style="display:none;" > মোট সিএফটি</td>
-          <td style="display:none;" >টন</td>
-          <td>ব্যাংক নাম</td>
-          <td>ফি</td>
+          <td>অবশিষ্ট</td>
+          <td>মোট মূলঃ</td>
+          <td>ওজন (এম,টি )</td>
 
         </tr>
         <tr>
           <td>
-            <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT dealer_id FROM pathor_dealer WHERE project_name_id ='$project_name_id'";
+            $sql = "SELECT customer_id, customer_name FROM customers_cement";
             $all_custmr_id = $db->select($sql);
-            echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
+            echo '<select name="customer_id" id="customer_id" class="form-control" style="width: 140px;">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {
-                $id = $row['dealer_id'];
-                echo '<option value="' . $id . '">' . $id . '</option>';
+                $id = $row['customer_id'];
+                $customer_name = $row['customer_name'];
+                echo '<option value="' . $id . '">' . $id . '-(' . $customer_name . ')' . '</option>';
               }
             } else {
               echo '<option value="none">0 Result</option>';
             }
             echo '</select>';
             ?>
+
+          </td>
+
           <!-- <td>
             <select id="type" name="type" class="form-control-balu" style="width: 160px;">
               <option value="balu">balu</option>
@@ -445,11 +417,22 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
 
+          <!-- <td>
+                      <select id="type">
+	<option value="balu" selected>Balu</option>
+	<option value="pathor">Pathor</option>
+
+</select>
+
+	                    </td> -->
 
 
+          <!-- <td>
+                        <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id">
+	                       <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> 
+	         
 
-
-
+	                    </td> -->
           <!-- <td> -->
           <!-- <input type="text" name="delear_id" class="form-control-balu" id="delear_id" placeholder="Enter delear_id..."> -->
           <?php
@@ -469,28 +452,33 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           ?>
           <!-- </td> -->
 
+
+
+
+
+
           <td>
-            <input type="text" name="motor_name" class="form-control-balu" id="motor_name" placeholder="Motor name...">
+            <input type="text" name="driver_name" class="form-control-cement" id="driver_name" placeholder="Driver name...">
           </td>
           <td>
-            <input type="text" name="driver_name" class="form-control-balu" id="driver_name" placeholder="Driver name...">
+            <input type="text" name="motor_name" class="form-control-cement" id="motor_name" placeholder="Motor name...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-balu value-calc" id="motor_vara" placeholder="Gari vara...">
+            <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control-cement value-calc" id="motor_vara" placeholder="Gari vara...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload...">
+            <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-cement value-calc" id="unload" placeholder="Unload...">
           </td>
           <td>
-            <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
+            <input type="text" name="car_rent_redeem" class="form-control-cement value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
           </td>
           <td>
-            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter Information...">
+            <input type="text" name="information" class="form-control-cement" id="information" placeholder="Enter Information...">
           </td>
 
 
           <?PHP
-          $sql = "SELECT sl FROM details_pathor ORDER BY id DESC LIMIT 1";
+          $sql = "SELECT sl FROM details_cement ORDER BY id DESC LIMIT 1";
           $customersId = $db->select($sql);
           if ($customersId->num_rows > 0) {
             $row = $customersId->fetch_assoc();
@@ -505,36 +493,37 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
           <td>
-            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no..." style="cursor:not-allowed;">
+            <input type="text" name="sl_no" class="form-control-cement" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no..." style="cursor:not-allowed;">
+          </td>
+          <td>
+            <input type="text" name="address" class="form-control-cement" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>
+          </td>
+          <td>
+            <input type="text" name="challan_no" class="form-control-cement" id="challan_no" placeholder="Enter challan no..." required>
           </td>
 
-
-
           <td>
-            <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter voucher no..." required>
+            <input type="text" name="motor" class="form-control-cement" id="motor" placeholder="Motor...">
           </td>
           <td>
-            <input type="text" name="address" class="form-control-balu" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>
+            <input type="text" name="motor_no" class="form-control-cement" id="motor_no" placeholder="Motor sl...">
           </td>
           <td>
-            <input type="text" name="motor" class="form-control-balu" id="motor" placeholder="Motor...">
+            <input onkeypress="datecheckformat(event)" type="date" name="challan_date" class="form-control-cement" id="challan_date" placeholder="dd-mm-yyyy">
           </td>
           <td>
-            <input type="text" name="motor_no" class="form-control-balu" id="motor_no" placeholder="Motor sl...">
+            <input onkeypress="datecheckformat(event)" type="text" name="delivery_date" class="form-control-cement" id="delivery_date" placeholder="dd-mm-yyyy">
           </td>
           <td>
-            <input onkeypress="datecheckformat(event)" type="text" name="delivery_date" class="form-control-balu" id="delivery_date" placeholder="dd-mm-yyyy">
+            <input onkeypress="datecheckformat(event)" type="text" name="dates" class="form-control-cement" id="dates" placeholder="dd-mm-yyyy">
           </td>
           <td>
-            <input onkeypress="datecheckformat(event)" type="text" name="dates" class="form-control-balu" id="dates" placeholder="dd-mm-yyyy">
-          </td>
-          <td>
-            <input type="text" name="partculars" class="form-control-balu" id="partculars" placeholder="Marfot...">
+            <input type="text" name="partculars" class="form-control-cement" id="partculars" placeholder="Marfot...">
           </td>
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''AND project_name_id = '$project_name_id' ";
+            $sql = "SELECT DISTINCT category_name FROM cement_category WHERE  category_name != ''";
             $all_particular = $db->select($sql);
             echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
             echo '<option value="none">Select...</option>';
@@ -552,74 +541,34 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           </td>
 
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-balu value-calc" id="debit" placeholder="Debit...">
-          </td>
-          <td id="td_kg">
-            <input type="text" onkeypress="return isNumber(event)" name="kg" class="form-control-balu value-calc" id="kg" placeholder="Ton & kg...">
+            <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-cement value-calc" id="debit" placeholder="Debit...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="length" class="form-control-balu value-calc" id="length" placeholder="Length'00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="width" class="form-control-balu value-calc" id="width" placeholder="Width'00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="height" class="form-control-balu value-calc" id="height" placeholder="Height '00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="shifty" class="form-control-balu value-calc" id="shifty" placeholder="Cft '00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="inchi(-)_minus" class="form-control-balu value-calc" id="inchi_minus" placeholder="-Inchi'00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="cft(-)_dropped_out" class="form-control-balu value-calc" id="cft_dropped_out" placeholder="-Cft'00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="inchi(+)_added" class="form-control-balu value-calc" id="inchi_added" placeholder="+Inchi '00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="points(-)_dropped_out" class="form-control-balu value-calc" id="points_dropped_out" placeholder="-Point '00 mm'...">
-          </td>
-          <td>
-            <input type="text" name="shift" class="form-control-balu" id="shift" placeholder="Cft '00 mm'...">
-          </td>
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="Paras per ton...">
-          </td>
-          <td>
-            <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-cft '00 mm'...">
-          </td>
-          <td style="display:none;" >
-            <input type="text" onkeypress="return isNumber(event)" name="ton" class="form-control-balu value-calc" id="ton" placeholder="Ton...">
-          </td>
-         
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
-          </td>
-          <td>
-            <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="Credit...">
+            <input type="text" onkeypress="return isNumber(event)" name="count" class="form-control-cement value-calc" id="count" placeholder="Count...">
           </td>
 
-          <td style="display:none;" >
-            <input type="text" name="balance" class="form-control-balu value-calc" id="balance" placeholder="Balance...">
-          </td>
-          <td style="display:none;" >
-            <input type="text" onkeypress="return isNumber(event)" name="cemeats_paras" class="form-control-balu value-calc" id="cemeats_paras" placeholder="Cemeats_paras...">
+          <td>
+            <input type="text" onkeypress="return isNumber(event)" name="fee" class="form-control-cement value-calc" id="fee" placeholder="Fee...">
           </td>
 
+          <td>
+            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-cement value-calc" id="paras" placeholder="Paras per ton...">
+          </td>
+          <td>
+            <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-cement value-calc" id="discount" placeholder="Discount...">
+          </td>
+          <td>
+            <input type="text" name="credit" class="form-control-cement value-calc" id="credit" placeholder="Credit...">
+          </td>
 
-          <td style="display:none;" >
-            <input type="text" name="total_shifts" class="form-control-balu value-calc" id="total_shifts" placeholder="Total-cft '00 mm'...">
-          </td>
-          <td style="display:none;" >
-            <input type="text" onkeypress="return isNumber(event)" name="tons" name="tons" class="form-control-balu value-calc" id="tons" placeholder="Tons...">
+          <td>
+            <input type="text" name="balance" class="form-control-cement value-calc" id="balance" placeholder="Balance...">
           </td>
           <td>
-            <input type="text" name="bank" class="form-control-balu" id="bank" placeholder="Bank name...">
+            <input type="text" name="total_credit" class="form-control-cement value-calc" id="total_credit" placeholder="Total_Credit...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="fee" class="form-control-balu value-calc" id="fee" placeholder="Fee...">
+            <input type="text" onkeypress="return isNumber(event)" name="weight" name="weight" class="form-control-cement value-calc" id="weight" placeholder="Weight ( MT )...">
           </td>
           <!-- <td colspan="2"></td> -->
         </tr>
@@ -638,7 +587,8 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
 <?php
-$sql = "SELECT * FROM details_pathor WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
+// $sql ="SELECT * FROM details_balu WHERE dealer_id='$dealerId' ";
+$sql = "SELECT * FROM details_sell_cement WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result) {
   $rowcount = mysqli_num_rows($result);
@@ -647,90 +597,69 @@ if ($result) {
     <div id="viewDetailsSearchAfterNewEntry" style="margin-top:25px;">
       <div class="viewDetailsCon" id="viewDetails">
         <table id="detailsNewTable2">
-
           <thead class="header">
             <tr>
-              <th>Dealer ID</th>
-              <th>Motor Name</th>
+              <th>Customer ID:</th>
               <th>Driver Name</th>
+              <th>Motor Name</th>
+
               <th>Motor Vara</th>
               <th>Unload</th>
               <th>Cars rent & Redeem</th>
               <th>Information</th>
               <th>SL</th>
-              <th>Voucher No.</th>
               <th>Address</th>
-              <th>Motor Number</th>
+              <th>Challan No.</th>
               <th>Motor SL</th>
-              <th>Delivery Date</th>
+              <th>Motor Number</th>
+              <th>Challan Date</th>
+              <th>SO Date</th>
               <th>Date</th>
               <th>Partculars</th>
               <th>Particulars</th>
               <th>Debit</th>
-              <th>Ton & Kg</th>
-              <th>Length</th>
-              <th>width</th>
-              <th>Height</th>
-              <th>Cft</th>
-              <th>Inchi (-) Minus</th>
-              <th>Cft ( - ) Dropped Out</th>
-              <th>Inchi (+) Added</th>
-              <th>Points ( - ) Dropped Out</th>
-              <th>Cft</th>
-              <th>Total Cft</th>
+              <th>Count</th>
+              <th>Fee</th>
               <th>Para's</th>
               <th>Discount</th>
               <th>Credit</th>
               <th>Balance</th>
-              <th>Cemeat's Para's</th>
-              <th>Ton</th>
-              <th>Total Cft</th>
-              <th>Tons</th>
-              <th>Bank Name</th>
-              <th>Fee</th>
+              <th>Total Credit</th>
+              <th>Weight (MT)</th>
               <th></th>
               <th class='no_print_media'></th>
               <th class='no_print_media'></th>
             </tr>
             <tr>
-              <th>ডিলার আই ডি</th>
-              <th>গাড়ী নাম</th>
+              <th>customer আই ডি</th>
               <th>ড্রাইভারের নাম</th>
+              <th>গাড়ী নাম</th>
+
               <th>গাড়ী ভাড়া</th>
               <th>আনলোড</th>
               <th>গাড়ী ভাড়া ও খালাস</th>
               <th>মালের বিবরণ</th>
-              <th>ক্রমিক</th>
-              <th>ভাউচার নং</th>
+
+              <th>ক্রমিক নং</th>
               <th>ঠিকানা</th>
+              <th>ভাউচার নং</th>
+
               <th>গাড়ী নাম্বার</th>
               <th>গাড়ী নং</th>
-              <th>ডেলিভারী তারিখ</th>
+              <th>ভাউচার তারিখ</th>
+              <th>অর্ডার তারিখ</th>
               <th>তারিখ</th>
               <th>মারফ‌োত নাম</th>
               <th>ব‌িবরণ</th>
               <th>জমা টাকা</th>
-              <th>টোন ও কেজি</th>
-              <th>দৈর্ঘ্যের</th>
-              <th>প্রস্ত</th>
-              <th>উচাঁ</th>
-              <th>সিএফটি</th>
-              <th>Inchi (-) বিয়োগ </th>
-              <th>সিএফটি ( - ) বাদ</th>
-              <th>Inchi (+) যোগ </th>
-              <th>পয়েন্ট ( - ) বাদ</th>
-              <th>সিএফটি</th>
-              <th>মোট সিএফটি</th>
+              <th>পরিমান‌</th>
+              <th>ফি</th>
               <th>দর</th>
               <th>কমিশন</th>
               <th>মূল</th>
               <th>অবশিষ্ট</th>
-              <th>গাড়ী ভাড়া / লেবার সহ</th>
-              <th>টোন</th>
-              <th> মোট সিএফটি</th>
-              <th>টোন</th>
-              <th>ব্যাংক নাম</th>
-              <th>ফি</th>
+              <th>মোট মূলঃ</th>
+              <th>ওজন (এম,টি )</th>
               <th></th>
               <th class='no_print_media'></th>
               <th class='no_print_media'></th>
@@ -739,13 +668,18 @@ if ($result) {
           <tbody>
             <?php
             while ($rows = $result->fetch_assoc()) {
-              if ($rows['delivery_date'] == '0000-00-00') {
-                $format_delivery_date = '';
+              if ($rows['challan_date'] == '0000-00-00') {
+                $format_challan_date = '';
               } else {
-                $delivery_date = $rows['delivery_date'];
-                $format_delivery_date = date("d-m-Y", strtotime($delivery_date));
+                $challan_date = $rows['challan_date'];
+                $format_challan_date = date("d-m-Y", strtotime($challan_date));
               }
-            
+              if ($rows['so_date'] == '0000-00-00') {
+                $format_so_date = '';
+              } else {
+                $so_date = $rows['so_date'];
+                $format_so_date = date("d-m-Y", strtotime($so_date));
+              }
               if ($rows['dates'] == '0000-00-00') {
                 $format_dates = '';
               } else {
@@ -753,44 +687,34 @@ if ($result) {
                 $format_dates = date("d-m-Y", strtotime($dates));
               }
               echo "<tr>";
-              echo "<td>" . $rows['dealer_id'] . "</td>";
-              echo "<td>" . $rows['motor_name'] . "</td>";
+              echo "<td>" . $rows['customer_id'] . "</td>";
               echo "<td>" . $rows['driver_name'] . "</td>";
+              echo "<td>" . $rows['motor_name'] . "</td>";
               echo "<td>" . $rows['motor_vara'] . "</td>";
               echo "<td>" . $rows['unload'] . "</td>";
               echo "<td>" . $rows['cars_rent_redeem'] . "</td>";
               echo "<td>" . $rows['information'] . "</td>";
               echo "<td>" . $rows['sl'] . "</td>";
-              echo "<td>" . $rows['voucher_no'] . "</td>";
               echo "<td>" . $rows['address'] . "</td>";
-              echo "<td>" . $rows['motor_no'] . "</td>";
+              echo "<td>" . $rows['challan_no'] . "</td>";
+
               echo "<td>" . $rows['motor_sl'] . "</td>";
-              echo "<td>" . $format_delivery_date . "</td>";
+              echo "<td>" . $rows['motor_no'] . "</td>";
+              echo "<td>" . $format_challan_date . "</td>";
+              echo "<td>" . $format_so_dates . "</td>";
               echo "<td>" . $format_dates . "</td>";
               echo "<td>" . $rows['partculars'] . "</td>";
               echo "<td>" . $rows['particulars'] . "</td>";
               echo "<td>" . $rows['debit'] . "</td>";
-              echo "<td>" . $rows['ton & kg'] . "</td>";
-              echo "<td>" . $rows['length'] . "</td>";
-              echo "<td>" . $rows['width'] . "</td>";
-              echo "<td>" . $rows['height'] . "</td>";
-              echo "<td>" . $rows['shifty'] . "</td>";
-              echo "<td>" . $rows['inchi (-)_minus'] . "</td>";
-              echo "<td>" . $rows['cft (-)_dropped out'] . "</td>";
-              echo "<td>" . $rows['inchi (+)_added'] . "</td>";
-              echo "<td>" . $rows['points ( - )_dropped out'] . "</td>";
-              echo "<td>" . $rows['shift'] . "</td>";
-              echo "<td>" . $rows['total_shift'] . "</td>";
+              echo "<td>" . $rows['count'] . "</td>";
+              echo "<td>" . $rows['fee'] . "</td>";
               echo "<td>" . $rows['paras'] . "</td>";
               echo "<td>" . $rows['discount'] . "</td>";
               echo "<td>" . $rows['credit'] . "</td>";
               echo "<td>" . $rows['balance'] . "</td>";
-              echo "<td>" . $rows['cemeats_paras'] . "</td>";
-              echo "<td>" . $rows['ton'] . "</td>";
-              echo "<td>" . $rows['total_shift'] . "</td>";
-              echo "<td>" . $rows['tons'] . "</td>";
-              echo "<td>" . $rows['bank_name'] . "</td>";
-              echo "<td>" . $rows['fee'] . "</td>";
+              echo "<td>" . $rows['total_credit'] . "</td>";
+              echo "<td>" . $rows['weight'] . "</td>";
+
               // echo "<td>" . $rows[''] . "</td>";
 
               if ($delete_data_permission == 'yes') {

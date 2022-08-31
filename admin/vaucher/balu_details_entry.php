@@ -1726,13 +1726,13 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
             var discount = $("#discount").val();
             if (discount != '') {
-                var credit = credit - ((discount / 100) * credit);
+                var credit = credit - discount;
                 $('#credit').val(credit.toFixed(3));
-                if (discount > 100) {
+                if (discount > credit) {
                     $('#discount').focus(function() {
                         $('#discount').val("");
                     });
-                    Swal.fire("Not acceptable. Value should be less then 100");
+                    Swal.fire("Not acceptable. Value should be less then credit");
                 }
             }
             var fee = $("#fee").val();

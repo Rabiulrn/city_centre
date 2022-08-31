@@ -913,7 +913,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                 <td>
                                     <input type="text" name="tons" class="form-control" id="tons_popup" placeholder="Enter Tons...">
                                 </td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td>Bank Name</td>
                                 <td>
@@ -1495,21 +1495,52 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }, "0");
         }
     </script>
- <script type="text/javascript">
+    <script type="text/javascript">
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
-            var kg = $('#kg').val();
-            var paras = $('#paras').val();
-            if (kg == '') {
-                $('#credit').val('0');
-            } else if (paras == '') {
-                $('#credit').val('0');
-            } else {
-                var credit = kg * paras;
-                //  alert(credit);
-                $('#credit').val(credit.toFixed(2));
+
+            // var input_cft = $('#shift').val();
+            // if(input_cft != ''){
+            //     $('#total_shift').val(input_cft);
+            //         $('#total_shifts').val(input_cft);
+            // }
+
+
+
+            if (kg != '') {
+                $('#paras').attr("placeholder", "rate");
+                var kg = $('#kg').val();
+                var paras = $('#paras').val();
+                if (kg == '') {
+                    $('#credit').val('0');
+                } else if (paras == '') {
+                    $('#credit').val('0');
+                } else {
+                    var credit = kg * paras;
+                    //  alert(credit);
+                    $('#credit').val(credit.toFixed(2));
+                }
             }
 
+
+            // if(length != ''){
+            //     $('#paras').attr("placeholder", "per cft");
+            //     var t_s = $('#total_shift').val();
+            //             var paras = $('#paras').val();
+            //             if (t_s == '') {
+            //                 $('#credit').val('0');
+            //             } else if (paras == '') {
+            //                 $('#credit').val('0');
+            //             } else {
+            //                 var credit_ts = t_s * paras;
+            //                 //  alert(credit);
+            //                 $('#credit').val(credit_ts.toFixed(2));
+            //             }
+            // }
+            // else{
+            //     $('#paras').attr("placeholder", "per ton");
+
+            // }
 
             //shifty
             var length = $('#length').val();
@@ -1520,72 +1551,177 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             var cft_dropped_out = $('#cft_dropped_out').val();
             var inchi_added = $('#inchi_added').val();
             var points_dropped_out = $('#points_dropped_out').val();
-            if (length == '') {
-                $('#shifty').val('0');
-            } else if (width == '') {
-                $('#shifty').val('0');
-            } else if (height == '') {
-                $('#shifty').val('0');
-            }
-            // else if (inchi_minus == '') {
-            //     $('#shifty').val('0');
-            // }
-            // else if(length != ''){
-            //     $('#kg').val('0');
-            // }
-            else {
+
+
+            if (length != '' || width != '' || height != '') {
+
+                $("#kg").attr("placeholder", "not applicable").prop("disabled", true);
+                $("#td_kg").click(function() {
+                    Swal.fire("Clear cft first");
+                });
                 var shifty = length * width * height;
+                if (inchi_minus > shifty) {
+                    Swal.fire("Not acceptable. Value should be less then cft");
+                    $('#inchi_minus').val("");
+                }
+                if (cft_dropped_out > shifty) {
+                    Swal.fire("Not acceptable. Value should be less then cft");
+                    $('#cft_dropped_out').val("");
+                }
+                if (points_dropped_out > shifty) {
+                    Swal.fire("Not acceptable. Value should be less then cft");
+                    $('#points_dropped_out').val("");
+                }
+                if (shifty < 0) {
+                    $('#shifty').val("");
+                }
                 if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
                     var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
                     var shift2_to_ton = shifty2 / 23.5;
                     // alert(credit);
-                    $('#shifty').val(shifty);
+                    $('#shifty').val(shifty.toFixed(3));
                     $('#ton').val(shift2_to_ton.toFixed(2));
                     $('#tons').val(shift2_to_ton.toFixed(2));
-                    $('#shift').val(shifty2);
-                    $('#total_shift').val(shifty2);
-                    $('#total_shifts').val(shifty2);
+                    $('#shift').val(shifty2.toFixed(3));
+
+                    // $('#shift').attr('value', 'shifty2.toFixed(3)');
+                    // $('#total_shift').val(shifty2.toFixed(2));
+                    // $('#total_shifts').val(shifty2.toFixed(2));
                 } else {
                     var shift_to_ton = shifty / 23.5;
                     // alert(credit);
-                    $('#shifty').val(shifty);
+                    $('#shifty').val(shifty.toFixed(3));
                     $('#ton').val(shift_to_ton.toFixed(2));
                     $('#tons').val(shift_to_ton.toFixed(2));
-                    $('#shift').val(shifty);
-                    $('#total_shift').val(shifty);
-                    $('#total_shifts').val(shifty);
+                    $('#shift').val(shifty.toFixed(3));
+                    // $('#total_shift').val(shifty.toFixed(2));
+                    // $('#total_shifts').val(shifty.toFixed(2));
 
                 }
+            } else if (width == '') {
+                $("#kg").attr("placeholder", "ton and kg");
+                $("#kg").prop("disabled", false);
+                $('#shift').attr("placeholder", "not applicable");
+                $('#shifty').attr("placeholder", "not applicable");
+
+            } else if (height == '') {
+                $("#kg").attr("placeholder", "ton and kg");
+                $("#kg").prop("disabled", false);
+                $('#shift').attr("placeholder", "not applicable");
+                $('#shifty').attr("placeholder", "not applicable");
+            } else if (length == '') {
+                $("#kg").attr("placeholder", "ton and kg");
+                $("#kg").prop("disabled", false);
+                $('#shift').attr("placeholder", "not applicable");
+                $('#shifty').attr("placeholder", "not applicable");
+                // $('#total_shifty').val('0');
+            }
+            // else if(length != ''){
+            //     $('#kg').val('0');
+            // }
+            else {
+
 
 
             }
+
+
             //ton and kg
-            var ton = $('#ton').val();
+            var shifty = $('#shift').val();
             var ton_kg = $('#kg').val();
             var credit = $("#credit").val();
 
             if (ton_kg != '') {
-                $("#length").attr("value", "not applicable");
+                $("#length").attr("placeholder", "not applicable").prop("disabled", true);
+                $("#length").attr("readonly", true);
+                // if($("#length").click){
+                //     Swal.fire("Should be enter a number value");
+                // }
                 // $('#length').val('not applicable');
-                $('#width').val('not applicable');
-                $('#height').val('not applicable');
+                $('#width').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#width").attr("readonly", true);
+                $('#height').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#height").attr("readonly", true);
+
+                $('#shifty').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#shift').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#ton').attr("placeholder", "not applicable").prop("disabled", true);
+                // $('#height').attr("placeholder", "not applicable").prop("disabled", true).css("background-color","gray");
+                // $("#height").attr("readonly", true);
+                // $('#').attr("value", "not applicable");
+                $('#inchi_minus').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#inchi_minus").attr("readonly", true);
+                $('#cft_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#cft_dropped_out").attr("readonly", true);
+                $('#inchi_added').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#inchi_added").attr("readonly", true);
+                $('#points_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#points_dropped_out").attr("readonly", true);
+                // $('#').attr("value", "not applicable");
                 $('#ton').val(ton_kg);
                 $('#tons').val(ton_kg);
 
-                var ton_to_cft = ton_kg * 23.5;
-                $('#shifty').val(ton_to_cft);
-                $('#shift').val(ton_to_cft);
-                $('#total_shift').val(ton_to_cft);
-                $('#total_shifts').val(ton_to_cft);
+                var ton_to_cft = (ton_kg * 23.5).toFixed(3);
+                // $('#shifty').val(ton_to_cft);
+                // $('#shift').val(ton_to_cft);
+                // $('#total_shift').val(ton_to_cft);
+                // $('#total_shifts').val(ton_to_cft);
             } else {
-                var credit = ton * paras;
+                $("#length").attr("placeholder", "length").prop("disabled", false);
+                $("#length").attr("readonly", false);
+                // $('#length').val('not applicable');
+                $('#width').attr("placeholder", "width").prop("disabled", false);
+                $("#width").attr("readonly", false);
+                $('#height').attr("placeholder", "height").prop("disabled", false);
+                $("#height").attr("readonly", false);
+                $('#inchi_minus').attr("placeholder", "inchi_minus").prop("disabled", false);
+                $("#inchi_minus").attr("readonly", false);
+                $('#cft_dropped_out').attr("placeholder", "cft_dropped_out").prop("disabled", false);
+                $("#cft_dropped_out").attr("readonly", false);
+                $('#inchi_added').attr("placeholder", "inchi_added").prop("disabled", false);
+                $("#inchi_added").attr("readonly", false);
+                $('#points_dropped_out').attr("placeholder", "points_dropped_out").prop("disabled", false);
+                $("#points_dropped_out").attr("readonly", false);
+
+
+                $('#shifty').prop("disabled", true);
+                $('#shift').prop("disabled", true);
+                $('#total_shift').prop("disabled", false);
+                $('#ton').prop("disabled", false);
+
+                var credit = shifty * paras;
                 // alert(credit);
                 $('#credit').val(credit.toFixed(3));
             }
+
+            var total_input_cft = $('#total_shift').val();
+            if (total_input_cft != '') {
+                $('#paras').attr("placeholder", "per cft");
+
+                var paras = $('#paras').val();
+                // if (kg == '') {
+                //     $('#credit').val('0');
+                // } else if (paras == '') {
+                //     $('#credit').val('0');
+                // } else {
+                var credit = total_input_cft * paras;
+                //  alert(credit);
+                $('#credit').val(credit.toFixed(2));
+                // }
+            }
+
+
             var discount = $("#discount").val();
             if (discount != '') {
-                var credit = credit - ((discount / 100) * credit);
-                $('#credit').val(credit);
+                var credit = credit - discount;
+                $('#credit').val(credit.toFixed(3));
+                if (discount > credit) {
+                    $('#discount').focus(function() {
+                        $('#discount').val("");
+                    });
+                    Swal.fire("Not acceptable. Value should be less then credit");
+                }
             }
             var fee = $("#fee").val();
             if (fee != '') {
@@ -1610,15 +1746,16 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
 
             // }
 
-            var car_rent_redeem = $('#car_rent_redeem').val();
-            var credit = $("#credit").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
-                $('#credit').val(total_paras);
-            }
+            // var car_rent_redeem = $('#car_rent_redeem').val();
+            // var credit = $("#credit").val();
+            // if (car_rent_redeem == '') {
+            //     var total_paras = credit;
+            //     $('#credit').val(total_paras);
+            // } else {
+            //     var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
+            //     $('#credit').val(total_paras);
+            // }
+            // debit theke minus hote ai part tuku age dite hobe
 
             var debit = $("#debit").val();
             var credit = $("#credit").val();
@@ -1635,10 +1772,28 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             var motor_vara = $('#motor_vara').val();
             var unload = $('#unload').val();
             if (motor_vara == '') {
-                $('#car_rent_redeem').val('0');
+                $('#motor_vara').attr("placeholder", "motor vara");
+                //  $('#motor_vara').attr("value", "0");
+                //  $('#motor_vara').val(0);
+
+                $('#car_rent_redeem').val(unload);
+                $('#cemeats_paras').val(unload);
             } else if (unload == '') {
-                $('#unload').val(0);
+                $('#unload').attr("placeholder", "unload");
+                //  $('#unload').attr("value", "0");
+                //  $('#unload').val(0);
+
+                $('#car_rent_redeem').val(motor_vara);
+                $('#cemeats_paras').val(motor_vara);
+            } else if (unload == 0 && motor_vara == 0) {
+                $('#car_rent_redeem').val(0);
             } else {
+
+
+                //                 $('#motor_vara').focus(function(){
+                //                     $('#motor_vara').value('')
+                // });
+
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
                 $('#car_rent_redeem').val(car_rent_redeem);
@@ -1646,7 +1801,24 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }
 
 
-   
+
+
+            // if (motor_vara == '') {
+            //     $('#motor_vara').val()=null;
+            // } else if (unload == '') {
+            //     $('#unload').val()=null;
+            // } else {
+            //     $('#motor_vara').val()=null;
+            // $('#unload').val()=null;
+            //     var tar = motor_vara?$('#motor_vara').val():'0';
+            //     var tar2 = motor_vara?$('#unload').val():'0';
+            //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
+            //     // alert(balance);
+            //     $('#car_rent_redeem').val(car_rent_redeem);
+            //     $('#cemeats_paras').val(car_rent_redeem);
+            // }
+
+
         });
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
         //     var kg = $('#kg_edit').val();
@@ -1724,7 +1896,6 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                 $('#credit_popup').val(credit_with_fee);
             }
 
-
             var debit = $("#debit_popup").val();
             var credit = $("#credit_popup").val();
             if (debit == '') {
@@ -1742,7 +1913,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             if (motor_vara == '') {
                 $('#car_rent_redeem_popup').val('0');
             } else if (unload == '') {
-                $('#unload_popup').val(0);
+                $('#car_rent_redeem_popup').val('0');
             } else {
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
@@ -1773,7 +1944,8 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }
 
 
-        
+
+
 
 
 

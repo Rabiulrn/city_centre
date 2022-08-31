@@ -74,7 +74,7 @@
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
     			 <a href="../vaucher/pathor_report_dealer.php">ডিলার অনুযায়ী</a>
     			<a href="../vaucher/pathor_report_customer.php">কাস্টমার অনুযায়ী</a>
-    			<a href="../vaucher/pathor_report_buyer.php">বায়ার অনুযায়ী</a>
+    			<!-- <a href="../vaucher/pathor_report_buyer.php">বায়ার অনুযায়ী</a> -->
 			</div>
 		</div>
 		<div class="main_bar">
@@ -140,9 +140,9 @@
                         <th> Credit </th>
 	    				<th>Balance</th>
                         <th>Cemeat's Para's</th>
-                        <th>Ton</th>
+                        <!-- <th>Ton</th> -->
                         <th>Total Cft</th>
-                        <th>Tons</th>
+                        <!-- <th>Tons</th> -->
 	    				<!-- <th>Bank Name</th> -->
 	    				<th>Bank fee</th>
 	    			</tr>
@@ -180,9 +180,9 @@
                         <th>মূল</th>
                         <th>অবশিষ্ট</th>
 	    				<th>গাড়ী ভাড়া / লেবার সহ</th>
-                        <th>টন</th>
+                        <!-- <th>টন</th> -->
                         <th>মোট সিএফটি</th>
-	    				<th>টন</th>
+	    				<!-- <th>টন</th> -->
 	    				<!-- <th>ব্যাংক নাম</th> -->
 	    				<th>ব্যাংক ফি</th>
 	    				
@@ -240,9 +240,9 @@
                                 echo "<td>".$row['credit']."</td>";
 								echo "<td>".$row['balance']."</td>";
                                 echo "<td>".$row['cemeats_paras']."</td>";
-                                echo "<td>".$row['ton']."</td>";
+                                // echo "<td>".$row['ton']."</td>";
                                 echo "<td>".$row['total_shifts']."</td>";
-                                echo "<td>".$row['tons']."</td>";
+                                // echo "<td>".$row['tons']."</td>";
                                 // echo "<td>".$row['bank_name']."</td>";
                                 echo "<td>".$row['fee']."</td>";
 

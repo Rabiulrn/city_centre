@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
 require '../config/config.php';
 require '../lib/database.php';
 $db = new Database();
+$project_name_id = $_SESSION['project_name_id'];
 $_SESSION['pageName'] = 'pathor_bikroy_hisab';
 // $sucMsgPopup = '';
 ?>
@@ -32,13 +33,13 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
 
-<!-- alert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+    <!-- alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
 
     <style type="text/css">
-        .rodDetailsEnCon{
-          position: relative;
+        .rodDetailsEnCon {
+            position: relative;
         }
 
         .scroll-after-btn {
@@ -47,57 +48,68 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             position: absolute;
             right: 0px;
         }
-        #detailsEtryTable{
-          width: 293%;
-          border: 1px solid #ddd;
+
+        #detailsEtryTable {
+            width: 293%;
+            border: 1px solid #ddd;
         }
-        #detailsEtryTable tr:first-child td{
-          text-align: center;
-          background-color:#3e9309ba;
-          color: white;
+
+        #detailsEtryTable tr:first-child td {
+            text-align: center;
+            background-color: #3e9309ba;
+            color: white;
         }
-        #detailsEtryTable tr:nth-child(2) td{
-          text-align: center;
-          background-color:#3e9309ba;
-          Color: white;
+
+        #detailsEtryTable tr:nth-child(2) td {
+            text-align: center;
+            background-color: #3e9309ba;
+            Color: white;
         }
+
         #detailsEtryTable tr:nth-child(3) td {
-            border: 1px solid #3e9309d4; 
+            border: 1px solid #3e9309d4;
             /* text-align: center; */
-            
+
             /* Color: black; */
             /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
         }
+
         #detailsEtryTable tr:nth-child(3) input {
-               border: none;
+            border: none;
             /* height: 39px; */
             /* border-radius: 10% 10% 0% 0%; */
             /* transition: border-bottom 1s linear ; */
         }
+
         #detailsEtryTable tr:nth-child(3) input[type=text]:focus {
             /* outline: 1px solid skyblue; */
             outline: none;
             border-bottom: 2px solid #508d2aba;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             /* font-size: 1px; */
-            
+
         }
+
         #detailsEtryTable tr:nth-child(3) input[type=text]:focus::placeholder {
             color: transparent;
-            
+
             /* font-size: large; */
-            
+
         }
-        #detailsEtryTable td{
-          border: 2px solid #E0E4E0;
+
+        #detailsEtryTable td {
+            border: 2px solid #E0E4E0;
         }
-        .scrolling-div{
-          width: 100%;
-          overflow-y: auto;      
+
+        .scrolling-div {
+            width: 100%;
+            overflow-y: auto;
         }
-        #form_entry{
+
+        #form_entry {
             overflow-y: scroll;
         }
+
         /*.scrolling-div::-webkit-scrollbar {
           width: 10px;
           
@@ -114,7 +126,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
         .scrolling-div::-webkit-scrollbar-thumb:hover {
           background: #900;
         }*/
-        .scrollsign_plus{
+        .scrollsign_plus {
             width: 25px;
             height: 25px;
             /*border: 1px solid red;*/
@@ -132,196 +144,220 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             -moz-user-select: none;
             -webkit-user-select: none;
         }
-        .widthPercent1{
+
+        .widthPercent1 {
             width: 3.5%;
         }
-        .widthPercent2{
+
+        .widthPercent2 {
             width: 3.7%;
         }
-        .widthPercent3{
+
+        .widthPercent3 {
             width: 3.7%;
         }
+
         .header {
-                        /* Background color */
-                        /* background-color: #ddd; */
+            /* Background color */
+            /* background-color: #ddd; */
 
-                        /* Stick to the top */
-                        position: sticky;
-                        top: 0;
+            /* Stick to the top */
+            position: sticky;
+            top: 0;
 
-                        /* Displayed on top of other rows when scrolling */
-                         z-index: 1; 
-                    }
-        #detailsNewTable2{
-          width: 217%;
-          border: 1px solid #ddd;
-          /*transform: rotateX(180deg);*/
+            /* Displayed on top of other rows when scrolling */
+            z-index: 1;
         }
-        #detailsNewTable2 th, td{
-          border: 1px solid #ddd;
-          padding: 2px 5px;
-          margin-bottom: 0;
-          
+
+        #detailsNewTable2 {
+            width: 217%;
+            border: 1px solid #ddd;
+            /*transform: rotateX(180deg);*/
         }
-        #detailsNewTable2 tr:first-child th{
-          text-align: center;
-          background-color: #363636db;
-          color: #fff;
-          padding: 5px 0px;
+
+        #detailsNewTable2 th,
+        td {
+            border: 1px solid #ddd;
+            padding: 2px 5px;
+            margin-bottom: 0;
+
         }
-        #detailsNewTable2 tr:nth-child(2) th{
-          text-align: center;
-          background-color: #363636db;
-          padding: 5px 0px;
-          color: #fff;
+
+        #detailsNewTable2 tr:first-child th {
+            text-align: center;
+            background-color: #363636db;
+            color: #fff;
+            padding: 5px 0px;
         }
+
+        #detailsNewTable2 tr:nth-child(2) th {
+            text-align: center;
+            background-color: #363636db;
+            padding: 5px 0px;
+            color: #fff;
+        }
+
         #detailsNewTable2 tr:nth-child(even) td {
             text-align: center;
             background-color: #d2df0d2e;
             color: black;
             padding: 5px 0px;
         }
+
         #detailsNewTable2 tr:nth-child(odd) td {
             text-align: center;
             background-color: white;
             color: black;
             padding: 5px 0px;
         }
-        .viewDetailsCon{
+
+        .viewDetailsCon {
             width: 100%;
             max-height: 470px;
             overflow-x: auto;
             /*overflow-y: auto;*/
             /*margin-bottom: 50px;*/
         }
-        .ui-dialog-titlebar{
-          color: white;
-          background-color: #ce0000;
+
+        .ui-dialog-titlebar {
+            color: white;
+            background-color: #ce0000;
         }
-        
-        
-        .dateSearch{
+
+
+        .dateSearch {
             position: relative;
             width: 225px;
             /*left: 325px;
             top: -6px;*/
         }
-        .bootstrap-select{
+
+        .bootstrap-select {
             width: 130px !important;
         }
-        .dealerIdSelect{
-          width: 100%;
-          text-align: center;
-          height: 50px;
-          /*border: 1px solid red;*/
+
+        .dealerIdSelect {
+            width: 100%;
+            text-align: center;
+            height: 50px;
+            /*border: 1px solid red;*/
         }
+
         .dealerIdSelect table {
-          /*width: 50%;*/
-          /*margin-left: 25%;*/
+            /*width: 50%;*/
+            /*margin-left: 25%;*/
         }
+
         .dealerIdSelect table tr td {
-          text-align: right;
-          border: none;
+            text-align: right;
+            border: none;
         }
-        #flip{
+
+        #flip {
             /*border: 1px solid red;*/
             position: relative;
             top: -42px;
         }
-        #flip label{
-          display: inline-block;
 
-        }  
-        #panel{
-          border: 2px solid #333;
-          margin: 0px 0px 20px;
+        #flip label {
+            display: inline-block;
+
         }
-        table.summary tr td.hastext{
-          text-align: right;
+
+        #panel {
+            border: 2px solid #333;
+            margin: 0px 0px 20px;
         }
-        table.summary tr td.hastext{
-          text-align: right;
+
+        table.summary tr td.hastext {
+            text-align: right;
+        }
+
+        table.summary tr td.hastext {
+            text-align: right;
         }
 
         /* The container */
         .conchk {
-          display: inline-block;
-          position: absolute;
-          padding-right: 32px;
-          margin-bottom: 12px;
-          cursor: pointer;
-          font-size: 15px;
-          right: 0px;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
+            display: inline-block;
+            position: absolute;
+            padding-right: 32px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            right: 0px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* Hide the browser's default checkbox */
         .conchk input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-          height: 0;
-          width: 0;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
         }
 
         /* Create a custom checkbox */
         .checkmark {
-          position: absolute;
-          top: 0;
-          right: 0;
-          height: 22px;
-          width: 22px;
-          background-color: #9bd1ff;
-          border: 1px solid #2196F3;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #9bd1ff;
+            border: 1px solid #2196F3;
         }
 
         /* On mouse-over, add a grey background color */
-        .conchk:hover input ~ .checkmark {
-          background-color: #2196F3;
+        .conchk:hover input~.checkmark {
+            background-color: #2196F3;
         }
 
         /* When the checkbox is checked, add a blue background */
-        .conchk input:checked ~ .checkmark {
-          background-color: #2196F3;
+        .conchk input:checked~.checkmark {
+            background-color: #2196F3;
         }
 
         /* Create the checkmark/indicator (hidden when not checked) */
         .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
+            content: "";
+            position: absolute;
+            display: none;
         }
 
         /* Show the checkmark when checked */
-        .conchk input:checked ~ .checkmark:after {
-          display: block;
+        .conchk input:checked~.checkmark:after {
+            display: block;
         }
 
         /* Style the checkmark/indicator */
         .conchk .checkmark:after {
-          left: 9px;
-          top: 5px;
-          width: 5px;
-          height: 10px;
-          border: solid white;
-          border-width: 0 3px 3px 0;
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
         }
-        .backcircle{
+
+        .backcircle {
             font-size: 18px;
             position: absolute;
             margin-top: -25px;
         }
-        .backcircle a:hover{
+
+        .backcircle a:hover {
             text-decoration: none !important;
         }
 
-        #gb_bank_ganti{
+        #gb_bank_ganti {
             position: absolute;
             left: 0px;
             top: -1px;
@@ -330,41 +366,47 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             padding: 0px 3px;
             display: none;
         }
-        .contorlAfterDealer{
+
+        .contorlAfterDealer {
             position: absolute;
             width: 408px;
             height: 45px;
             right: 15px;
             top: -6px;
         }
-        .printBtnDlr{
+
+        .printBtnDlr {
             position: absolute;
             top: 0px;
             right: 1px;
             border: 2px solid #46b8da;
         }
+
         /* .printBtnDlrDown{
             position: absolute;
             top: 0px;
             right: 15px;
             border: 1px solid #46b8da;
         } */
-        @media print
-        {    
-          .no_print_media, .no_print_media *
-          {
-              display: none !important;
-          }
+        @media print {
+
+            .no_print_media,
+            .no_print_media * {
+                display: none !important;
+            }
         }
-        .btn-info{
+
+        .btn-info {
             background-color: #F0F0F0 !important;
             color: #000 !important;
         }
+
         .btn-info:hover {
-          background-color: #F0F0F0 !important;
-          color: #000 !important;
+            background-color: #F0F0F0 !important;
+            color: #000 !important;
         }
-        #popUpNewBtn{
+
+        #popUpNewBtn {
             width: 30px;
             height: 30px;
             padding: 3px;
@@ -375,16 +417,18 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             cursor: pointer;
             /*z-index: 9;*/
         }
-        #popupEntry{
+
+        #popupEntry {
             display: none;
             width: 100%;
-            background-color: rgba(0,0,0, .7);
+            background-color: rgba(0, 0, 0, .7);
             height: 100%;
             position: fixed;
             top: 0px;
             z-index: 99999;
         }
-        #control_all{
+
+        #control_all {
             width: 50%;
             background-color: #fff;
             border: 5px solid #333;
@@ -396,7 +440,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             margin-left: -25%;
             padding: 15px;
         }
-        .popupClose{
+
+        .popupClose {
             position: absolute;
             top: 0px;
             right: 0px;
@@ -408,7 +453,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             transition: all .5s;
             cursor: pointer;
         }
-        .bar_one{
+
+        .bar_one {
             width: 20px;
             height: 3px;
             background-color: red;
@@ -418,7 +464,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             left: -1px;
             transition: all .5s;
         }
-        .bar_two{
+
+        .bar_two {
             width: 20px;
             height: 3px;
             background-color: red;
@@ -428,23 +475,28 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             left: -1px;
             transition: all .5s;
         }
-        .popupClose:hover{
+
+        .popupClose:hover {
             background-color: red;
             transition: all .5s;
         }
-        .popupClose:hover .bar_one{
+
+        .popupClose:hover .bar_one {
             background-color: #fff;
             transition: all .5s;
         }
-        .popupClose:hover .bar_two{
+
+        .popupClose:hover .bar_two {
             background-color: #fff;
             transition: all .5s;
         }
-        .popupHead{
+
+        .popupHead {
             text-align: center;
             margin: 15px 0px 15px;
         }
-        .popupHead::after{
+
+        .popupHead::after {
             content: '';
             height: 3px;
             /*width: 180px;*/
@@ -455,27 +507,32 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             /*margin-left: -98px;*/
             background-color: #ddd;
         }
-        .items_all_con{
+
+        .items_all_con {
             /*border: 1px solid red;*/
             height: calc(100% - 63px);
             overflow-y: scroll;
-            padding: 15px; 
+            padding: 15px;
         }
-        .pop_btn_con{
+
+        .pop_btn_con {
             position: relative;
             margin: 25px 0px 10px;
             height: 36px;
         }
-        .popup_save_btn{
+
+        .popup_save_btn {
             width: 40%;
             position: absolute;
             left: 20px;
         }
+
         .popup_cancel_btn {
             width: 40%;
             position: absolute;
             right: 20px;
         }
+
         .protidinHisab {
             margin-top: 13px;
         }
@@ -543,16 +600,17 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             <div class="dealerIdSelect">
                 <table>
                     <tr>
-                        <td><b>Select a Dealer Name</b></td>
+                        <td><b>Select a Customer Name</b></td>
                         <td><?php
-                            $sql = "SELECT dealer_id, dealer_name FROM pathor_dealer";
+                            $sql = "SELECT customer_name,customer_id FROM customers_pathor WHERE project_name_id = '$project_name_id'";
+                            // $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer WHERE project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
-                            echo '<select name="delear_id" id="delear_id" class="form-control" style="width: 222px;">';
-                            echo '<option value="">Select...</option>';
+                            echo '<select name="customer_id" id="delear_id" class="form-control" style="width: 222px;">';
+
                             if ($all_custmr_id->num_rows > 0) {
                                 while ($row = $all_custmr_id->fetch_assoc()) {
-                                    $id = $row['dealer_id'];
-                                    $dealer_name = $row['dealer_name'];
+                                    $id = $row['customer_id'];
+                                    $dealer_name = $row['customer_name'];
                                     echo '<option value="' . $id . '">' . $dealer_name . '</option>';
                                 }
                             } else {
@@ -598,7 +656,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                     ?>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td>Motor Name (গাড়ী নাম)</td>
                                 <td>
@@ -845,7 +903,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                                 <td>
                                     <input type="text" name="tons" class="form-control value-calc-popup" id="tons_popup" placeholder="Enter total_paras...">
                                 </td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td>Bank_name (ব্যাংক নাম)</td>
                                 <td>
@@ -1406,8 +1464,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
 
 
             $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
-                        $(".popupClose").trigger('click');
-                    });
+                $(".popupClose").trigger('click');
+            });
             $("#popupEntry").fadeIn(500);
             $("#NewEntrySucMsgPopup").html('');
             $(".items_all_con").animate({
@@ -1415,21 +1473,52 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             }, "0");
         }
     </script>
- <script type="text/javascript">
+    <script type="text/javascript">
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
-            var kg = $('#kg').val();
-            var paras = $('#paras').val();
-            if (kg == '') {
-                $('#credit').val('0');
-            } else if (paras == '') {
-                $('#credit').val('0');
-            } else {
-                var credit = kg * paras;
-                //  alert(credit);
-                $('#credit').val(credit.toFixed(2));
+
+            // var input_cft = $('#shift').val();
+            // if(input_cft != ''){
+            //     $('#total_shift').val(input_cft);
+            //         $('#total_shifts').val(input_cft);
+            // }
+
+
+
+            if (kg != '') {
+                $('#paras').attr("placeholder", "rate");
+                var kg = $('#kg').val();
+                var paras = $('#paras').val();
+                if (kg == '') {
+                    $('#credit').val('0');
+                } else if (paras == '') {
+                    $('#credit').val('0');
+                } else {
+                    var credit = kg * paras;
+                    //  alert(credit);
+                    $('#credit').val(credit.toFixed(2));
+                }
             }
 
+
+            // if(length != ''){
+            //     $('#paras').attr("placeholder", "per cft");
+            //     var t_s = $('#total_shift').val();
+            //             var paras = $('#paras').val();
+            //             if (t_s == '') {
+            //                 $('#credit').val('0');
+            //             } else if (paras == '') {
+            //                 $('#credit').val('0');
+            //             } else {
+            //                 var credit_ts = t_s * paras;
+            //                 //  alert(credit);
+            //                 $('#credit').val(credit_ts.toFixed(2));
+            //             }
+            // }
+            // else{
+            //     $('#paras').attr("placeholder", "per ton");
+
+            // }
 
             //shifty
             var length = $('#length').val();
@@ -1440,72 +1529,177 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             var cft_dropped_out = $('#cft_dropped_out').val();
             var inchi_added = $('#inchi_added').val();
             var points_dropped_out = $('#points_dropped_out').val();
-            if (length == '') {
-                $('#shifty').val('0');
-            } else if (width == '') {
-                $('#shifty').val('0');
-            } else if (height == '') {
-                $('#shifty').val('0');
-            }
-            // else if (inchi_minus == '') {
-            //     $('#shifty').val('0');
-            // }
-            // else if(length != ''){
-            //     $('#kg').val('0');
-            // }
-            else {
+
+
+            if (length != '' || width != '' || height != '') {
+
+                $("#kg").attr("placeholder", "not applicable").prop("disabled", true);
+                $("#td_kg").click(function() {
+                    Swal.fire("Clear cft first");
+                });
                 var shifty = length * width * height;
+                if (inchi_minus > shifty) {
+                    Swal.fire("Not acceptable. Value should be less then cft");
+                    $('#inchi_minus').val("");
+                }
+                if (cft_dropped_out > shifty) {
+                    Swal.fire("Not acceptable. Value should be less then cft");
+                    $('#cft_dropped_out').val("");
+                }
+                if (points_dropped_out > shifty) {
+                    Swal.fire("Not acceptable. Value should be less then cft");
+                    $('#points_dropped_out').val("");
+                }
+                if (shifty < 0) {
+                    $('#shifty').val("");
+                }
                 if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
                     var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
                     var shift2_to_ton = shifty2 / 23.5;
                     // alert(credit);
-                    $('#shifty').val(shifty);
+                    $('#shifty').val(shifty.toFixed(3));
                     $('#ton').val(shift2_to_ton.toFixed(2));
                     $('#tons').val(shift2_to_ton.toFixed(2));
-                    $('#shift').val(shifty2);
-                    $('#total_shift').val(shifty2);
-                    $('#total_shifts').val(shifty2);
+                    $('#shift').val(shifty2.toFixed(3));
+
+                    // $('#shift').attr('value', 'shifty2.toFixed(3)');
+                    // $('#total_shift').val(shifty2.toFixed(2));
+                    // $('#total_shifts').val(shifty2.toFixed(2));
                 } else {
                     var shift_to_ton = shifty / 23.5;
                     // alert(credit);
-                    $('#shifty').val(shifty);
+                    $('#shifty').val(shifty.toFixed(3));
                     $('#ton').val(shift_to_ton.toFixed(2));
                     $('#tons').val(shift_to_ton.toFixed(2));
-                    $('#shift').val(shifty);
-                    $('#total_shift').val(shifty);
-                    $('#total_shifts').val(shifty);
+                    $('#shift').val(shifty.toFixed(3));
+                    // $('#total_shift').val(shifty.toFixed(2));
+                    // $('#total_shifts').val(shifty.toFixed(2));
 
                 }
+            } else if (width == '') {
+                $("#kg").attr("placeholder", "ton and kg");
+                $("#kg").prop("disabled", false);
+                $('#shift').attr("placeholder", "not applicable");
+                $('#shifty').attr("placeholder", "not applicable");
+
+            } else if (height == '') {
+                $("#kg").attr("placeholder", "ton and kg");
+                $("#kg").prop("disabled", false);
+                $('#shift').attr("placeholder", "not applicable");
+                $('#shifty').attr("placeholder", "not applicable");
+            } else if (length == '') {
+                $("#kg").attr("placeholder", "ton and kg");
+                $("#kg").prop("disabled", false);
+                $('#shift').attr("placeholder", "not applicable");
+                $('#shifty').attr("placeholder", "not applicable");
+                // $('#total_shifty').val('0');
+            }
+            // else if(length != ''){
+            //     $('#kg').val('0');
+            // }
+            else {
+
 
 
             }
+
+
             //ton and kg
-            var ton = $('#ton').val();
+            var shifty = $('#shift').val();
             var ton_kg = $('#kg').val();
             var credit = $("#credit").val();
 
             if (ton_kg != '') {
-                $("#length").attr("value", "not applicable");
+                $("#length").attr("placeholder", "not applicable").prop("disabled", true);
+                $("#length").attr("readonly", true);
+                // if($("#length").click){
+                //     Swal.fire("Should be enter a number value");
+                // }
                 // $('#length').val('not applicable');
-                $('#width').val('not applicable');
-                $('#height').val('not applicable');
+                $('#width').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#width").attr("readonly", true);
+                $('#height').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#height").attr("readonly", true);
+
+                $('#shifty').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#shift').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
+                $('#ton').attr("placeholder", "not applicable").prop("disabled", true);
+                // $('#height').attr("placeholder", "not applicable").prop("disabled", true).css("background-color","gray");
+                // $("#height").attr("readonly", true);
+                // $('#').attr("value", "not applicable");
+                $('#inchi_minus').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#inchi_minus").attr("readonly", true);
+                $('#cft_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#cft_dropped_out").attr("readonly", true);
+                $('#inchi_added').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#inchi_added").attr("readonly", true);
+                $('#points_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
+                $("#points_dropped_out").attr("readonly", true);
+                // $('#').attr("value", "not applicable");
                 $('#ton').val(ton_kg);
                 $('#tons').val(ton_kg);
 
-                var ton_to_cft = ton_kg * 23.5;
-                $('#shifty').val(ton_to_cft);
-                $('#shift').val(ton_to_cft);
-                $('#total_shift').val(ton_to_cft);
-                $('#total_shifts').val(ton_to_cft);
+                var ton_to_cft = (ton_kg * 23.5).toFixed(3);
+                // $('#shifty').val(ton_to_cft);
+                // $('#shift').val(ton_to_cft);
+                // $('#total_shift').val(ton_to_cft);
+                // $('#total_shifts').val(ton_to_cft);
             } else {
-                var credit = ton * paras;
+                $("#length").attr("placeholder", "length").prop("disabled", false);
+                $("#length").attr("readonly", false);
+                // $('#length').val('not applicable');
+                $('#width').attr("placeholder", "width").prop("disabled", false);
+                $("#width").attr("readonly", false);
+                $('#height').attr("placeholder", "height").prop("disabled", false);
+                $("#height").attr("readonly", false);
+                $('#inchi_minus').attr("placeholder", "inchi_minus").prop("disabled", false);
+                $("#inchi_minus").attr("readonly", false);
+                $('#cft_dropped_out').attr("placeholder", "cft_dropped_out").prop("disabled", false);
+                $("#cft_dropped_out").attr("readonly", false);
+                $('#inchi_added').attr("placeholder", "inchi_added").prop("disabled", false);
+                $("#inchi_added").attr("readonly", false);
+                $('#points_dropped_out').attr("placeholder", "points_dropped_out").prop("disabled", false);
+                $("#points_dropped_out").attr("readonly", false);
+
+
+                $('#shifty').prop("disabled", true);
+                $('#shift').prop("disabled", true);
+                $('#total_shift').prop("disabled", false);
+                $('#ton').prop("disabled", false);
+
+                var credit = shifty * paras;
                 // alert(credit);
                 $('#credit').val(credit.toFixed(3));
             }
+
+            var total_input_cft = $('#total_shift').val();
+            if (total_input_cft != '') {
+                $('#paras').attr("placeholder", "per cft");
+
+                var paras = $('#paras').val();
+                // if (kg == '') {
+                //     $('#credit').val('0');
+                // } else if (paras == '') {
+                //     $('#credit').val('0');
+                // } else {
+                var credit = total_input_cft * paras;
+                //  alert(credit);
+                $('#credit').val(credit.toFixed(2));
+                // }
+            }
+
+
             var discount = $("#discount").val();
             if (discount != '') {
-                var credit = credit - ((discount / 100) * credit);
-                $('#credit').val(credit);
+                var credit = credit - discount;
+                $('#credit').val(credit.toFixed(3));
+                if (discount > credit) {
+                    $('#discount').focus(function() {
+                        $('#discount').val("");
+                    });
+                    Swal.fire("Not acceptable. Value should be less then credit");
+                }
             }
             var fee = $("#fee").val();
             if (fee != '') {
@@ -1530,7 +1724,16 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
 
             // }
 
-
+            // var car_rent_redeem = $('#car_rent_redeem').val();
+            // var credit = $("#credit").val();
+            // if (car_rent_redeem == '') {
+            //     var total_paras = credit;
+            //     $('#credit').val(total_paras);
+            // } else {
+            //     var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
+            //     $('#credit').val(total_paras);
+            // }
+            // debit theke minus hote ai part tuku age dite hobe
 
             var debit = $("#debit").val();
             var credit = $("#credit").val();
@@ -1547,10 +1750,28 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             var motor_vara = $('#motor_vara').val();
             var unload = $('#unload').val();
             if (motor_vara == '') {
-                $('#car_rent_redeem').val('0');
+                $('#motor_vara').attr("placeholder", "motor vara");
+                //  $('#motor_vara').attr("value", "0");
+                //  $('#motor_vara').val(0);
+
+                $('#car_rent_redeem').val(unload);
+                $('#cemeats_paras').val(unload);
             } else if (unload == '') {
-                $('#car_rent_redeem').val('0');
+                $('#unload').attr("placeholder", "unload");
+                //  $('#unload').attr("value", "0");
+                //  $('#unload').val(0);
+
+                $('#car_rent_redeem').val(motor_vara);
+                $('#cemeats_paras').val(motor_vara);
+            } else if (unload == 0 && motor_vara == 0) {
+                $('#car_rent_redeem').val(0);
             } else {
+
+
+                //                 $('#motor_vara').focus(function(){
+                //                     $('#motor_vara').value('')
+                // });
+
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
                 $('#car_rent_redeem').val(car_rent_redeem);
@@ -1558,15 +1779,24 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             }
 
 
-            var car_rent_redeem = $('#car_rent_redeem').val();
-            var credit = $("#credit").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
-                $('#credit').val(total_paras);
-            }
+
+
+            // if (motor_vara == '') {
+            //     $('#motor_vara').val()=null;
+            // } else if (unload == '') {
+            //     $('#unload').val()=null;
+            // } else {
+            //     $('#motor_vara').val()=null;
+            // $('#unload').val()=null;
+            //     var tar = motor_vara?$('#motor_vara').val():'0';
+            //     var tar2 = motor_vara?$('#unload').val():'0';
+            //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
+            //     // alert(balance);
+            //     $('#car_rent_redeem').val(car_rent_redeem);
+            //     $('#cemeats_paras').val(car_rent_redeem);
+            // }
+
+
         });
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
         //     var kg = $('#kg_edit').val();
@@ -1633,6 +1863,17 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                 $('#credit_popup').val(credit);
             }
 
+            var fee = $("#fee_popup").val();
+            var credit = $("#credit_popup").val();
+            var fee = parseFloat(fee);
+            if (fee == '') {
+                $('#fee').val('0');
+            } else {
+                var credit_with_fee = parseFloat(credit) + fee;
+                // alert(balance);
+                $('#credit_popup').val(credit_with_fee);
+            }
+
             var debit = $("#debit_popup").val();
             var credit = $("#credit_popup").val();
             if (debit == '') {
@@ -1662,10 +1903,10 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             var credit = $("#credit_popup").val();
             if (car_rent_redeem == '') {
                 var total_paras = credit;
-                $('#cemeats_paras_popup').val(total_paras);
+                $('#credit_popup').val(total_paras);
             } else {
-                var total_paras = parseInt(car_rent_redeem) + parseInt(credit);
-                $('#cemeats_paras_popup').val(total_paras);
+                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
+                $('#credit_popup').val(total_paras);
             }
 
 
@@ -1681,16 +1922,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             }
 
 
-            var fee = $("#fee_popup").val();
-            var credit = $("#credit_popup").val();
-            var fee = parseFloat(fee);
-            if (fee == '') {
-                $('#fee').val('0');
-            } else {
-                var credit_with_fee = parseFloat(credit) + fee;
-                // alert(balance);
-                $('#credit_popup').val(credit_with_fee);
-            }
+
 
 
 
@@ -1764,7 +1996,6 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
         });
         //End calculation popup
     </script>
-
     <script type="text/javascript">
         function getDataByDates(datestr, dealerId) {
             $.ajax({
