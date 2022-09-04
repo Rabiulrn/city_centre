@@ -18,7 +18,7 @@ if ($fromdate == '') {
 } else if ($todate == '') {
 	echo "<tr><th>Please Select todate.</th></tr>";
 } else {
-	$sql = "SELECT * FROM customers_pathor WHERE project_name_id = '$project_name_id'";
+	$sql = "SELECT * FROM customers_cement WHERE project_name_id = '$project_name_id'";
 	$result = $db->select($sql);
 	$row_number = mysqli_num_rows($result);
 	if ($result && $row_number > 0) {
@@ -231,7 +231,7 @@ if ($fromdate == '') {
 
 			//Start Gari vara
 			$motor_vara = 0;
-			$sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+			$sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 			$result3 = $db->select($sql2);
 			if($result3->num_rows > 0){
 				while($row3 = $result3->fetch_assoc()){
@@ -246,7 +246,7 @@ if ($fromdate == '') {
 
 
 			$total_motor_vara = 0;
-						        $sql3 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE project_name_id = '$project_name_id'";
+						        $sql3 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_cement WHERE project_name_id = '$project_name_id'";
 						        $result3 = $db->select($sql3);
 						        if($result3->num_rows > 0){
 						            while($row3 = $result3->fetch_assoc()){
@@ -264,7 +264,7 @@ if ($fromdate == '') {
 
 		    //Start khalas/Unload
 		        $unload = 0;
-		        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -279,7 +279,7 @@ if ($fromdate == '') {
 		        $motor_vara_and_unload = $motor_vara + $unload;
 
 				$total_unload = 0;
-								$sql3 = "SELECT SUM(unload) as unload FROM details_sell_pathor WHERE  project_name_id = '$project_name_id'";
+								$sql3 = "SELECT SUM(unload) as unload FROM details_sell_cement WHERE  project_name_id = '$project_name_id'";
 								$result3 = $db->select($sql3);
 								if($result3->num_rows > 0){
 									while($row3 = $result3->fetch_assoc()){
@@ -294,7 +294,7 @@ if ($fromdate == '') {
 		    //End khalas/Unload
 		    // Start total total_credit/mot_mul
 		        $total_credit = 0;
-		        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -308,7 +308,7 @@ if ($fromdate == '') {
 		        }
 
 				$total1_credit = 0;
-						        $sql3 = "SELECT SUM(credit) as credit FROM details_sell_pathor WHERE project_name_id = '$project_name_id'";
+						        $sql3 = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE project_name_id = '$project_name_id'";
 						        $result3 = $db->select($sql3);
 						        if($result3->num_rows > 0){
 						            while($row3 = $result3->fetch_assoc()){
@@ -324,7 +324,7 @@ if ($fromdate == '') {
 
 		    // Start total total_debit/joma
 		        $total_debit = 0;
-		        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -338,7 +338,7 @@ if ($fromdate == '') {
 		        }
 
 				$total1_debit = 0;
-						        $sql3 = "SELECT SUM(debit) as debit FROM details_sell_pathor WHERE project_name_id = '$project_name_id'";
+						        $sql3 = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE project_name_id = '$project_name_id'";
 						        $result3 = $db->select($sql3);
 						        if($result3->num_rows > 0){
 						            while($row3 = $result3->fetch_assoc()){
@@ -354,7 +354,7 @@ if ($fromdate == '') {
 
 		    // Start total total_Balance/mot_jer
 		        $total_balance = 0;
-		        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -368,7 +368,7 @@ if ($fromdate == '') {
 		        }
 
 				$total1_balance = 0;
-				$sql3 = "SELECT SUM(balance) as balance FROM details_sell_pathor WHERE  project_name_id = '$project_name_id'";
+				$sql3 = "SELECT SUM(balance) as balance FROM details_sell_cement WHERE  project_name_id = '$project_name_id'";
 				$result3 = $db->select($sql3);
 				if($result3->num_rows > 0){
 					while($row3 = $result3->fetch_assoc()){
@@ -383,7 +383,7 @@ if ($fromdate == '') {
 		    // End total total_Balance/mot_jer
 		    //Start GB Bank Ganti
 		        $gb_bank_ganti = 0;
-		        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_pathor WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_cement WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -400,7 +400,7 @@ if ($fromdate == '') {
 		    //End GB Bank Ganti
 		//Start Total para/mot_mul_khoros_shoho
 		        $paras = 0;
-		        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -514,10 +514,6 @@ if ($fromdate == '') {
 		    echo"<td style='text-align: left; border: 1px solid #777 !important;'>total = ".$total_nij_paona." টাকা </td>";
 	}
 }
-
-
-
-
 
 
 
