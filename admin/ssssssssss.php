@@ -1,3 +1,1704 @@
+<?php 
+  session_start();
+  if(!isset($_SESSION['username'])){
+      header('location:../index.php'); 
+  }
+  require '../config/config.php';
+  require '../lib/database.php';
+  $db = new Database();
+  $_SESSION['pageName'] = 'user_permision_by_admin';
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Page Permission</title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/voucher.css">
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+  <style type="text/css">    
+      .info-con{
+          width: 50%;
+          padding: 25px;
+          border: 2px solid #ddd;
+          float: left;
+          position: relative;
+          left: 50%;
+          margin-left: -25%;
+          margin-bottom: 100px;
+      }
+      #infoByUser{
+        /*float: left;*/
+      }
+      #infoByUser .form-control{
+        margin-top: 10px;
+      }
+      .inpCheck::placeholder {
+          color: #999;
+          opacity: 1;
+      }
+      .inpCheck:focus {
+          border-color: #66afe9;
+          outline: 0;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+      }
+      .inpCheck {
+          float: left;
+          display: block;
+          width: 100%;
+          /*height: 34px;*/
+          margin-top: 10px;
+          padding: 6px 12px 6px 35px;
+          font-size: 14px;
+          line-height: 1.42857143;
+          color: #555;
+          background-color: #fff;
+          background-image: none;
+          border: 1px solid #ccc;
+          border-top-color: rgb(204, 204, 204);
+          border-right-color: rgb(204, 204, 204);
+          border-bottom-color: rgb(204, 204, 204);
+          border-left-color: rgb(204, 204, 204);
+          border-radius: 4px;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+          -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+          -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      }
+      .check-group{
+        width: 100%;
+        /*float: left;*/
+      }
+      .allowP{
+        margin-left: -20px;
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        padding-bottom: 3px;
+        border-bottom: 2px solid #969696;
+        margin-bottom: 10px;
+      }
+      .lblStyle{
+        color: green;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+      .select2-container{
+        width: 388px !important;
+        
+      }
+      .select2-selection{
+        min-height: 62px !important;
+      }
+      .pageCollumn{
+          width: 49%;
+          /*border: 1px solid red;*/
+          /*height: 50px;*/
+          float: left;
+      }
+      .line {
+          border-right: 2px solid #ccc;
+          margin-right: 2%;
+      }
+      #rod_category{
+        min-width: unset;
+      }
+      .pagename{
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 10px;
+        border-bottom-length: 50px;
+      }
+  </style>
+  <script>
+          function checkUncheck(element){
+                console.log(element);
+                var attributeTest = $(element).is(':checked'); //Input checked or ot
+                // alert(attributeTest);
+                if(attributeTest==true){
+                  $(element).val("yes");
+                  $(element).parent().addClass("lblStyle");
+                } else {
+                  $(element).val("no");
+                  $(element).parent().removeClass("lblStyle");
+                }
+            }
+            // $(document).on('change','#home', function(){
+                  // var attributeTest = $(this).is(':checked'); //Input checked or ot
+                  // alert(attributeTest);
+                  // if(attributeTest==true){
+                  //   $(this).val("yes");
+                  //   $(this).parent().addClass("lblStyle");
+                  // } else {
+                  //   $(this).val("no");
+                  //   $(this).parent().removeClass("lblStyle");
+                  // }
+            // });
+     
+
+            // function changeProjectName(data, data2){
+            //   $.ajax({
+            //     url: "../ajaxcall/change_project_name.php",
+            //     type: "post",
+            //     data: {
+            //         project_name_id : data,
+            //         user_name: data2,
+            //     },
+            //     success: function(res){
+            //         // alert(res);
+            //     },
+            //     error: function(jqXHR, textStatus, errorThrown){
+            //         console.log(textStatus, errorThrown);
+            //     }
+            //   });
+            // }
+
+            // $(document).on('change','#p_heading_list', function(){
+            //     var project_name_id = $(this).val();
+                
+            //     var username = $('#select_user').val();
+            //     // alert(project_name_id);
+            //       changeProjectName(project_name_id, username);
+            // });
+
+
+            function getUserByUsername(data){
+              $.ajax({
+                url: "../ajaxcall/search_user_by_username.php",
+                type: "post",
+                data: {
+                  username : data,
+                },
+                success: function(res){
+                    // alert(res);                  
+                    $('#infoByUser').html(res);
+                    $('input[type="checkbox"]').css("cursor","pointer").parent().css("cursor","pointer");
+                    $('input[type="checkbox"]:checked').parent().addClass("lblStyle");
+                    $('#p_heading_list').select2({
+                        placeholder: 'প্রজেক্ট নির্বাচন করতে এখানে ক্লিক করুন',
+                        // allowClear: true,
+                    });
+                    collumn_height();
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                  console.log(textStatus, errorThrown);
+                }
+              });
+            }
+            
+            $(document).on('change','#select_user', function(){
+                var username = $(this).val();
+                // alert(username);
+                if(username == 'none'){
+                  window.location.href = 'user_permission_by_admin.php';
+                } else{
+                  getUserByUsername(username);
+                  // alert(username);                 
+                }
+            });
+
+            
+// manzu add raj_kajer_all_hisab here 
+            function userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, balu_stocks,  
+            pathor_kroy_hisab, pathor_bikroy_hisab, pathor_category, pathor_dealer, pathor_customer, pathor_buyer, pathor_stocks,
+            cement_kroy_hisab, cement_bikroy_hisab, cement_category, cement_dealer, cement_customer, cement_buyer, cement_stocks,cement_report,
+            create_user, edit_data, delete_data){
+                $.ajax({
+                url: "../ajaxcall_save_update/allow_page_access_update.php",
+                type: "post",
+                data: {
+                    username        : username,
+                    project_name_id : project_name_id,
+                    protidiner_hisab: protidiner_hisab,
+                    modify_data     : modify_data,
+                    joma_khat       : joma_khat,
+                    khoros_khat     : khoros_khat,
+                    khoros_khat_entry: khoros_khat_entry,
+                    nije_pabo       : nije_pabo,
+                    paonader        : paonader,
+                    report          : report,
+                    agrim_hisab     : agrim_hisab,
+                    cash_calculator : cash_calculator,
+                    raj_kajer_all_hisab  : raj_kajer_all_hisab,
+                    electric_kroy_bikroy:electric_kroy_bikroy,
+                    rod_kroy_hisab  : rod_kroy_hisab,
+                    rod_bikroy_hisab: rod_bikroy_hisab,
+                    rod_category    : rod_category,
+                    rod_dealer      : rod_dealer,
+                    rod_customer    : rod_customer,
+                    rod_buyer       : rod_buyer,
+                    rod_report      : rod_report,
+                    balu_kroy_hisab  : balu_kroy_hisab,
+                    balu_bikroy_hisab: balu_bikroy_hisab,
+                    balu_category    : balu_category,
+                    balu_dealer      : balu_dealer,
+                    balu_customer    : balu_customer,
+                    balu_buyer       : balu_buyer,
+                    balu_report      : balu_report,
+                    balu_stocks      : balu_stocks,
+                    pathor_kroy_hisab  : pathor_kroy_hisab,
+                    pathor_bikroy_hisab: pathor_bikroy_hisab,
+                    pathor_category    : pathor_category,
+                    pathor_dealer      : pathor_dealer,
+                    pathor_customer    : pathor_customer,
+                    pathor_buyer       : pathor_buyer,
+                    pathor_stocks       : pathor_stocks,
+                    cement_kroy_hisab  : cement_kroy_hisab,
+                    cement_bikroy_hisab: cement_bikroy_hisab,
+                    cement_category    : cement_category,
+                    cement_dealer      : cement_dealer,
+                    cement_customer    : cement_customer,
+                    cement_buyer       : cement_buyer,
+                    cement_stocks       : cement_stocks,
+                    cement_report       : cement_report,
+                    // pathor_report      : pathor_report,
+                    create_user     : create_user,
+                    edit_data       : edit_data,
+                    delete_data     : delete_data
+                },
+                success: function(res){
+                    alert(res);
+
+                    // getUserByUsername(username);              
+                    // $('#infoByUser').html(res);
+                    // $('input[type="checkbox"]').css("cursor","pointer").parent().css("cursor","pointer");
+                    // $('input[type="checkbox"]:checked').parent().addClass("lblStyle");
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                  console.log(textStatus, errorThrown);
+                }
+              });
+            }
+            $(document).on('click','#submitBtnId', function(){
+                var username        = $('#select_user option:selected').val();
+                alert(username);
+                // var project_name_id = $('#p_heading_list option:selected').val();
+                var project_name_id = $("#p_heading_list option:selected").map(function(){ return this.value }).get().join(",");
+                // alert(project_name_id);
+                // manzu add raj_kajer_all_hisab here 
+                // var doinik_hisab      = $('#doinik_hisab').val();
+                var protidiner_hisab  = $('#protidiner_hisab').val();
+                var modify_data       = $('#modify_data').val();
+                var joma_khat         = $('#joma_khat').val();
+                var khoros_khat       = $('#khoros_khat').val();
+                var khoros_khat_entry = $('#khoros_khat_entry').val();
+                var nije_pabo         = $('#nije_pabo').val();
+                var paonader          = $('#paonader').val();
+                var report            = $('#report').val();
+                var agrim_hisab       = $('#agrim_hisab').val();
+                var cash_calculator   = $('#cash_calculator').val();
+                var raj_kajer_all_hisab    = $('#raj_kajer_all_hisab').val();
+                var electric_kroy_bikroy = $('#electric_kroy_bikroy').val();
+                // var rod_hisab     = $('#rod_hisab').val();
+                var rod_kroy_hisab    = $('#rod_kroy_hisab').val();
+                var rod_bikroy_hisab  = $('#rod_bikroy_hisab').val();
+                var rod_category      = $('#rod_category').val();
+                var rod_dealer        = $('#rod_dealer').val();
+                var rod_customer      = $('#rod_customer').val();
+                var rod_buyer         = $('#rod_buyer').val();
+                var rod_report        = $('#rod_report').val();
+            
+                var balu_kroy_hisab    = $('#balu_kroy_hisab').val();
+                var balu_bikroy_hisab  = $('#balu_bikroy_hisab').val();
+                var balu_category      = $('#balu_category').val();
+                var balu_dealer        = $('#balu_dealer').val();
+                var balu_customer      = $('#balu_customer').val();
+                var balu_buyer         = $('#balu_buyer').val();
+                var balu_report        = $('#balu_report').val();
+                var balu_stocks         = $('#balu_stocks').val();
+                var pathor_kroy_hisab    = $('#pathor_kroy_hisab').val();
+                var pathor_bikroy_hisab  = $('#pathor_bikroy_hisab').val();
+                var pathor_category      = $('#pathor_category').val();
+                var pathor_dealer        = $('#pathor_dealer').val();
+                var pathor_customer      = $('#pathor_customer').val();
+                var pathor_buyer         = $('#pathor_buyer').val();
+                var pathor_stocks         = $('#pathor_stocks').val();
+                var cement_kroy_hisab    = $('#cement_kroy_hisab').val();
+                var cement_bikroy_hisab  = $('#cement_bikroy_hisab').val();
+                var cement_category      = $('#cement_category').val();
+                var cement_dealer        = $('#cement_dealer').val();
+                var cement_customer      = $('#cement_customer').val();
+                var cement_buyer         = $('#cement_buyer').val();
+                var cement_stocks         = $('#cement_stocks').val();
+                var cement_report         = $('#cement_report').val();
+                // var pathor_report        = $('#pathor_report').val();
+
+                var create_user = $('#create_user').val();                
+                var edit_data   = $('#edit_data').val();                
+                var delete_data = $('#delete_data').val();                
+                // alert(create_user);
+                 // manzu add raj_kajer_all_hisab here 
+                userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, balu_stocks,
+                pathor_kroy_hisab, pathor_bikroy_hisab, pathor_category, pathor_dealer, pathor_customer, pathor_buyer, pathor_stocks,  
+                cement_kroy_hisab, cement_bikroy_hisab, cement_category, cement_dealer, cement_customer, cement_buyer, cement_stocks,cement_report,  
+                 create_user, edit_data, delete_data);     
+            });
+            
+  </script>
+</head>
+<body>
+    <?php
+      include '../navbar/header_text.php';
+      $page = 'user_page_permission';
+      include '../navbar/navbar.php';
+    ?>
+    <div class="container">      
+      <div class="row">
+        <div class="col-md-12">
+          <?php 
+            $ph_id = $_SESSION['project_name_id'];
+            $query = "SELECT * FROM project_heading WHERE id = $ph_id";
+            $show = $db->select($query);
+            if ($show) 
+            {
+              while ($rows = $show->fetch_assoc()) 
+              {
+          ?>
+            <div class="project_heading text-center">      
+              <h2 class="text-center" style="font-size: 25px;"><?php echo $rows['heading']; ?></h2>
+              <!-- <h4 class="text-center"><?php echo $rows['subheading']; ?></h4> -->
+            </div>
+          <?php 
+                }
+              } 
+          ?>
+          <div class="info-con">
+            <h3 class="text-center bg-primary" style="margin-top: 0px; padding: 5px;">Allow page access for selected user</h3>
+            <div class="form-control" style="height: 73px;">
+                <div style="width: 100%; font-weight: bold; text-align: center;">Select an User Name</div>
+                <div class="" style="width: 100%; text-align: center;">
+                    <?php
+                        $queryGetUser = "SELECT username FROM login ORDER BY username ASC";
+                        $result = $db->select($queryGetUser);
+                        // var_dump($result);
+                        $datas=array();
+                        $sizes=0;
+                        if($result){
+                          while ($rows= $result->fetch_assoc()) {
+                              $datas[$sizes]['username']= $rows['username'];
+                              $sizes++;
+                          }
+                        }
+                        // echo "<pre>";
+                        // var_dump($datas);
+                    ?>                
+                    <select id='select_user'>
+                      <option value="none">Select one...</option>
+                          <?php
+                            if($datas){
+                              foreach($datas as $row) {
+                                 $username = $row['username'];
+                                 echo '<option value = "'.$username.'">'.$username.'</option>';
+                              }
+                            }
+                          ?>                  
+                    </select>
+                </div>                
+            </div>
+
+            <div id="infoByUser">                
+                <!-- view fields of pages allow -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+ 
+<script type="text/javascript">
+  $('#select_user').selectpicker();
+</script>
+<script type="text/javascript">
+  function collumn_height(){
+      var left_col_height = $("#left-col").height();
+      var right_col_height = $("#right-col").height();
+      if(left_col_height > right_col_height){
+          $("#right-col").height(left_col_height);
+      } else {
+          $("#left-col").height(right_col_height);
+      }
+  }
+  // $("#project_con").height($(".select2-container").height());
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+allow_page_access_update
+
+
+
+<?php 
+	session_start();
+	if(!isset($_SESSION['username'])){
+		header('location:../index.php');
+	}
+	require '../config/config.php';
+	require '../lib/database.php';
+	$db = new Database();
+	$fromSessionUserName = $_SESSION['username'];
+	$fromSessionUserType = $_SESSION['usertype'];
+
+//========raj_kajerhisab added by me
+
+	$sucMsg 	='';
+	$username 			= $_POST['username'];
+	$project_name_id 	= $_POST['project_name_id'];
+	// $doinik_hisab 		= $_POST['doinik_hisab'];
+	$protidiner_hisab 	= $_POST['protidiner_hisab'];
+	$modify_data 		= $_POST['modify_data'];
+	$joma_khat 			= $_POST['joma_khat'];
+	$khoros_khat 		= $_POST['khoros_khat'];
+	$khoros_khat_entry 	= $_POST['khoros_khat_entry'];
+	$nije_pabo 			= $_POST['nije_pabo'];
+	$paonader 			= $_POST['paonader'];
+	$report 			= $_POST['report'];
+	$agrim_hisab 		= $_POST['agrim_hisab'];
+	$cash_calculator 	= $_POST['cash_calculator'];
+	$raj_kajer_all_hisab= $_POST['raj_kajer_all_hisab'];
+	$electric_kroy_bikroy= $_POST['electric_kroy_bikroy'];
+	// $rod_hisab 			= $_POST['rod_hisab'];
+	$rod_kroy_hisab 	= $_POST['rod_kroy_hisab'];
+	$rod_bikroy_hisab 	= $_POST['rod_bikroy_hisab'];
+	$rod_category 		= $_POST['rod_category'];
+	$rod_dealer 		= $_POST['rod_dealer'];
+	$rod_customer 		= $_POST['rod_customer'];
+	$rod_buyer 			= $_POST['rod_buyer'];
+	$rod_report 		= $_POST['rod_report'];
+
+	$balu_kroy_hisab 	= $_POST['balu_kroy_hisab'];
+	$balu_bikroy_hisab 	= $_POST['balu_bikroy_hisab'];
+	$balu_category 		= $_POST['balu_category'];
+	$balu_dealer 		= $_POST['balu_dealer'];
+	$balu_customer 		= $_POST['balu_customer'];
+	$balu_buyer 			= $_POST['balu_buyer'];
+	$balu_report 		= $_POST['balu_report'];
+	$balu_stocks  		= $_POST['balu_stocks'];
+
+	$pathor_kroy_hisab 	= $_POST['pathor_kroy_hisab'];
+	$pathor_bikroy_hisab 	= $_POST['pathor_bikroy_hisab'];
+	$pathor_category 		= $_POST['pathor_category'];
+	$pathor_dealer 		= $_POST['pathor_dealer'];
+	$pathor_customer 		= $_POST['pathor_customer'];
+	$pathor_buyer 			= $_POST['pathor_buyer'];
+	$pathor_stocks 			= $_POST['pathor_stocks'];
+	// $pathor_report 		= $_POST['pathor_report'];
+
+	$cement_kroy_hisab 	= $_POST['cement_kroy_hisab'];
+	$cement_bikroy_hisab 	= $_POST['cement_bikroy_hisab'];
+	$cement_category 		= $_POST['cement_category'];
+	$cement_dealer 		= $_POST['cement_dealer'];
+	$cement_customer 		= $_POST['cement_customer'];
+	$cement_buyer 			= $_POST['cement_buyer'];
+	$cement_stocks 			= $_POST['cement_stocks'];
+	$cement_report 			= $_POST['cement_report'];
+	// $pathor_report 		= $_POST['pathor_report'];
+
+	$create_user 		= $_POST['create_user'];
+	$edit_data 			= $_POST['edit_data'];
+	$delete_data 		= $_POST['delete_data'];
+
+	// echo $username ." " . $project_name_id . " " . $home . " " . $protidiner_hisab . " " . $joma_khat . " " . $khoros_khat . " " . $nije_pabo . " " . $paonader . " " . $modify_data . " " . $rod_hisab . " " . $create_user;
+
+	$sql="UPDATE login SET protidiner_hisab = '$protidiner_hisab', modify_data = '$modify_data', joma_khat = '$joma_khat', khoros_khat = '$khoros_khat', khoros_khat_entry = '$khoros_khat_entry', nije_pabo = '$nije_pabo', paonader = '$paonader', report = '$report', agrim_hisab = '$agrim_hisab', cash_calculator = '$cash_calculator',raj_kajer_all_hisab ='$raj_kajer_all_hisab',electric_kroy_bikroy='$electric_kroy_bikroy', rod_kroy_hisab = '$rod_kroy_hisab', rod_bikroy_hisab = '$rod_bikroy_hisab', rod_category = '$rod_category',rod_dealer = '$rod_dealer', rod_customer = '$rod_customer',rod_buyer = '$rod_buyer', rod_report = '$rod_report',
+	balu_kroy_hisab = '$balu_kroy_hisab',balu_bikroy_hisab = '$balu_bikroy_hisab',
+	balu_category = '$balu_category', balu_dealer = '$balu_dealer', balu_customer = '$balu_customer',
+	balu_buyer = '$balu_buyer', balu_report = '$balu_report',balu_stocks = '$balu_stocks',
+	pathor_kroy_hisab = '$pathor_kroy_hisab',pathor_bikroy_hisab = '$pathor_bikroy_hisab',
+	pathor_category = '$pathor_category', pathor_dealer = '$pathor_dealer', pathor_customer = '$pathor_customer',
+	pathor_buyer = '$pathor_buyer',pathor_stocks = '$pathor_stocks',
+	cement_kroy_hisab = '$cement_kroy_hisab',cement_bikroy_hisab = '$cement_bikroy_hisab',
+	cement_category = '$cement_category', cement_dealer = '$cement_dealer', cement_customer = '$cement_customer',
+	cement_buyer = '$cement_buyer',cement_stocks = '$cement_stocks',cement_report = '$cement_report',
+	  create_user = '$create_user', edit_data = '$edit_data', delete_data = '$delete_data', project_name_id = '$project_name_id' WHERE username = '$username'";
+
+	if ($db->update($sql) === TRUE) {
+		$sucMsg = "User Access Updated Successfully";
+		echo $sucMsg;
+		$page_permission_sql = "SELECT * FROM login WHERE username = '$username'";
+		$permission_result = $db->select($page_permission_sql);
+		if($permission_result && mysqli_num_rows($permission_result) == '1'){
+        	$row = $permission_result->fetch_assoc();
+
+        	$protidiner_hisab 	= $row['protidiner_hisab'];
+        	$modify_data 		= $row['modify_data'];
+        	$joma_khat 			= $row['joma_khat'];
+        	$khoros_khat 		= $row['khoros_khat'];
+        	$khoros_khat_entry 	= $row['khoros_khat_entry'];
+        	$nije_pabo 			= $row['nije_pabo'];
+        	$paonader 			= $row['paonader'];
+        	$report 			= $row['report'];
+        	$agrim_hisab 		= $row['agrim_hisab'];
+        	$cash_calculator 	= $row['cash_calculator'];
+			$raj_kajer_all_hisab 	= $row['raj_kajer_all_hisab'];
+			$electric_kroy_bikroy =$row['electric_kroy_bikroy'];
+        	$rod_kroy_hisab 	= $row['rod_kroy_hisab'];
+        	$rod_bikroy_hisab 	= $row['rod_bikroy_hisab'];
+        	$rod_category 		= $row['rod_category'];
+        	$rod_dealer 		= $row['rod_dealer'];
+        	$rod_customer 		= $row['rod_customer'];
+        	$rod_buyer	 		= $row['rod_buyer'];
+        	$rod_report			= $row['rod_report'];
+
+			$balu_kroy_hisab 	= $row['balu_kroy_hisab'];
+        	$balu_bikroy_hisab 	= $row['balu_bikroy_hisab'];
+			$balu_category 		= $row['balu_category'];
+        	$balu_dealer 		= $row['balu_dealer'];
+        	$balu_customer 		= $row['balu_customer'];
+        	$balu_buyer	 		= $row['balu_buyer'];
+        	$balu_report			= $row['balu_report'];
+			$balu_stocks			= $row['balu_stocks'];
+
+			$pathor_kroy_hisab 	= $row['pathor_kroy_hisab'];
+        	$pathor_bikroy_hisab 	= $row['pathor_bikroy_hisab'];
+			$pathor_category 		= $row['pathor_category'];
+        	$pathor_dealer 		= $row['pathor_dealer'];
+        	$pathor_customer 		= $row['pathor_customer'];
+        	$pathor_buyer	 		= $row['pathor_buyer'];
+			$pathor_stocks			= $row['pathor_stocks'];
+
+			$cement_kroy_hisab 	= $row['cement_kroy_hisab'];
+        	$cement_bikroy_hisab 	= $row['cement_bikroy_hisab'];
+			$cement_category 		= $row['cement_category'];
+        	$cement_dealer 		= $row['cement_dealer'];
+        	$cement_customer 		= $row['cement_customer'];
+        	$cement_buyer	 		= $row['cement_buyer'];
+			$cement_stocks			= $row['cement_stocks'];
+			$cement_report			= $row['cement_report'];
+        	// $pathor_report			= $row['pathor_report'];
+
+
+        	if($protidiner_hisab == 'yes' || $modify_data == 'yes' || $joma_khat == 'yes' || $khoros_khat == 'yes' || $khoros_khat_entry == 'yes' || $nije_pabo == 'yes' || $paonader == 'yes' || $report == 'yes' || $agrim_hisab == 'yes' || $cash_calculator == 'yes' || $raj_kajer_all_hisab == 'yes'|| $electric_kroy_bikroy == 'yes' || $rod_kroy_hisab == 'yes' || $rod_bikroy_hisab == 'yes' || $rod_category == 'yes' || $rod_dealer == 'yes' || $rod_customer == 'yes' || $rod_buyer == 'yes' || $rod_report == 'yes' ||
+			 $balu_kroy_hisab == 'yes' || $balu_bikroy_hisab == 'yes' || $balu_category == 'yes' || $balu_dealer == 'yes' || $balu_customer == 'yes' || $balu_buyer == 'yes' || $balu_report == 'yes' || $balu_stocks == 'yes' ||
+			 $pathor_kroy_hisab == 'yes' || $pathor_bikroy_hisab == 'yes' || $pathor_category == 'yes' || $pathor_dealer == 'yes' || $pathor_customer == 'yes' || $pathor_buyer == 'yes' || $pathor_stocks == 'yes' ||
+			 $cement_kroy_hisab == 'yes' || $cement_bikroy_hisab == 'yes' || $cement_category == 'yes' || $cement_dealer == 'yes' || $cement_customer == 'yes' || $cement_buyer == 'yes' || $cement_stocks == 'yes' || $cement_report == 'yes' 
+			){
+        		$sql_doinik_hisab_permission = "UPDATE login SET page_permission = 'yes' WHERE username = '$username'";
+        		$update_result = $db->update($sql_doinik_hisab_permission);
+        	} else {
+        		$sql_doinik_hisab_permission = "UPDATE login SET page_permission = 'no' WHERE username = '$username'";
+        		$update_result = $db->update($sql_doinik_hisab_permission);
+        	}
+          
+        }
+	} else {
+		echo "Error: " . $sql . "<br>" . $db->error;
+	}
+
+
+
+	$session_update_sql = "SELECT * FROM login WHERE username='$fromSessionUserName' AND  usertype='$fromSessionUserType'";
+	$session_update = $db->login($session_update_sql);
+	$num_row = mysqli_num_rows($session_update);
+	$row = mysqli_fetch_array($session_update);
+	if($session_update && $num_row ==1 ) {
+		// $_SESSION['project_name_id']  = $project_name;
+
+		// $_SESSION['first_name']   = $row['first_name'];
+		// $_SESSION['last_name']    = $row['last_name'];
+		// $_SESSION['username']     = $row['username'];
+		// $_SESSION['usertype']     = $row['usertype'];
+
+		$_SESSION['doinik_hisab']     = $row['doinik_hisab'];
+		$_SESSION['protidiner_hisab'] = $row['protidiner_hisab'];
+		$_SESSION['modify_data']      = $row['modify_data'];    
+		$_SESSION['joma_khat']        = $row['joma_khat'];
+		$_SESSION['khoros_khat']      = $row['khoros_khat'];
+		$_SESSION['khoros_khat_entry']= $row['khoros_khat_entry'];
+		$_SESSION['nije_pabo']        = $row['nije_pabo'];
+		$_SESSION['paonader']         = $row['paonader'];
+		$_SESSION['report']           = $row['report'];
+		$_SESSION['agrim_hisab']      = $row['agrim_hisab'];
+		$_SESSION['cash_calculator']  = $row['cash_calculator'];
+		$_SESSION['raj_kajer_all_hisab']   = $row['raj_kajer_all_hisab'];
+		$_SESSION['electric_kroy_bikroy']   = $row['electric_kroy_bikroy'];
+		
+		$_SESSION['rod_hisab']        = $row['rod_hisab'];
+		$_SESSION['rod_kroy_hisab']   = $row['rod_kroy_hisab'];
+		$_SESSION['rod_bikroy_hisab'] = $row['rod_bikroy_hisab'];
+		$_SESSION['rod_category']     = $row['rod_category'];
+		$_SESSION['rod_dealer']       = $row['rod_dealer'];
+		$_SESSION['rod_customer']     = $row['rod_customer'];
+		$_SESSION['rod_buyer']        = $row['rod_buyer'];
+		$_SESSION['rod_report']       = $row['rod_report'];
+
+		$_SESSION['balu_kroy_hisab']   = $row['balu_kroy_hisab'];
+		$_SESSION['balu_bikroy_hisab'] = $row['balu_bikroy_hisab'];
+		$_SESSION['balu_category']     = $row['balu_category'];
+		$_SESSION['balu_dealer']       = $row['balu_dealer'];
+		$_SESSION['balu_customer']     = $row['balu_customer'];
+		$_SESSION['balu_buyer']        = $row['balu_buyer'];
+		$_SESSION['balu_report']       = $row['balu_report'];
+		$_SESSION['balu_stocks']       = $row['balu_stocks'];
+
+
+		$_SESSION['pathor_kroy_hisab']   = $row['pathor_kroy_hisab'];
+		$_SESSION['pathor_bikroy_hisab'] = $row['pathor_bikroy_hisab'];
+		$_SESSION['pathor_category']     = $row['pathor_category'];
+		$_SESSION['pathor_dealer']       = $row['pathor_dealer'];
+		$_SESSION['pathor_customer']     = $row['pathor_customer'];
+		$_SESSION['pathor_buyer']        = $row['pathor_buyer'];
+		$_SESSION['pathor_stocks']        = $row['pathor_stocks'];
+		// $_SESSION['pathor_report']       = $row['pathor_report'];
+
+
+		$_SESSION['cement_kroy_hisab']   = $row['cement_kroy_hisab'];
+		$_SESSION['cement_bikroy_hisab'] = $row['cement_bikroy_hisab'];
+		$_SESSION['cement_category']     = $row['cement_category'];
+		$_SESSION['cement_dealer']       = $row['cement_dealer'];
+		$_SESSION['cement_customer']     = $row['cement_customer'];
+		$_SESSION['cement_buyer']        = $row['cement_buyer'];
+		$_SESSION['cement_stocks']        = $row['cement_stocks'];
+		$_SESSION['cement_report']        = $row['cement_report'];
+		// $_SESSION['pathor_report']       = $row['pathor_report'];
+
+
+		$_SESSION['create_user']      = $row['create_user'];
+		$_SESSION['edit_data']        = $row['edit_data'];
+		$_SESSION['delete_data']      = $row['delete_data'];
+
+		$_SESSION['verification']     = $row['verification'];
+		$_SESSION['page_permission']  = $row['page_permission'];
+	}
+
+
+
+    /////////////////////////////////////////////////////////////////
+
+search_user_username
+
+
+
+
+<?php
+require '../config/config.php';
+require '../lib/database.php';
+$db = new Database();
+
+$usernamePost = $_POST['username'];
+// echo $username . "kkkkkkkkkkkkkkkkkk";
+if ($usernamePost) {
+  $sql = "SELECT * FROM login WHERE username = '$usernamePost'";
+  $result = $db->select($sql);
+  if ($result) {
+    $row = $result->fetch_assoc();
+    // var_dump($row);
+    //Manzu raj_kajerhisab get from login table
+    $fname    = $row['first_name'];
+    $lname     = $row['last_name'];
+    $username = $row['username'];
+    $usertype  = $row['usertype'];
+    $mobile    = $row['mobile'];
+
+    $doinik_hisab       = $row['doinik_hisab'];
+    $protidiner_hisab  = $row['protidiner_hisab'];
+    $modify_data       = $row['modify_data'];
+    $joma_khat         = $row['joma_khat'];
+    $khoros_khat       = $row['khoros_khat'];
+    $khoros_khat_entry = $row['khoros_khat_entry'];
+    $nije_pabo         = $row['nije_pabo'];
+    $paonader          = $row['paonader'];
+    $report            = $row['report'];
+    $agrim_hisab       = $row['agrim_hisab'];
+    $cash_calculator   = $row['cash_calculator'];
+    $raj_kajer_all_hisab   =  $row['raj_kajer_all_hisab'];
+    $electric_kroy_bikroy = $row['electric_kroy_bikroy'];
+    $rod_hisab         = $row['rod_hisab'];
+    $rod_kroy_hisab    = $row['rod_kroy_hisab'];
+    $rod_bikroy_hisab  = $row['rod_bikroy_hisab'];
+    $rod_category      = $row['rod_category'];
+    $rod_dealer        = $row['rod_dealer'];
+    $rod_customer      = $row['rod_customer'];
+    $rod_buyer         = $row['rod_buyer'];
+    $rod_report        = $row['rod_report'];
+    $create_user       = $row['create_user'];
+
+    $balu_hisab         = $row['balu_hisab'];
+    $balu_kroy_hisab    = $row['balu_kroy_hisab'];
+    $balu_bikroy_hisab  = $row['balu_bikroy_hisab'];
+    $balu_category      = $row['balu_category'];
+    $balu_dealer        = $row['balu_dealer'];
+    $balu_customer      = $row['balu_customer'];
+    $balu_buyer         = $row['balu_buyer'];
+    $balu_report        = $row['balu_report'];
+    $balu_stocks        = $row['balu_stocks'];
+
+    $pathor_hisab         = $row['pathor_hisab'];
+    $pathor_kroy_hisab    = $row['pathor_kroy_hisab'];
+    $pathor_bikroy_hisab  = $row['pathor_bikroy_hisab'];
+    $pathor_category      = $row['pathor_category'];
+    $pathor_dealer        = $row['pathor_dealer'];
+    $pathor_customer      = $row['pathor_customer'];
+    $pathor_buyer         = $row['pathor_buyer'];
+    // $balu_report        = $row['balu_report'];
+    $pathor_stocks       = $row['pathor_stocks'];
+
+    $cement_hisab         = $row['cement_hisab'];
+    $cement_kroy_hisab    = $row['cement_kroy_hisab'];
+    $cement_bikroy_hisab  = $row['cement_bikroy_hisab'];
+    $cement_category      = $row['cement_category'];
+    $cement_dealer        = $row['cement_dealer'];
+    $cement_customer      = $row['cement_customer'];
+    $cement_buyer         = $row['cement_buyer'];
+    // $balu_report        = $row['balu_report'];
+    $cement_stocks       = $row['cement_stocks'];
+    $cement_report       = $row['cement_report'];
+
+
+    $edit_data    = $row['edit_data'];
+    $delete_data  = $row['delete_data'];
+
+    $project_name_id = $row['project_name_id'];
+    $verification     = $row['verification'];
+  }
+}
+
+
+
+?>
+
+
+
+
+<div class="form-control">
+  <label><span class="frmLbl">Name: </span><?php echo ucfirst($fname) . " " . ucfirst($lname); ?></label>
+</div>
+<div class="form-control">
+  <label><span class="frmLbl">Mobile: </span><?php echo $mobile; ?></label>
+</div>
+<div class="form-control">
+  <label><span class="frmLbl">User Type: </span><?php echo ucfirst($usertype); ?></label>
+</div>
+<div class="form-control">
+  <label><span class="frmLbl">Email Verified: </span><?php echo ucfirst($verification); ?></label>
+</div>
+
+
+
+<div class="form-control" style="height: unset;" id="project_con">
+  <label style="margin: 0px;">
+    <span class="frmLbl">Project Name:
+      <div class="" style="display: inline-block;">
+        <?php
+        $hsql = "SELECT id, heading FROM project_heading";
+        $h_result = $db->select($hsql);
+        // var_dump($result);
+        $datas = array();
+        $sizes = 0;
+        if ($result) {
+          while ($rows = $h_result->fetch_assoc()) {
+            $datas[$sizes]['id']          = $rows['id'];
+            $datas[$sizes]['heading']     = $rows['heading'];
+            $sizes++;
+          }
+        }
+        // echo "<pre>";
+        // var_dump($datas);
+        ?>
+        <select id="p_heading_list" name="p_heading_list[]" multiple="multiple" style="padding: 2px; display: inline-block;">
+          <!-- <option value="none">Select one...</option> -->
+          <?php
+          if ($datas) {
+            // if($project_name_id == 0){
+            // echo '<option value="0">None...</option>';
+            // }
+            foreach ($datas as $row) {
+              $p_id = $row['id'];
+              $project_heading = $row['heading'];
+
+              $sel = '';
+              $categories = '';
+              $pids = explode(",", $project_name_id);
+              foreach ($pids as $pid) {
+                if ($p_id == trim($pid)) {
+                  $sel = 'selected';
+                }
+              }
+              echo '<option value = "' . $p_id . '" ' . $sel . '>' . $project_heading . '</option>';
+            }
+          }
+          ?>
+        </select>
+        <?php
+
+        ?>
+      </div>
+    </span></label>
+</div>
+
+
+
+
+
+<div class="inpCheck">
+  <div class="allowP">Allowable pages:</div>
+  <div class="pageCollumn line" id="left-col">
+    <div class="pagename" style="margin-right: 15px;">দৈনিক হিসাব</div>
+    <!-- <div class="check-group">
+        <label>
+            <input type="checkbox" name="doinik_hisab" id="doinik_hisab" onchange="checkUncheck(this)" value="<?php //echo $doinik_hisab;
+                                                                                                              ?>" <?php //echo ($doinik_hisab == 'yes' ? 'checked' : '');
+                                                                                                                                              ?>> দৈনিক হিসাব
+        </label>
+      </div> -->
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="protidiner_hisab" id="protidiner_hisab" onchange="checkUncheck(this)" value="<?php echo $protidiner_hisab; ?>" <?php echo ($protidiner_hisab == 'yes' ? 'checked' : ''); ?>> প্রতিদিনের হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="modify_data" id="modify_data" onchange="checkUncheck(this)" value="<?php echo $modify_data; ?>" <?php echo ($modify_data == 'yes' ? 'checked' : ''); ?>> মডিফাই ডাটা
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="joma_khat" id="joma_khat" onchange="checkUncheck(this)" value="<?php echo $joma_khat; ?>" <?php echo ($joma_khat == 'yes' ? 'checked' : ''); ?>> জমা খাত এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="khoros_khat" id="khoros_khat" onchange="checkUncheck(this)" value="<?php echo $khoros_khat; ?>" <?php echo ($khoros_khat == 'yes' ? 'checked' : ''); ?>> খরচ খাতের হেডার
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="khoros_khat_entry" id="khoros_khat_entry" onchange="checkUncheck(this)" value="<?php echo $khoros_khat_entry; ?>" <?php echo ($khoros_khat_entry == 'yes' ? 'checked' : ''); ?>>
+        খরচ খাত এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="nije_pabo" id="nije_pabo" onchange="checkUncheck(this)" value="<?php echo $nije_pabo; ?>" <?php echo ($nije_pabo == 'yes' ? 'checked' : ''); ?>> নিজে পাবো এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="paonader" id="paonader" onchange="checkUncheck(this)" value="<?php echo $paonader; ?>" <?php echo ($paonader == 'yes' ? 'checked' : ''); ?>> পাওনাদার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="report" id="report" onchange="checkUncheck(this)" value="<?php echo $report; ?>" <?php echo ($report == 'yes' ? 'checked' : ''); ?>> রিপোর্ট
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="agrim_hisab" id="agrim_hisab" onchange="checkUncheck(this)" value="<?php echo $agrim_hisab; ?>" <?php echo ($agrim_hisab == 'yes' ? 'checked' : ''); ?>> অগ্রিম হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cash_calculator" id="cash_calculator" onchange="checkUncheck(this)" value="<?php echo $cash_calculator; ?>" <?php echo ($cash_calculator == 'yes' ? 'checked' : ''); ?>> ক্যাশ ক্যালকুলেটর
+      </label>
+    </div>
+    <!--  =======Added by manzu========== -->
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="raj_kajer_all_hisab" id="raj_kajer_all_hisab" onchange="checkUncheck(this)" value="<?php echo $raj_kajer_all_hisab; ?>" <?php echo ($raj_kajer_all_hisab == 'yes' ? 'checked' : ''); ?>> রাজ কাজের হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="electric_kroy_bikroy" id="electric_kroy_bikroy" onchange="checkUncheck(this)" value="<?php echo $electric_kroy_bikroy; ?>" <?php echo ($electric_kroy_bikroy == 'yes' ? 'checked' : ''); ?>> ইলেকট্রিক মালামাল ক্রয় হিসাব
+      </label>
+    </div>
+
+
+    <div class="pagename" style="margin-right: 15px;">পাথর হিসাব</div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_kroy_hisab" id="pathor_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $pathor_kroy_hisab; ?>" <?php echo ($pathor_kroy_hisab == 'yes' ? 'checked' : ''); ?>> ক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_bikroy_hisab" id="pathor_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $pathor_bikroy_hisab; ?>" <?php echo ($pathor_bikroy_hisab == 'yes' ? 'checked' : ''); ?>> বিক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_category" id="pathor_category" onchange="checkUncheck(this)" value="<?php echo $pathor_category; ?>" <?php echo ($pathor_category == 'yes' ? 'checked' : ''); ?>> ক্যাটাগরি এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_dealer" id="pathor_dealer" onchange="checkUncheck(this)" value="<?php echo $pathor_dealer; ?>" <?php echo ($pathor_dealer == 'yes' ? 'checked' : ''); ?>> ডিলার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_customer" id="pathor_customer" onchange="checkUncheck(this)" value="<?php echo $pathor_customer; ?>" <?php echo ($pathor_customer == 'yes' ? 'checked' : ''); ?>> কাস্টমার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_buyer" id="pathor_buyer" onchange="checkUncheck(this)" value="<?php echo $pathor_buyer; ?>" <?php echo ($pathor_buyer == 'yes' ? 'checked' : ''); ?>> বায়ার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_stocks" id="pathor_stocks" onchange="checkUncheck(this)" value="<?php echo $pathor_stocks; ?>" <?php echo ($pathor_stocks == 'yes' ? 'checked' : ''); ?>> স্টক তথ্য
+      </label>
+    </div>
+    <!-- <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_report" id="balu_report" onchange="checkUncheck(this)" value="<?php echo $pathor_report; ?>" <?php echo ($pathor_report == 'yes' ? 'checked' : ''); ?>> রিপোর্ট
+        </label>
+      </div> -->
+
+
+
+
+
+      <div class="pagename" style="margin-right: 15px;">সিমেন্ট হিসাব</div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_kroy_hisab" id="cement_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $cement_kroy_hisab; ?>" <?php echo ($cement_kroy_hisab == 'yes' ? 'checked' : ''); ?>> ক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_bikroy_hisab" id="cement_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $cement_bikroy_hisab; ?>" <?php echo ($cement_bikroy_hisab == 'yes' ? 'checked' : ''); ?>> বিক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_category" id="cement_category" onchange="checkUncheck(this)" value="<?php echo $cement_category; ?>" <?php echo ($cement_category == 'yes' ? 'checked' : ''); ?>> ক্যাটাগরি এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_dealer" id="cement_dealer" onchange="checkUncheck(this)" value="<?php echo $cement_dealer; ?>" <?php echo ($cement_dealer == 'yes' ? 'checked' : ''); ?>> ডিলার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_customer" id="cement_customer" onchange="checkUncheck(this)" value="<?php echo $cement_customer; ?>" <?php echo ($cement_customer == 'yes' ? 'checked' : ''); ?>> কাস্টমার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_buyer" id="cement_buyer" onchange="checkUncheck(this)" value="<?php echo $cement_buyer; ?>" <?php echo ($cement_buyer == 'yes' ? 'checked' : ''); ?>> বায়ার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_stocks" id="cement_stocks" onchange="checkUncheck(this)" value="<?php echo $cement_stocks; ?>" <?php echo ($cement_stocks == 'yes' ? 'checked' : ''); ?>> স্টক তথ্য
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_report" id="cement_report" onchange="checkUncheck(this)" value="<?php echo $cement_report; ?>" <?php echo ($cement_report == 'yes' ? 'checked' : ''); ?>> স্ত
+      </label>
+    </div>
+
+  </div>
+
+  <div class="pageCollumn" id="right-col">
+    <div class="pagename">রড হিসাব</div>
+    <!-- <div class="check-group">
+        <label>
+            <input type="checkbox" name="rod_hisab" id="rod_hisab" onchange="checkUncheck(this)" value="<?php //echo $rod_hisab; 
+                                                                                                        ?>" <?php //echo ($rod_hisab == 'yes' ? 'checked' : '');
+                                                                                                                                      ?>> রড হিসাব
+        </label>
+      </div> -->
+
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="rod_kroy_hisab" id="rod_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $rod_kroy_hisab; ?>" <?php echo ($rod_kroy_hisab == 'yes' ? 'checked' : ''); ?>> ক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="rod_bikroy_hisab" id="rod_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $rod_bikroy_hisab; ?>" <?php echo ($rod_bikroy_hisab == 'yes' ? 'checked' : ''); ?>> বিক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="rod_category" id="rod_category" onchange="checkUncheck(this)" value="<?php echo $rod_category; ?>" <?php echo ($rod_category == 'yes' ? 'checked' : ''); ?>> ক্যাটাগরি এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="rod_dealer" id="rod_dealer" onchange="checkUncheck(this)" value="<?php echo $rod_dealer; ?>" <?php echo ($rod_dealer == 'yes' ? 'checked' : ''); ?>> ডিলার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="rod_customer" id="rod_customer" onchange="checkUncheck(this)" value="<?php echo $rod_customer; ?>" <?php echo ($rod_customer == 'yes' ? 'checked' : ''); ?>> কাস্টমার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="rod_buyer" id="rod_buyer" onchange="checkUncheck(this)" value="<?php echo $rod_buyer; ?>" <?php echo ($rod_buyer == 'yes' ? 'checked' : ''); ?>> বায়ার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="rod_report" id="rod_report" onchange="checkUncheck(this)" value="<?php echo $rod_report; ?>" <?php echo ($rod_report == 'yes' ? 'checked' : ''); ?>> রিপোর্ট
+      </label>
+    </div>
+
+    <!-- balu hisab -->
+    <div class="pagename">বালু হিসাব</div>
+    <!-- <div class="check-group">
+        <label>
+            <input type="checkbox" name="rod_hisab" id="rod_hisab" onchange="checkUncheck(this)" value="<?php //echo $rod_hisab; 
+                                                                                                        ?>" <?php //echo ($rod_hisab == 'yes' ? 'checked' : '');
+                                                                                                                                      ?>> রড হিসাব
+        </label>
+      </div> -->
+
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_kroy_hisab" id="balu_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $balu_kroy_hisab; ?>" <?php echo ($balu_kroy_hisab == 'yes' ? 'checked' : ''); ?>> ক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_bikroy_hisab" id="balu_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $balu_bikroy_hisab; ?>" <?php echo ($balu_bikroy_hisab == 'yes' ? 'checked' : ''); ?>> বিক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_category" id="balu_category" onchange="checkUncheck(this)" value="<?php echo $balu_category; ?>" <?php echo ($balu_category == 'yes' ? 'checked' : ''); ?>> ক্যাটাগরি এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_dealer" id="balu_dealer" onchange="checkUncheck(this)" value="<?php echo $balu_dealer; ?>" <?php echo ($balu_dealer == 'yes' ? 'checked' : ''); ?>> ডিলার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_customer" id="balu_customer" onchange="checkUncheck(this)" value="<?php echo $balu_customer; ?>" <?php echo ($balu_customer == 'yes' ? 'checked' : ''); ?>> কাস্টমার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_buyer" id="balu_buyer" onchange="checkUncheck(this)" value="<?php echo $balu_buyer; ?>" <?php echo ($balu_buyer == 'yes' ? 'checked' : ''); ?>> বায়ার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_report" id="balu_report" onchange="checkUncheck(this)" value="<?php echo $balu_report; ?>" <?php echo ($balu_report == 'yes' ? 'checked' : ''); ?>> রিপোর্ট
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="balu_stocks" id="balu_stocks" onchange="checkUncheck(this)" value="<?php echo $balu_stocks; ?>" <?php echo ($balu_stocks == 'yes' ? 'checked' : ''); ?>> স্টক তথ্য
+      </label>
+    </div>
+
+    <div class="pagename" style="margin-right: 15px;">অন্যান্ন</div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="create_user" id="create_user" onchange="checkUncheck(this)" value="<?php echo $create_user; ?>" <?php echo ($create_user == 'yes' ? 'checked' : ''); ?>> Create User
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="edit_data" id="edit_data" onchange="checkUncheck(this)" value="<?php echo $edit_data; ?>" <?php echo ($edit_data == 'yes' ? 'checked' : ''); ?>> আপডেট অনুমতি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="delete_data" id="delete_data" onchange="checkUncheck(this)" value="<?php echo $delete_data; ?>" <?php echo ($delete_data == 'yes' ? 'checked' : ''); ?>> ডিলেট অনুমতি
+      </label>
+    </div>
+  </div>
+</div>
+
+<div style="margin: 20px 0px 0px; float: left; width: 100%;">
+  <input type="button" class="btn btn-primary btn-block" name="sumbit" id="submitBtnId" value="Save" />
+</div>
+
+
+
+///////////////////////////////////////////////////
+
+
+index.php
+
+
+
+<?php
+  ob_start();
+  session_start();
+  require 'config/config.php';
+  require 'lib/database.php';
+  $db = new Database();
+  if(isset($_POST['submit'])){
+      $usertype = $_POST['usertype'];
+      $username = trim($_POST['username']);
+      $password = md5(trim($_POST['password']));
+      $project_name = $_POST['project_name'];
+      
+      $_SESSION['uNameForPlaceHolerVerify'] = $username;
+      
+
+      // $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND usertype='$usertype' AND project_name_id LIKE '%$project_name%'";
+      $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND (usertype='$usertype' OR usertype='superAdmin') AND project_name_id LIKE '%$project_name%'";
+      $result = $db->login($query);
+      $num_row = mysqli_num_rows($result);
+    //   echo "user found = ". $num_row;
+      $row=mysqli_fetch_array($result);
+      if( $num_row ==1 ) {
+        $_SESSION['project_name_id']  = $project_name;
+
+        $_SESSION['first_name']   = $row['first_name'];
+        $_SESSION['last_name']    = $row['last_name'];
+        $_SESSION['username']     = $row['username'];
+
+        if($_SESSION['usertype'] == "superAdmin") {
+          $_SESSION['usertype']   = "admin";
+          $_SESSION['is_super_admin'] = true;
+        } else {
+          $_SESSION['usertype']   = $row['usertype'];
+          $_SESSION['is_super_admin'] = false;
+        }
+        
+
+
+        $_SESSION['doinik_hisab']     = $row['doinik_hisab'];
+        $_SESSION['protidiner_hisab'] = $row['protidiner_hisab'];
+        $_SESSION['modify_data']      = $row['modify_data'];
+        $_SESSION['joma_khat']        = $row['joma_khat'];
+        $_SESSION['khoros_khat']      = $row['khoros_khat'];
+        $_SESSION['khoros_khat_entry']= $row['khoros_khat_entry'];
+        $_SESSION['nije_pabo']        = $row['nije_pabo'];
+        $_SESSION['paonader']         = $row['paonader'];
+        $_SESSION['report']           = $row['report'];
+        $_SESSION['agrim_hisab']      = $row['agrim_hisab'];
+        $_SESSION['cash_calculator']  = $row['cash_calculator'];
+        
+        // Manzu raj_kajerhisab add in sessions
+        $_SESSION['raj_kajer_all_hisab']  = $row['raj_kajer_all_hisab'];
+        $_SESSION['electric_kroy_bikroy']  = $row['electric_kroy_bikroy'];
+        
+        $_SESSION['balu_hisab']        = $row['balu_hisab'];
+        $_SESSION['balu_kroy_hisab']   = $row['balu_kroy_hisab'];
+        $_SESSION['balu_bikroy_hisab'] = $row['balu_bikroy_hisab'];
+        $_SESSION['balu_category']     = $row['balu_category'];
+        $_SESSION['balu_dealer']       = $row['balu_dealer'];
+        $_SESSION['balu_customer']     = $row['balu_customer'];
+        $_SESSION['balu_buyer']        = $row['balu_buyer'];
+        $_SESSION['balu_report']       = $row['balu_report'];
+        $_SESSION['balu_stocks']       = $row['balu_stocks'];
+
+
+        $_SESSION['pathor_hisab']        = $row['pathor_hisab'];
+        $_SESSION['pathor_kroy_hisab']   = $row['pathor_kroy_hisab'];
+        $_SESSION['pathor_bikroy_hisab'] = $row['pathor_bikroy_hisab'];
+        $_SESSION['pathor_category']     = $row['pathor_category'];
+        $_SESSION['pathor_dealer']       = $row['pathor_dealer'];
+        $_SESSION['pathor_customer']     = $row['pathor_customer'];
+        $_SESSION['pathor_buyer']        = $row['pathor_buyer'];
+        $_SESSION['pathor_report']       = $row['pathor_report'];
+        $_SESSION['pathor_stocks']       = $row['pathor_stocks'];
+
+
+        $_SESSION['cement_hisab']        = $row['cement_hisab'];
+        $_SESSION['cement_kroy_hisab']   = $row['cement_kroy_hisab'];
+        $_SESSION['cement_bikroy_hisab'] = $row['cement_bikroy_hisab'];
+        $_SESSION['cement_category']     = $row['cement_category'];
+        $_SESSION['cement_dealer']       = $row['cement_dealer'];
+        $_SESSION['cement_customer']     = $row['cement_customer'];
+        $_SESSION['cement_buyer']        = $row['cement_buyer'];
+        $_SESSION['cement_report']       = $row['cement_report'];
+        $_SESSION['cement_stocks']       = $row['cement_stocks'];
+
+
+        $_SESSION['rod_hisab']        = $row['rod_hisab'];
+        $_SESSION['rod_kroy_hisab']   = $row['rod_kroy_hisab'];
+        $_SESSION['rod_bikroy_hisab'] = $row['rod_bikroy_hisab'];
+        $_SESSION['rod_category']     = $row['rod_category'];
+        $_SESSION['rod_dealer']       = $row['rod_dealer'];
+        $_SESSION['rod_customer']     = $row['rod_customer'];
+        $_SESSION['rod_buyer']        = $row['rod_buyer'];
+        $_SESSION['rod_report']       = $row['rod_report'];
+
+        $_SESSION['create_user']      = $row['create_user'];
+        $_SESSION['edit_data']        = $row['edit_data'];
+        $_SESSION['delete_data']      = $row['delete_data'];
+
+        $_SESSION['verification']     = $row['verification'];
+        $_SESSION['page_permission']  = $row['page_permission'];
+      
+        
+        if($_SESSION['verification'] == 'no'){
+            header("Location: vaucher/doinik_all_hisab.php", true, 301);
+            // header('location: verify_email_address.php', true, 301);
+            exit;
+        } else {
+            if($_SESSION['page_permission'] == 'no'){
+                header('location: vaucher/no_permission.php', true, 301);
+                exit;
+            } else {
+                // exit(header("Location: vaucher/doinik_all_hisab.php"));
+                header("Location: vaucher/doinik_all_hisab.php", true, 301);
+                exit;
+                // if($_SESSION['home'] == 'yes'){
+                //     header("Location: vaucher/home.php");
+                //     exit;
+                // } else {
+                //     if($_SESSION['doinik_hisab'] == 'yes'){
+                //         header("Location: vaucher/index.php");
+                //         exit;
+                //     } else {
+                //         if($_SESSION['joma_khat'] == 'yes'){
+                //             header("Location: vaucher/add_vaucher_credit.php");
+                //             exit;
+                //         } else {
+                //             if($_SESSION['khoros_khat'] == 'yes'){
+                //                 header("Location: vaucher/add_vaucher_group.php");
+                //                 exit;
+                //             } else {
+                //               if($_SESSION['nije_pabo'] == 'yes'){
+                //                   header("Location: vaucher/nij_paonadar_add.php");
+                //                   exit;
+                //               } else {
+                //                 if($_SESSION['paonader'] == 'yes'){
+                //                     header("Location: vaucher/jara_pabe_add.php");
+                //                     exit;
+                //                 } else {
+                //                   if($_SESSION['modify_data'] == 'yes'){
+                //                     header("Location: vaucher/modify_vaucher.php");
+                //                     exit;
+                //                   } else {
+                //                       if($_SESSION['create_user'] == 'yes'){
+                //                         header("Location: vaucher/create_user.php");
+                //                         exit;
+                //                       } else {}
+                //                   }
+                //                 }
+                //               }
+                //             }
+                //         }
+                //     }
+                // }
+            }
+        }
+      } else {
+        echo 'oops can not do it. It can happens missing username, password or user type.';
+        exit;
+      }
+  }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="img/Shah logo@1553422164642.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="css/style.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style type="text/css"> 
+    .btn-radio {
+        cursor: pointer;
+        display: inline-block;
+        float: left;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+    }
+    .btn-radio input {
+        display: none;
+    }
+    .btn-radio svg {
+        fill: none;
+        vertical-align: middle;
+    }
+    .btn-radio svg circle {
+      stroke-width: 2;
+      stroke: #C8CCD4;
+    }
+    .btn-radio svg path.inner {
+        stroke-width: 6;
+        stroke-dasharray: 19;
+        stroke-dashoffset: 19;
+    }
+    .btn-radio svg path.outer {
+        stroke-width: 2;
+        stroke-dasharray: 57;
+        stroke-dashoffset: 57;
+    }
+    .btn-radio svg path {
+        stroke: #008FFF;
+        /*stroke: #16a085;*/
+        stroke: #000;
+    }
+
+    .btn-radio input:checked + svg path.inner {
+        stroke-dashoffset: 38;
+        transition-delay: 0.3s;
+    }
+    .btn-radio input:checked + svg path {
+        transition: all 0.4s ease;
+        transition-delay: 0s;
+    }
+    .btn-radio input:checked + svg path.outer {
+        stroke-dashoffset: 0;
+    }
+    .btn-radio input:checked + svg path {
+        transition: all 0.4s ease;
+    }
+
+    .btn-radio:not(:first-child) {
+        margin-left: 10%;
+    }
+    #project_name{
+      -moz-appearance:none;
+      -webkit-appearance:none;
+      appearance:none;
+      background: url('img/logo/arrow_bottom.png') no-repeat right #495057;
+      background-size: 16px 16px;
+      transition: all .5s;
+    }
+.dropdown{ 
+    overflow:auto;
+
+}
+label#adlabel {
+    display: inline-block !important;
+}
+  </style>
+</head>
+<body>
+    <div class="container" style="min-height: 725px;">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div class="box">
+                    <p class="logoContainer">
+                      <img src="img/Shah logoUsed.png" alt="logo" class="loginLogo">
+                    </p>
+                    <div class="floats">                        
+                        <form class="form" action="" method="POST" onsubmit="return validation()">
+                            <div class="form-group userTypes">
+                                    <label for="adminInput" class="btn-radio" id="adlabel">
+                                        <input type="radio" name="usertype" value="admin" id="adminInput" checked>
+                                        <svg width="20px" height="21px" viewBox="0 0 20 20">
+                                          <circle cx="10" cy="10" r="9"></circle>
+                                          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" class="inner"></path>
+                                          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" class="outer"></path>
+                                        </svg>
+                                        <span>Admin Login</span>
+                                    </label>
+
+                                    <label for="userInput" class="btn-radio" id="urlabel">
+                                        <input type="radio" name="usertype" value="user" id='userInput'>
+                                        <svg width="20px" height="21px" viewBox="0 0 20 20">
+                                          <circle cx="10" cy="10" r="9"></circle>
+                                          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" class="inner"></path>
+                                          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" class="outer"></path>
+                                        </svg>
+                                        <span>User Login</span>
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="username" class="">Username:</label><br> -->
+                                <input type="text" name="username" id="username" class="form-control" placeholder="USERNAME">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="password" class="">Password:</label><br> -->
+                                <input type="password" name="password" id="password" class="form-control" placeholder="PASSWORD">
+                            </div>
+                            <div class="form-group wrapper" >
+                            <!-- <select  id="project_name" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();"  name="project_name" class="form-control dropdown" > -->
+
+                                <select  id="project_name"  name="project_name" class="form-control dropdown selec2" style="overflow-y: scroll;" >
+
+
+                                    <option value="0">SELECT A PROJECT NAME</option>
+                                    <?php
+                                        // $query = "SELECT * FROM project_heading";
+                                        // $result = $db->select($query);
+                                        // $num_row = mysqli_num_rows($result);
+                                        // if($result && $num_row > 0){
+                                        //     while($row = $result->fetch_assoc()) {
+                                        //         $id = $row['id'];
+                                        //         $heading = $row['heading'];
+                                        //         echo '<option value="'.$id.'">'.$heading.'</option>';
+                                        //     }
+                                        // }
+                                    ?>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-info btn-block" value="Login">
+                            </div>
+                        </form>
+                        <div>
+                          <div class="" style="float: left">
+                            <a href="forget_password.php" class="text-danger">Forgot password?</a>
+                            <br>
+                            <a href="../index.html" class="btn" style="padding: 0px; font-size: 12px;"><img src="img/others/left_arrow.png" width = "10" height="9"> Back to website</a>
+                          </div>                         
+                          
+                          <div style="float: right;"><a href="sign_up.php" class="btn btn-primary">Sign up</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#adlabel').addClass('uTypeActive');
+      
+      $('#adlabel').click(function(){        
+          if($('#adlabel').hasClass('uTypeActive')){
+          } else{
+              $('#adlabel').addClass('uTypeActive');
+              $('#urlabel').removeClass('uTypeActive');
+          }
+      });
+
+      $('#urlabel').click(function(){
+          if($('#urlabel').hasClass('uTypeActive')){
+            
+          } else{
+              $('#urlabel').addClass('uTypeActive');
+              $('#adlabel').removeClass('uTypeActive');
+          }
+      });
+  });
+</script>
+<script type="text/javascript">
+    // if menu is open then true, if closed then false
+   var open = false;
+   // just a function to print out message
+   function isOpen(){
+       if(open){
+          // return "menu is open";
+          $("#project_name").css({"background":"url('img/logo/arrow_top.png') no-repeat right #495057", "background-size": "16px 16px" , "transition": "all .5s"});
+       }else{
+          // return "menu is closed";
+          $("#project_name").css({"background" : "url('img/logo/arrow_bottom.png') no-repeat right #495057", "background-size": "16px 16px" , "transition": "all .5s"});
+       }
+   }
+   // on each click toggle the "open" variable
+   $("#project_name").on("click", function() {
+         open = !open;
+         console.log(isOpen());
+   });
+   // on each blur toggle the "open" variable
+   // fire only if menu is already in "open" state
+   $("#project_name").on("blur", function() {
+         if(open){
+            open = !open;
+            console.log(isOpen());
+         }
+   });
+   // on ESC key toggle the "open" variable only if menu is in "open" state
+   $(document).keyup(function(e) {
+       if (e.keyCode == 27) { 
+         if(open){
+            open = !open;
+            console.log(isOpen());
+         }
+       }
+   });
+</script>
+<script type="text/javascript">
+    $(document).on('input', '#username', function(){
+        var username = $(this).val();
+        $.ajax({
+            url: 'ajaxcall_save_update/project_name_list_update.php',
+            type: 'post',
+            data: {username: username},
+            success: function(res){
+                $('#project_name').html(res);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    function validation(){
+        var validUserName = false;
+        var validPass = false;
+        var validProjectName = false;
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var project_name = $('#project_name option:selected').val();
+        // alert(project_name);
+
+        if(username == '' && password == '' && project_name == '0') {
+            alert('Username, password and project name can not be empty !');
+            return false;
+        } else {
+            if(username == '' && password == ''){
+                alert('Username and password can not be empty !');
+                var validProjectName = true;
+                return false;
+            } else if (username == '' && project_name == '0'){
+                alert('Username and project_name can not be empty !');
+                var validPass = true;
+                return false;
+            } else if(password == '' && project_name == '0'){
+                alert('Password and project_name can not be empty !');
+                var validUserName = true;
+                return false;
+            }
+        }
+
+        if(username == ''){
+            alert('Username can not be empty !');
+        } else {
+            validUserName = true;
+        }
+        if(password == ''){
+            alert('Password can not be empty !');
+        } else {
+            validPass = true;
+        }
+        if(project_name == '0'){            
+            alert('Please select a project name !');
+        } else {
+            validProjectName = true;
+        }
+
+        if(validUserName && validPass && validProjectName){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</html>
+<?php
+    ob_end_flush();
+?>
+
+
+/////////////////////////////////////////////
+left_menu_bar_cement_hisab
+
+<!-- Left menu bar con -->
+<div id="left_all_menu_con">
+    <a class="header_mnu_left" href="../vaucher/cement_index.php" >
+        <img src="../img/logo/add1.png" alt="logo" class="img_mnu">
+        সিমেন্ট হিসাব
+    </a>
+    <?php
+        if($_SESSION['cement_kroy_hisab'] == 'yes'){
+            ?>
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_kroy_hisab'){echo 'mnu_active';}?>" href="../vaucher/cement_details_entry.php">
+                <img src="../img/logo/add1.png" alt="logo" class="img_mnu">
+                <!-- ক্রয় হিসাবের দৈনিক এন্ট্রি -->
+                ক্রয় হিসাব
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_bikroy_hisab'] == 'yes'){
+            ?>         
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_bikroy_hisab'){echo 'mnu_active';}?>" href="../vaucher/cement_details_sell_entry.php">
+                <img src="../img/logo/add2.png" alt="logo" class="img_mnu">
+                <!-- বিক্রয় হিসাবের দৈনিক এন্ট্রি -->
+                বিক্রয় হিসাব
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_category'] == 'yes'){
+            ?> 
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_hisab_entry'){echo 'mnu_active';}?>" href="../vaucher/cement_hisab_entry.php">
+                <img src="../img/logo/add3.png" alt="logo" class="img_mnu">
+                ক্যাটাগরি এন্ট্রি
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_dealer'] == 'yes'){
+            ?>
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_dealer_entry'){echo 'mnu_active';}?>" href="../vaucher/cement_dealer_entry.php">
+                <img src="../img/logo/add4.png" alt="logo" class="img_mnu">
+                ডিলার এন্ট্রি
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_stocks'] == 'yes'){
+            ?>
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_stocks'){echo 'mnu_active';}?>" href="../vaucher/cement_stocks.php">
+                <img src="../img/logo/add5.png" alt="logo" class="img_mnu">
+                স্টক তথ্য
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_buyer'] == 'yes'){
+            ?>
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_buyer_entry'){echo 'mnu_active';}?>" href="../vaucher/cement_buyer_entry.php">
+                <img src="../img/logo/add6.png" alt="logo" class="img_mnu">
+                বায়ার এন্ট্রি
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_customer'] == 'yes'){
+            ?>
+            <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_customer_entry'){echo 'mnu_active';}?>" href="../vaucher/cement_customer_entry.php">
+                <img src="../img/logo/add5.png" alt="logo" class="img_mnu">
+            কাস্টমার এন্ট্রি
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_report'] == 'yes'){
+            ?>
+             <a class="mnu_left <?php if($_SESSION['pageName'] == '45'){echo 'mnu_active';}?>" href="../vaucher/cement_report_buy_hisab.php"> 
+                <img src="../img/logo/reportVector.svg" alt="logo" class="img_mnu">
+                রিপোর্ট
+            </a>
+            <?php
+        }
+    ?>
+</div>
+
+
+
+////////////////////////////////////////////////////////
+cement details entry
+
+
+
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
@@ -2395,3 +4096,4 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
 </body>
 
 </html>
+
