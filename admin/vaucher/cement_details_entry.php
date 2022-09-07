@@ -660,6 +660,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                                 </td>
                             </tr>
 
+                            
 
 
                             <!-- <input type="hidden" name="pathor_details_id" id="pathor_details_id"> -->
@@ -1406,22 +1407,22 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
         function edit_rod_popup(element, rowid) {
             var buyr_id = $(element).closest('tr').find('td:eq(0)').text();
             // var dlar_id         = $(element).closest('tr').find('td:eq(1)').text();
-            var motor_name = $(element).closest('tr').find('td:eq(1)').text();
-            var driver_name = $(element).closest('tr').find('td:eq(2)').text();
+            var motor_name = $(element).closest('tr').find('td:eq( 2)').text();
+            var driver_name = $(element).closest('tr').find('td:eq(1)').text();
             var motor_vara = $(element).closest('tr').find('td:eq(3)').text();
             var unload = $(element).closest('tr').find('td:eq(4)').text();
             var cars_rent_redeem = $(element).closest('tr').find('td:eq(5)').text();
             var information = $(element).closest('tr').find('td:eq(6)').text();
             var sl = $(element).closest('tr').find('td:eq(7)').text();
-            var voucher_no = $(element).closest('tr').find('td:eq(8)').text();
-            var address = $(element).closest('tr').find('td:eq(9)').text();
+            var voucher_no = $(element).closest('tr').find('td:eq(9)').text();
+            var address = $(element).closest('tr').find('td:eq(8)').text();
             var motor_number = $(element).closest('tr').find('td:eq(10)').text();
             var motor_sl = $(element).closest('tr').find('td:eq(11)').text();
             var delivery_date = $(element).closest('tr').find('td:eq(12)').text();
             var date = $(element).closest('tr').find('td:eq(13)').text();
             var partculars = $(element).closest('tr').find('td:eq(14)').text();
             var particulars = $(element).closest('tr').find('td:eq(15)').text();
-            var debit = $(element).closest('tr').find('td:eq(16)').text();
+            var debit = $(element).closest('tr').find('td:eq(17)').text();
             var ton_kg = $(element).closest('tr').find('td:eq(17)').text();
             var length = $(element).closest('tr').find('td:eq(18)').text();
             var width = $(element).closest('tr').find('td:eq(19)').text();
@@ -1945,7 +1946,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - discountp2;
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }

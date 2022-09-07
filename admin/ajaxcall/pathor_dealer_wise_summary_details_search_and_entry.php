@@ -534,7 +534,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''AND project_name_id = '$project_name_id' ";
+            $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''";
             $all_particular = $db->select($sql);
             echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
             echo '<option value="none">Select...</option>';

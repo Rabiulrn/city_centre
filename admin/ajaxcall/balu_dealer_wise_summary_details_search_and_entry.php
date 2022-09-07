@@ -560,7 +560,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != '' AND project_name_id ='$project_name_id'";
+            $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
             $all_particular = $db->select($sql);
             echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
             echo '<option value="none">Select...</option>';
@@ -621,7 +621,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           </td>
          
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="discount in percentage" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
+            <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
           </td>
           <td>
             <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="Credit...">
