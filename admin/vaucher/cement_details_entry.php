@@ -1013,6 +1013,17 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                         dateFormat: "dd-mm-yy",
                         changeYear: true,
                     });
+                    $('#dates2').bind('keydown', function(e) {
+                        if (e.which == 13)
+                            e.stopImmediatePropagation();
+                    }).datepicker({
+                        onSelect: function(date) {
+                            // alert(date);
+                            $(this).change();
+                        },
+                        dateFormat: "dd-mm-yy",
+                        changeYear: true,
+                    });
 
                     $('#flipChkbox input[type="checkbox"]').prop("checked", true);
                     // $('#gb_bank_ganti').hide();
@@ -1777,36 +1788,36 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                 $('#balance').val(balance.toFixed(3));
             }
 
-            // var motor_vara = $('#motor_vara').val();
-            // var unload = $('#unload').val();
-            // if (motor_vara == '') {
-            //     $('#motor_vara').attr("placeholder", "motor vara");
-            //     //  $('#motor_vara').attr("value", "0");
-            //     //  $('#motor_vara').val(0);
+            var motor_vara = $('#motor_vara').val();
+            var unload = $('#unload').val();
+            if (motor_vara == '') {
+                $('#motor_vara').attr("placeholder", "motor vara");
+                //  $('#motor_vara').attr("value", "0");
+                //  $('#motor_vara').val(0);
 
-            //     $('#car_rent_redeem').val(unload);
-            //     $('#cemeats_paras').val(unload);
-            // } else if (unload == '') {
-            //     $('#unload').attr("placeholder", "unload");
-            //     //  $('#unload').attr("value", "0");
-            //     //  $('#unload').val(0);
+                $('#car_rent_redeem').val(unload);
+                $('#cemeats_paras').val(unload);
+            } else if (unload == '') {
+                $('#unload').attr("placeholder", "unload");
+                //  $('#unload').attr("value", "0");
+                //  $('#unload').val(0);
 
-            //     $('#car_rent_redeem').val(motor_vara);
-            //     $('#cemeats_paras').val(motor_vara);
-            // } else if (unload == 0 && motor_vara == 0) {
-            //     $('#car_rent_redeem').val(0);
-            // } else {
+                $('#car_rent_redeem').val(motor_vara);
+                $('#cemeats_paras').val(motor_vara);
+            } else if (unload == 0 && motor_vara == 0) {
+                $('#car_rent_redeem').val(0);
+            } else {
 
 
-            //     //                 $('#motor_vara').focus(function(){
-            //     //                     $('#motor_vara').value('')
-            //     // });
+                //                 $('#motor_vara').focus(function(){
+                //                     $('#motor_vara').value('')
+                // });
 
-            //     var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
-            //     // alert(balance);
-            //     $('#car_rent_redeem').val(car_rent_redeem);
-            //     $('#cemeats_paras').val(car_rent_redeem);
-            // }
+                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+                // alert(balance);
+                $('#car_rent_redeem').val(car_rent_redeem);
+                $('#cemeats_paras').val(car_rent_redeem);
+            }
 
 
 

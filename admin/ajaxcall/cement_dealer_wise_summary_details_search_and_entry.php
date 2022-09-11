@@ -479,10 +479,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" name="motor_no" class="form-control-cement" id="motor_no" placeholder="Motor sl...">
           </td>
           <td>
-            <input onkeypress="datecheckformat(event)" type="text" name="challan_date" class="form-control-cement" id="challan_date" placeholder="dd-mm-yyyy">
+            <input onkeypress="datecheckformat(event)" type="text" name="challan_date" class="form-control-cement" id="delivery_date" placeholder="dd-mm-yyyy">
           </td>
           <td>
-            <input onkeypress="datecheckformat(event)" type="text" name="so_date" class="form-control-cement" id="so_date" placeholder="dd-mm-yyyy">
+            <input onkeypress="datecheckformat(event)" type="text" name="so_date" class="form-control-cement" id="dates2" placeholder="dd-mm-yyyy">
           </td>
           <td>
             <input onkeypress="datecheckformat(event)" type="text" name="dates" class="form-control-cement" id="dates" placeholder="dd-mm-yyyy">
