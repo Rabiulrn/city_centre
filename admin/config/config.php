@@ -27,7 +27,7 @@
 	// 	'172.16.3.132'
 	// );
 	date_default_timezone_set("Asia/Dhaka");
-	define("DB_NAME", "xl_software2"); //utf-8 die kora
+	define("DB_NAME", "xl_software3"); //utf-8 die kora
 	define("HOST", "172.16.0.24");
 	define("USER", "webdev1");
 

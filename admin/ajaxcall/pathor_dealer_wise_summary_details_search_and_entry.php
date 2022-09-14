@@ -421,14 +421,15 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT dealer_id FROM pathor_dealer WHERE project_name_id ='$project_name_id'";
+            $sql = "SELECT * FROM pathor_dealer WHERE project_name_id ='$project_name_id'";
             $all_custmr_id = $db->select($sql);
             echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {
                 $id = $row['dealer_id'];
-                echo '<option value="' . $id . '">' . $id . '</option>';
+                $dealer_name = $row['dealer_name'];
+                echo '<option value="' . $id . '">'.$id.'--'.$dealer_name.'</option>';
               }
             } else {
               echo '<option value="none">0 Result</option>';

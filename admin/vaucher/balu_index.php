@@ -108,7 +108,7 @@
 	  			<div class="wraper_content">
 	  				<p class="tiny_text">Please click on the appropriate icon below in order to access information about shah enterprise.</p>
 	  					 <?php
-	  						if($_SESSION['rod_kroy_hisab'] == 'yes'){
+	  						if($_SESSION['balu_kroy_hisab'] == 'yes'){
         						?>
 			  					<div class="pannel_con" >
 				  					<a href="../vaucher/balu_details_entry.php">
@@ -127,7 +127,7 @@
 				  				</div>
 				  				<?php
 				  			}
-				  			if($_SESSION['rod_bikroy_hisab'] == 'yes'){
+				  			if($_SESSION['balu_bikroy_hisab'] == 'yes'){
 				  				?>
 			  					<div class="pannel_con" >
 				  					<a href="../vaucher/balu_details_sell_entry.php">
@@ -146,7 +146,7 @@
 				  				</div>
 				  				<?php
 				  			}
-				  			if($_SESSION['rod_category'] == 'yes'){
+				  			if($_SESSION['balu_category'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_hisab_entry.php">
@@ -165,7 +165,7 @@
 				  				</div>
 				  			<?php
 				  			}
-				  			if($_SESSION['rod_dealer'] == 'yes'){
+				  			if($_SESSION['balu_dealer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_dealer_entry.php">
@@ -184,7 +184,7 @@
 				  				</div>
 				  			<?php
 				  			}
-				  			if($_SESSION['rod_customer'] == 'yes'){
+				  			if($_SESSION['balu_customer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_stocks.php">
@@ -203,7 +203,7 @@
 				  				</div>
 				  			<?php
 				  			}
-				  			if($_SESSION['rod_buyer'] == 'yes'){
+				  			if($_SESSION['balu_buyer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_buyer_entry.php">
@@ -223,7 +223,7 @@
 				  			<?php
 				  			}
 
-							  if($_SESSION['rod_buyer'] == 'yes'){
+							  if($_SESSION['balu_buyer'] == 'yes'){
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/balu_customer_entry.php">
@@ -242,7 +242,7 @@
 								</div>
 							<?php
 							}
-							if($_SESSION['rod_report'] == 'yes'){
+							if($_SESSION['balu_report'] == 'yes'){
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/balu_report_buy_hisab.php">
