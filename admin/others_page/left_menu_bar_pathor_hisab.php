@@ -49,10 +49,10 @@
         }
         if($_SESSION['pathor_buyer'] == 'yes'){
             ?>
-            <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_buyer_entry'){echo 'mnu_active';}?>" href="../vaucher/pathor_buyer_entry.php">
+            <!-- <a class="mnu_left <?php if($_SESSION['pageName'] == 'pathor_buyer_entry'){echo 'mnu_active';}?>" href="../vaucher/pathor_buyer_entry.php">
                 <img src="../img/logo/add6.png" alt="logo" class="img_mnu">
                 বায়ার এন্ট্রি
-            </a>
+            </a> -->
             <?php
         }
         if($_SESSION['pathor_customer'] == 'yes'){

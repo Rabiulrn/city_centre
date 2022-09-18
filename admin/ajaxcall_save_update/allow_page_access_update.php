@@ -54,6 +54,16 @@
 	$pathor_stocks 			= $_POST['pathor_stocks'];
 	// $pathor_report 		= $_POST['pathor_report'];
 
+	$cement_kroy_hisab 	= $_POST['cement_kroy_hisab'];
+	$cement_bikroy_hisab 	= $_POST['cement_bikroy_hisab'];
+	$cement_category 		= $_POST['cement_category'];
+	$cement_dealer 		= $_POST['cement_dealer'];
+	$cement_customer 		= $_POST['cement_customer'];
+	$cement_buyer 			= $_POST['cement_buyer'];
+	$cement_stocks 			= $_POST['cement_stocks'];
+	$cement_report 			= $_POST['cement_report'];
+	// $pathor_report 		= $_POST['pathor_report'];
+
 	$create_user 		= $_POST['create_user'];
 	$edit_data 			= $_POST['edit_data'];
 	$delete_data 		= $_POST['delete_data'];
@@ -67,6 +77,9 @@
 	pathor_kroy_hisab = '$pathor_kroy_hisab',pathor_bikroy_hisab = '$pathor_bikroy_hisab',
 	pathor_category = '$pathor_category', pathor_dealer = '$pathor_dealer', pathor_customer = '$pathor_customer',
 	pathor_buyer = '$pathor_buyer',pathor_stocks = '$pathor_stocks',
+	cement_kroy_hisab = '$cement_kroy_hisab',cement_bikroy_hisab = '$cement_bikroy_hisab',
+	cement_category = '$cement_category', cement_dealer = '$cement_dealer', cement_customer = '$cement_customer',
+	cement_buyer = '$cement_buyer',cement_stocks = '$cement_stocks',cement_report = '$cement_report',
 	  create_user = '$create_user', edit_data = '$edit_data', delete_data = '$delete_data', project_name_id = '$project_name_id' WHERE username = '$username'";
 
 	if ($db->update($sql) === TRUE) {
@@ -113,12 +126,22 @@
         	$pathor_customer 		= $row['pathor_customer'];
         	$pathor_buyer	 		= $row['pathor_buyer'];
 			$pathor_stocks			= $row['pathor_stocks'];
+
+			$cement_kroy_hisab 	= $row['cement_kroy_hisab'];
+        	$cement_bikroy_hisab 	= $row['cement_bikroy_hisab'];
+			$cement_category 		= $row['cement_category'];
+        	$cement_dealer 		= $row['cement_dealer'];
+        	$cement_customer 		= $row['cement_customer'];
+        	$cement_buyer	 		= $row['cement_buyer'];
+			$cement_stocks			= $row['cement_stocks'];
+			$cement_report			= $row['cement_report'];
         	// $pathor_report			= $row['pathor_report'];
 
 
         	if($protidiner_hisab == 'yes' || $modify_data == 'yes' || $joma_khat == 'yes' || $khoros_khat == 'yes' || $khoros_khat_entry == 'yes' || $nije_pabo == 'yes' || $paonader == 'yes' || $report == 'yes' || $agrim_hisab == 'yes' || $cash_calculator == 'yes' || $raj_kajer_all_hisab == 'yes'|| $electric_kroy_bikroy == 'yes' || $rod_kroy_hisab == 'yes' || $rod_bikroy_hisab == 'yes' || $rod_category == 'yes' || $rod_dealer == 'yes' || $rod_customer == 'yes' || $rod_buyer == 'yes' || $rod_report == 'yes' ||
 			 $balu_kroy_hisab == 'yes' || $balu_bikroy_hisab == 'yes' || $balu_category == 'yes' || $balu_dealer == 'yes' || $balu_customer == 'yes' || $balu_buyer == 'yes' || $balu_report == 'yes' || $balu_stocks == 'yes' ||
-			 $pathor_kroy_hisab == 'yes' || $pathor_bikroy_hisab == 'yes' || $pathor_category == 'yes' || $pathor_dealer == 'yes' || $pathor_customer == 'yes' || $pathor_buyer == 'yes' || $pathor_stocks == 'yes' 
+			 $pathor_kroy_hisab == 'yes' || $pathor_bikroy_hisab == 'yes' || $pathor_category == 'yes' || $pathor_dealer == 'yes' || $pathor_customer == 'yes' || $pathor_buyer == 'yes' || $pathor_stocks == 'yes' ||
+			 $cement_kroy_hisab == 'yes' || $cement_bikroy_hisab == 'yes' || $cement_category == 'yes' || $cement_dealer == 'yes' || $cement_customer == 'yes' || $cement_buyer == 'yes' || $cement_stocks == 'yes' || $cement_report == 'yes' 
 			){
         		$sql_doinik_hisab_permission = "UPDATE login SET page_permission = 'yes' WHERE username = '$username'";
         		$update_result = $db->update($sql_doinik_hisab_permission);
@@ -186,6 +209,17 @@
 		$_SESSION['pathor_customer']     = $row['pathor_customer'];
 		$_SESSION['pathor_buyer']        = $row['pathor_buyer'];
 		$_SESSION['pathor_stocks']        = $row['pathor_stocks'];
+		// $_SESSION['pathor_report']       = $row['pathor_report'];
+
+
+		$_SESSION['cement_kroy_hisab']   = $row['cement_kroy_hisab'];
+		$_SESSION['cement_bikroy_hisab'] = $row['cement_bikroy_hisab'];
+		$_SESSION['cement_category']     = $row['cement_category'];
+		$_SESSION['cement_dealer']       = $row['cement_dealer'];
+		$_SESSION['cement_customer']     = $row['cement_customer'];
+		$_SESSION['cement_buyer']        = $row['cement_buyer'];
+		$_SESSION['cement_stocks']        = $row['cement_stocks'];
+		$_SESSION['cement_report']        = $row['cement_report'];
 		// $_SESSION['pathor_report']       = $row['pathor_report'];
 
 

@@ -12,7 +12,7 @@
 ?>
 
 <?php
-	$sql = "SELECT * FROM customers_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+	$sql = "SELECT * FROM customers_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 	$result = $db->select($sql);
 	$row_number = mysqli_num_rows($result);
 	if($result && $row_number > 0){
@@ -104,7 +104,7 @@
 		    // End total total_motor
 	        //Start Gari vara
 	        	$motor_vara = 0;
-		        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -120,7 +120,7 @@
 
 		    //Start khalas/Unload
 		        $unload = 0;
-		        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -136,7 +136,7 @@
 		    //End khalas/Unload
 		    // Start total total_credit/mot_mul
 		        $total_credit = 0;
-		        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -152,7 +152,7 @@
 
 		    // Start total total_debit/joma
 		        $total_debit = 0;
-		        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -168,7 +168,7 @@
 
 		    // Start total total_Balance/mot_jer
 		        $total_balance = 0;
-		        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -183,7 +183,7 @@
 		    // End total total_Balance/mot_jer
 		    //Start GB Bank Ganti
 		        $gb_bank_ganti = 0;
-		        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_pathor WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_cement WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -200,7 +200,7 @@
 		    //End GB Bank Ganti
 		//Start Total para/mot_mul_khoros_shoho
 		        $paras = 0;
-		        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+		        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 		        $result2 = $db->select($sql2);
 		        if($result2->num_rows > 0){
 		            while($row2 = $result2->fetch_assoc()){
@@ -287,6 +287,4 @@
 		}
 	}
 ?>
-
-
 

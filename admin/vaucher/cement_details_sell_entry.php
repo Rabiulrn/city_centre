@@ -587,7 +587,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
             ?>
                     <div class="project_heading">
                         <h2 class="headingOfAllProject" id="city_center_id">
-                            <?php echo $rows['heading']; ?> <span class="protidinHisab">pathor and balu bikroy হিসাব</span>
+                            <?php echo $rows['heading']; ?> <span class="protidinHisab"> bikroy হিসাব</span>
                             <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; 
                                                                 ?></span> -->
 
@@ -635,12 +635,13 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                 <h2 class="popupHead" style="color: Green;">বিক্রয় হিসাব এন্ট্রি</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
-                        <table style="width: 100%;">
+                 
+                            <table style="width: 100%;">
                             <tr>
                                 <td>Customer ID(Customer আই ডি)</td>
                                 <td>
                                     <?php
-                                    $sql = "SELECT customer_id FROM customers_pathor";
+                                    $sql = "SELECT customer_id FROM customers_cement";
                                     $all_custmr_id = $db->select($sql);
                                     echo '<select name="customer_id" id="customer_id_popup" class="form-control" disabled >';
                                     echo '<option value="none">Select...</option>';
@@ -657,19 +658,30 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td>Motor Name (গাড়ী নাম)</td>
-                                <td>
-                                    <input type="text" name="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
-                                </td>
-                            </tr>
-                            <tr>
+                            
+
+
+                            <!-- <input type="hidden" name="cement_details_id" id="cement_details_id"> -->
                             <tr>
                                 <td>Driver Name (ড্রাইভারের নাম)</td>
                                 <td>
                                     <input type="text" name="driver_name" class="form-control" id="driver_name_popup" placeholder="Enter Driver Name...">
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Motor Name (গাড়ী নাম)</td>
+                                <td>
+                                    <input type="text" name="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>id</td>
+                                <td>
+                                    <input type="text" name ="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
+                                </td>           
+                            </tr> -->
+                            <!-- <tr> -->
+                           
                             <tr>
                                 <td>Motor Vara (গাড়ী ভাড়া)</td>
                                 <td>
@@ -679,7 +691,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                             <tr>
                                 <td>Unload (আনলোড)</td>
                                 <td>
-                                    <input type="text" name="unload" class="form-control value-calc-popup" id="unload_popup" placeholder="Unload">
+                                    <input type="text" onkeypress="return isNumber(event)" name="unload" class="form-control value-calc-popup" id="unload_popup" placeholder="Unload">
                                 </td>
                             </tr>
                             <tr>
@@ -701,9 +713,9 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Voucher No. (ভাউচার নং)</td>
+                                <td>Challan No. (ভাউচার নং)</td>
                                 <td>
-                                    <input type="text" name="voucher_no" class="form-control" id="voucher_no_popup" placeholder="Enter Voucher No...">
+                                    <input type="text" name="challan_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
                                 </td>
                             </tr>
                             <tr>
@@ -769,7 +781,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                                                     $raol_pathor_category_id = $row2['pathor_category_id'];
 
 
-                                                    if ($pathor_category_id == $pathor_balu_category_id) {
+                                                    if ($pathor_category_id == $raol_pathor_category_id) {
                                                         echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
                                                     }
                                                 }
@@ -881,45 +893,45 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                                 </td>
                             </tr>
 
-                            <tr>
+                            <!-- <tr>
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
                                 <td>
                                     <input type="text" name="cemeats_paras" class="form-control value-calc-popup" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <!-- <td>Ton(টোন)</td>
                             <td>
                                 <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
                             </td>
                             </tr>
                             <tr>
-                                <td>Total Shift(সেপ্টি)</td>
+                                <td>Total Shifts(সেপ্টি)</td>
                                 <td>
-                                    <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter bundil...">
+                                    <input type="text" name="total_shifts" class="form-control" id="total_shifts_popup" placeholder="Enter Total Shifts...">
                                 </td>
                             </tr> -->
-                            <tr hidden>
-                                <td>Tons (টোন)</td>
+                            <tr>
+                                <td>Count</td>
                                 <td>
-                                    <input type="text" name="tons" class="form-control value-calc-popup" id="tons_popup" placeholder="Enter total_paras...">
+                                    <input type="text" name="count" class="form-control" id="count_popup" placeholder="Enter Count...">
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Bank_name (ব্যাংক নাম)</td>
+                            <!-- <tr>
+                                <td>Bank Name</td>
                                 <td>
                                     <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
-                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter fee...">
+                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter Fee...">
                                 </td>
                             </tr>
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
 
-                        <input type="hidden" name="pathor_details_id" id="pathor_details_id">
+                        <input type="hidden" name="cement_details_id" id="cement_details_id">
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
@@ -1339,7 +1351,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                 // processData: false,
                 // contentType: false,
                 data: {
-                    'pathor_details_id': rod_id
+                    'cement_details_id': rod_id
                 },
                 success: function(res) {
                     console.log(res);
@@ -1422,7 +1434,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
 
 
             // alert(buyr_id);
-            $('#pathor_details_id').val(rowid);
+            $('#cement_details_id').val(rowid);
             $('#customer_id_popup').val(customer_id);
             $('#motor_name_popup').val(motor_name);
             $('#driver_name_popup').val(driver_name);

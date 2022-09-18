@@ -13,7 +13,7 @@
 
       $sql = "DELETE FROM details_sell_balu WHERE id = '$rod_details_id'";
       if ($db->select($sql) === TRUE) {
-        $sucDel = "Details sell entry deleted successfully. Stocks not restored";
+        $sucDel = "Details sell entry deleted successfully.";
         echo $sucDel;
       } else {
         echo "Error: " . $sql . "<br>" .$db->error;

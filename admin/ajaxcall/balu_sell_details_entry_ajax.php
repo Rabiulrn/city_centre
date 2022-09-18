@@ -76,7 +76,7 @@ if ($customer_id != 'none' && $partculars != 'none' && $particulars != 'none') {
   if ($result2) {
     // print_r($sql_update);
     // $sucMsg = "stocks updated Successfully.";
-    echo "stocks updated  Successfully.";
+    // echo "stocks updated  Successfully.";
 
     $sql = "INSERT INTO `details_sell_balu`
            (`customer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `voucher_no`, `address`, `motor_no`, `motor_sl`, `delivery_date`, `dates`, `partculars`, `particulars`, `debit`, `ton & kg`, `length`, `width`, `height`, `shifty`, `inchi (-)_minus`, `cft (-)_dropped Out`, `inchi (+)_added`, `points ( - )_dropped out`, `shift`, `total_shift`, `paras`, `discount`, `credit`,`balance`, `cemeats_paras`, `ton`, `total_shifts`, `tons`, `bank_name`, `fee`,`project_name_id`) 

@@ -49,7 +49,7 @@ $motor_vara_and_unload = $motor_vara + $unload;
 //End khalas/Unload
 
  // Start total total_motor
- $sql = "SELECT COUNT(motor_no) as motor FROM details_balu WHERE dealer_id = '$dealerId' AND motor_no != '' AND project_name_id = '$project_name_id'";
+ $sql = "SELECT COUNT(motor_vara) as motor FROM details_balu WHERE dealer_id = '$dealerId' AND motor_vara > 0 AND project_name_id = '$project_name_id'";
  $result = $db->select($sql);
  if($result->num_rows > 0){
      while($row = $result->fetch_assoc()){
@@ -446,14 +446,16 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT dealer_id FROM balu_dealer WHERE project_name_id ='$project_name_id'";
+            $sql = "SELECT * FROM balu_dealer WHERE project_name_id ='$project_name_id'";
             $all_custmr_id = $db->select($sql);
             echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {
                 $id = $row['dealer_id'];
-                echo '<option value="' . $id . '">' . $id . '</option>';
+                $dealer_name = $row['dealer_name'];
+
+                echo '<option value="' . $id . '">'.$id.'--'.$dealer_name.'</option>';
               }
             } else {
               echo '<option value="none">0 Result</option>';
@@ -560,7 +562,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != '' AND project_name_id ='$project_name_id'";
+            $sql = "SELECT DISTINCT category_name FROM balu_category WHERE  category_name != ''";
             $all_particular = $db->select($sql);
             echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
             echo '<option value="none">Select...</option>';
@@ -621,7 +623,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           </td>
          
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="discount in percentage" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
+            <input type="text" onkeypress="return isNumber(event)" name="discount" class="form-control-balu value-calc" id="discount" placeholder="Discount...">
           </td>
           <td>
             <input type="text" name="credit" class="form-control-balu value-calc" id="credit" placeholder="Credit...">
@@ -706,7 +708,7 @@ if ($result) {
               <th>Cft</th>
               <th>Total Cft </th>
               <th>Para's</th>
-              <th>Discount(%)</th>
+              <th>Discount</th>
               <th>Credit</th>
               <th>Balance</th>
               <th>Cemeat's Para's</th>
@@ -749,7 +751,7 @@ if ($result) {
               <th>সিএফটি</th>
               <th>মোট সিএফটি</th>
               <th>দর</th>
-              <th>কমিশন(%)</th>
+              <th>কমিশন</th>
               <th>মূল</th>
               <th>অবশিষ্ট</th>
               <th>গাড়ী&nbsp;ভাড়া&nbsp;লেবার সহ</th>

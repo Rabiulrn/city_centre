@@ -20,7 +20,7 @@ $sucMsg = "";
 
 
 // Start total total_motor
-$sql = "SELECT COUNT(motor_no) as motor FROM details_sell_pathor WHERE customer_id = '$dealerId'AND motor_no != '' AND project_name_id = '$project_name_id'";
+$sql = "SELECT COUNT(motor_vara) as motor FROM details_sell_pathor WHERE customer_id = '$dealerId'AND motor_vara > 0 AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -32,7 +32,18 @@ if ($result->num_rows > 0) {
 } else {
   $total_motor = 0;
 }
-
+$sql = "SELECT SUM(tons) as ton_kg FROM details_sell_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$result = $db->select($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $total_ton_kg = $row['ton_kg'];
+    if (is_null($total_ton_kg)) {
+      $total_ton_kg = 0;
+    }
+  }
+} else {
+  $total_ton_kg = 0;
+}
 //Start Gari vara
 $sql = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
@@ -187,7 +198,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       <td class="hastext">মোট টোনঃ</td>
       <td><?php
           $format_number1 = number_format($total_ton_kg, 2);
-          echo $format_number1; ?></td>
+          ?></td>
       <!-- <td class="hastext">কোম্পানী পাওনাঃ</td>
 			<td><?php echo $company_paona; ?></td>			 -->
     </tr>

@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	$pathor_details_id = $_POST['pathor_details_id'];
+	$cement_details_id = $_POST['cement_details_id'];
 
 	require '../config/config.php';
 	require '../lib/database.php';
@@ -8,7 +8,7 @@
 	$sucMsg ="";
 
 
-if(isset($pathor_details_id)){
+if(isset($cement_details_id)){
     
     $motor_name           = trim($_POST['motor_name']);
     $driver_name           = trim($_POST['driver_name']);
@@ -66,20 +66,20 @@ if(isset($pathor_details_id)){
 
 	// update query is written here
 	// ========================================
-  $sql ="UPDATE `details_sell_pathor` SET `motor_name`='$motor_name',`driver_name`='$driver_name',`motor_vara`='$motor_vara',`unload`='$unload',`cars_rent_redeem`='$car_rent_redeem',`information`='$information',`sl`='$sl',`voucher_no`='$voucher_no',`address`='$address',`motor_sl`='$motor_sl ',`delivery_date`='$delivery_date',`dates`='$dates',`partculars`='$partculars ',`particulars`='$particulars',`debit`='$debit',`ton & kg`='$ton_kg',`length`='$length',`width`='$width',`height`='$height',`shifty`='$shifty',`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`cemeats_paras`='$cemeats_paras',`ton`='$ton',`bank_name`='$bank_name',`fee`='$fee'  WHERE id = '$pathor_details_id'";
-// 	$sql = "UPDATE details_sell_pathor SET motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address', motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit' WHERE id = '$pathor_details_id'";
-    // -- , ton & kg = '$ton_kg', length = '$length', width = '$width', height = '$height', shifty = '$shifty', inchi (-)_minus = '$inchi_minus', cft_ (-)dropperd_out = '$cft_dropperd_out', inchi (+)_added = '$inchi_added', points ( - )_dropped_out = '$points_dropped_out', shift = '$shift', total_shift = '$total_shift', paras = '$paras', discount = '$discount', balance = '$balance', discount ='$discount', credit ='$credit', balance = '$balance', cemeats_paras= '$cemeats_paras', ton = '$ton', total_shifts = '$total_shifts' tons = '$tons', bank_name = '$bank_name', fee = '$fee' WHERE id = '$pathor_details_id'";
+  $sql ="UPDATE `details_sell_cement` SET `motor_name`='$motor_name',`driver_name`='$driver_name',`motor_vara`='$motor_vara',`unload`='$unload',`cars_rent_redeem`='$car_rent_redeem',`information`='$information',`sl`='$sl',`voucher_no`='$voucher_no',`address`='$address',`motor_sl`='$motor_sl ',`delivery_date`='$delivery_date',`dates`='$dates',`partculars`='$partculars ',`particulars`='$particulars',`debit`='$debit',`ton & kg`='$ton_kg',`length`='$length',`width`='$width',`height`='$height',`shifty`='$shifty',`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`cemeats_paras`='$cemeats_paras',`ton`='$ton',`bank_name`='$bank_name',`fee`='$fee'  WHERE id = '$cement_details_id'";
+// 	$sql = "UPDATE details_sell_cement SET motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address', motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit' WHERE id = '$cement_details_id'";
+    // -- , ton & kg = '$ton_kg', length = '$length', width = '$width', height = '$height', shifty = '$shifty', inchi (-)_minus = '$inchi_minus', cft_ (-)dropperd_out = '$cft_dropperd_out', inchi (+)_added = '$inchi_added', points ( - )_dropped_out = '$points_dropped_out', shift = '$shift', total_shift = '$total_shift', paras = '$paras', discount = '$discount', balance = '$balance', discount ='$discount', credit ='$credit', balance = '$balance', cemeats_paras= '$cemeats_paras', ton = '$ton', total_shifts = '$total_shifts' tons = '$tons', bank_name = '$bank_name', fee = '$fee' WHERE id = '$cement_details_id'";
 
 	if ($db->select($sql) === TRUE) {
-		$sucMsg = "Pathor details updated Successfully.";
-		echo "Pathor details updated Successfully.";
+		$sucMsg = "cement details updated Successfully.";
+		echo "cement details updated Successfully.";
 	} else {
 		echo "Error: " . $sql . "<br>" . $db->error;
 	}
 
     
   //   if ($partculars != '') {
-  //       $sql_update = "UPDATE stocks_pathor SET partculars ='$partculars' ";
+  //       $sql_update = "UPDATE stocks_cement SET partculars ='$partculars' ";
 
   //       $result2 = $db->select($sql_update);
   //       // print_r($result2);
@@ -93,4 +93,5 @@ if(isset($pathor_details_id)){
 	// }
 
 }
+
 

@@ -649,7 +649,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
                             <tr>
-                                <td>Buyer ID(বায়ার আই ডি)</td>
+                                <td>Dealer ID(আই ডি)</td>
                                 <td>
                                     <?php
                                     $sql = "SELECT buyer_id FROM balu_buyers";
@@ -919,10 +919,10 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                                     <input type="text" name="total_shifts" class="form-control" id="total_shifts_popup" placeholder="Enter Total Shifts...">
                                 </td>
                             </tr>-->
-                            <tr hidden>
+                            <tr style="display: none;">
                                 <td>Tons (টোন)</td>
                                 <td>
-                                    <input type="text" name="tons" class="form-control" id="tons_popup" placeholder="Enter Tons...">
+                                    <input type="text" name="tons" class="form-control value-calc-popup" id="tons_popup" placeholder="Enter Tons...">
                                 </td>
                             </tr>
                             <tr>
@@ -1449,9 +1449,9 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var cemeats_paras = $(element).closest('tr').find('td:eq(32)').text();
             var ton = $(element).closest('tr').find('td:eq(33)').text();
             var total_shift = $(element).closest('tr').find('td:eq(34)').text();
-            var tons = $(element).closest('tr').find('td:eq(35)').text();
-            var bank_name = $(element).closest('tr').find('td:eq(36)').text();
-            var fee = $(element).closest('tr').find('td:eq(37)').text();
+            var tons = $(element).closest('tr').find('td:eq(34)').text();
+            var bank_name = $(element).closest('tr').find('td:eq(35)').text();
+            var fee = $(element).closest('tr').find('td:eq(36)').text();
 
 
             // alert(buyr_id);
@@ -1678,7 +1678,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 // $('#shifty').val(ton_to_cft);
                 // $('#shift').val(ton_to_cft);
                 // $('#total_shift').val(ton_to_cft);
-                // $('#total_shifts').val(ton_to_cft);
+                $('#total_shifts').val(ton_to_cft);
             } else {
                 $("#length").attr("placeholder", "length").prop("disabled", false);
                 $("#length").attr("readonly", false);
@@ -1885,14 +1885,14 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         $(document).on('input change paste keyup', '.value-calc-popup', function() {
 
             ////////////////////////////////////////////////////////////////
-            var kg = $('#tons_popup').val();
+            var kg_ton = $('#tons_popup').val();
             var paras = $('#paras_popup').val();
-            if (kg == '') {
+            if (kg_ton == '') {
                 $('#credit_popup').val('0');
             } else if (paras == '') {
                 $('#credit_popup').val('0');
             } else {
-                var credit = kg * paras;
+                var credit = kg_ton * paras;
                 // alert(credit);
                 $('#credit_popup').val(credit);
             }
@@ -1920,28 +1920,51 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $('#balance_popup').val(balance);
             }
 
+
             var motor_vara = $('#motor_vara_popup').val();
             var unload = $('#unload_popup').val();
             if (motor_vara == '') {
-                $('#car_rent_redeem_popup').val('0');
+                $('#motor_vara_popup').attr("placeholder", "motor vara");
+                //  $('#motor_vara').attr("value", "0");
+                //  $('#motor_vara').val(0);
+
+                $('#car_rent_redeem_popup').val(unload);
+                $('#cemeats_paras_popup').val(unload);
             } else if (unload == '') {
-                $('#car_rent_redeem_popup').val('0');
+                $('#unload_popup').attr("placeholder", "unload");
+                //  $('#unload').attr("value", "0");
+                //  $('#unload').val(0);
+
+                $('#car_rent_redeem_popup').val(motor_vara);
+                $('#cemeats_paras_popup').val(motor_vara);
+            } else if (unload == 0 && motor_vara == 0) {
+                $('#car_rent_redeem_popup').val(0);
             } else {
+
+
+                //                 $('#motor_vara').focus(function(){
+                //                     $('#motor_vara').value('')
+                // });
+
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
                 $('#car_rent_redeem_popup').val(car_rent_redeem);
+                $('#cemeats_paras_popup').val(car_rent_redeem);
             }
+            // var motor_vara = $('#motor_vara_popup').val();
+            // var unload = $('#unload_popup').val();
+            // if (motor_vara == '') {
+            //     $('#car_rent_redeem_popup').val('0');
+            // } else if (unload == '') {
+            //     $('#car_rent_redeem_popup').val('0');
+            // } else {
+            //     var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+            //     // alert(balance);
+            //     $('#car_rent_redeem_popup').val(car_rent_redeem);
+            // }
 
 
-            var car_rent_redeem = $('#car_rent_redeem_popup').val();
-            var credit = $("#credit_popup").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit_popup').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
-                $('#credit_popup').val(total_paras);
-            }
+
 
 
             var discountp = $("#discount_popup").val();
@@ -1950,7 +1973,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - discountp2;
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }

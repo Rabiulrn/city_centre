@@ -7,7 +7,7 @@
 	require '../config/config.php';
 	require '../lib/database.php';
 	$db = new Database();
-	$_SESSION['pageName'] = 'pathor_report_customer';
+	$_SESSION['pageName'] = 'cement_report_customer';
 	
 	$project_name_id = $_SESSION['project_name_id'];
 ?>
@@ -76,12 +76,12 @@
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
 				<h4 class="reportHeader"><b>রিপোর্ট</b></h4>
-				<a href="../vaucher/pathor_report_buy_hisab.php" >ক্রয় অনুযায়ী </a>
-				<a href="../vaucher/pathor_report_sell_hisab.php">বিক্রয় অনুযায়ী </a>
+				<a href="../vaucher/cement_report_buy_hisab.php" >ক্রয় অনুযায়ী </a>
+				<a href="../vaucher/cement_report_sell_hisab.php">বিক্রয় অনুযায়ী </a>
 				<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-				 <a href="../vaucher/pathor_report_dealer.php">ডিলার অনুযায়ী </a>
-				 <a href="../vaucher/pathor_report_customer.php" class="active">কাস্টমার অনুযায়ী </a> 
-				 <!-- <a href="../vaucher/pathor_report_buyer.php">বায়ার অনুযায়ী </a> -->
+				 <a href="../vaucher/cement_report_dealer.php">ডিলার অনুযায়ী </a>
+				 <a href="../vaucher/cement_report_customer.php" class="active">কাস্টমার অনুযায়ী </a> 
+				 <!-- <a href="../vaucher/cement_report_buyer.php">বায়ার অনুযায়ী </a> -->
 			</div>
 		</div>
 		<div class="main_bar">
@@ -105,7 +105,7 @@
 		    	<h2 class="text-center" style="font-size: 23px; line-height: 22px;">কাস্টমার হিসাব রিপোর্ট</h2>
 		    </div>
 		  	<div class="backcircle">
-		      <a href="../vaucher/pathor_index.php">
+		      <a href="../vaucher/cement_index.php">
 		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="20px"> Back
 		      </a>
 		    </div>
@@ -117,7 +117,7 @@
 		    				<select class="selctpik2" id="searchCustomer">
 		    					<option value="allcustomers">All Customers</option>
 		    					<?php
-		    						$sql = "SELECT DISTINCT customer_id, customer_name FROM customers_pathor WHERE project_name_id = '$project_name_id' ORDER BY customer_name ASC";
+		    						$sql = "SELECT DISTINCT customer_id, customer_name FROM customers_cement WHERE project_name_id = '$project_name_id' ORDER BY customer_name ASC";
 		    						$rslt = $db->select($sql);
 						            $row_no = mysqli_num_rows($rslt);
 						            if ($rslt && $row_no > 0) {
@@ -187,7 +187,7 @@
     		</div>
     		<table class="tableshow" id="tableshow" style="border-collapse: collapse; border: 1px solid #777 !important;">
 			<th style='border: 1px solid #777 !important;'>#</th>
-						<th style='border: 1px solid #777 !important;'>ডিলার আই.ডি</th>
+						<th style='border: 1px solid #777 !important;'>কাস্টমার আই.ডি</th>
 						<th style='border: 1px solid #777 !important;'>ডিলার নাম</th>
 						<th style='border: 1px solid #777 !important;'>মোট গাড়ী ভাড়াঃ</td>
 						<th style='border: 1px solid #777 !important;'>মোট খালাস খরচঃ</td>
@@ -197,7 +197,7 @@
 						<th style='border: 1px solid #777 !important;'>মো‌ট জেরঃ</th>
 						<th style='border: 1px solid #777 !important;'>নিজ পাওনাঃ</th>
     			<?php
-    				$sql = "SELECT * FROM customers_pathor WHERE project_name_id = '$project_name_id'";
+    				$sql = "SELECT * FROM customers_cement WHERE project_name_id = '$project_name_id'";
     				$result = $db->select($sql);
     				$row_number = mysqli_num_rows($result);
     				if($result && $row_number > 0){
@@ -283,7 +283,7 @@
 						    // End total total_motor
 					        //Start Gari vara
 					        	$motor_vara = 0;
-						        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -297,7 +297,7 @@
 						        }
 
 								$total_motor_vara = 0;
-						        $sql3 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_pathor WHERE project_name_id = '$project_name_id'";
+						        $sql3 = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_cement WHERE project_name_id = '$project_name_id'";
 						        $result3 = $db->select($sql3);
 						        if($result3->num_rows > 0){
 						            while($row3 = $result3->fetch_assoc()){
@@ -313,7 +313,7 @@
 
 						    //Start khalas/Unload
 						        $unload = 0;
-						        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(unload) as unload FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -328,7 +328,7 @@
 						        $motor_vara_and_unload = $motor_vara + $unload;
 
 								$total_unload = 0;
-								$sql3 = "SELECT SUM(unload) as unload FROM details_sell_pathor WHERE  project_name_id = '$project_name_id'";
+								$sql3 = "SELECT SUM(unload) as unload FROM details_sell_cement WHERE  project_name_id = '$project_name_id'";
 								$result3 = $db->select($sql3);
 								if($result3->num_rows > 0){
 									while($row3 = $result3->fetch_assoc()){
@@ -346,7 +346,7 @@
 							
 						    // Start total total_credit/mot_mul
 						        $total_credit = 0;
-						        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -360,7 +360,7 @@
 						        }
 
 								$total1_credit = 0;
-						        $sql3 = "SELECT SUM(credit) as credit FROM details_sell_pathor WHERE project_name_id = '$project_name_id'";
+						        $sql3 = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE project_name_id = '$project_name_id'";
 						        $result3 = $db->select($sql3);
 						        if($result3->num_rows > 0){
 						            while($row3 = $result3->fetch_assoc()){
@@ -376,7 +376,7 @@
 
 						    // Start total total_debit/joma
 						        $total_debit = 0;
-						        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -390,7 +390,7 @@
 						        }
 
 								$total1_debit = 0;
-						        $sql3 = "SELECT SUM(debit) as debit FROM details_sell_pathor WHERE project_name_id = '$project_name_id'";
+						        $sql3 = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE project_name_id = '$project_name_id'";
 						        $result3 = $db->select($sql3);
 						        if($result3->num_rows > 0){
 						            while($row3 = $result3->fetch_assoc()){
@@ -408,7 +408,7 @@
 
 						    // Start total total_Balance/mot_jer
 						        $total_balance = 0;
-						        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(balance) as balance FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -422,7 +422,7 @@
 						        }
 
 								$total1_balance = 0;
-						        $sql3 = "SELECT SUM(balance) as balance FROM details_sell_pathor WHERE  project_name_id = '$project_name_id'";
+						        $sql3 = "SELECT SUM(balance) as balance FROM details_sell_cement WHERE  project_name_id = '$project_name_id'";
 						        $result3 = $db->select($sql3);
 						        if($result3->num_rows > 0){
 						            while($row3 = $result3->fetch_assoc()){
@@ -437,7 +437,7 @@
 						    // End total total_Balance/mot_jer
 						    //Start GB Bank Ganti
 						        $gb_bank_ganti = 0;
-						        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_pathor WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(debit) as debit, id FROM details_sell_cement WHERE particulars = 'BG' AND customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -454,7 +454,7 @@
 						    //End GB Bank Ganti
 						//Start Total para/mot_mul_khoros_shoho
 						        $paras = 0;
-						        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_pathor WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
+						        $sql2 = "SELECT SUM(paras) as paras FROM details_sell_cement WHERE customer_id = '$customer_id' AND project_name_id = '$project_name_id'";
 						        $result2 = $db->select($sql2);
 						        if($result2->num_rows > 0){
 						            while($row2 = $result2->fetch_assoc()){
@@ -594,7 +594,7 @@
 
 		function fromTodateSearch(fromdate, todate){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/pathor_report_customer_fromdate_todate_search.php",
+		        url: "../ajaxcall_rod_report/cement_report_customer_fromdate_todate_search.php",
 		        type: "post",
 		        data: {
 		        	fromdate 	: fromdate, 
@@ -624,7 +624,7 @@
 
 		function yearMonthSearch(monthvalue, yearvalue){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/pathor_report_customer_year_month_search.php",
+		        url: "../ajaxcall_rod_report/cement_report_customer_year_month_search.php",
 		        type: "post",
 		        data: {
 		        	monthvalue 	: monthvalue, 
@@ -661,7 +661,7 @@
 		$(document).on('input', '#search', function(){
 			function searchByCustomerName(searchTxt){
 			    $.ajax({
-			        url: "../ajaxcall_rod_report/pathor_report_customer_search.php",
+			        url: "../ajaxcall_rod_report/cement_report_customer_search.php",
 			        type: "post",
 			        data: { searchTxt : searchTxt },
 			        success: function (response) {
@@ -681,7 +681,7 @@
 
 		function customerWiseSearch(searchCustomer){
 			$.ajax({
-		        url: "../ajaxcall_rod_report/pathor_report_customer_name_wise_search.php",
+		        url: "../ajaxcall_rod_report/cement_report_customer_name_wise_search.php",
 		        type: "post",
 		        data: {
 		        	searchCustomer 	: searchCustomer,
@@ -699,7 +699,7 @@
 		$(document).on('change', '#searchCustomer', function(){
 			var searchCustomer 	= $("#searchCustomer").val();
 			if(searchCustomer == 'allcustomers'){
-				window.location = '../vaucher/pathor_report_customer.php';
+				window.location = '../vaucher/cement_report_customer.php';
 			} else {
 				customerWiseSearch(searchCustomer);
 			}

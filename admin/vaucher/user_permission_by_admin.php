@@ -220,6 +220,7 @@
 // manzu add raj_kajer_all_hisab here 
             function userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, balu_stocks,  
             pathor_kroy_hisab, pathor_bikroy_hisab, pathor_category, pathor_dealer, pathor_customer, pathor_buyer, pathor_stocks,
+            cement_kroy_hisab, cement_bikroy_hisab, cement_category, cement_dealer, cement_customer, cement_buyer, cement_stocks,cement_report,
             create_user, edit_data, delete_data){
                 $.ajax({
                 url: "../ajaxcall_save_update/allow_page_access_update.php",
@@ -261,6 +262,14 @@
                     pathor_customer    : pathor_customer,
                     pathor_buyer       : pathor_buyer,
                     pathor_stocks       : pathor_stocks,
+                    cement_kroy_hisab  : cement_kroy_hisab,
+                    cement_bikroy_hisab: cement_bikroy_hisab,
+                    cement_category    : cement_category,
+                    cement_dealer      : cement_dealer,
+                    cement_customer    : cement_customer,
+                    cement_buyer       : cement_buyer,
+                    cement_stocks       : cement_stocks,
+                    cement_report       : cement_report,
                     // pathor_report      : pathor_report,
                     create_user     : create_user,
                     edit_data       : edit_data,
@@ -323,6 +332,14 @@
                 var pathor_customer      = $('#pathor_customer').val();
                 var pathor_buyer         = $('#pathor_buyer').val();
                 var pathor_stocks         = $('#pathor_stocks').val();
+                var cement_kroy_hisab    = $('#cement_kroy_hisab').val();
+                var cement_bikroy_hisab  = $('#cement_bikroy_hisab').val();
+                var cement_category      = $('#cement_category').val();
+                var cement_dealer        = $('#cement_dealer').val();
+                var cement_customer      = $('#cement_customer').val();
+                var cement_buyer         = $('#cement_buyer').val();
+                var cement_stocks         = $('#cement_stocks').val();
+                var cement_report         = $('#cement_report').val();
                 // var pathor_report        = $('#pathor_report').val();
 
                 var create_user = $('#create_user').val();                
@@ -332,6 +349,7 @@
                  // manzu add raj_kajer_all_hisab here 
                 userAccessUpdate(username, project_name_id, protidiner_hisab, modify_data, joma_khat, khoros_khat, khoros_khat_entry, nije_pabo, paonader, report, agrim_hisab, cash_calculator,raj_kajer_all_hisab,electric_kroy_bikroy, rod_kroy_hisab, rod_bikroy_hisab, rod_category, rod_dealer, rod_customer, rod_buyer, rod_report,balu_kroy_hisab, balu_bikroy_hisab, balu_category, balu_dealer, balu_customer, balu_buyer, balu_report, balu_stocks,
                 pathor_kroy_hisab, pathor_bikroy_hisab, pathor_category, pathor_dealer, pathor_customer, pathor_buyer, pathor_stocks,  
+                cement_kroy_hisab, cement_bikroy_hisab, cement_category, cement_dealer, cement_customer, cement_buyer, cement_stocks,cement_report,  
                  create_user, edit_data, delete_data);     
             });
             

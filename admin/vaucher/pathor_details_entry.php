@@ -158,11 +158,11 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             width: 3.7%;
         }
 
-        #detailsNewTable2 {
+        /* #detailsNewTable2 {
             width: 217%;
             border: 1px solid #ddd;
-            /*transform: rotateX(180deg);*/
-        }
+           
+        } */
 
         .header {
             /* Background color */
@@ -176,23 +176,36 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             z-index: 1;
         }
 
+        #detailsNewTable2 {
+            width: 217%;
+            /* border: 1px solid #ddd; */
+            /*transform: rotateX(180deg);*/
+        }
+
         #detailsNewTable2 th,
         td {
             border: 1px solid #ddd;
-            padding: 2px 5px;
+            padding: 5px 5px;
+            text-align: center;
+
+
         }
+
 
         #detailsNewTable2 tr:first-child th {
             text-align: center;
             background-color: #363636db;
+            padding: 5px 23px;
+
             color: #fff;
-            padding: 5px 0px;
+
         }
 
         #detailsNewTable2 tr:nth-child(2) th {
             text-align: center;
             background-color: #363636db;
-            padding: 5px 0px;
+            padding: 5px 23px;
+
             color: #fff;
         }
 
@@ -200,14 +213,14 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             text-align: center;
             background-color: #d2df0d2e;
             color: black;
-            padding: 5px 0px;
+            padding: 5px 5px;
         }
 
         #detailsNewTable2 tr:nth-child(odd) td {
             text-align: center;
             background-color: white;
             color: black;
-            padding: 5px 0px;
+            /* padding: 5px 0px; */
         }
 
 
@@ -638,20 +651,20 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
                             <tr>
-                                <td>Buyer ID(বায়ার আই ডি)</td>
+                                <td>Dealer ID( আই ডি)</td>
                                 <td>
                                     <?php
-                                    $sql = "SELECT buyer_id FROM pathor_buyers WHERE  project_name_id = '$project_name_id'";
+                                    $sql = "SELECT dealer_id FROM pathor_dealer WHERE project_name_id ='$project_name_id'";
                                     $all_custmr_id = $db->select($sql);
-                                    echo '<select name="buyer_id" id="buyer_id_popup" class="form-control" disabled>';
+                                    echo '<select name="dealer_id" id="dealer_id_popup" class="form-control" disabled>';
                                     echo '<option value="none">Select...</option>';
                                     if ($all_custmr_id->num_rows > 0) {
                                         while ($row = $all_custmr_id->fetch_assoc()) {
-                                            $id = $row['buyer_id'];
+                                            $id = $row['dealer_id'];
                                             echo '<option value="' . $id . '">' . $id . '</option>';
                                         }
                                     } else {
-                                        echo '<option value="none">0 Resulst</option>';
+                                        echo '<option value="none">0 Result</option>';
                                     }
                                     echo '</select>';
                                     ?>
@@ -908,7 +921,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                                     <input type="text" name="total_shifts" class="form-control" id="total_shifts_popup" placeholder="Enter Total Shifts...">
                                 </td>
                             </tr> -->
-                            <tr>
+                            <tr style="display: none;">
                                 <td>Tons (টোন)</td>
                                 <td>
                                     <input type="text" name="tons" class="form-control" id="tons_popup" placeholder="Enter Tons...">
@@ -1215,7 +1228,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             var returnValid = false;
 
             if (submit_type == 'insert') {
-                var buyer_id = $('#buyer_id').val();
+                var buyer_id = $('#dealer_id').val();
                 var partculars = $('#partculars').val();
                 var particulars = $('#particulars').val();
 
@@ -1226,12 +1239,12 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
                     returnValid = true;
                 }
 
-                if (partculars == 'none') {
-                    alert('Please select a marfot name');
-                    returnValid = false;
-                } else {
-                    returnValid = true;
-                }
+                // if (partculars == 'none') {
+                //     alert('Please select a marfot name');
+                //     returnValid = false;
+                // } else {
+                //     returnValid = true;
+                // }
 
                 if (particulars == 'none') {
                     alert('Please select a particular');
@@ -1873,14 +1886,14 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         $(document).on('input change paste keyup', '.value-calc-popup', function() {
 
             ////////////////////////////////////////////////////////////////
-            var kg = $('#tons_popup').val();
+            var kg_ton = $('#tons_popup').val();
             var paras = $('#paras_popup').val();
-            if (kg == '') {
+            if (kg_ton == '') {
                 $('#credit_popup').val('0');
             } else if (paras == '') {
                 $('#credit_popup').val('0');
             } else {
-                var credit = kg * paras;
+                var credit = kg_ton * paras;
                 // alert(credit);
                 $('#credit_popup').val(credit);
             }
@@ -1921,15 +1934,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             }
 
 
-            var car_rent_redeem = $('#car_rent_redeem_popup').val();
-            var credit = $("#credit_popup").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit_popup').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
-                $('#credit_popup').val(total_paras);
-            }
+           
 
 
             var discountp = $("#discount_popup").val();
@@ -1938,7 +1943,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - discountp2 ;
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }
@@ -2282,7 +2287,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         function myFunction() {
 
             var header = document.getElementById('city_center_id');
-            // var summary = document.getElementById('panel');
+            var summary = document.getElementById('panel');
             var details = document.getElementById('detailsNewTable2');
             var wme = window.open("", "", "width=900,height=700, scrollbars=yes");
 
@@ -2291,7 +2296,7 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
             wme.document.write('<style>td, th{border: 1px solid #868686; padding: 4px; }#detailsNewTable2{border-collapse: collapse;}.text-center{text-align: center; margin: 6px 0px;}.summary{border-collapse: collapse; margin-bottom: 20px;}.no_print_media{display: none !important;}.hastext{text-align: right;}</style>');
 
             wme.document.write(header.outerHTML);
-            // wme.document.write(summary.outerHTML);
+            wme.document.write(summary.outerHTML);
             wme.document.write(details.outerHTML);
 
 
@@ -2370,7 +2375,8 @@ $_SESSION['pageName'] = 'pathor_kroy_hisab';
         function isNumber(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            // if ((charCode > 31 || charCode < 46)&& charCode == 47 && (charCode < 48 || charCode > 57)) {
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
                 Swal.fire("Should be enter a number value");
                 // alert("Should be enter a number value");
                 console.log("Workkkkk", evt);

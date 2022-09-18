@@ -87,15 +87,15 @@ echo $sucMsg;
 echo "Error: " . $sql . "<br>" . $db->error;
 }
 
-$result = $db->insert($sql2);
-if ($result) 
-{
-$sucMsg = "Stocks Saved Successfully.";
-$sucMsgPopup = "Stocks Saved Successfully.";
-echo $sucMsg;
-} else{
-echo "Error: " . $sql . "<br>" . $db->error;
-}
+// $result = $db->insert($sql2);
+// if ($result) 
+// {
+// $sucMsg = "Stocks Saved Successfully.";
+// $sucMsgPopup = "Stocks Saved Successfully.";
+// echo $sucMsg;
+// } else{
+// echo "Error: " . $sql . "<br>" . $db->error;
+// }
 
 
 }

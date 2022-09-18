@@ -593,7 +593,7 @@ $_SESSION['pageName'] = 'balu_bikroy_hisab';
             ?>
                     <div class="project_heading">
                         <h2 class="headingOfAllProject" id="city_center_id">
-                            <?php echo $rows['heading']; ?> <span class="protidinHisab">pathor and balu bikroy হিসাব</span>
+                            <?php echo $rows['heading']; ?> <span class="protidinHisab">bikroy হিসাব</span>
                             <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; 
                                                                 ?></span> -->
 

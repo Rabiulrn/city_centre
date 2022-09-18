@@ -16,7 +16,7 @@ $delete_data_permission = $_SESSION['delete_data'];
 $sucMsg = "";
 
 // Start total total_kg
-$sql = "SELECT COUNT(motor_no) as motor FROM details_pathor WHERE dealer_id = '$dealerId'AND motor_no != '' AND project_name_id = '$project_name_id'";
+$sql = "SELECT COUNT(motor_vara) as motor FROM details_pathor WHERE dealer_id = '$dealerId'AND motor_vara > 0 AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
   $total_motor = 0;
 }
 
-$sql = "SELECT SUM(tons) as ton_kg FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(tons) as ton_kg FROM details_pathor WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -421,14 +421,16 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT dealer_id FROM pathor_dealer WHERE project_name_id ='$project_name_id'";
+            $sql = "SELECT * FROM pathor_dealer WHERE project_name_id ='$project_name_id'";
             $all_custmr_id = $db->select($sql);
             echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {
                 $id = $row['dealer_id'];
-                echo '<option value="' . $id . '">' . $id . '</option>';
+                $dealer_name = $row['dealer_name'];
+
+                echo '<option value="' . $id . '">'.$id.'--'.$dealer_name.'</option>';
               }
             } else {
               echo '<option value="none">0 Result</option>';
@@ -655,7 +657,7 @@ if ($result) {
               <th>Driver Name</th>
               <th>Motor Vara</th>
               <th>Unload</th>
-              <th>Cars rent & Redeem</th>
+              <th>Cars&nbsp;rent&nbsp;& Redeem</th>
               <th>Information</th>
               <th>SL</th>
               <th>Voucher No.</th>
@@ -667,15 +669,15 @@ if ($result) {
               <th>Partculars</th>
               <th>Particulars</th>
               <th>Debit</th>
-              <th>Ton & Kg</th>
+              <th>Ton&nbsp;& Kg</th>
               <th>Length</th>
               <th>width</th>
               <th>Height</th>
               <th>Cft</th>
-              <th>Inchi (-) Minus</th>
-              <th>Cft ( - ) Dropped Out</th>
-              <th>Inchi (+) Added</th>
-              <th>Points ( - ) Dropped Out</th>
+              <th>Inchi&nbsp;(-) Minus</th>
+              <th>Cft ( - ) Dropped&nbsp;Out</th>
+              <th>Inchi&nbsp;(+) Added</th>
+              <th>Points ( - ) Dropped&nbsp;Out</th>
               <th>Cft</th>
               <th>Total Cft</th>
               <th>Para's</th>
@@ -698,7 +700,7 @@ if ($result) {
               <th>ড্রাইভারের নাম</th>
               <th>গাড়ী ভাড়া</th>
               <th>আনলোড</th>
-              <th>গাড়ী ভাড়া ও খালাস</th>
+              <th>গাড়ী&nbsp;ভাড়া ও খালাস</th>
               <th>মালের বিবরণ</th>
               <th>ক্রমিক</th>
               <th>ভাউচার নং</th>
@@ -710,12 +712,12 @@ if ($result) {
               <th>মারফ‌োত নাম</th>
               <th>ব‌িবরণ</th>
               <th>জমা টাকা</th>
-              <th>টোন ও কেজি</th>
+              <th>টোন&nbsp;ও কেজি</th>
               <th>দৈর্ঘ্যের</th>
               <th>প্রস্ত</th>
               <th>উচাঁ</th>
               <th>সিএফটি</th>
-              <th>Inchi (-) বিয়োগ </th>
+              <th>Inchi&nbsp;(-) বিয়োগ </th>
               <th>সিএফটি ( - ) বাদ</th>
               <th>Inchi (+) যোগ </th>
               <th>পয়েন্ট ( - ) বাদ</th>
@@ -725,7 +727,7 @@ if ($result) {
               <th>কমিশন</th>
               <th>মূল</th>
               <th>অবশিষ্ট</th>
-              <th>গাড়ী ভাড়া / লেবার সহ</th>
+              <th>গাড়ী&nbsp;ভাড়া&nbsp;লেবার সহ</th>
               <th>টোন</th>
               <th> মোট সিএফটি</th>
               <th>টোন</th>

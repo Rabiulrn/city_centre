@@ -7,7 +7,7 @@
 	require '../config/config.php';
 	require '../lib/database.php';
 	$db = new Database();
-	$_SESSION['pageName'] = 'pathor_report_buy_hisab';
+	$_SESSION['pageName'] = 'cement_report_buy_hisab';
 	
 	$project_name_id = $_SESSION['project_name_id'];
 ?>
@@ -68,11 +68,11 @@
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
 			<h4 class="reportHeader" style="text-align: left;"><span class="back-button"><b >&#x2190;</b></span>&nbsp;&nbsp;<b>   রিপোর্ট</b></h4>
-    			<a href="../vaucher/pathor_report_buy_hisab.php" class="active">ক্রয় অনুযায়ী</a>
-    			 <a href="../vaucher/pathor_report_sell_hisab.php">বিক্রয় অনুযায়ী</a>
+    			<a href="../vaucher/cement_report_buy_hisab.php" class="active">ক্রয় অনুযায়ী</a>
+    			 <a href="../vaucher/cement_report_sell_hisab.php">বিক্রয় অনুযায়ী</a>
     			<!-- <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> -->
-    			<a href="../vaucher/pathor_report_dealer.php">ডিলার অনুযায়ী</a>
-    		    <a href="../vaucher/pathor_report_customer.php">কাস্টমার অনুযায়ী</a>
+    			<a href="../vaucher/cement_report_dealer.php">ডিলার অনুযায়ী</a>
+    		    <a href="../vaucher/cement_report_customer.php">কাস্টমার অনুযায়ী</a>
     			<!-- <a href="../vaucher/pathor_report_buyer.php">বায়ার অনুযায়ী</a> -->
 			</div>
 		</div>
@@ -100,7 +100,7 @@
             <!-- <div class="bar1"></div>
             <div class="bar2"></div> -->
 		  	<div class="backcircle">
-		      <a href="../vaucher/pathor_index.php">
+		      <a href="../vaucher/cement_index.php">
 		        <img src="../img/logo/back.svg" alt="<== Back" width="20px" height="40px"> Back
 		      </a>
 		    </div>
@@ -130,7 +130,7 @@
 	    				<th>Partculars</th>
 	    				<th>Particulars</th>
 	    				<th>Debit</th>
-	    				<th>Ton & Kg</th>
+	    				<th>Fee</th>
                         <!-- <th>Length</th>
                         <th>width</th>
                         <th>Height</th>
@@ -145,12 +145,12 @@
 	    				<th>Discount</th>
                         <th>Credit </th>
 	    				<th>Balance</th>
-                        <th>Cemeat's Para's</th>
+                        <th>Total Credit</th>
                         <!-- <th>Ton</th> -->
-                        <th>Total Cft</th>
+                        <th>Weight ( MT )</th>
                         <!-- <th>Tons</th> -->
 	    				<!-- <th>Bank Name</th> -->
-	    				<th>Bank fee</th>
+	    				<!-- <th>Bank fee</th> -->
 	    			</tr>
 	    			<tr>
 	    				<!-- <th>বায়ার আই ডি</th> -->
@@ -171,7 +171,7 @@
 	    				<th>মারফোত নাম</th>
 	    				<th>বিবরণ</th>
 	    				<th>জমা টাকা</th>
-	    				<th>টন ও কেজি</th>
+	    				<th>ফি</th>
 	    				<!-- <th>দৈর্ঘ্যের</th>
                         <th>প্রস্ত</th>
                         <th>উচাঁ</th>
@@ -186,18 +186,18 @@
                         <th>কমিশন</th>
                         <th>মূল</th>
                         <th>অবশিষ্ট</th>
-	    				<th>গাড়ী ভাড়া / লেবার সহ</th>
+	    				<th>মোট মূলঃ</th>
                         <!-- <th>টন</th> -->
-                        <th>মোট সিএফটি</th>
+                        <th>ওজন (এম,টি )</th>
 	    				<!-- <th>টন</th> -->
 	    				<!-- <th>ব্যাংক নাম</th> -->
-	    				<th>ব্যাংক ফি</th>
+	    				<!-- <th>ব্যাংক ফি</th> -->
 	    				
 	    			</tr>
     			</thead>
     			<tbody>
 	    			<?php
-	    				$sql = "SELECT * FROM details_pathor WHERE project_name_id = $project_name_id";
+	    				$sql = "SELECT * FROM details_cement WHERE project_name_id = $project_name_id";
 	    				$result = $db->select($sql);
 	    				$row_number = mysqli_num_rows($result);
 	    				if($result && $row_number > 0){
@@ -232,7 +232,7 @@
 	    						echo "<td>".$row['partculars']."</td>";
 	    						echo "<td>".$row['particulars']."</td>";
 	    						echo "<td>".$row['debit']."</td>";
-	    						echo "<td>".$row['ton & kg']."</td>";
+	    						echo "<td>".$row['fee']."</td>";
 	    						// echo "<td>".$row['length']."</td>";
 	    						// echo "<td>".$row['width']."</td>";
 	    						// echo "<td>".$row['height']."</td>";
@@ -247,12 +247,12 @@
                                 echo "<td>".$row['discount']."</td>";
                                 echo "<td>".$row['credit']."</td>";
 							    echo "<td>".$row['balance']."</td>";
-                                echo "<td>".$row['cemeats_paras']."</td>";
+                                echo "<td>".$row['total_credit']."</td>";
                                 // echo "<td>".$row['ton']."</td>";
-                                echo "<td>".$row['total_shifts']."</td>";
+                                echo "<td>".$row['weight']."</td>";
                                 // echo "<td>".$row['tons']."</td>";
                                 // echo "<td>".$row['bank_name']."</td>";
-                                echo "<td>".$row['fee']."</td>";
+                                // echo "<td>".$row['fee']."</td>";
 
                                 
 	    						echo "</tr>";

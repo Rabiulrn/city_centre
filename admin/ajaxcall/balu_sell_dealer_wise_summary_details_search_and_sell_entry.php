@@ -51,7 +51,8 @@ if ($result->num_rows > 0) {
 $motor_vara_and_unload = $motor_vara + $unload;
 //End khalas/Unload
 // Start total total_motor
-$sql = "SELECT COUNT(motor_no) as motor FROM details_sell_balu WHERE customer_id = '$dealerId'AND motor_no != '' AND project_name_id = '$project_name_id'";
+
+$sql = "SELECT COUNT(motor_vara) as motor FROM details_sell_balu WHERE customer_id = '$dealerId'AND motor_vara > 0 AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {

@@ -186,21 +186,19 @@
 				  			}
 				  			if($_SESSION['rod_customer'] == 'yes'){
 				  				?>
-				  				<div class="pannel_con" >
+				  				<!-- <div class="pannel_con" >
 				  					<a href="../vaucher/cement_stocks.php">
 				  						<h5 class="pannel_head" style="background-color: #00D089;">
 				  							<img src="../img/logo/add5_square.png" alt="logo" class="img_pannel">
 				  							স্টক তথ্য
 				  						</h5>
-				  						<!-- <p class="img_pannel_con">
-				  							<img src="../img/logo/add5.png" alt="logo" class="img_pannel">
-				  						</p> -->
+				  						
 				  						<p class="pannel_foot" style="color: #00D089;">
 				  							Click here
 				  							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 				  						</p>
 				  					</a>	  					
-				  				</div>
+				  				</div> -->
 				  			<?php
 				  			}
 				  			if($_SESSION['rod_buyer'] == 'yes'){

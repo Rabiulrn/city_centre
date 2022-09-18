@@ -108,7 +108,7 @@
 	  			<div class="wraper_content">
 	  				<p class="tiny_text">Please click on the appropriate icon below in order to access information about shah enterprise.</p>
 	  					 <?php
-	  						if($_SESSION['rod_kroy_hisab'] == 'yes'){
+	  						if($_SESSION['balu_kroy_hisab'] == 'yes'){
         						?>
 			  					<div class="pannel_con" >
 				  					<a href="../vaucher/balu_details_entry.php">
@@ -127,7 +127,7 @@
 				  				</div>
 				  				<?php
 				  			}
-				  			if($_SESSION['rod_bikroy_hisab'] == 'yes'){
+				  			if($_SESSION['balu_bikroy_hisab'] == 'yes'){
 				  				?>
 			  					<div class="pannel_con" >
 				  					<a href="../vaucher/balu_details_sell_entry.php">
@@ -146,7 +146,7 @@
 				  				</div>
 				  				<?php
 				  			}
-				  			if($_SESSION['rod_category'] == 'yes'){
+				  			if($_SESSION['balu_category'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_hisab_entry.php">
@@ -165,7 +165,7 @@
 				  				</div>
 				  			<?php
 				  			}
-				  			if($_SESSION['rod_dealer'] == 'yes'){
+				  			if($_SESSION['balu_dealer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_dealer_entry.php">
@@ -184,26 +184,24 @@
 				  				</div>
 				  			<?php
 				  			}
-				  			if($_SESSION['rod_customer'] == 'yes'){
+				  			if($_SESSION['balu_stocks'] == 'yes'){
 				  				?>
-				  				<div class="pannel_con" >
+				  				<!-- <div class="pannel_con" >
 				  					<a href="../vaucher/balu_stocks.php">
 				  						<h5 class="pannel_head" style="background-color: #00D089;">
 				  							<img src="../img/logo/add5_square.png" alt="logo" class="img_pannel">
 				  							স্টক তথ্য
 				  						</h5>
-				  						<!-- <p class="img_pannel_con">
-				  							<img src="../img/logo/add5.png" alt="logo" class="img_pannel">
-				  						</p> -->
+				  						
 				  						<p class="pannel_foot" style="color: #00D089;">
 				  							Click here
 				  							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 				  						</p>
 				  					</a>	  					
-				  				</div>
+				  				</div> -->
 				  			<?php
 				  			}
-				  			if($_SESSION['rod_buyer'] == 'yes'){
+				  			if($_SESSION['balu_buyer'] == 'yes'){
 				  				?>
 				  				<div class="pannel_con" >
 				  					<a href="../vaucher/balu_buyer_entry.php">
@@ -223,7 +221,7 @@
 				  			<?php
 				  			}
 
-							  if($_SESSION['rod_buyer'] == 'yes'){
+							  if($_SESSION['balu_customer'] == 'yes'){
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/balu_customer_entry.php">
@@ -242,7 +240,7 @@
 								</div>
 							<?php
 							}
-							if($_SESSION['rod_report'] == 'yes'){
+							if($_SESSION['balu_report'] == 'yes'){
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/balu_report_buy_hisab.php">

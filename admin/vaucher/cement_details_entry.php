@@ -635,7 +635,320 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                 </div>
                 <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
+                    <form id="insertPopupForm">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>Dealer ID( আই ডি)</td>
+                                <td>
+                                    <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
+                                    <?php
+                                    $sql = "SELECT dealer_id FROM cement_dealer WHERE project_name_id ='$project_name_id'";
+                                    $all_custmr_id = $db->select($sql);
+                                    echo '<select name="dealer_id" id="dealer_id" class="form-control"  disabled>';
+                                    echo '<option value="none">Select...</option>';
+                                    if ($all_custmr_id->num_rows > 0) {
+                                        while ($row = $all_custmr_id->fetch_assoc()) {
+                                            $id = $row['dealer_id'];
+                                            echo '<option value="' . $id . '">' . $id . '</option>';
+                                        }
+                                    } else {
+                                        echo '<option value="none">0 Result</option>';
+                                    }
+                                    echo '</select>';
+                                    ?>
 
+                                </td>
+                            </tr>
+
+                            
+
+
+                            <!-- <input type="hidden" name="cement_details_id" id="cement_details_id"> -->
+                            <tr>
+                                <td>Driver Name (ড্রাইভারের নাম)</td>
+                                <td>
+                                    <input type="text" name="driver_name" class="form-control" id="driver_name_popup" placeholder="Enter Driver Name...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Motor Name (গাড়ী নাম)</td>
+                                <td>
+                                    <input type="text" name="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>id</td>
+                                <td>
+                                    <input type="text" name ="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
+                                </td>           
+                            </tr> -->
+                            <!-- <tr> -->
+                           
+                            <tr>
+                                <td>Motor Vara (গাড়ী ভাড়া)</td>
+                                <td>
+                                    <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Unload (আনলোড)</td>
+                                <td>
+                                    <input type="text" onkeypress="return isNumber(event)" name="unload" class="form-control value-calc-popup" id="unload_popup" placeholder="Unload">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cars rent & Redeem (গাড়ী ভাড়া ও খালাস)</td>
+                                <td>
+                                    <input type="text" name="cars_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Information (মালের বিবরণ)</td>
+                                <td>
+                                    <input type="text" name="information" class="form-control" id="information_popup" placeholder="Enter information...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SL (ক্রমিক)</td>
+                                <td>
+                                    <input type="text" name="sl_no" class="form-control" id="sl_popup" placeholder="Enter SL...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Challan No. (ভাউচার নং)</td>
+                                <td>
+                                    <input type="text" name="challan_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Address (ঠিকানা)</td>
+                                <td>
+                                    <input type="text" name="address" class="form-control" id="address_popup" placeholder="Enter address...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Motor Number (গাড়ী নাম্বার)</td>
+                                <td>
+                                    <input type="text" name="motor_number" class="form-control" id="motor_number_popup" placeholder="Enter motor number...">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Motor Sl (গাড়ী নং)</td>
+                                <td>
+                                    <input type="text" name="motor_sl" class="form-control" id="motor_sl_popup" placeholder="Enter Motor Sl...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Delivery Date (ডেলিভারি তারিখ)</td>
+                                <td>
+                                    <input onkeypress="datecheckformatpopup(event)" type="text" name="delivery_date" class="form-control" id="delivery_date_popup" placeholder="dd-mm-yyyy">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Date (তারিখ)</td>
+                                <td>
+                                    <input onkeypress="datecheckformatpopup(event)" type="text" name="dates" class="form-control" id="dates_popup" placeholder="dd-mm-yyyy">
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Partculars (মারফোত নাম)</td>
+                                <td>
+                                    <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Particulars (বিবরণ)</td>
+                                <td>
+                                    <?php
+                                    $pathor_catgry_sql = "SELECT * FROM pathor_category";
+                                    $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
+
+                                    echo '<select name="particulars" id="particulars_popup" class="form-control">';
+                                    echo '<option value="">Select...</option>';
+                                    if ($rslt_pathor_catgry->num_rows > 0) {
+                                        while ($row = $rslt_pathor_catgry->fetch_assoc()) {
+                                            $pathor_category_id = $row['id'];
+                                            $pathor_category_name = $row['category_name'];
+
+                                            echo '<option style="font-weight: bold;">' . $pathor_category_name . '</option>';
+
+                                            $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
+                                            $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
+                                            if ($rslt_pathor_lbl->num_rows > 0) {
+
+                                                while ($row2 = $rslt_pathor_lbl->fetch_assoc()) {
+                                                    $raol_id = $row2['id'];
+                                                    $raol_pathor_label = $row2['pathor_label'];
+                                                    $raol_pathor_category_id = $row2['pathor_category_id'];
+
+
+                                                    if ($pathor_category_id == $raol_pathor_category_id) {
+                                                        echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
+                                                    }
+                                                }
+                                            } else {
+                                                echo '<option>0 results</option>';
+                                            }
+                                        }
+                                    } else {
+                                        echo '<option>0 results</option>';
+                                    }
+                                    echo '</select> ';
+                                    ?>
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td>Debit (জমা টাকা)</td>
+                                <td>
+                                    <input type="text" name="debit" class="form-control value-calc-popup" id="debit_popup" placeholder="Enter debit...">
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Ton & Kg (টোন ও কেজি)</td>
+                                <td>
+                                    <input type="text" name="ton_kg" class="form-control" id="ton_kg_popup" placeholder="Enter Ton & Kg...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Length (দৈর্ঘ্যের)</td>
+                                <td>
+                                    <input type="text" name="length" class="form-control" id="length_popup" placeholder="Enter Length...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Width (প্রস্ত)</td>
+                                <td>
+                                    <input type="text" name="width" class="form-control" id="width_popup" placeholder="Enter Width...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Height (উচাঁ)</td>
+                                <td>
+                                    <input type="text" name="height" class="form-control" id="height_popup" placeholder="Enter height...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Shifty (সেপ্টি)</td>
+                                <td>
+                                    <input type="text" name="shifty" class="form-control" id="shifty_popup" placeholder="Enter Shifty...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Inchi (-) Minus (Inchi (-) বিয়োগ )</td>
+                                <td>
+                                    <input type="text" name="inchi_minus" class="form-control" id="inchi_minus_popup" placeholder="Enter Inchi (-) Minus...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cft ( - ) Dropped Out (সিএফটি ( - ) বাদ)</td>
+                                <td>
+                                    <input type="text" name="cft_dropped_out" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Inchi (+) Added (Inchi (+) যোগ) </td>
+                                <td>
+                                    <input type="text" name="inchi_added" class="form-control" id="inchi_added_popup" placeholder="Enter Inchi (+) Added ...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Points ( - ) Dropped Out (পয়েন্ট ( - ) বাদ) </td>
+                                <td>
+                                    <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Shift(সেপ্টি) </td>
+                                <td>
+                                    <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total Shift(মোট সেপ্টি) </td>
+                                <td>
+                                    <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td> Para's (দর) </td>
+                                <td>
+                                    <input type="text" name="paras" class="form-control value-calc-popup" id="paras_popup" placeholder="Enter Paras ...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Discount(কমিশন) </td>
+                                <td>
+                                    <input type="text" name="discount" class="form-control value-calc-popup" id="discount_popup" placeholder="Enter Discount ...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Credit(মূল) </td>
+                                <td>
+                                    <input type="text" name="credit" class="form-control value-calc-popup" id="credit_popup" placeholder="Enter Credit ...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Balance(অবশিষ্ট) </td>
+                                <td>
+                                    <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup" placeholder="Enter Balance  ...">
+                                </td>
+                            </tr>
+
+                            <!-- <tr>
+                                <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
+                                <td>
+                                    <input type="text" name="cemeats_paras" class="form-control value-calc-popup" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
+                                </td>
+                            </tr> -->
+                            <!-- <td>Ton(টোন)</td>
+                            <td>
+                                <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>Total Shifts(সেপ্টি)</td>
+                                <td>
+                                    <input type="text" name="total_shifts" class="form-control" id="total_shifts_popup" placeholder="Enter Total Shifts...">
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td>Count</td>
+                                <td>
+                                    <input type="text" name="count" class="form-control" id="count_popup" placeholder="Enter Count...">
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Bank Name</td>
+                                <td>
+                                    <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td>Fee(ফি)</td>
+                                <td>
+                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter Fee...">
+                                </td>
+                            </tr>
+                        </table>
+                        <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
+                        <?php
+                        // $sql = "SELECT id FROM details_pathor";
+                        // $id = $db->select($sql);
+                        // if ($id->num_rows > 0) {
+                        //     while ($row = $id->fetch_assoc()) {
+                        //         $id2 = $row['id'];
+                        //        echo '<input type="hidden" name="cement_details_id" id="cement_details_id" value="' . $id2 . '">' ;
+                        //     }
+                        // } 
+                        ?>
+                        <input type="hidden" name="cement_details_id" id="cement_details_id">
+                        <div class="pop_btn_con">
+                            <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
+                            <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -690,6 +1003,17 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
 
 
                     $('#dates').bind('keydown', function(e) {
+                        if (e.which == 13)
+                            e.stopImmediatePropagation();
+                    }).datepicker({
+                        onSelect: function(date) {
+                            // alert(date);
+                            $(this).change();
+                        },
+                        dateFormat: "dd-mm-yy",
+                        changeYear: true,
+                    });
+                    $('#dates2').bind('keydown', function(e) {
                         if (e.which == 13)
                             e.stopImmediatePropagation();
                     }).datepicker({
@@ -1051,7 +1375,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                 // processData: false,
                 // contentType: false,
                 data: {
-                    'pathor_details_id': rod_id
+                    'cement_details_id': rod_id
                 },
                 success: function(res) {
                     console.log(res);
@@ -1094,22 +1418,22 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
         function edit_rod_popup(element, rowid) {
             var buyr_id = $(element).closest('tr').find('td:eq(0)').text();
             // var dlar_id         = $(element).closest('tr').find('td:eq(1)').text();
-            var motor_name = $(element).closest('tr').find('td:eq(1)').text();
-            var driver_name = $(element).closest('tr').find('td:eq(2)').text();
+            var motor_name = $(element).closest('tr').find('td:eq( 2)').text();
+            var driver_name = $(element).closest('tr').find('td:eq(1)').text();
             var motor_vara = $(element).closest('tr').find('td:eq(3)').text();
             var unload = $(element).closest('tr').find('td:eq(4)').text();
             var cars_rent_redeem = $(element).closest('tr').find('td:eq(5)').text();
             var information = $(element).closest('tr').find('td:eq(6)').text();
             var sl = $(element).closest('tr').find('td:eq(7)').text();
-            var voucher_no = $(element).closest('tr').find('td:eq(8)').text();
-            var address = $(element).closest('tr').find('td:eq(9)').text();
+            var voucher_no = $(element).closest('tr').find('td:eq(9)').text();
+            var address = $(element).closest('tr').find('td:eq(8)').text();
             var motor_number = $(element).closest('tr').find('td:eq(10)').text();
             var motor_sl = $(element).closest('tr').find('td:eq(11)').text();
             var delivery_date = $(element).closest('tr').find('td:eq(12)').text();
             var date = $(element).closest('tr').find('td:eq(13)').text();
             var partculars = $(element).closest('tr').find('td:eq(14)').text();
             var particulars = $(element).closest('tr').find('td:eq(15)').text();
-            var debit = $(element).closest('tr').find('td:eq(16)').text();
+            var debit = $(element).closest('tr').find('td:eq(17)').text();
             var ton_kg = $(element).closest('tr').find('td:eq(17)').text();
             var length = $(element).closest('tr').find('td:eq(18)').text();
             var width = $(element).closest('tr').find('td:eq(19)').text();
@@ -1135,7 +1459,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
 
             // alert(buyr_id);
             // $('#dealer_id').val(dlar_id);
-            $('#pathor_details_id').val(rowid);
+            $('#cement_details_id').val(rowid);
 
 
             $('#buyer_id_popup').val(buyr_id);
@@ -1464,36 +1788,36 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                 $('#balance').val(balance.toFixed(3));
             }
 
-            // var motor_vara = $('#motor_vara').val();
-            // var unload = $('#unload').val();
-            // if (motor_vara == '') {
-            //     $('#motor_vara').attr("placeholder", "motor vara");
-            //     //  $('#motor_vara').attr("value", "0");
-            //     //  $('#motor_vara').val(0);
+            var motor_vara = $('#motor_vara').val();
+            var unload = $('#unload').val();
+            if (motor_vara == '') {
+                $('#motor_vara').attr("placeholder", "motor vara");
+                //  $('#motor_vara').attr("value", "0");
+                //  $('#motor_vara').val(0);
 
-            //     $('#car_rent_redeem').val(unload);
-            //     $('#cemeats_paras').val(unload);
-            // } else if (unload == '') {
-            //     $('#unload').attr("placeholder", "unload");
-            //     //  $('#unload').attr("value", "0");
-            //     //  $('#unload').val(0);
+                $('#car_rent_redeem').val(unload);
+                $('#cemeats_paras').val(unload);
+            } else if (unload == '') {
+                $('#unload').attr("placeholder", "unload");
+                //  $('#unload').attr("value", "0");
+                //  $('#unload').val(0);
 
-            //     $('#car_rent_redeem').val(motor_vara);
-            //     $('#cemeats_paras').val(motor_vara);
-            // } else if (unload == 0 && motor_vara == 0) {
-            //     $('#car_rent_redeem').val(0);
-            // } else {
+                $('#car_rent_redeem').val(motor_vara);
+                $('#cemeats_paras').val(motor_vara);
+            } else if (unload == 0 && motor_vara == 0) {
+                $('#car_rent_redeem').val(0);
+            } else {
 
 
-            //     //                 $('#motor_vara').focus(function(){
-            //     //                     $('#motor_vara').value('')
-            //     // });
+                //                 $('#motor_vara').focus(function(){
+                //                     $('#motor_vara').value('')
+                // });
 
-            //     var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
-            //     // alert(balance);
-            //     $('#car_rent_redeem').val(car_rent_redeem);
-            //     $('#cemeats_paras').val(car_rent_redeem);
-            // }
+                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+                // alert(balance);
+                $('#car_rent_redeem').val(car_rent_redeem);
+                $('#cemeats_paras').val(car_rent_redeem);
+            }
 
 
 
@@ -1633,7 +1957,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - discountp2;
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }
@@ -1977,7 +2301,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
         function myFunction() {
 
             var header = document.getElementById('city_center_id');
-            // var summary = document.getElementById('panel');
+            var summary = document.getElementById('panel');
             var details = document.getElementById('detailsNewTable2');
             var wme = window.open("", "", "width=900,height=700, scrollbars=yes");
 
@@ -1986,7 +2310,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
             wme.document.write('<style>td, th{border: 1px solid #868686; padding: 4px; }#detailsNewTable2{border-collapse: collapse;}.text-center{text-align: center; margin: 6px 0px;}.summary{border-collapse: collapse; margin-bottom: 20px;}.no_print_media{display: none !important;}.hastext{text-align: right;}</style>');
 
             wme.document.write(header.outerHTML);
-            // wme.document.write(summary.outerHTML);
+            wme.document.write(summary.outerHTML);
             wme.document.write(details.outerHTML);
 
 
@@ -2065,7 +2389,8 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
         function isNumber(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            // if ((charCode > 31 || charCode < 46)&& charCode == 47 && (charCode < 48 || charCode > 57)) {
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
                 Swal.fire("Should be enter a number value");
                 // alert("Should be enter a number value");
                 console.log("Workkkkk", evt);
