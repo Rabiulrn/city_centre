@@ -429,7 +429,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
               while ($row = $all_custmr_id->fetch_assoc()) {
                 $id = $row['dealer_id'];
                 $dealer_name = $row['dealer_name'];
+<<<<<<< HEAD
 
+=======
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                 echo '<option value="' . $id . '">'.$id.'--'.$dealer_name.'</option>';
               }
             } else {
@@ -536,7 +539,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''AND project_name_id = '$project_name_id' ";
+            $sql = "SELECT DISTINCT category_name FROM pathor_category WHERE  category_name != ''";
             $all_particular = $db->select($sql);
             echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
             echo '<option value="none">Select...</option>';

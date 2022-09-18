@@ -644,7 +644,11 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                                     <?php
                                     $sql = "SELECT dealer_id FROM cement_dealer WHERE project_name_id ='$project_name_id'";
                                     $all_custmr_id = $db->select($sql);
+<<<<<<< HEAD
                                     echo '<select name="dealer_id" id="dealer_id" class="form-control"  disabled>';
+=======
+                                    echo '<select name="dealer_id" id="dealer_id" class="form-control"  required">';
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                                     echo '<option value="none">Select...</option>';
                                     if ($all_custmr_id->num_rows > 0) {
                                         while ($row = $all_custmr_id->fetch_assoc()) {
@@ -663,7 +667,11 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                             
 
 
+<<<<<<< HEAD
                             <!-- <input type="hidden" name="cement_details_id" id="cement_details_id"> -->
+=======
+                            <!-- <input type="hidden" name="pathor_details_id" id="pathor_details_id"> -->
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                             <tr>
                                 <td>Driver Name (ড্রাইভারের নাম)</td>
                                 <td>
@@ -717,7 +725,11 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                             <tr>
                                 <td>Challan No. (ভাউচার নং)</td>
                                 <td>
+<<<<<<< HEAD
                                     <input type="text" name="challan_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
+=======
+                                    <input type="text" name="voucher_no" class="form-control" id="voucher_no_popup" placeholder="Enter Voucher No...">
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                                 </td>
                             </tr>
                             <tr>
@@ -895,12 +907,20 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                                 </td>
                             </tr>
 
+<<<<<<< HEAD
                             <!-- <tr>
+=======
+                            <tr>
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
                                 <td>
                                     <input type="text" name="cemeats_paras" class="form-control value-calc-popup" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
                                 </td>
+<<<<<<< HEAD
                             </tr> -->
+=======
+                            </tr>
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                             <!-- <td>Ton(টোন)</td>
                             <td>
                                 <input type="text" name="ton" class="form-control" id="ton _popup" placeholder="Enter Ton...">
@@ -913,17 +933,30 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                                 </td>
                             </tr> -->
                             <tr>
+<<<<<<< HEAD
                                 <td>Count</td>
                                 <td>
                                     <input type="text" name="count" class="form-control" id="count_popup" placeholder="Enter Count...">
                                 </td>
                             </tr>
                             <!-- <tr>
+=======
+                                <td>Tons (টোন)</td>
+                                <td>
+                                    <input type="text" name="tons" class="form-control" id="tons_popup" placeholder="Enter Tons...">
+                                </td>
+                            </tr>
+                            <tr>
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                                 <td>Bank Name</td>
                                 <td>
                                     <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
                                 </td>
+<<<<<<< HEAD
                             </tr> -->
+=======
+                            </tr>
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                             <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
@@ -938,11 +971,19 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                         // if ($id->num_rows > 0) {
                         //     while ($row = $id->fetch_assoc()) {
                         //         $id2 = $row['id'];
+<<<<<<< HEAD
                         //        echo '<input type="hidden" name="cement_details_id" id="cement_details_id" value="' . $id2 . '">' ;
                         //     }
                         // } 
                         ?>
                         <input type="hidden" name="cement_details_id" id="cement_details_id">
+=======
+                        //        echo '<input type="hidden" name="pathor_details_id" id="pathor_details_id" value="' . $id2 . '">' ;
+                        //     }
+                        // } 
+                        ?>
+                        <input type="hidden" name="pathor_details_id" id="pathor_details_id">
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
                         <div class="pop_btn_con">
                             <input onclick="valid('insert_popup')" type="button" name="submit" class="btn btn-primary popup_save_btn" value="Save" id="popup_save_update_btn">
                             <input type="button" class="btn btn-danger popup_cancel_btn" value="Cancel" id="popup_cancel_btn">

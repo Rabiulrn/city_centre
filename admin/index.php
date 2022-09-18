@@ -74,6 +74,17 @@
         $_SESSION['pathor_stocks']       = $row['pathor_stocks'];
 
 
+        $_SESSION['cement_hisab']        = $row['cement_hisab'];
+        $_SESSION['cement_kroy_hisab']   = $row['cement_kroy_hisab'];
+        $_SESSION['cement_bikroy_hisab'] = $row['cement_bikroy_hisab'];
+        $_SESSION['cement_category']     = $row['cement_category'];
+        $_SESSION['cement_dealer']       = $row['cement_dealer'];
+        $_SESSION['cement_customer']     = $row['cement_customer'];
+        $_SESSION['cement_buyer']        = $row['cement_buyer'];
+        $_SESSION['cement_report']       = $row['cement_report'];
+        $_SESSION['cement_stocks']       = $row['cement_stocks'];
+
+
         $_SESSION['rod_hisab']        = $row['rod_hisab'];
         $_SESSION['rod_kroy_hisab']   = $row['rod_kroy_hisab'];
         $_SESSION['rod_bikroy_hisab'] = $row['rod_bikroy_hisab'];

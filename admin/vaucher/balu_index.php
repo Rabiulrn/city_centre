@@ -184,7 +184,11 @@
 				  				</div>
 				  			<?php
 				  			}
+<<<<<<< HEAD
 				  			if($_SESSION['balu_stocks'] == 'yes'){
+=======
+				  			if($_SESSION['balu_customer'] == 'yes'){
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
 				  				?>
 				  				<!-- <div class="pannel_con" >
 				  					<a href="../vaucher/balu_stocks.php">
@@ -221,7 +225,11 @@
 				  			<?php
 				  			}
 
+<<<<<<< HEAD
 							  if($_SESSION['balu_customer'] == 'yes'){
+=======
+							  if($_SESSION['balu_buyer'] == 'yes'){
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/balu_customer_entry.php">

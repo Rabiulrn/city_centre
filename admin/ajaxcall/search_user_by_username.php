@@ -167,6 +167,114 @@ if ($usernamePost) {
             <input type="checkbox" name="doinik_hisab" id="doinik_hisab" onchange="checkUncheck(this)" value="<?php //echo $doinik_hisab;
                                                                                                               ?>" <?php //echo ($doinik_hisab == 'yes' ? 'checked' : '');
                                                                                                                                               ?>> দৈনিক হিসাব
+<<<<<<< HEAD
+=======
+        </label>
+      </div> -->
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="protidiner_hisab" id="protidiner_hisab" onchange="checkUncheck(this)" value="<?php echo $protidiner_hisab; ?>" <?php echo ($protidiner_hisab == 'yes' ? 'checked' : ''); ?>> প্রতিদিনের হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="modify_data" id="modify_data" onchange="checkUncheck(this)" value="<?php echo $modify_data; ?>" <?php echo ($modify_data == 'yes' ? 'checked' : ''); ?>> মডিফাই ডাটা
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="joma_khat" id="joma_khat" onchange="checkUncheck(this)" value="<?php echo $joma_khat; ?>" <?php echo ($joma_khat == 'yes' ? 'checked' : ''); ?>> জমা খাত এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="khoros_khat" id="khoros_khat" onchange="checkUncheck(this)" value="<?php echo $khoros_khat; ?>" <?php echo ($khoros_khat == 'yes' ? 'checked' : ''); ?>> খরচ খাতের হেডার
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="khoros_khat_entry" id="khoros_khat_entry" onchange="checkUncheck(this)" value="<?php echo $khoros_khat_entry; ?>" <?php echo ($khoros_khat_entry == 'yes' ? 'checked' : ''); ?>>
+        খরচ খাত এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="nije_pabo" id="nije_pabo" onchange="checkUncheck(this)" value="<?php echo $nije_pabo; ?>" <?php echo ($nije_pabo == 'yes' ? 'checked' : ''); ?>> নিজে পাবো এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="paonader" id="paonader" onchange="checkUncheck(this)" value="<?php echo $paonader; ?>" <?php echo ($paonader == 'yes' ? 'checked' : ''); ?>> পাওনাদার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="report" id="report" onchange="checkUncheck(this)" value="<?php echo $report; ?>" <?php echo ($report == 'yes' ? 'checked' : ''); ?>> রিপোর্ট
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="agrim_hisab" id="agrim_hisab" onchange="checkUncheck(this)" value="<?php echo $agrim_hisab; ?>" <?php echo ($agrim_hisab == 'yes' ? 'checked' : ''); ?>> অগ্রিম হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cash_calculator" id="cash_calculator" onchange="checkUncheck(this)" value="<?php echo $cash_calculator; ?>" <?php echo ($cash_calculator == 'yes' ? 'checked' : ''); ?>> ক্যাশ ক্যালকুলেটর
+      </label>
+    </div>
+    <!--  =======Added by manzu========== -->
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="raj_kajer_all_hisab" id="raj_kajer_all_hisab" onchange="checkUncheck(this)" value="<?php echo $raj_kajer_all_hisab; ?>" <?php echo ($raj_kajer_all_hisab == 'yes' ? 'checked' : ''); ?>> রাজ কাজের হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="electric_kroy_bikroy" id="electric_kroy_bikroy" onchange="checkUncheck(this)" value="<?php echo $electric_kroy_bikroy; ?>" <?php echo ($electric_kroy_bikroy == 'yes' ? 'checked' : ''); ?>> ইলেকট্রিক মালামাল ক্রয় হিসাব
+      </label>
+    </div>
+
+
+    <div class="pagename" style="margin-right: 15px;">পাথর হিসাব</div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_kroy_hisab" id="pathor_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $pathor_kroy_hisab; ?>" <?php echo ($pathor_kroy_hisab == 'yes' ? 'checked' : ''); ?>> ক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_bikroy_hisab" id="pathor_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $pathor_bikroy_hisab; ?>" <?php echo ($pathor_bikroy_hisab == 'yes' ? 'checked' : ''); ?>> বিক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_category" id="pathor_category" onchange="checkUncheck(this)" value="<?php echo $pathor_category; ?>" <?php echo ($pathor_category == 'yes' ? 'checked' : ''); ?>> ক্যাটাগরি এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_dealer" id="pathor_dealer" onchange="checkUncheck(this)" value="<?php echo $pathor_dealer; ?>" <?php echo ($pathor_dealer == 'yes' ? 'checked' : ''); ?>> ডিলার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_customer" id="pathor_customer" onchange="checkUncheck(this)" value="<?php echo $pathor_customer; ?>" <?php echo ($pathor_customer == 'yes' ? 'checked' : ''); ?>> কাস্টমার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_buyer" id="pathor_buyer" onchange="checkUncheck(this)" value="<?php echo $pathor_buyer; ?>" <?php echo ($pathor_buyer == 'yes' ? 'checked' : ''); ?>> বায়ার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="pathor_stocks" id="pathor_stocks" onchange="checkUncheck(this)" value="<?php echo $pathor_stocks; ?>" <?php echo ($pathor_stocks == 'yes' ? 'checked' : ''); ?>> স্টক তথ্য
+      </label>
+    </div>
+    <!-- <div class="check-group">
+        <label>
+            <input type="checkbox" name="pathor_report" id="balu_report" onchange="checkUncheck(this)" value="<?php echo $pathor_report; ?>" <?php echo ($pathor_report == 'yes' ? 'checked' : ''); ?>> রিপোর্ট
+>>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
         </label>
       </div> -->
     <div class="check-group">
@@ -318,6 +426,50 @@ if ($usernamePost) {
     <div class="check-group">
       <label>
         <input type="checkbox" name="cement_report" id="cement_report" onchange="checkUncheck(this)" value="<?php echo $cement_report; ?>" <?php echo ($cement_report == 'yes' ? 'checked' : ''); ?>>  রিপোর্ট
+      </label>
+    </div>
+
+
+
+      <div class="pagename" style="margin-right: 15px;">সিমেন্ট হিসাব</div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_kroy_hisab" id="cement_kroy_hisab" onchange="checkUncheck(this)" value="<?php echo $cement_kroy_hisab; ?>" <?php echo ($cement_kroy_hisab == 'yes' ? 'checked' : ''); ?>> ক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_bikroy_hisab" id="cement_bikroy_hisab" onchange="checkUncheck(this)" value="<?php echo $cement_bikroy_hisab; ?>" <?php echo ($cement_bikroy_hisab == 'yes' ? 'checked' : ''); ?>> বিক্রয় হিসাব
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_category" id="cement_category" onchange="checkUncheck(this)" value="<?php echo $cement_category; ?>" <?php echo ($cement_category == 'yes' ? 'checked' : ''); ?>> ক্যাটাগরি এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_dealer" id="cement_dealer" onchange="checkUncheck(this)" value="<?php echo $cement_dealer; ?>" <?php echo ($cement_dealer == 'yes' ? 'checked' : ''); ?>> ডিলার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_customer" id="cement_customer" onchange="checkUncheck(this)" value="<?php echo $cement_customer; ?>" <?php echo ($cement_customer == 'yes' ? 'checked' : ''); ?>> কাস্টমার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_buyer" id="cement_buyer" onchange="checkUncheck(this)" value="<?php echo $cement_buyer; ?>" <?php echo ($cement_buyer == 'yes' ? 'checked' : ''); ?>> বায়ার এন্ট্রি
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_stocks" id="cement_stocks" onchange="checkUncheck(this)" value="<?php echo $cement_stocks; ?>" <?php echo ($cement_stocks == 'yes' ? 'checked' : ''); ?>> স্টক তথ্য
+      </label>
+    </div>
+    <div class="check-group">
+      <label>
+        <input type="checkbox" name="cement_report" id="cement_report" onchange="checkUncheck(this)" value="<?php echo $cement_report; ?>" <?php echo ($cement_report == 'yes' ? 'checked' : ''); ?>> স্ত
       </label>
     </div>
 
