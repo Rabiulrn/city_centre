@@ -68,7 +68,7 @@
 
     // $sql = "INSERT INTO details_balu (motor_name, driver_name, motor_vara, unload, cars_rent_redeem, information, buyer_id, dealer_id, voucher_no, address, motor_no, motor_sl, delivery_date, dates, partculars, debit, ton & kg, length, width , height, inchi(-)_minus, credit, cft(-)_dropped_out, inchi(+)_added, points(-)_dropped_out, shift, total_shift, paras, discount, credit, cemeats_paras, ton, total_shifts, tons, bank_name, fee, project_name_id) 
     // VALUES('$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information', '$buyer_id', '$delear_id', '$voucher_no', '$address', '$motor_no', '$motor_sl', '$delivery_date', '$dates', '$partculars', '$particulars', '$debit', '$ton_kg', '$length', '$width', '$height ','$inchi_minus','$cft_dropped_out', '$inchi_added', '$points_dropped_out', '$shift', '$total_shift', '$paras', '$discount', '$credit', '$cemeats_paras', '$ton', '$total_shifts', '$tons', '$bank_name', '$fee', '$project_name_id')";
-    if($buyer_id != 'none'){
+    if($dealer_id != 'none'){
     $sql = "INSERT INTO `details_pathor`
            (`buyer_id`,`dealer_id`,`type`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `voucher_no`, `address`, `motor_no`, `motor_sl`, `delivery_date`, `dates`, `partculars`, `particulars`, `debit`, `ton & kg`, `length`, `width`, `height`, `shifty`, `inchi (-)_minus`, `cft (-)_dropped Out`, `inchi (+)_added`, `points ( - )_dropped out`, `shift`, `total_shift`, `paras`, `discount`, `credit`,`balance`, `cemeats_paras`, `ton`, `total_shifts`, `tons`, `bank_name`, `fee`,`project_name_id`) 
     VALUES ('$buyer_id', '$dealer_id','$type', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$voucher_no', '$address', '$motor_no', '$motor_sl', '$delivery_date', '$dates', '$partculars', '$particulars', '$debit', '$ton_kg', '$length', '$width', '$height ', '$shifty', '$inchi_minus','$cft_dropped_out', '$inchi_added', '$points_dropped_out', '$shift', '$total_shift', '$paras', '$discount', '$credit','$balance', '$cemeats_paras', '$ton', '$total_shifts', '$tons', '$bank_name', '$fee','$project_name_id')";
@@ -85,15 +85,15 @@ $sql2 = "INSERT INTO `stocks_pathor` (`stock_id`, `partculars`, `particulars`, `
         echo "Error: " . $sql . "<br>" . $db->error;
     }
   
-    $result = $db->insert($sql2);
-    if ($result) 
-    {
-        $sucMsg = "Stocks Saved Successfully.";
-        $sucMsgPopup = "Stocks Saved Successfully.";
-        echo $sucMsg;
-    } else{
-        echo "Error: " . $sql . "<br>" . $db->error;
-    }
+    // $result = $db->insert($sql2);
+    // if ($result) 
+    // {
+    //     $sucMsg = "Stocks Saved Successfully.";
+    //     $sucMsgPopup = "Stocks Saved Successfully.";
+    //     echo $sucMsg;
+    // } else{
+    //     echo "Error: " . $sql . "<br>" . $db->error;
+    // }
   
     }
   ?>

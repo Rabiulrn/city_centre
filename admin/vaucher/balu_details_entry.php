@@ -630,6 +630,16 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                             }
                             echo '</select>';
                             ?></td>
+
+                            <td style="
+                            border: 1px solid;
+                            padding-right: 20px;
+                            ">
+                            <input type="text" placeholder="divided by 12" id="twelve" class="value-calc" onkeypress="return isNumber(event)"></input>
+                             
+                             <span style="min-width: 85px" id="output_t" class="value-calc">result</span>
+                            </td>
+                            
                     </tr>
                 </table>
             </div>
@@ -1517,7 +1527,10 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             //         $('#total_shifts').val(input_cft);
             // }
 
-
+            var cal = $('#twelve').val();
+             var cal2 = cal/12; 
+             $('#output_t').html(cal2.toFixed(2));
+            console.log(cal);
 
             if (kg != '') {
                 $('#paras').attr("placeholder", "rate");
@@ -1563,7 +1576,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             var cft_dropped_out = $('#cft_dropped_out').val();
             var inchi_added = $('#inchi_added').val();
             var points_dropped_out = $('#points_dropped_out').val();
-
+            
 
             if (length != '' || width != '' || height != '') {
 
@@ -1598,7 +1611,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
                     // $('#shift').attr('value', 'shifty2.toFixed(3)');
                     // $('#total_shift').val(shifty2.toFixed(2));
-                    // $('#total_shifts').val(shifty2.toFixed(2));
+                    $('#total_shifts').val(shifty2.toFixed(2));
                 } else {
                     var shift_to_ton = shifty / 23.5;
                     // alert(credit);
@@ -1607,7 +1620,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                     $('#tons').val(shift_to_ton.toFixed(2));
                     $('#shift').val(shifty.toFixed(3));
                     // $('#total_shift').val(shifty.toFixed(2));
-                    // $('#total_shifts').val(shifty.toFixed(2));
+                    $('#total_shifts').val(shifty.toFixed(2));
 
                 }
             } else if (width == '') {
@@ -1631,11 +1644,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
             // else if(length != ''){
             //     $('#kg').val('0');
             // }
-            else {
-
-
-
-            }
+          
 
 
             //ton and kg
@@ -1657,6 +1666,7 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
 
                 $('#shifty').attr("placeholder", "not applicable").prop("disabled", true);
                 $('#shift').attr("placeholder", "not applicable").prop("disabled", true);
+                // $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
                 $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
                 $('#ton').attr("placeholder", "not applicable").prop("disabled", true);
                 // $('#height').attr("placeholder", "not applicable").prop("disabled", true).css("background-color","gray");
@@ -1697,8 +1707,8 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
                 $("#points_dropped_out").attr("readonly", false);
 
 
-                $('#shifty').prop("disabled", true);
-                $('#shift').prop("disabled", true);
+                $('#shifty').prop("disabled", false);
+                $('#shift').prop("disabled", false);
                 $('#total_shift').prop("disabled", false);
                 $('#ton').prop("disabled", false);
 
@@ -2432,6 +2442,13 @@ $_SESSION['pageName'] = 'balu_kroy_hisab';
         });
     </script>
     <script src="../js/common_js.js"> </script>
+    <!-- <script>
+        var myElement = document.getElementById('twelve').value;
+        var temp = myElement +12;
+        document.getElementById('ouput_t').text = temp;
+        console.log(myElement);
+        console.log(temp);
+      </script> -->
 </body>
 
 </html>

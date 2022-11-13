@@ -10,6 +10,7 @@
 
 
     $buyer_id       = trim($_POST['buyer_id']);
+    $dealer_id       = trim($_POST['dealer_id']);
     // $type = trim($_POST['type']);
     $motor_name           = trim($_POST['motor_name']);
     $driver_name           = trim($_POST['driver_name']);
@@ -18,12 +19,15 @@
     $car_rent_redeem  = trim($_POST['car_rent_redeem']);
     $information      = trim($_POST['information']);
     // $delear_id      = trim($_POST['delear_id']);
-    $dealer_id      = trim($_SESSION['dealerIdInput']);
+    // $dealer_id      = trim($_SESSION['dealerIdInput']);
     $sl      = trim($_POST['sl_no']);
     $challan_no     = trim($_POST['challan_no']);
     $address        = trim($_POST['address']);
+    $customer_id        = trim($_POST['customer_id']);
     $motor_no          = trim($_POST['motor']);
     $motor_sl    = trim($_POST['motor_no']);
+    $oil_free    = trim($_POST['oil_free']);
+    $oil_sell    = trim($_POST['oil_sell']);
   
     // $delivery_date  = trim($_POST['delivery_date']);
     if($_POST['challan_date'] == ''){
@@ -47,8 +51,13 @@
     }
     $partculars     = trim($_POST['partculars']);
     $particulars    = trim($_POST['particulars']);
+    list($data_id, $data_name) = explode(",", $_POST['particulars'], 2);
     $debit        = trim($_POST['debit']);
+    $debit2        = trim($_POST['debit2']);
+    $monthly_com        = trim($_POST['monthly_com']);
+    $yearly_com        = trim($_POST['yearly_com']);
     $count          = trim($_POST['count']);
+    $count2          = trim($_POST['count2']);
     $fee  = trim($_POST['fee']);
    
    
@@ -64,8 +73,8 @@
     // VALUES('$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information', '$buyer_id', '$delear_id', '$voucher_no', '$address', '$motor_no', '$motor_sl', '$delivery_date', '$dates', '$partculars', '$particulars', '$debit', '$ton_kg', '$length', '$width', '$height ','$inchi_minus','$cft_dropped_out', '$inchi_added', '$points_dropped_out', '$shift', '$total_shift', '$paras', '$discount', '$credit', '$cemeats_paras', '$ton', '$total_shifts', '$tons', '$bank_name', '$fee', '$project_name_id')";
     if($buyer_id != 'none'){
     $sql = "INSERT INTO `details_cement`
-    (`buyer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`, `so_date`, `dates`, `partculars`, `particulars`, `debit`,`challan_date`, `total_credit`, `paras`, `discount`, `credit`, `balance`, `weight`, `count`, `fee`,`project_name_id`) 
-    VALUES ('$buyer_id', '$dealer_id', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$challan_no', '$address', '$motor_no', '$motor_sl', '$so_date', '$dates', '$partculars', '$particulars', '$debit','$challan_date', '$total_credit', '$paras', '$discount', '$credit', '$balance', '$weight','$count', '$fee','$project_name_id')";
+    (`buyer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`,`customer_id`, `motor_no`, `motor_sl`,`oil_free`,`oil_sell`, `so_date`, `dates`, `partculars`, `particulars`,`particulars_id`, `debit`,`debit2`,`monthly_com`,`yearly_com`,`challan_date`, `total_credit`, `paras`, `discount`, `credit`, `balance`, `weight`, `count`,`count2`, `fee`,`project_name_id`) 
+    VALUES ('$buyer_id', '$dealer_id', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$challan_no', '$address','$customer_id', '$motor_no','$motor_sl', '$oil_free','$oil_sell', '$so_date', '$dates', '$partculars', '$data_name','$data_id','$debit','$debit2','$monthly_com','$yearly_com','$challan_date', '$total_credit', '$paras', '$discount', '$credit', '$balance', '$weight','$count','$count2', '$fee','$project_name_id')";
     
 // $sql = "INSERT INTO `details_cement`
 // (`buyer_id`, `dealer_id`, `motor_name`, `driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`, `so_date`, `dates`, `partculars`, `particulars`, `debit`, `challan_date`, `count`, `total_credit`, `weight`, `paras`, `discount`, `credit`, `balance`, `fee`, `project_name_id`) 

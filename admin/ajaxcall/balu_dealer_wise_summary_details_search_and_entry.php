@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+</head>
+<body>
+  
+
 <?php
 session_start();
 require '../config/config.php';
@@ -68,19 +79,19 @@ $motor_vara_and_unload = $motor_vara + $unload;
 
 //End GB Bank Ganti
 // Start total total_kg
-$sql = "SELECT SUM(total_shift) as shift FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_shift = $row['shift'];
-    if (is_null($total_shift)) {
-      $total_shift = 0;
-    }
-  }
-} else {
-  $total_shift = 0;
-}
-$total_ton = $total_shift / 23.5;
+// $sql = "SELECT SUM(total_shift) as shift FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+// $result = $db->select($sql);
+// if ($result->num_rows > 0) {
+//   while ($row = $result->fetch_assoc()) {
+//     $total_shift = $row['shift'];
+//     if (is_null($total_shift)) {
+//       $total_shift = 0;
+//     }
+//   }
+// } else {
+//   $total_shift = 0;
+// }
+// $total_ton = $total_shift / 23.5;
 // End total total_kg
 // Start total total_kg
 $sql = "SELECT SUM(tons) as ton_kg FROM details_balu WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
@@ -95,7 +106,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_ton_kg = 0;
 }
-// $total_ton = $total_shift / 23.5;
+$total_shift = $total_ton_kg * 23.5;
 // End total total_kg
 
 // Start total total_credit/mot_mul
@@ -111,6 +122,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_credit = 0;
 }
+$total_credit = number_format($total_credit, 2);
 // End total total_credit/mot_mul
 
 // Start total total_debit/joma
@@ -203,10 +215,15 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
 			<td class="hastext" width="150px">04.50mm 400W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td> -->
-      <td class="hastext">মোট সেপ্টি </td>
-      <td style="min-width: 85px"><?php echo $total_shift; ?></td>
-      <!-- <td class="hastext">জ‌িব‌ি ব্যাংক গ্যান্ট‌িঃ</td>
-			<td style="min-width: 85px"><?php echo $gb_bank_ganti; ?></td> -->
+      <td class="hastext">মোট সিএফটি </td>
+      <td style="min-width: 85px"><?php
+       $format_number2 = number_format($total_shift, 2);
+      echo $format_number2; ?></td>
+      <!-- <td class="hastext">
+      <input type="text" placeholder="divided by 12" id="twelve"></input>
+			<td style="min-width: 85px" id="output_t"></td>
+      </td> -->
+      
 
     </tr>
     <tr>
@@ -214,7 +231,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm06_rod500; ?></td>
 			<td class="hastext">06mm 400W/60G</td>
 			<td><?php echo $mm06_rod400; ?></td> -->
-      <td class="hastext">মোট টোনঃ</td>
+      <td class="hastext">মোট টন</td>
       <td><?php
           $format_number1 = number_format($total_ton_kg, 2);
           echo $format_number1; ?></td>
@@ -236,10 +253,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm10_rod500; ?></td>
 			<td class="hastext">10mm 400W/60G</td>
 			<td><?php echo $mm10_rod400; ?></td> -->
+      <!-- <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td></td> -->
     </tr>
     <tr>
       <!-- <td class="hastext">12mm 500W/60G</td>
@@ -255,6 +272,8 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
     <tr>
       <td class="hastext">মোট গাড়ীঃ</td>
       <td><?php echo $total_motor; ?></td>
+      <td class="hastext">ম‌োট মূলঃ</td>
+      <td><?php echo $total_credit; ?></td>
     </tr>
     <tr>
       <!-- <td class="hastext">16mm 500W/60G</td>
@@ -263,8 +282,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm16_rod400; ?></td> -->
       <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
       <td><?php echo $motor_vara; ?></td>
-      <td class="hastext">ম‌োট মূলঃ</td>
-      <td><?php echo $total_credit; ?></td>
+      <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
+      <td><?php echo $vara_credit; ?></td>
+    
     </tr>
     <tr>
       <!-- <td class="hastext">20mm 500W/60G</td>
@@ -273,8 +293,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm20_rod400; ?></td> -->
       <td class="hastext">মোট খালাস খরচঃ</td>
       <td><?php echo $unload; ?></td>
-      <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
-      <td><?php echo $vara_credit; ?></td>
+      <td class="hastext">ম‌োট জমাঃ</td>
+      <td><?php echo $total_debit; ?></td>
+      
       
     </tr>
     <tr>
@@ -284,8 +305,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <td><?php echo $mm22_rod400; ?></td> -->
       <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
       <td><?php echo $motor_vara_and_unload; ?></td>
-      <td class="hastext">ম‌োট জমাঃ</td>
-      <td><?php echo $total_debit; ?></td>
+      <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
+      <td><?php echo $total_balance; ?></td>
+      
     
 
     </tr>
@@ -294,10 +316,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm25_rod500; ?></td>
 			<td class="hastext">25mm 400W/60G</td>
 			<td><?php echo $mm25_rod400; ?></td> -->
-      <td></td>
-      <td></td>
-      <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
-      <td><?php echo $total_balance; ?></td>
+      <!-- <td></td>
+      <td></td> -->
+    
       
     
     </tr>
@@ -306,30 +327,30 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm32_rod500; ?></td>
 			<td class="hastext">32mm 400W/60G</td>
 			<td><?php echo $mm32_rod400; ?></td> -->
+      <!-- <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td></td> -->
     </tr>
     <tr>
       <!-- <td class="hastext">42mm 500W/60G</td>
 			<td><?php echo $mm42_rod500; ?></td>
 			<td class="hastext">42mm 400W/60G</td>
 			<td><?php echo $mm42_rod400; ?></td> -->
+      <!-- <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td></td> -->
     </tr>
     <tr>
       <!-- <td class="hastext"><b>Total Kg:</b></td>
 			<td><b><?php echo $total_kg_rod500; ?></b></td>
 			<td class="hastext"><b>Total Kg:</b></td>
 			<td><b><?php echo $total_kg_rod400; ?></b></td> -->
+      <!-- <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
+      <td></td> -->
     </tr>
   </table>
 </div>
@@ -418,9 +439,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>ব‌িবরণ</td>
           <td>জমা টাকা</td>
           <td>টন ও কেজি</td>
-          <td>দৈর্ঘ্যের</td>
-          <td>প্রস্ত</td>
-          <td>উচাঁ</td>
+          <td>দৈর্ঘ্য</td>
+          <td>প্রস্থ</td>
+          <td>উচ্চতা</td>
           <td>সিএফটি</td>
           <td>Inchi (-) বিয়োগ </td>
           <td>সিএফটি ( - ) বাদ</td>
@@ -739,10 +760,10 @@ if ($result) {
               <th>মারফ‌োত নাম</th>
               <th>ব‌িবরণ</th>
               <th>জমা টাকা</th>
-              <th>টোন&nbsp;ও কেজি</th>
-              <th>দৈর্ঘ্যের</th>
-              <th>প্রস্ত</th>
-              <th>উচাঁ</th>
+              <th>টন&nbsp;ও কেজি</th>
+              <th>দৈর্ঘ্য</th>
+              <th>প্রস্থ</th>
+              <th>উচ্চতা</th>
               <th>সিএফটি</th>
               <th>Inchi&nbsp;(-) বিয়োগ </th>
               <th>সিএফটি ( - ) বাদ</th>
@@ -757,7 +778,7 @@ if ($result) {
               <th>গাড়ী&nbsp;ভাড়া&nbsp;লেবার সহ</th>
               <!-- <th>টোন</th> -->
               <th>মোট সিএফটি</th>
-              <th>টোন</th>
+              <th>টন</th>
               <th>ব্যাংক নাম</th>
               <th>ফি</th>
               
@@ -815,7 +836,7 @@ if ($result) {
               echo "<td>" . $rows['balance'] . "</td>";
               echo "<td>" . $rows['cemeats_paras'] . "</td>";
               // echo "<td>" . $rows['ton'] . "</td>";
-              echo "<td>" . $rows['total_shift'] . "</td>";
+              echo "<td>" . $rows['total_shifts'] . "</td>";
               echo "<td>" . $rows['tons'] . "</td>";
               echo "<td>" . $rows['bank_name'] . "</td>";
               echo "<td>" . $rows['fee'] . "</td>";
@@ -847,3 +868,8 @@ if ($result) {
   }
 }
 ?>
+
+
+</body>
+
+</html>

@@ -36,6 +36,9 @@
 		.boxcon{
 			/*border: 1px solid red;*/
 		}
+		.wraper_content{
+			background-color:cornsilk !important;
+		}
 		.boxmain{
 			border: 2px solid #ff8b8b;
 			border-radius: 5px;
@@ -201,25 +204,7 @@
 				  				</div> -->
 				  			<?php
 				  			}
-				  			if($_SESSION['pathor_buyer'] == 'yes'){
-				  				?>
-				  				<div class="pannel_con" >
-				  					<a href="../vaucher/pathor_buyer_entry.php">
-				  						<h5 class="pannel_head" style="background-color: #FF5620;">
-				  							<img src="../img/logo/add6_square.png" alt="logo" class="img_pannel">
-				  							বায়ার এন্ট্রি
-				  						</h5>
-				  						<!-- <p class="img_pannel_con">
-				  							<img src="../img/logo/add6.png" alt="logo" class="img_pannel">
-				  						</p> -->
-				  						<p class="pannel_foot" style="color: #FF5620;">
-				  							Click here
-				  							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-				  						</p>
-				  					</a>	  					
-				  				</div>
-				  			<?php
-				  			}
+				  		
 
 							  if($_SESSION['pathor_customer'] == 'yes'){
 								?>
@@ -240,7 +225,7 @@
 								</div>
 							<?php
 							}
-							if($_SESSION['pathor_report'] == 'yes'){
+							if($_SESSION['rod_report'] == 'yes'){
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/pathor_report_buy_hisab.php">

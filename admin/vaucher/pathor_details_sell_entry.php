@@ -1564,7 +1564,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
 
                     // $('#shift').attr('value', 'shifty2.toFixed(3)');
                     // $('#total_shift').val(shifty2.toFixed(2));
-                    // $('#total_shifts').val(shifty2.toFixed(2));
+                    $('#total_shifts').val(shifty2.toFixed(2));
                 } else {
                     var shift_to_ton = shifty / 23.5;
                     // alert(credit);
@@ -1573,7 +1573,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                     $('#tons').val(shift_to_ton.toFixed(2));
                     $('#shift').val(shifty.toFixed(3));
                     // $('#total_shift').val(shifty.toFixed(2));
-                    // $('#total_shifts').val(shifty.toFixed(2));
+                    $('#total_shifts').val(shifty.toFixed(2));
 
                 }
             } else if (width == '') {
@@ -1644,7 +1644,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                 // $('#shifty').val(ton_to_cft);
                 // $('#shift').val(ton_to_cft);
                 // $('#total_shift').val(ton_to_cft);
-                // $('#total_shifts').val(ton_to_cft);
+                $('#total_shifts').val(ton_to_cft);
             } else {
                 $("#length").attr("placeholder", "length").prop("disabled", false);
                 $("#length").attr("readonly", false);
@@ -1663,8 +1663,8 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
                 $("#points_dropped_out").attr("readonly", false);
 
 
-                $('#shifty').prop("disabled", true);
-                $('#shift').prop("disabled", true);
+                $('#shifty').prop("disabled", false);
+                $('#shift').prop("disabled", false);
                 $('#total_shift').prop("disabled", false);
                 $('#ton').prop("disabled", false);
 
@@ -1851,14 +1851,14 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
         $(document).on('input change paste keyup', '.value-calc-popup', function() {
 
             ////////////////////////////////////////////////////////////////
-            var kg = $('#tons_popup').val();
+            var kg_ton = $('#tons_popup').val();
             var paras = $('#paras_popup').val();
-            if (kg == '') {
+            if (kg_ton == '') {
                 $('#credit_popup').val('0');
             } else if (paras == '') {
                 $('#credit_popup').val('0');
             } else {
-                var credit = kg * paras;
+                var credit = kg_ton * paras;
                 // alert(credit);
                 $('#credit_popup').val(credit);
             }
@@ -1889,25 +1889,36 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             var motor_vara = $('#motor_vara_popup').val();
             var unload = $('#unload_popup').val();
             if (motor_vara == '') {
-                $('#car_rent_redeem_popup').val('0');
+                $('#motor_vara_popup').attr("placeholder", "motor vara");
+                //  $('#motor_vara').attr("value", "0");
+                //  $('#motor_vara').val(0);
+
+                $('#car_rent_redeem_popup').val(unload);
+                $('#cemeats_paras_popup').val(unload);
             } else if (unload == '') {
-                $('#car_rent_redeem_popup').val('0');
+                $('#unload_popup').attr("placeholder", "unload");
+                //  $('#unload').attr("value", "0");
+                //  $('#unload').val(0);
+
+                $('#car_rent_redeem_popup').val(motor_vara);
+                $('#cemeats_paras_popup').val(motor_vara);
+            } else if (unload == 0 && motor_vara == 0) {
+                $('#car_rent_redeem_popup').val(0);
             } else {
+
+
+                //                 $('#motor_vara').focus(function(){
+                //                     $('#motor_vara').value('')
+                // });
+
                 var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
                 // alert(balance);
                 $('#car_rent_redeem_popup').val(car_rent_redeem);
+                $('#cemeats_paras_popup').val(car_rent_redeem);
             }
 
 
-            var car_rent_redeem = $('#car_rent_redeem_popup').val();
-            var credit = $("#credit_popup").val();
-            if (car_rent_redeem == '') {
-                var total_paras = credit;
-                $('#credit_popup').val(total_paras);
-            } else {
-                var total_paras = parseInt(car_rent_redeem) + parseFloat(credit);
-                $('#credit_popup').val(total_paras);
-            }
+
 
 
             var discountp = $("#discount_popup").val();
@@ -1916,7 +1927,7 @@ $_SESSION['pageName'] = 'pathor_bikroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - discountp2;
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }

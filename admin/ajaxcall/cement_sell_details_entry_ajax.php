@@ -17,12 +17,15 @@ $unload          = trim($_POST['unload']);
 $car_rent_redeem  = trim($_POST['car_rent_redeem']);
 $information      = trim($_POST['information']);
 // $delear_id      = trim($_POST['delear_id']);
-$dealer_id      = trim($_SESSION['dealerIdInput']);
+// $dealer_id      = trim($_SESSION['dealerIdInput']);
 $sl      = trim($_POST['sl_no']);
 $challan_no     = trim($_POST['challan_no']);
 $address        = trim($_POST['address']);
+$dealer_id        = trim($_POST['dealer_id']);
 $motor_no          = trim($_POST['motor']);
 $motor_sl    = trim($_POST['motor_no']);
+$oil_free    = trim($_POST['oil_free']);
+$oil_sell    = trim($_POST['oil_sell']);
 
 // $delivery_date  = trim($_POST['delivery_date']);
 if($_POST['challan_date'] == ''){
@@ -46,8 +49,13 @@ if($_POST['dates'] == ''){
 }
 $partculars     = trim($_POST['partculars']);
 $particulars    = trim($_POST['particulars']);
+list($data_id, $data_name) = explode(",", $_POST['particulars'], 2);
 $debit        = trim($_POST['debit']);
+$debit2        = trim($_POST['debit2']);
+$monthly_com        = trim($_POST['monthly_com']);
+$yearly_com        = trim($_POST['yearly_com']);
 $count          = trim($_POST['count']);
+$count2          = trim($_POST['count2']);
 $fee  = trim($_POST['fee']);
 
 
@@ -80,16 +88,16 @@ $weight      = trim($_POST['weight']);
 //   }
 // } else {
 //   echo "higher than stocks.";
-// }
+// }  
 
 
 
-
+// echo "id: $data_id, name: $data_name"; 
 
 if($customer_id != 'none'){
 $sql = "INSERT INTO `details_sell_cement`
-           (`customer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`, `so_date`, `dates`, `partculars`, `particulars`, `debit`, `total_credit`, `paras`, `discount`, `credit`, `balance`, `weight`, `count`, `fee`,`project_name_id`) 
-    VALUES ('$customer_id', '$dealer_id', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$challan_no', '$address', '$motor_no', '$motor_sl', '$so_date', '$dates', '$partculars', '$particulars', '$debit', '$total_credit', '$paras', '$discount', '$credit', '$balance', '$weight','$count', '$fee','$project_name_id')";
+           (`customer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`,`oil_free`,`oil_sell`, `so_date`, `dates`, `partculars`, `particulars`,`particulars_id`, `debit`,`debit2`,`monthly_com`,`yearly_com`,`challan_date`, `total_credit`, `paras`, `discount`, `credit`, `balance`, `weight`, `count`,`count2`, `fee`,`project_name_id`) 
+    VALUES ('$customer_id', '$dealer_id', '$motor_name', '$driver_name', '$motor_vara', '$unload', '$car_rent_redeem', '$information','$sl','$challan_no', '$address','$motor_no','$motor_sl', '$oil_free','$oil_sell', '$so_date', '$dates', '$partculars', '$data_name','$data_id', '$debit','$debit2','$monthly_com','$yearly_com','$challan_date', '$total_credit', '$paras', '$discount', '$credit', '$balance', '$weight','$count','$count2', '$fee','$project_name_id')";
 
 // $sql ="INSERT INTO `details_sell_cement`
 // (`id`, `dealer_id`, `customer_id`, `motor_name`, `driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`, `so_date`, `dates`, `partculars`, `particulars`, `debit`, `total_credit`, `challan_date`, `paras`, `discount`, `credit`, `balance`, `weight`, `count`, `fee`, `project_name_id`) 

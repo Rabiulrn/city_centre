@@ -132,7 +132,38 @@
 
                          echo '"><a href="../vaucher/cement_index.php">সিমেন্ট হিসাব</a>';
                          echo '</li>';
+
+
+                          echo '<li class="';
+                         if($page == 'brick_hisab'){echo 'active';}
+
+                         if($_SESSION['pageName'] == 'brick_kroy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_bikroy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_hisab_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_dealer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_customer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_buyer_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_stocks'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_report_buy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_report_sell_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_report_dealer'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_report_customer'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_report_buyer'){echo 'active';}
+
+                          echo '"><a href="../vaucher/brick_index.php">ইট হিসাব</a>';
+                         echo '</li>';
+
+                          echo '<li class="';
+                         if($page == 'piling_hisab'){echo 'active';}
+
+                         if($_SESSION['pageName'] == 'brick_kroy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'brick_report_dealer'){echo 'active';}
+                  
+
+                          echo '"><a href="../vaucher/piling_index.php">পাইলিং</a>';
+                         echo '</li>';
                       //  }
+                      
 
 
                       //  //  if($_SESSION['cement_hisab'] == 'yes'){
@@ -161,17 +192,17 @@
 
 
 
-                        if($_SESSION['electric_kroy_bikroy'] == 'yes'){
-                          echo '<li class="';
-                          if($page == 'electric_kroy_bikroy'){echo 'active';}
+                      //   if($_SESSION['electric_kroy_bikroy'] == 'yes'){
+                      //     echo '<li class="';
+                      //     if($page == 'electric_kroy_bikroy'){echo 'active';}
 
-                          if($_SESSION['pageName'] == 'electric_day_hisab'){echo 'active';}
-                          else if($_SESSION['pageName'] == 'electric_details_hisab'){echo 'active';}
-                          else if($_SESSION['pageName'] == 'electric_suplier_create'){echo 'active';}
-                         // echo '"><a href="../vaucher/electric_kroy_bikroy.php">ইলেকট্রিক মালের খরচ হিসাব</a>';
-                          echo '"><a href="../vaucher/electric_kroy_bikroy.php">ক্রয় হিসাব</a>';
-                          echo '</li>';
-                      }
+                      //     if($_SESSION['pageName'] == 'electric_day_hisab'){echo 'active';}
+                      //     else if($_SESSION['pageName'] == 'electric_details_hisab'){echo 'active';}
+                      //     else if($_SESSION['pageName'] == 'electric_suplier_create'){echo 'active';}
+                      //    // echo '"><a href="../vaucher/electric_kroy_bikroy.php">ইলেকট্রিক মালের খরচ হিসাব</a>';
+                      //     echo '"><a href="../vaucher/electric_kroy_bikroy.php">ক্রয় হিসাব</a>';
+                      //     echo '</li>';
+                      // }
                        // if($_SESSION['raj_kajer_all_hisab'] == 'yes'){
                           echo '<li class="';
                           if($page == 'employee'){echo 'active';}

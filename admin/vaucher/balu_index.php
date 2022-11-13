@@ -184,11 +184,7 @@
 				  				</div>
 				  			<?php
 				  			}
-<<<<<<< HEAD
 				  			if($_SESSION['balu_stocks'] == 'yes'){
-=======
-				  			if($_SESSION['balu_customer'] == 'yes'){
->>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
 				  				?>
 				  				<!-- <div class="pannel_con" >
 				  					<a href="../vaucher/balu_stocks.php">
@@ -205,31 +201,9 @@
 				  				</div> -->
 				  			<?php
 				  			}
-				  			if($_SESSION['balu_buyer'] == 'yes'){
-				  				?>
-				  				<div class="pannel_con" >
-				  					<a href="../vaucher/balu_buyer_entry.php">
-				  						<h5 class="pannel_head" style="background-color: #FF5620;">
-				  							<img src="../img/logo/add6_square.png" alt="logo" class="img_pannel">
-				  							বায়ার এন্ট্রি
-				  						</h5>
-				  						<!-- <p class="img_pannel_con">
-				  							<img src="../img/logo/add6.png" alt="logo" class="img_pannel">
-				  						</p> -->
-				  						<p class="pannel_foot" style="color: #FF5620;">
-				  							Click here
-				  							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-				  						</p>
-				  					</a>	  					
-				  				</div>
-				  			<?php
-				  			}
+				  			
 
-<<<<<<< HEAD
 							  if($_SESSION['balu_customer'] == 'yes'){
-=======
-							  if($_SESSION['balu_buyer'] == 'yes'){
->>>>>>> c2e6b74e9e1f9b0e033ac7e32667bfe7a79d57a1
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/balu_customer_entry.php">
@@ -248,7 +222,7 @@
 								</div>
 							<?php
 							}
-							if($_SESSION['balu_report'] == 'yes'){
+							if($_SESSION['rod_report'] == 'yes'){
 								?>
 								<div class="pannel_con" >
 									<a href="../vaucher/balu_report_buy_hisab.php">

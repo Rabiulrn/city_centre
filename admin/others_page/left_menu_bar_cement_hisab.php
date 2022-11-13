@@ -71,5 +71,21 @@
             </a>
             <?php
         }
+        if($_SESSION['cement_report'] == 'yes'){
+            ?>
+             <a class="mnu_left <?php if($_SESSION['pageName'] == '45'){echo 'mnu_active';}?>" href="../vaucher/cement_gb_hisab.php"> 
+                <img src="../img/logo/guarantee-full-1.png" alt="logo" class="img_mnu">
+                ব্যাংক গ্যারান্টি 
+            </a>
+            <?php
+        }
+        if($_SESSION['cement_report'] == 'yes'){
+            ?>
+             <!-- <a class="mnu_left <?php if($_SESSION['pageName'] == '45'){echo 'mnu_active';}?>" href="../vaucher/cement_sell_gb_hisab.php"> 
+                <img src="../img/logo/guarantee-full-1.png" alt="logo" class="img_mnu">
+                ব্যাংক গ্যারান্টি বিক্রয়
+            </a> -->
+            <?php
+        }
     ?>
 </div>

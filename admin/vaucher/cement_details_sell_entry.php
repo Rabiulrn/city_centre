@@ -18,7 +18,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
 <html>
 
 <head>
-    <title>পাথর বিক্রয় হিসাব</title>
+    <title>সিমেন্ট বিক্রয় হিসাব</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="../img/Shah logo@1553422164642.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -602,10 +602,10 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                     <tr>
                         <td><b>Select a Customer Name</b></td>
                         <td><?php
-                            $sql = "SELECT customer_name,customer_id FROM customers_cement WHERE project_name_id = '$project_name_id'";
+                            $sql = "SELECT DISTINCT customer_name,customer_id FROM customers_cement WHERE customer_name != '' AND project_name_id = '$project_name_id'";
                             // $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer WHERE project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
-                            echo '<select name="customer_id" id="delear_id" class="form-control" style="width: 222px;">';
+                            echo '<select name="customer_id" id="delear_id" class="form-control form-control-customer" style="width: 222px;">';
 
                             if ($all_custmr_id->num_rows > 0) {
                                 while ($row = $all_custmr_id->fetch_assoc()) {
@@ -635,8 +635,8 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                 <h2 class="popupHead" style="color: Green;">বিক্রয় হিসাব এন্ট্রি</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
-                 
-                            <table style="width: 100%;">
+
+                        <table style="width: 100%;">
                             <tr>
                                 <td>Customer ID(Customer আই ডি)</td>
                                 <td>
@@ -658,7 +658,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                                 </td>
                             </tr>
 
-                            
+
 
 
                             <!-- <input type="hidden" name="cement_details_id" id="cement_details_id"> -->
@@ -681,7 +681,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                                 </td>           
                             </tr> -->
                             <!-- <tr> -->
-                           
+
                             <tr>
                                 <td>Motor Vara (গাড়ী ভাড়া)</td>
                                 <td>
@@ -1081,7 +1081,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
 
         function getDealerNameByDealerId(dlrIda) {
             $.ajax({
-                url: '../ajaxcall/cement_get_dealer_name_by_dealer_id.php',
+                url: '../ajaxcall/cement_sell_get_dealer_name_by_dealer_id.php',
                 type: 'post',
                 data: {
                     dealerId: dlrIda,
@@ -1219,19 +1219,19 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                     returnValid = true;
                 }
 
-                if (partculars == 'none') {
-                    alert('Please select a marfot name');
-                    returnValid = false;
-                } else {
-                    returnValid = true;
-                }
+                // if (partculars == 'none') {
+                //     alert('Please select a marfot name');
+                //     returnValid = false;
+                // } else {
+                //     returnValid = true;
+                // }
 
-                if (particulars == 'none') {
-                    alert('Please select a particular');
-                    returnValid = false;
-                } else {
-                    returnValid = true;
-                }
+                // if (particulars == 'none') {
+                //     alert('Please select a particular');
+                //     returnValid = false;
+                // } else {
+                //     returnValid = true;
+                // }
                 var formElement = $('#form_entry')[0];
                 var formData = new FormData(formElement);
                 var urltxt = '../ajaxcall/cement_sell_details_entry_ajax.php';
@@ -1489,331 +1489,154 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
 
-            // var input_cft = $('#shift').val();
-            // if(input_cft != ''){
-            //     $('#total_shift').val(input_cft);
-            //         $('#total_shifts').val(input_cft);
-            // }
+// var input_cft = $('#shift').val();
+// if(input_cft != ''){
+//     $('#total_shift').val(input_cft);
+//         $('#total_shifts').val(input_cft);
+// }
 
 
 
-            if (count != '') {
-                $('#paras').attr("placeholder", "rate");
-                var count = $('#count').val();
-                var paras = $('#paras').val();
+if (count != '') {
+    $('#paras').attr("placeholder", "rate");
+    var count = $('#count').val();
+    var free = $('#fee').val();
+    var count_minus_free = count - free;
+    $('#count2').val(count_minus_free);
+    var count2 = $('#count2').val();
+    var paras = $('#paras').val();
 
-                var weight = count / 20;
-                $('#weight').val(weight.toFixed(2));
+    var weight = count / 20;
+    $('#weight').val(weight.toFixed(2));
 
-                if (count == '') {
-                    $('#credit').val('0');
-                } else if (paras == '') {
-                    $('#credit').val('0');
-                } else {
-                    var credit = count * paras;
-                    //  alert(credit);
-                    $('#credit').val(credit.toFixed(2));
-                }
-            }
+    if (count == '') {
+        $('#credit').val('0');
+    } else if (paras == '') {
+        $('#credit').val('0');
+    } else {
 
-
-            // if(length != ''){
-            //     $('#paras').attr("placeholder", "per cft");
-            //     var t_s = $('#total_shift').val();
-            //             var paras = $('#paras').val();
-            //             if (t_s == '') {
-            //                 $('#credit').val('0');
-            //             } else if (paras == '') {
-            //                 $('#credit').val('0');
-            //             } else {
-            //                 var credit_ts = t_s * paras;
-            //                 //  alert(credit);
-            //                 $('#credit').val(credit_ts.toFixed(2));
-            //             }
-            // }
-            // else{
-            //     $('#paras').attr("placeholder", "per ton");
-
-            // }
-
-            // //shifty
-            // var length = $('#length').val();
-            // var width = $('#width').val();
-            // var height = $('#height').val();
-
-            // var inchi_minus = $("#inchi_minus").val();
-            // var cft_dropped_out = $('#cft_dropped_out').val();
-            // var inchi_added = $('#inchi_added').val();
-            // var points_dropped_out = $('#points_dropped_out').val();
-
-
-            // if (length != '' || width != '' || height != '') {
-
-            //     $("#kg").attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#td_kg").click(function() {
-            //         Swal.fire("Clear cft first");
-            //     });
-            //     var shifty = length * width * height;
-            //     if (inchi_minus > shifty) {
-            //         Swal.fire("Not acceptable. Value should be less then cft");
-            //         $('#inchi_minus').val("");
-            //     }
-            //     if (cft_dropped_out > shifty) {
-            //         Swal.fire("Not acceptable. Value should be less then cft");
-            //         $('#cft_dropped_out').val("");
-            //     }
-            //     if (points_dropped_out > shifty) {
-            //         Swal.fire("Not acceptable. Value should be less then cft");
-            //         $('#points_dropped_out').val("");
-            //     }
-            //     if (shifty < 0) {
-            //         $('#shifty').val("");
-            //     }
-            //     if (inchi_minus != '' || cft_dropped_out != '' || inchi_added != '' || points_dropped_out != '') {
-            //         var shifty2 = (length * width * height) - (length * width * inchi_minus / 12) - cft_dropped_out + (length * width * inchi_added / 12) - points_dropped_out;
-            //         var shift2_to_ton = shifty2 / 23.5;
-            //         // alert(credit);
-            //         $('#shifty').val(shifty.toFixed(3));
-            //         $('#ton').val(shift2_to_ton.toFixed(2));
-            //         $('#tons').val(shift2_to_ton.toFixed(2));
-            //         $('#shift').val(shifty2.toFixed(3));
-
-            //         // $('#shift').attr('value', 'shifty2.toFixed(3)');
-            //         // $('#total_shift').val(shifty2.toFixed(2));
-            //         // $('#total_shifts').val(shifty2.toFixed(2));
-            //     } else {
-            //         var shift_to_ton = shifty / 23.5;
-            //         // alert(credit);
-            //         $('#shifty').val(shifty.toFixed(3));
-            //         $('#ton').val(shift_to_ton.toFixed(2));
-            //         $('#tons').val(shift_to_ton.toFixed(2));
-            //         $('#shift').val(shifty.toFixed(3));
-            //         // $('#total_shift').val(shifty.toFixed(2));
-            //         // $('#total_shifts').val(shifty.toFixed(2));
-
-            //     }
-            // } else if (width == '') {
-            //     $("#kg").attr("placeholder", "ton and kg");
-            //     $("#kg").prop("disabled", false);
-            //     $('#shift').attr("placeholder", "not applicable");
-            //     $('#shifty').attr("placeholder", "not applicable");
-
-            // } else if (height == '') {
-            //     $("#kg").attr("placeholder", "ton and kg");
-            //     $("#kg").prop("disabled", false);
-            //     $('#shift').attr("placeholder", "not applicable");
-            //     $('#shifty').attr("placeholder", "not applicable");
-            // } else if (length == '') {
-            //     $("#kg").attr("placeholder", "ton and kg");
-            //     $("#kg").prop("disabled", false);
-            //     $('#shift').attr("placeholder", "not applicable");
-            //     $('#shifty').attr("placeholder", "not applicable");
-            //     // $('#total_shifty').val('0');
-            // }
-            // // else if(length != ''){
-            // //     $('#kg').val('0');
-            // // }
-            // else {
-
-
-
-            // }
-
-
-            // //ton and kg
-            // var shifty = $('#shift').val();
-            // var ton_kg = $('#kg').val();
-            // var credit = $("#credit").val();
-
-            // if (ton_kg != '') {
-            //     $("#length").attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#length").attr("readonly", true);
-            //     // if($("#length").click){
-            //     //     Swal.fire("Should be enter a number value");
-            //     // }
-            //     // $('#length').val('not applicable');
-            //     $('#width').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#width").attr("readonly", true);
-            //     $('#height').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#height").attr("readonly", true);
-
-            //     $('#shifty').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $('#shift').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $('#total_shift').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $('#ton').attr("placeholder", "not applicable").prop("disabled", true);
-            //     // $('#height').attr("placeholder", "not applicable").prop("disabled", true).css("background-color","gray");
-            //     // $("#height").attr("readonly", true);
-            //     // $('#').attr("value", "not applicable");
-            //     $('#inchi_minus').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#inchi_minus").attr("readonly", true);
-            //     $('#cft_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#cft_dropped_out").attr("readonly", true);
-            //     $('#inchi_added').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#inchi_added").attr("readonly", true);
-            //     $('#points_dropped_out').attr("placeholder", "not applicable").prop("disabled", true);
-            //     $("#points_dropped_out").attr("readonly", true);
-            //     // $('#').attr("value", "not applicable");
-            //     $('#ton').val(ton_kg);
-            //     $('#tons').val(ton_kg);
-
-            //     var ton_to_cft = (ton_kg * 23.5).toFixed(3);
-            //     // $('#shifty').val(ton_to_cft);
-            //     // $('#shift').val(ton_to_cft);
-            //     // $('#total_shift').val(ton_to_cft);
-            //     // $('#total_shifts').val(ton_to_cft);
-            // } else {
-            //     $("#length").attr("placeholder", "length").prop("disabled", false);
-            //     $("#length").attr("readonly", false);
-            //     // $('#length').val('not applicable');
-            //     $('#width').attr("placeholder", "width").prop("disabled", false);
-            //     $("#width").attr("readonly", false);
-            //     $('#height').attr("placeholder", "height").prop("disabled", false);
-            //     $("#height").attr("readonly", false);
-            //     $('#inchi_minus').attr("placeholder", "inchi_minus").prop("disabled", false);
-            //     $("#inchi_minus").attr("readonly", false);
-            //     $('#cft_dropped_out').attr("placeholder", "cft_dropped_out").prop("disabled", false);
-            //     $("#cft_dropped_out").attr("readonly", false);
-            //     $('#inchi_added').attr("placeholder", "inchi_added").prop("disabled", false);
-            //     $("#inchi_added").attr("readonly", false);
-            //     $('#points_dropped_out').attr("placeholder", "points_dropped_out").prop("disabled", false);
-            //     $("#points_dropped_out").attr("readonly", false);
-
-
-            //     $('#shifty').prop("disabled", true);
-            //     $('#shift').prop("disabled", true);
-            //     $('#total_shift').prop("disabled", false);
-            //     $('#ton').prop("disabled", false);
-
-            //     var credit = shifty * paras;
-            //     // alert(credit);
-            //     $('#credit').val(credit.toFixed(3));
-            // }
-
-            // var total_input_cft = $('#total_shift').val();
-            // if (total_input_cft != '') {
-            //     $('#paras').attr("placeholder", "per cft");
-
-            //     var paras = $('#paras').val();
-            //     // if (kg == '') {
-            //     //     $('#credit').val('0');
-            //     // } else if (paras == '') {
-            //     //     $('#credit').val('0');
-            //     // } else {
-            //     var credit = total_input_cft * paras;
-            //     //  alert(credit);
-            //     $('#credit').val(credit.toFixed(2));
-            //     // }
-            // }
-
-
-            var discount = $("#discount").val();
-            if (discount != '') {
-                var credit = credit - discount;
-                $('#credit').val(credit.toFixed(3));
-                if (discount > credit) {
-                    $('#discount').focus(function() {
-                        $('#discount').val("");
-                    });
-                    Swal.fire("Not acceptable. Value should be less then credit");
-                }
-            }
-            // var fee = $("#fee").val();
-            // if (fee != '') {
-            //     var credit = parseFloat(credit) + parseFloat(fee);
-            //     $('#credit').val(credit.toFixed(3));
-            // }
-
-
-
-            // // console.log(inchi_minus);
-            // // console.log(ton_kg);
-
-            // // if (inchi_minus != '') {
-            // //     console.log(inchi_minus);
-            // //     $('#shift').val(inchi_minus);
-            // //     $('#total_shift').val('test');
-
-            // // }
-
-            // // if (cft_dropped_out != '') {
-            // //     console.log(cft_dropped_out);
-
-            // // }
-
-            // // var car_rent_redeem = $('#car_rent_redeem').val();
-            // // var credit = $("#credit").val();
-            // // if (car_rent_redeem == '') {
-            // //     var total_paras = credit;
-            // //     $('#credit').val(total_paras);
-            // // } else {
-            // //     var total_paras = parseFloat(car_rent_redeem) + parseFloat(credit);
-            // //     $('#credit').val(total_paras);
-            // // }
-            // // debit theke minus hote ai part tuku age dite hobe
-
-            var debit = $("#debit").val();
-            var credit = $("#credit").val();
-            if (debit == '') {
-                $('#balance').val('0');
-            } else if (credit == '') {
-                $('#balance').val('0');
-            } else {
-                var balance = credit - debit;
-                // alert(balance);
-                $('#balance').val(balance.toFixed(3));
-            }
-
-            // var motor_vara = $('#motor_vara').val();
-            // var unload = $('#unload').val();
-            // if (motor_vara == '') {
-            //     $('#motor_vara').attr("placeholder", "motor vara");
-            //     //  $('#motor_vara').attr("value", "0");
-            //     //  $('#motor_vara').val(0);
-
-            //     $('#car_rent_redeem').val(unload);
-            //     $('#cemeats_paras').val(unload);
-            // } else if (unload == '') {
-            //     $('#unload').attr("placeholder", "unload");
-            //     //  $('#unload').attr("value", "0");
-            //     //  $('#unload').val(0);
-
-            //     $('#car_rent_redeem').val(motor_vara);
-            //     $('#cemeats_paras').val(motor_vara);
-            // } else if (unload == 0 && motor_vara == 0) {
-            //     $('#car_rent_redeem').val(0);
-            // } else {
-
-
-            //     //                 $('#motor_vara').focus(function(){
-            //     //                     $('#motor_vara').value('')
-            //     // });
-
-            //     var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
-            //     // alert(balance);
-            //     $('#car_rent_redeem').val(car_rent_redeem);
-            //     $('#cemeats_paras').val(car_rent_redeem);
-            // }
+        var credit = count2 * paras;
+        //  alert(credit);
+        $('#credit').val(credit.toFixed(2));
+    }
+}
 
 
 
 
-            // // if (motor_vara == '') {
-            // //     $('#motor_vara').val()=null;
-            // // } else if (unload == '') {
-            // //     $('#unload').val()=null;
-            // // } else {
-            // //     $('#motor_vara').val()=null;
-            // // $('#unload').val()=null;
-            // //     var tar = motor_vara?$('#motor_vara').val():'0';
-            // //     var tar2 = motor_vara?$('#unload').val():'0';
-            // //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
-            // //     // alert(balance);
-            // //     $('#car_rent_redeem').val(car_rent_redeem);
-            // //     $('#cemeats_paras').val(car_rent_redeem);
-            // // }
 
-
+var discount = $("#discount").val();
+if (discount != '') {
+    var credit = credit - discount;
+    $('#credit').val(credit.toFixed(3));
+    if (discount > credit) {
+        $('#discount').focus(function() {
+            $('#discount').val("");
         });
+        Swal.fire("Not acceptable. Value should be less then credit");
+    }
+}
+
+
+var debit = $("#debit").val();
+var credit = $("#credit").val();
+var monthly_com = $("#monthly_com").val();
+var yearly_com = $("#yearly_com").val();
+var oil_free = $("#oil_free").val();
+var oil_sell = $("#oil_sell").val();
+// if (debit == '') {
+//     // $('#balance').val('0');
+// } else if (credit == '') {
+//     $('#balance').val('0');
+// } else {
+var name = monthly_com ? parseFloat(monthly_com) : 0;
+var name2 = yearly_com ? parseFloat(yearly_com) : 0;
+var name3 = oil_sell ? parseFloat(oil_sell) : 0;
+var commision = name + name2;
+// var commision = parseFloat(monthly_com) + parseFloat(yearly_com) ;
+var balance = (debit - credit) + commision + name3;
+var debit2 = debit ? parseFloat(debit) : 0;
+var balance2 = debit2 + commision;
+// alert(balance);
+$('#debit2').val(balance2);
+$('#balance').val(balance.toFixed(3));
+// }
+
+var motor_vara = $('#motor_vara').val();
+var unload = $('#unload').val();
+if (motor_vara == '') {
+    $('#motor_vara').attr("placeholder", "motor vara");
+    //  $('#motor_vara').attr("value", "0");
+    //  $('#motor_vara').val(0);
+
+    $('#car_rent_redeem').val(unload);
+    $('#cemeats_paras').val(unload);
+} else if (unload == '') {
+    $('#unload').attr("placeholder", "unload");
+    //  $('#unload').attr("value", "0");
+    //  $('#unload').val(0);
+
+    $('#car_rent_redeem').val(motor_vara);
+    $('#cemeats_paras').val(motor_vara);
+} else if (unload == 0 && motor_vara == 0) {
+    $('#car_rent_redeem').val(0);
+} else {
+
+
+    //                 $('#motor_vara').focus(function(){
+    //                     $('#motor_vara').value('')
+    // });
+
+    var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+    // alert(balance);
+    $('#car_rent_redeem').val(car_rent_redeem);
+    $('#cemeats_paras').val(car_rent_redeem);
+
+}
+
+
+// var car_khalas = $('#car_rent_redeem').val();
+// var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
+// var cedi = $('#credit').val();
+// var cadi2 = cedi ? parseFloat(cedi) : 0;
+// var oil_s = $('#oil_sell').val();
+// var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
+// // var var_car=
+// // var var_oil =
+// // var var_credi = 
+// // if(car_khalas_cr || cedi2 || oil_sell_cr){
+//     var credit_car_rent = car_khalas_cr + cedi2 + oil_sell_cr;
+// $('#total_credit').val(credit_car_rent);
+
+// // }
+
+var oil_s = $('#oil_sell').val();
+var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
+var car_khalas = $('#car_rent_redeem').val();
+var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
+var cedi = $('#credit').val();
+var cedi2 = parseFloat(cedi);
+// var cadi2 = cedi ? parseFloat(cedi) : 0;
+var credit_car_rent = oil_sell_cr + car_khalas_cr + parseFloat(cedi);
+$('#total_credit').val(credit_car_rent);
+
+// // if (motor_vara == '') {
+// //     $('#motor_vara').val()=null;
+// // } else if (unload == '') {
+// //     $('#unload').val()=null;
+// // } else {
+// //     $('#motor_vara').val()=null;
+// // $('#unload').val()=null;
+// //     var tar = motor_vara?$('#motor_vara').val():'0';
+// //     var tar2 = motor_vara?$('#unload').val():'0';
+// //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
+// //     // alert(balance);
+// //     $('#car_rent_redeem').val(car_rent_redeem);
+// //     $('#cemeats_paras').val(car_rent_redeem);
+// // }
+
+
+});
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
         //     var kg = $('#kg_edit').val();
         //     var paras = $('#paras_edit').val();
@@ -1932,7 +1755,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
             if (discountp == '') {
                 $('#discountp').val('0');
             } else {
-                var credit_with_dis = credit_with_dis - ((discountp2 / 100) * credit_with_dis);
+                var credit_with_dis = credit_with_dis - discountp2;
                 // alert(balance);
                 $('#credit_popup').val(credit_with_dis);
             }
@@ -2154,13 +1977,14 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
         });
 
 
-        function gbbank_update(id, gbvalue) {
+        function gbbank_update(id, gbvalue, customerId) {
             $.ajax({
-                url: '../ajaxcall_save_update/cement_gb_bank_update.php',
+                url: '../ajaxcall_save_update/cement_sell_gb_bank_update.php',
                 type: 'post',
                 data: {
                     details_id: id,
                     gbvalue: gbvalue,
+                    customerId1: customerId
                 },
                 success: function(res) {
                     $('#gbbank_stable_val').html(res);
@@ -2172,12 +1996,14 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
             });
         }
 
-        $(document).on('keypress', '#gb_bank_ganti', function(e) {
+        $(document).on('keypress change', '#gb_bank_ganti','#delear_id', function(e) {
             if (e.which == 13) {
                 var id = $(e.currentTarget).attr('data-id');
                 var gbvalue = $('#gb_bank_ganti').val();
+                var customerId = $('#delear_id option:selected').val();
+                console.log(customerId);
                 // alert(id);
-                gbbank_update(id, gbvalue);
+                gbbank_update(id, gbvalue,customerId);
                 $('#gb_bank_ganti').hide();
             }
         });
