@@ -1521,8 +1521,17 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
         }
     </script>
     <script type="text/javascript">
-        //Start calculation
-        // $(document).on('input change paste keyup', '.value-calc', function() {
+        // Start calculation
+        $(document).on('input change paste keyup', '.value-calc', function() {
+
+            var feet = $('#feet').val();
+            var paras = $('#paras').val();
+            console.log(feet);
+            var p_bill = feet * paras;
+            $('#piling_bill').val(p_bill);
+
+
+
 
         //     // var input_cft = $('#shift').val();
         //     // if(input_cft != ''){
@@ -1560,17 +1569,17 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
 
 
 
-        //     var discount = $("#discount").val();
-        //     if (discount != '') {
-        //         var credit = credit - discount;
-        //         $('#credit').val(credit.toFixed(3));
-        //         if (discount > credit) {
-        //             $('#discount').focus(function() {
-        //                 $('#discount').val("");
-        //             });
-        //             Swal.fire("Not acceptable. Value should be less then credit");
-        //         }
-        //     }
+            // var discount = $("#discount").val();
+            // if (discount != '') {
+            //     var credit = credit - discount;
+            //     $('#credit').val(credit.toFixed(3));
+            //     if (discount > credit) {
+            //         $('#discount').focus(function() {
+            //             $('#discount').val("");
+            //         });
+            //         Swal.fire("Not acceptable. Value should be less then credit");
+            //     }
+            // }
 
 
         //     var debit = $("#debit").val();
@@ -1671,7 +1680,7 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
         //     // // }
 
 
-        // });
+        });
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
         //     var kg = $('#kg_edit').val();
         //     var paras = $('#paras_edit').val();

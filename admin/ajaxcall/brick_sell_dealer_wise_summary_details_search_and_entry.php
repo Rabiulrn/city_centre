@@ -16,103 +16,7 @@ $delete_data_permission = $_SESSION['delete_data'];
 
 
 $sucMsg = "";
-$total_weight = 0;
-$sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars LIKE '%১ম শ্রেণী%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $total_weight = $row['weight'];
-        if(is_null($total_weight)){
-            $total_weight = 0;
-        }
-    }
-} else{
-    $total_weight = 0;
-}
 
-$total_weight1 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars LIKE '%২য় শ্রেণী%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $total_weight1 = $row['weight'];
-        if(is_null($total_weight1)){
-            $total_weight1 = 0;
-        }
-    }
-} else{
-    $total_weight1 = 0;
-}
-
-$total_weight3 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars LIKE '%৩য় শ্রেণী%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $total_weight3 = $row['weight'];
-        if(is_null($total_weight3)){
-            $total_weight3 = 0;
-        }
-    }
-} else{
-    $total_weight3 = 0;
-}
-
-$total_weight4 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars LIKE '%পিকেট%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $total_weight4 = $row['weight'];
-        if(is_null($total_weight4)){
-            $total_weight4 = 0;
-        }
-    }
-} else{
-    $total_weight4 = 0;
-}
-
-$total_weight5 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars LIKE '%লাল ক্লাশ%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $total_weight5 = $row['weight'];
-        if(is_null($total_weight5)){
-            $total_weight5 = 0;
-        }
-    }
-} else{
-    $total_weight5 = 0;
-}
-
-$total_weight6 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars LIKE '%টুকরা%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $total_weight6 = $row['weight'];
-        if(is_null($total_weight6)){
-            $total_weight6 = 0;
-        }
-    }
-} else{
-    $total_weight6 = 0;
-}
-
-$total_weight7 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars LIKE '%গোরিয়া%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $total_weight7 = $row['weight'];
-        if(is_null($total_weight7)){
-            $total_weight7 = 0;
-        }
-    }
-} else{
-    $total_weight7 = 0;
-}
 
 $total1_weight = 0;
 $sql = "SELECT SUM(count) as weight FROM details_sell_brick WHERE particulars AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
@@ -197,20 +101,6 @@ if ($result->num_rows > 0) {
 // //Start GB Bank Ganti
 
 
-// //End GB Bank Ganti
-// Start total total_kg
-$sql = "SELECT SUM(weight) as shift FROM details_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_shift = $row['shift'];
-    if (is_null($total_shift)) {
-      $total_shift = 0;
-    }
-  }
-} else {
-  $total_shift = 0;
-}
 
 $sql = "SELECT SUM(count) as count_c FROM details_sell_brick WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
@@ -285,143 +175,189 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
 <div id="flip">
-  <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary
+<label class="conchk" id="flipChkbox">Show/Hide Summary
       <input type="checkbox">
       <span class="checkmark"></span>
-    </label> -->
-
-
-  <div class="contorlAfterDealer">
-
-    <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-    <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
-  </div>
-  <!-- <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-        <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
-</div>
+    </label>
+    <div class="contorlAfterDealer">          
+      
+        <button onclick="myFunction()" class="btn printBtnDlr" style="position:relative; margin-left:150px; right: 0px">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    </div>
 </div>
 
 <div id="panel">
-<table width="100%" class="summary">
-<tr>
-      <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
+<div style="display: flex;">
+    <div class="upper">
+      <table width="250px" class="summary">
+        <?php
+      //   $sql =
+      //     "SELECT category_name,category_id,sum(count) as 'total' 
+      //  FROM brick_category
+      //  LEFT JOIN details_brick
+      //  ON details_brick.particulars_id = brick_category.category_id
+      //  WHERE details_brick.dealer_id = '$dealerId'  AND details_brick.particulars != 'BG' AND details_brick.particulars != 'In Cash' 
+      //  GROUP BY details_brick.particulars_id
+      // ";
+
+        $sql = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
+        FROM details_sell_brick 
+        WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' 
+        GROUP BY particulars_id";
+        // $result2 = $conn->query($sqlrr);
+        $result = $db->select($sql);
+        if ($result) {
+          $rowcount2 = mysqli_num_rows($result);
+          if ($rowcount2 != 0) {
+            if ($result->num_rows > 0) {
+              // output data of each row
+
+              while ($rows = $result->fetch_assoc()) {
+                // $temp = $rows['particulars'];
+                echo "<tr>";
+                echo "<td>" . $rows['particulars'] . "</td>";
+                echo "<td>" . $rows['total'] . "</td>";
+                echo "</tr>";
+                // echo "id: " . $row["id"]. " - Name: " . $row["category_name"]. " " .  "<br>";
+              }
+            } else {
+              echo "0 results";
+            }
+          }
+        }
+        ?>
+        <tr>
+
+          <td style= "background-color: grey; border: 2px solid black; color: white; text-align: center;" class="hastext"><b>ম‌োট পিস</b></td>
+          <td style= "border: 2px solid black;"><b><?php echo $total_w; ?></b></td>
+          <!-- <td class="hastext"><b>Total Kg:</b></td>
+    <td><b><?php echo $total_kg_rod400; ?></b></td> -->
+
+        </tr>
+      </table>
+    </div>
+    <div class="lower">
+      <table width="748px" class="summary">
+        <tr>
+          <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
 			<td class="hastext" width="150px">04.50mm 400W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td> -->
-      <!-- <td class="hastext">মোট সেপ্টি </td>
+          <!-- <td class="hastext">মোট সেপ্টি </td>
       <td style="min-width: 85px"><?php echo $total_shift; ?></td> -->
-      <!-- <td class="hastext">জ‌িব‌ি ব্যাংক গ্যান্ট‌িঃ</td>
+          <!-- <td class="hastext">জ‌িব‌ি ব্যাংক গ্যান্ট‌িঃ</td>
 			<td style="min-width: 85px"><?php echo $gb_bank_ganti; ?></td> -->
 
-    </tr>
-    <tr>
-      <td class="hastext">১ম শ্রেণী </td>
-			<td><?php echo $total_weight; ?></td>
-			<!-- <td class="hastext">06mm 400W/60G</td>
+        </tr>
+        <tr>
+          <!-- <td class="hastext">১ম শ্রেণী </td>
+			<td><?php echo $total_weight; ?></td> -->
+          <!-- <td class="hastext">06mm 400W/60G</td>
 			<td><?php echo $mm06_rod400; ?></td> -->
-      <!-- <td class="hastext">ওজন (এম,টি )</td>
+          <!-- <td class="hastext">ওজন (এম,টি )</td>
       <td><?php echo $total_shift; ?></td> -->
-      <td class="hastext"></td>
-			<td><?php echo $company_paona; ?></td>
-      
-    </tr>
-    <tr>
-      <td class="hastext">২য় শ্রেণী </td>
-			<td><?php echo $total_weight1; ?></td>
-			<!-- <td class="hastext">08mm 400W/60G</td>
+          <!-- <td class="hastext"></td>
+          <td><?php echo $company_paona; ?></td> -->
+
+        </tr>
+        <tr>
+          <!-- <td class="hastext">২য় শ্রেণী </td>
+			<td><?php echo $total_weight1; ?></td> -->
+          <!-- <td class="hastext">08mm 400W/60G</td>
 			<td><?php echo $mm08_rod400; ?></td> -->
-       <td class="hastext">মোট গাড়ীঃ</td>
-            <td><?php echo $total_motor; ?></td>
-          
-			<td class="hastext"></td>
-			<td><?php echo $nij_paona; ?></td>
-      							
-    </tr>
-    <tr>
-      <!-- <td class="hastext">Cement White</td>
+          <td class="hastext">মোট গাড়ীঃ</td>
+          <td><?php echo $total_motor; ?></td>
+
+          <td class="hastext"></td>
+          <td><?php echo $nij_paona; ?></td>
+
+        </tr>
+        <tr>
+          <!-- <td class="hastext">Cement White</td>
 			<td><?php echo $mm10_rod500; ?></td>
 			<td class="hastext">10mm 400W/60G</td>
 			<td><?php echo $mm10_rod400; ?></td> -->
-      <!-- <td></td>
+          <!-- <td></td>
       <td></td>
       <td></td>
       <td></td> -->
-    </tr>
-    <tr>
-      <!-- <td class="hastext">12mm 500W/60G</td>
+        </tr>
+        <tr>
+          <!-- <td class="hastext">12mm 500W/60G</td>
 			<td><?php echo $mm12_rod500; ?></td>
 			<td class="hastext">12mm 400W/60G</td>
 			<td><?php echo $mm12_rod400; ?></td> -->
-      <!-- <td style="background-color: #bcbcbc;"></td>
+          <!-- <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td> -->
-    </tr>
-    <!-- Ekhan theke -->
-    <tr>
-      <td class="hastext">৩য় শ্রেণী</td>
-			<td><?php echo $total_weight3; ?></td>
-			<!-- <td class="hastext">16mm 400W/60G</td>
+        </tr>
+        <!-- Ekhan theke -->
+        <tr>
+          <!-- <td class="hastext">৩য় শ্রেণী</td>
+			<td><?php echo $total_weight3; ?></td> -->
+          <!-- <td class="hastext">16mm 400W/60G</td>
 			<td><?php echo $mm16_rod400; ?></td> -->
-      <td style="background-color:#555"></td>
-      <td style="background-color:#555"></td>
-      <td style="background-color:#555"></td>
-      <td style="background-color:#555"></td>
-      
-    </tr>
-    <tr>
-      <td class="hastext">পিকেট </td>
-			<td><?php echo $total_weight4; ?></td>
-			<!-- <td class="hastext">20mm 400W/60G</td>
-			<td><?php echo $mm20_rod400; ?></td> -->
-      <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
-      <td><?php echo $motor_vara; ?></td>
-      <td class="hastext">ম‌োট মূলঃ</td>
-      <td><?php echo $total_credit; ?></td>
-     
-    </tr>
-    <tr>
-    <td class="hastext">লাল ক্লাশ</td>
-            <td><?php echo $total_weight5; ?></td>
-            <td class="hastext">মোট খালাস খরচঃ</td>
-      <td><?php echo $unload; ?></td>
-      <td class="hastext">ম‌োট জমাঃ</td>
-      <td><?php echo $total_debit; ?></td>
-          
-      
+          <!-- <td style="background-color:#555"></td>
+          <td style="background-color:#555"></td>
+          <td style="background-color:#555"></td>
+          <td style="background-color:#555"></td> -->
 
-    </tr>
-    <tr>
-      <td class="hastext">টুকরা</td>
-			<td><?php echo $total_weight6; ?></td>
-			<!-- <td class="hastext">25mm 400W/60G</td>
+        </tr>
+        <tr>
+          <!-- <td class="hastext">পিকেট </td>
+			<td><?php echo $total_weight4; ?></td> -->
+          <!-- <td class="hastext">20mm 400W/60G</td>
+			<td><?php echo $mm20_rod400; ?></td> -->
+          <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
+          <td><?php echo $motor_vara; ?></td>
+          <td class="hastext">ম‌োট মূলঃ</td>
+          <td><?php echo $total_credit; ?></td>
+
+        </tr>
+        <tr>
+          <!-- <td class="hastext">লাল ক্লাশ</td>
+            <td><?php echo $total_weight5; ?></td> -->
+          <td class="hastext">মোট খালাস খরচঃ</td>
+          <td><?php echo $unload; ?></td>
+          <td class="hastext">ম‌োট জমাঃ</td>
+          <td><?php echo $total_debit; ?></td>
+
+        </tr>
+        <tr>
+          <!-- <td class="hastext">টুকরা</td>
+			<td><?php echo $total_weight6; ?></td> -->
+          <!-- <td class="hastext">25mm 400W/60G</td>
 			<td><?php echo $mm25_rod400; ?></td> -->
-      <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
-      <td><?php echo $motor_vara_and_unload; ?></td>
-      <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
-      <td><?php echo $total_balance; ?></td>
-      
-    </tr>
-    <tr>
-     <td class="hastext">গোরিয়া</td>
-			<td><?php echo $total_weight7; ?></td>
-			<td class="hastext">ম‌োট মূল খরচ সহঃ</td>
-      <td><?php echo $vara_credit; ?></td>
-      <td></td>
-      <td></td>
-    </tr>
-  
-    <tr>
-       <td class="hastext"><b>Total Piece:</b></td>
-			<td><b><?php echo $total_w; ?></b></td> 
-			<!-- <td class="hastext"><b>Total Kg:</b></td>
+          <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
+          <td><?php echo $motor_vara_and_unload; ?></td>
+          <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
+          <td><?php echo $total_balance; ?></td>
+
+        </tr>
+        <tr>
+          <!-- <td class="hastext">গোরিয়া</td>
+			<td><?php echo $total_weight7; ?></td> -->
+          <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
+          <td><?php echo $vara_credit; ?></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="hastext"><b>Total Piece:</b></td>
+          <td><b><?php echo $total_w; ?></b></td>
+          <!-- <td class="hastext"><b>Total Kg:</b></td>
 			<td><b><?php echo $total_kg_rod400; ?></b></td> -->
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
+          <td></td>
+          <td></td>
+          <!-- <td></td>
+          <td></td> -->
+        </tr>
+      </table>
+    </div>
+  </div>
+
 </div>
 
 <div class="rodDetailsEnCon" style="display: block;">
@@ -590,14 +526,15 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM brick_category WHERE  category_name != ''";
+            $sql = "SELECT DISTINCT category_name, category_id FROM brick_category WHERE  category_name != ''";
             $all_particular = $db->select($sql);
             echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
             echo '<option value="none">Select...</option>';
             if ($all_particular->num_rows > 0) {
               while ($row = $all_particular->fetch_assoc()) {
                 $particulars = $row['category_name'];
-                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
+                $particulars_id = $row['category_id'];
+                echo '<option value="' . $particulars_id . ',' . $particulars . ' ">' . $particulars . '</option>';
               }
             } else {
               echo '<option value="none">0 Result</option>';

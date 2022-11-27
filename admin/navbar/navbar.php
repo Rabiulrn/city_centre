@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .nav>li>a{
+      padding: 10px 10px !important;
+    }
+    /* .navbar{
+      padding-top: 15px;
+    } */
+  </style>
+</head>
+<body>
+  
 <nav class="navbar navbar-inverse">
     <div class="container">
       <!-- <div class="navbar-header">
@@ -156,8 +174,9 @@
                           echo '<li class="';
                          if($page == 'piling_hisab'){echo 'active';}
 
-                         if($_SESSION['pageName'] == 'brick_kroy_hisab'){echo 'active';}
-                         else if($_SESSION['pageName'] == 'brick_report_dealer'){echo 'active';}
+                         if($_SESSION['pageName'] == 'piling_kroy_hisab'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'piling_hisab_entry'){echo 'active';}
+                         else if($_SESSION['pageName'] == 'piling_dealer_entry'){echo 'active';}
                   
 
                           echo '"><a href="../vaucher/piling_index.php">পাইলিং</a>';
@@ -192,17 +211,17 @@
 
 
 
-                      //   if($_SESSION['electric_kroy_bikroy'] == 'yes'){
-                      //     echo '<li class="';
-                      //     if($page == 'electric_kroy_bikroy'){echo 'active';}
+                        if($_SESSION['electric_kroy_bikroy'] == 'yes'){
+                          echo '<li class="';
+                          if($page == 'electric_kroy_bikroy'){echo 'active';}
 
-                      //     if($_SESSION['pageName'] == 'electric_day_hisab'){echo 'active';}
-                      //     else if($_SESSION['pageName'] == 'electric_details_hisab'){echo 'active';}
-                      //     else if($_SESSION['pageName'] == 'electric_suplier_create'){echo 'active';}
-                      //    // echo '"><a href="../vaucher/electric_kroy_bikroy.php">ইলেকট্রিক মালের খরচ হিসাব</a>';
-                      //     echo '"><a href="../vaucher/electric_kroy_bikroy.php">ক্রয় হিসাব</a>';
-                      //     echo '</li>';
-                      // }
+                          if($_SESSION['pageName'] == 'electric_day_hisab'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'electric_details_hisab'){echo 'active';}
+                          else if($_SESSION['pageName'] == 'electric_suplier_create'){echo 'active';}
+                         // echo '"><a href="../vaucher/electric_kroy_bikroy.php">ইলেকট্রিক মালের খরচ হিসাব</a>';
+                          echo '"><a href="../vaucher/electric_kroy_bikroy.php">ক্রয় হিসাব</a>';
+                          echo '</li>';
+                      }
                        // if($_SESSION['raj_kajer_all_hisab'] == 'yes'){
                           echo '<li class="';
                           if($page == 'employee'){echo 'active';}
@@ -317,3 +336,9 @@
   </form> -->
     </div>
 </nav>
+
+</body>
+</html>
+
+
+

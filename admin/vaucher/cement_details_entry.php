@@ -612,7 +612,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                                 while ($row = $all_custmr_id->fetch_assoc()) {
                                     $id = $row['dealer_id'];
                                     $dealer_name = $row['dealer_name'];
-                                    echo '<option value="' . $id . '">' . $dealer_name . '</option>';
+                                    echo '<option value="' . $id . '"selected>' . $dealer_name . '</option>';
                                 }
                             } else {
                                 echo '<option value="none">0 Result</option>';
@@ -772,12 +772,12 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                                     $sql = "SELECT DISTINCT category_name,category_id FROM cement_category WHERE  category_name != ''";
                                     $all_particular = $db->select($sql);
                                     echo '<select name="particulars" id="particulars" class="form-control" >';
-                                    echo '<option value="none">Select...</option>';
+                                    echo '<option value="particulars">Select...</option>';
                                     if ($all_particular->num_rows > 0) {
                                         while ($row = $all_particular->fetch_assoc()) {
                                             $particulars = $row['category_name'];
                                             $particulars_id = $row['category_id'];
-                                            echo '<option value="' . $particulars_id . ',' . $particulars . ' ">' . $particulars . '</option>';
+                                            echo '<option value="' . $particulars_id . ',' . $particulars . ' " selected>' . $particulars . '</option>';
                                         }
                                     } else {
                                         echo '<option value="none">0 Result</option>';

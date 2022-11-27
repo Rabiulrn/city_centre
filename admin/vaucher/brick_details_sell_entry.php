@@ -1247,7 +1247,7 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
                 }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
-                var urltxt = '../ajaxcall/brick_details_entry_ajax.php';
+                var urltxt = '../ajaxcall/brick_sell_details_entry_ajax.php';
 
             } else {
                 ////Horizontal Edit er code

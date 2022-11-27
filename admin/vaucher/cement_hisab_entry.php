@@ -56,7 +56,10 @@
       } else {
           $category_id = $_POST['category_id'];
           $sql="UPDATE cement_category SET category_name = '$category_name' WHERE category_id = '$category_id'";
-
+          $sql2="UPDATE details_cement SET particulars = '$category_name' WHERE particulars_id = '$category_id'";
+          $sql3="UPDATE details_sell_cement SET particulars = '$category_name' WHERE particulars_id = '$category_id'";
+          $db->update($sql2);
+          $db->update($sql3);
           if ($db->update($sql) === TRUE) {
               $sucMsg = "Category Entry Updated Successfully";
           } else {

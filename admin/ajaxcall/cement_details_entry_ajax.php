@@ -81,8 +81,8 @@
 // VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20],[value-21],[value-22],[value-23],[value-24],[value-25],[value-26],[value-27],[value-28],[value-29])
 
 
-$sql2 = "INSERT INTO `stocks_cement` (`stock_id`, `partculars`, `particulars`, `weight`,`project_name_id`) VALUES ('','$partculars', '$particulars', '$weight','$project_name_id')";
-
+$sql2 = "INSERT INTO `stocks_cement` (`stock_id`, `dealer_id`, `count`,`project_name_id`) VALUES ('','$dealer_id', '$count2','$project_name_id')";
+$db->insert($sql2);
     $result = $db->insert($sql);
     if ($result) 
     {
@@ -90,7 +90,7 @@ $sql2 = "INSERT INTO `stocks_cement` (`stock_id`, `partculars`, `particulars`, `
         $sucMsgPopup = "New Entry Saved Successfully.";
         echo $sucMsg;
     } else{
-        echo "Error: " . $sql . "<br>" . $db->error;
+        echo "Error: " . $sql . "<br>" . $db->error; 
     }
   
     // $result = $db->insert($sql2);

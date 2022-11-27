@@ -145,9 +145,9 @@
             <div class="showDealerCon">
               <table >
                 <tr class="bg-primary">
-                  <th>মারফ‌োত নাম</th>
-                  <th>ব‌িবরণ</th>
-                  <th>ওজন (এম,টি )</th>
+                  <th>ডিলার নাম</th>
+                  <!-- <th>ব‌িবরণ</th> -->
+                  <th>ব্যাগ</th>
 
                   <!-- <th>Address</th>
                   <th>Contact Person Name</th>
@@ -156,14 +156,15 @@
                   <th>Edit</th> -->
                 </tr>
                 <?php
-                  $sql = "SELECT partculars,particulars,sum(weight) as 'weight' FROM stocks_cement WHERE partculars != '' AND project_name_id = '$project_name_id' AND weight > 0 GROUP BY partculars,particulars";
+                  $sql = "SELECT dealer_id,sum(count2) as 'count' FROM details_cement 
+                  WHERE project_name_id = '$project_name_id' 
+                  GROUP BY dealer_id";
                   $show = $db->select($sql);
                   if ($show) {
                       while ($rows = $show->fetch_assoc()){
                           echo "<tr>";
-                              echo "<td>". $rows['partculars'] . "</td>";
-                              echo "<td>". $rows['particulars'] . "</td>";
-                              echo "<td>". $rows['weight'] . "</td>";
+                              echo "<td>". $rows['dealer_id'] . "</td>";
+                              echo "<td>". $rows['count'] . "</td>";
                                       
                           echo "</tr>";
                       }

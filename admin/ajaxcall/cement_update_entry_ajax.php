@@ -75,18 +75,18 @@ if(isset($cement_details_id)){
   //  $sql = "UPDATE details_balu SET buyer_id = '$buyer_id', motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address',  motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit',`ton & kg`='$ton_kg',`length`='$length',`width`='$width',`height`='$height',`shifty`='$shifty',`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`cemeats_paras`='$cemeats_paras',`ton`='$ton',`bank_name`='$bank_name',`fee`='$fee'  WHERE id = '$balu_details_id'";
  // UPDATE `details_cement` SET `id`=[value-1],`buyer_id`=[value-2],`dealer_id`=[value-3],`motor_name`=[value-4],`driver_name`=[value-5],`motor_vara`=[value-6],`unload`=[value-7],`cars_rent_redeem`=[value-8],`information`=[value-9],`sl`=[value-10],`challan_no`=[value-11],`address`=[value-12],`motor_no`=[value-13],`motor_sl`=[value-14],`so_date`=[value-15],`dates`=[value-16],`partculars`=[value-17],`particulars`=[value-18],`debit`=[value-19],`challan_date`=[value-20],`count`=[value-21],`total_credit`=[value-22],`weight`=[value-23],`paras`=[value-24],`discount`=[value-25],`credit`=[value-26],`balance`=[value-27],`fee`=[value-28],`project_name_id`=[value-29] WHERE 1;
 
-    $sql = "UPDATE details_cement SET motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', challan_no = '$challan_no', address = '$address',motor_no = '$motor_no',  motor_sl = '$motor_sl', dates = '$dates',so_date = '$so_date', challan_date = '$dates',  motor_no ='$challan_date',partculars = '$partculars',  debit = '$debit', monthly_com ='$monthly_com',yearly_com ='$yearly_com',count='$count',partculars='$partculars',particulars='$data_name',particulars_id='$data_id',fee='$free',
+    $sql = "UPDATE details_cement SET motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', challan_no = '$challan_no', address = '$address',motor_no = '$motor_no',  motor_sl = '$motor_sl', dates = '$dates',so_date = '$so_date', challan_date = '$dates',  motor_no ='$challan_date',partculars = '$partculars',  debit = '$debit', monthly_com ='$monthly_com',yearly_com ='$yearly_com',count='$count',partculars='$partculars',fee='$free',
 
 `count2`='$count2',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`weight`='$weight'  WHERE id = '$cement_details_id'";
     // partculars = '$partculars', particulars = '$particulars', debit = '$debit',`ton & kg`='$ton_kg',`length`='$length',`width`='$width',`height`='$height',`shifty`='$shifty',`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`ton`='$ton',
     // 
+if($particulars != "none" || $particulars != "None"){
+  $sql2 = "UPDATE `details_cement` SET particulars='$data_name',particulars_id='$data_id'";
+  $db->select($sql2);
+}
+   
 
-//    $sql2 = "UPDATE `details_balu` SET `motor_name`='$motor_name',`driver_name`='$driver_name',`motor_vara`= '$motor_vara',`unload`='$unload',`cars_rent_redeem`='$car_rent_redeem',`information`='$information',`sl`='$sl',`voucher_no`='$voucher_no',`address`='$address',`motor_no`='$motor_sl',`motor_sl`='$motor_sl',`delivery_date`='$delivery_date',
-//    `dates`='$dates',`partculars`='$particulars',`particulars`='$debit'  WHERE id = '$id'";
-//--    ,`debit`=[value-20],`ton & kg`=[value-21],`length`=[value-22],`width`=[value-23],`height`=[value-24],`shifty`=[value-25],`inchi (-)_minus`=[value-26],`cft (-)_dropped out`=[value-27],`inchi (+)_added`=[value-28],`points ( - )_dropped out`=[value-29],`shift`=[value-30],`total_shift`=[value-31],`paras`=[value-32],`discount`=[value-33],`credit`=[value-34],`balance`=[value-35],`cemeats_paras`=[value-36],`ton`=[value-37],`total_shifts`=[value-38],`tons`=[value-39],`bank_name`=[value-40],`fee`=[value-41] WHERE 1";
-    
-    //  ,  
-
+   
 	if ($db->select($sql) === TRUE) {
 		$sucMsg = "Cement details updated Successfully.";
 		echo "Cement details updated Successfully.";

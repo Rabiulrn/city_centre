@@ -15,104 +15,6 @@ $delete_data_permission = $_SESSION['delete_data'];
 
 $sucMsg = "";
 
-$total_weight = 0;
-$sql = "SELECT SUM(count) as weight FROM details_brick WHERE particulars LIKE '%১ম শ্রেণী%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_weight = $row['weight'];
-    if (is_null($total_weight)) {
-      $total_weight = 0;
-    }
-  }
-} else {
-  $total_weight = 0;
-}
-
-$total_weight1 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_brick WHERE particulars LIKE '%২য় শ্রেণী%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_weight1 = $row['weight'];
-    if (is_null($total_weight1)) {
-      $total_weight1 = 0;
-    }
-  }
-} else {
-  $total_weight1 = 0;
-}
-
-
-$total_weight3 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_brick WHERE particulars LIKE '%৩য় শ্রেণী%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_weight3 = $row['weight'];
-    if (is_null($total_weight3)) {
-      $total_weight3 = 0;
-    }
-  }
-} else {
-  $total_weight3 = 0;
-}
-
-$total_weight4 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_brick WHERE particulars LIKE '%পিকেট%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_weight4 = $row['weight'];
-    if (is_null($total_weight4)) {
-      $total_weight4 = 0;
-    }
-  }
-} else {
-  $total_weight4 = 0;
-}
-
-$total_weight5 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_brick WHERE particulars LIKE '%লাল ক্লাশ%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_weight5 = $row['weight'];
-    if (is_null($total_weight5)) {
-      $total_weight5 = 0;
-    }
-  }
-} else {
-  $total_weight5 = 0;
-}
-
-$total_weight6 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_brick WHERE particulars LIKE '%টুকরা%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_weight6 = $row['weight'];
-    if (is_null($total_weight6)) {
-      $total_weight6 = 0;
-    }
-  }
-} else {
-  $total_weight6 = 0;
-}
-
-$total_weight7 = 0;
-$sql = "SELECT SUM(count) as weight FROM details_brick WHERE particulars LIKE '%গোরিয়া%' AND dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_weight7 = $row['weight'];
-    if (is_null($total_weight7)) {
-      $total_weight7 = 0;
-    }
-  }
-} else {
-  $total_weight7 = 0;
-}
 
 
 $total1_weight = 0;
@@ -200,18 +102,6 @@ if ($result->num_rows > 0) {
 
 // //End GB Bank Ganti
 // Start total total_kg
-$sql = "SELECT SUM(weight) as shift FROM details_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_shift = $row['shift'];
-    if (is_null($total_shift)) {
-      $total_shift = 0;
-    }
-  }
-} else {
-  $total_shift = 0;
-}
 
 $sql = "SELECT SUM(count) as count_c FROM details_brick WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
@@ -288,45 +178,50 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       <input type="checkbox">
       <span class="checkmark"></span>
     </label> -->
-
-
-  <div class="contorlAfterDealer">
-
-    <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-    <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
-  </div>
+    <label class="conchk" id="flipChkbox">Show/Hide Summary
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <div class="contorlAfterDealer">          
+      
+        <button onclick="myFunction()" class="btn printBtnDlr" style="position:relative; margin-left:150px; right: 0px">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    </div>
 </div>
+
+
+  
 
 <div id="panel">
   <div style="display: flex;">
     <div class="upper">
-      <table width="100%" class="summary">
+      <table width="250px" class="summary">
         <?php
-        $sql =
-          "SELECT category_name,category_id,sum(count) as 'total' 
-       FROM brick_category
-       LEFT JOIN details_brick
-       ON details_brick.particulars_id = brick_category.category_id
-       WHERE details_brick.dealer_id = '$dealerId'  AND details_brick.particulars != 'BG' AND details_brick.particulars != 'In Cash' 
-       GROUP BY details_brick.particulars_id
-      ";
+      //   $sql =
+      //     "SELECT category_name,category_id,sum(count) as 'total' 
+      //  FROM brick_category
+      //  LEFT JOIN details_brick
+      //  ON details_brick.particulars_id = brick_category.category_id
+      //  WHERE details_brick.dealer_id = '$dealerId'  AND details_brick.particulars != 'BG' AND details_brick.particulars != 'In Cash' 
+      //  GROUP BY details_brick.particulars_id
+      // ";
 
-        // $sqlrr = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
-        // FROM details_sell_cement 
-        // WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' 
-        // GROUP BY particulars_id";
+        $sql = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
+        FROM details_brick 
+        WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' 
+        GROUP BY particulars_id";
         // $result2 = $conn->query($sqlrr);
-        $result2 = $db->select($sql);
+        $result = $db->select($sql);
         if ($result) {
-          $rowcount2 = mysqli_num_rows($result2);
+          $rowcount2 = mysqli_num_rows($result);
           if ($rowcount2 != 0) {
-            if ($result2->num_rows > 0) {
+            if ($result->num_rows > 0) {
               // output data of each row
 
-              while ($rows = $result2->fetch_assoc()) {
+              while ($rows = $result->fetch_assoc()) {
                 // $temp = $rows['particulars'];
                 echo "<tr>";
-                echo "<td>" . $rows['category_name'] . "</td>";
+                echo "<td>" . $rows['particulars'] . "</td>";
                 echo "<td>" . $rows['total'] . "</td>";
                 echo "</tr>";
                 // echo "id: " . $row["id"]. " - Name: " . $row["category_name"]. " " .  "<br>";
@@ -339,8 +234,8 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
         ?>
         <tr>
 
-          <td class="hastext"><b>ম‌োট ব‌েগঃ</b></td>
-          <td><b><?php echo $mot_beg; ?></b></td>
+          <td style= "background-color: grey; border: 2px solid black; color: white; text-align: center;" class="hastext"><b>ম‌োট পিস</b></td>
+          <td style= "border: 2px solid black;"><b><?php echo $total_w; ?></b></td>
           <!-- <td class="hastext"><b>Total Kg:</b></td>
     <td><b><?php echo $total_kg_rod400; ?></b></td> -->
 
@@ -348,7 +243,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       </table>
     </div>
     <div class="lower">
-      <table width="100%" class="summary">
+      <table width="748px" class="summary">
         <tr>
           <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
@@ -367,8 +262,8 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm06_rod400; ?></td> -->
           <!-- <td class="hastext">ওজন (এম,টি )</td>
       <td><?php echo $total_shift; ?></td> -->
-          <td class="hastext"></td>
-          <td><?php echo $company_paona; ?></td>
+          <!-- <td class="hastext"></td>
+          <td><?php echo $company_paona; ?></td> -->
 
         </tr>
         <tr>
@@ -409,10 +304,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $total_weight3; ?></td> -->
           <!-- <td class="hastext">16mm 400W/60G</td>
 			<td><?php echo $mm16_rod400; ?></td> -->
+          <!-- <td style="background-color:#555"></td>
           <td style="background-color:#555"></td>
           <td style="background-color:#555"></td>
-          <td style="background-color:#555"></td>
-          <td style="background-color:#555"></td>
+          <td style="background-color:#555"></td> -->
 
         </tr>
         <tr>
@@ -462,8 +357,8 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><b><?php echo $total_kg_rod400; ?></b></td> -->
           <td></td>
           <td></td>
-          <td></td>
-          <td></td>
+          <!-- <td></td>
+          <td></td> -->
         </tr>
       </table>
     </div>
@@ -563,14 +458,15 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
             <?php
-            $sql = "SELECT dealer_id FROM brick_dealer WHERE project_name_id ='$project_name_id'";
+            $sql = "SELECT * FROM brick_dealer WHERE project_name_id ='$project_name_id'";
             $all_custmr_id = $db->select($sql);
             echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
             echo '<option value="none">Select...</option>';
             if ($all_custmr_id->num_rows > 0) {
               while ($row = $all_custmr_id->fetch_assoc()) {
                 $id = $row['dealer_id'];
-                echo '<option value="' . $id . '">' . $id . '</option>';
+                $dealer_name = $row['dealer_name'];
+                echo '<option value="' . $id . '">' . $id . '--' . $dealer_name . '</option>';
               }
             } else {
               echo '<option value="none">0 Result</option>';

@@ -39,7 +39,7 @@
             </a>
             <?php
         }
-        if($_SESSION['cement_stocks'] == 'yes'){
+        if($_SESSION['cement_dealer'] == 'yes'){
             ?>
             <!-- <a class="mnu_left <?php if($_SESSION['pageName'] == 'cement_stocks'){echo 'mnu_active';}?>" href="../vaucher/cement_stocks.php">
                 <img src="../img/logo/add5.png" alt="logo" class="img_mnu">

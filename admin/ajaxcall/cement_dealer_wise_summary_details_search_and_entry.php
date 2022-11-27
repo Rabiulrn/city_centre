@@ -432,7 +432,7 @@
   } else {
     $free = 0;
   }
-  $mot_beg = $total_w + $free;
+  $mot_Bag = $total_w + $free;
   // $total_ton = $total_shift / 23.5;
   // // End total total_kg
 
@@ -511,7 +511,7 @@
 
   //Start Total para/mot_mul_khoros_shoho
 
-  $vara_credit = $motor_vara_and_unload + $total_credit;
+  // $vara_credit = $motor_vara_and_unload + $total_cement_tel_mul;
 
 
 
@@ -562,6 +562,7 @@
   $company_paona = ($total_debit - $total_credit) - $gb_bank_ganti;
   $total_cement_tel_mul = $oil_sell + $total_credit;
   $total_balance = $total_debit - $total_cement_tel_mul;
+  $vara_credit = $motor_vara_and_unload + $total_cement_tel_mul;
   ?>
 
 
@@ -573,39 +574,54 @@
 
 
 
-
+ 
   <div id="flip">
     <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary 
       <input type="checkbox">
       <span class="checkmark"></span>
     </label> -->
-
-
-    <div class="contorlAfterDealer">
-
-      <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-      <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    <label class="conchk" id="flipChkbox">Show/Hide Summary
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <div class="contorlAfterDealer">          
+      
+        <button onclick="myFunction()" class="btn printBtnDlr" style="position:relative; margin-left:150px; right: 0px">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
     </div>
-  </div>
+</div>
+
+    
+
+
+    <!-- <div class="contorlAfterDealer"> -->
+      <!-- <div> <button onclick="myFunction()" class="btn printBtnDlr">Print</button></div> -->
+     
+      <!-- </div> -->
+      <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    <!-- </div> -->
+  
+ 
 
   <div id="panel">
 <div style="display: flex;">
   <div>
-  <table width="100%" class="summary">
+  <table width="250px" class="summary">
       <?php
       $sql =
-        "SELECT category_name,category_id,sum(count) as 'total' 
-FROM cement_category
-LEFT JOIN details_cement
-ON details_cement.particulars_id = cement_category.category_id
-WHERE details_cement.dealer_id = '$dealerId'  AND details_cement.particulars != 'BG' AND details_cement.particulars != 'In Cash' 
-GROUP BY details_cement.particulars_id
-";
+//         "SELECT category_name,category_id,sum(count) as 'total' 
+// FROM cement_category
+// LEFT JOIN details_cement
+// ON details_cement.particulars_id = cement_category.category_id
+// WHERE details_cement.dealer_id = '$dealerId'  AND details_cement.particulars != 'BG' AND details_cement.particulars != 'In Cash' 
+// GROUP BY details_cement.particulars_id
+// ";
 
-      // $sqlrr = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
-      // FROM details_sell_cement 
-      // WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' 
-      // GROUP BY particulars_id";
+      $sql = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
+      FROM details_cement 
+      WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' 
+      GROUP BY particulars_id
+      HAVING SUM(count) != 0";
       // $result2 = $conn->query($sqlrr);
       $result2 = $db->select($sql);
       if ($result) {
@@ -617,7 +633,7 @@ GROUP BY details_cement.particulars_id
             while ($rows = $result2->fetch_assoc()) {
               // $temp = $rows['particulars'];
               echo "<tr>";
-              echo "<td>" . $rows['category_name'] . "</td>";
+              echo "<td>" . $rows['particulars'] . "</td>";
               echo "<td>" . $rows['total'] . "</td>";
               echo "</tr>";
               // echo "id: " . $row["id"]. " - Name: " . $row["category_name"]. " " .  "<br>";
@@ -630,8 +646,8 @@ GROUP BY details_cement.particulars_id
       ?>
       <tr>
       
-      <td class="hastext"><b>ম‌োট ব‌েগঃ</b></td>
-      <td><b><?php echo $mot_beg; ?></b></td>
+      <td style= "background-color: grey; border: 2px solid black; color: white; text-align: center;" class="hastext"><b >ম‌োট ব্যাগ</b></td>
+      <td style= "border: 2px solid black;"><b><?php echo $mot_Bag; ?></b></td>
       <!-- <td class="hastext"><b>Total Kg:</b></td>
     <td><b><?php echo $total_kg_rod400; ?></b></td> -->
 
@@ -641,7 +657,7 @@ GROUP BY details_cement.particulars_id
 
   </div>
   <div>
-  <table width="161%" class="summary">
+  <table width="748px" class="summary">
       <tr>
         <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
@@ -680,57 +696,7 @@ GROUP BY details_cement.particulars_id
           </button></td> -->
 
         <!-- The modal -->
-        <div class="modal fade" id="smallShoes" tabindex="-1" role="dialog" aria-labelledby="modalLabelSmall" aria-hidden="true">
-          <div class="modal-dialog modal-md">
-            <div class="modal-content">
-
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="modalLabelSmall" style="color:blue"><b>GB Bank History</b>
-
-
-                </h4>
-              </div>
-
-              <div class="modal-body">
-
-                <div>
-
-                  <ol>
-                    <?php
-                    $sqlrr = "SELECT * FROM cement_gb_bank_history WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id' GROUP BY time DESC LIMIT 10 ";
-                    // $result2 = $conn->query($sqlrr);
-                    $result2 = $db->select($sqlrr);
-                    if ($result) {
-                      $rowcount2 = mysqli_num_rows($result2);
-                      if ($rowcount2 != 0) {
-                        if ($result2->num_rows > 0) {
-                          // output data of each row
-
-                          while ($rows = $result2->fetch_assoc()) {
-
-                            echo "<li>" .  " <b>Date time: </b>" . $rows['time'] . "" . "&nbsp;&nbsp;&nbsp;&nbsp;     <b>GB Bank Ganti: </b>" . $rows['value'] . "" . "</li>" . "</hr>";
-
-
-                            // echo "id: " . $row["id"]. " - Name: " . $row["category_name"]. " " .  "<br>";
-                          }
-                        } else {
-                          echo "0 results";
-                        }
-                      }
-                    }
-                    ?>
-
-
-
-                  </ol>
-                </div>
-              </div>
-
-            </div>
-          </div>
+       
 
       </tr>
       <tr>
@@ -741,7 +707,7 @@ GROUP BY details_cement.particulars_id
         <td><?php echo $total_weight11; ?></td> -->
         <!-- <td class="hastext">08mm 400W/60G</td>
 			<td><?php echo $mm08_rod400; ?></td> -->
-        <td class="hastext">ম‌োট ব‌েগঃ</td>
+        <td class="hastext">ম‌োট ব্যাগ</td>
         <td><?php echo $total_w; ?></td>
 
         <td class="hastext">কোম্পানী পাওনাঃ</td>
@@ -796,8 +762,8 @@ GROUP BY details_cement.particulars_id
         <td><?php echo $total_weight13; ?></td> -->
         <!-- <td class="hastext">20mm 400W/60G</td>
 			<td><?php echo $mm20_rod400; ?></td> -->
-        <td class="hastext">ম‌োট ব‌েগঃ </td>
-        <td><?php echo $mot_beg; ?></td>
+        <td class="hastext">ম‌োট ব্যাগ </td>
+        <td><?php echo $mot_Bag; ?></td>
 
 
         <td></td>
@@ -810,7 +776,7 @@ GROUP BY details_cement.particulars_id
         <td><?php echo $total_weight4; ?></td>
         <td class="hastext">Cement (PCC)</td>
         <td><?php echo $total_weight14; ?></td> -->
-        <td class="hastext">ম‌োট তেল ফ্রি </td>
+        <td class="hastext">ম‌োট তেল ফ্রি</td>
         <td><?php echo $oil_free; ?></td>
         <td></td>
         <td></td>
@@ -837,9 +803,9 @@ GROUP BY details_cement.particulars_id
       <td><?php echo $total_weight7; ?></td>
       <td class="hastext">Cement (PCC A-M)</td>
       <td><?php echo $total_weight17; ?></td> -->
-      <td class="hastext"></td>
+      <!-- <td class="hastext"></td> -->
       <!-- <td><?php echo $motor_vara; ?></td> -->
-      <td class="hastext"></td>
+      <!-- <td class="hastext"></td> -->
       <!-- <td><?php echo $total_credit; ?></td> -->
 
 
@@ -855,12 +821,12 @@ GROUP BY details_cement.particulars_id
         <td><?php echo $total_weight6; ?></td>
         <td class="hastext" style="text-align: centre;"> Cement Poly (PCC)-2</td>
         <td><?php echo $total_weight16; ?></td> -->
-        
+<!--         
         <td style="background-color:#999"></td>
         <td style="background-color:#999"></td>
         <td style="background-color:#999"></td>
         <td style="background-color:#999"></td>
-        
+         -->
 
 
 
@@ -874,9 +840,9 @@ GROUP BY details_cement.particulars_id
         <td><?php echo $total_weight7; ?></td>
         <td class="hastext">Cement (PCC A-M)</td>
         <td><?php echo $total_weight17; ?></td> -->
-        <td class="hastext"></td>
+        <!-- <td class="hastext"></td> -->
         <!-- <td><?php echo $motor_vara; ?></td> -->
-        <td class="hastext"></td>
+        <!-- <td class="hastext"></td> -->
         <!-- <td><?php echo $total_credit; ?></td> -->
 
 
@@ -885,7 +851,7 @@ GROUP BY details_cement.particulars_id
       <td></td> -->
       </tr>
       <tr>
-      <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
+      <td class="hastext">মোট গাড়ী ভাড়াঃ </td>
         <td><?php echo $motor_vara; ?></td>
         <td class="hastext">ম‌োট সিমেন্ট মূলঃ</td>
         <td><?php echo $total_credit; ?></td>
@@ -907,7 +873,7 @@ GROUP BY details_cement.particulars_id
         <td><?php echo $total_weight8; ?></td>
         <td class="hastext">Cement (PCC B-M)</td>
         <td><?php echo $total_weight18; ?></td> -->
-        <td class="hastext">মোট খালাস খরচঃ</td>
+        <td class="hastext">খালাস খরচঃ</td>
         <td><?php echo $unload; ?></td>
         <td class="hastext">ম‌োট সিমেন্ট ও তেল মূলঃ</td>
         <td><?php echo $total_cement_tel_mul; ?></td>
@@ -997,9 +963,9 @@ GROUP BY details_cement.particulars_id
             <td class="widthPercent2">Monthly Commission</td>
             <td class="widthPercent2">Yearly Commission</td>
             <td class="widthPercent2">Total Deposit money</td>
-            <td class="widthPercent3">Beg Country</td>
+            <td class="widthPercent3">Bag Count</td>
             <td class="widthPercent3">Free</td>
-            <td class="widthPercent3">Total Beg Country</td>
+            <td class="widthPercent3">Total Bag Count</td>
             <td class="widthPercent3">Para's</td>
             <td class="widthPercent3">Discount</td>
             <td class="widthPercent3">Credit</td>
@@ -1040,9 +1006,9 @@ GROUP BY details_cement.particulars_id
             <td>বাৎসরিক কমিশন</td>
             <td>মোট জমা টাকা</td>
 
-            <td>ব‌েগ পরিমান‌</td>
+            <td>ব্যাগ পরিমান‌</td>
             <td>ফ্রি </td>
-            <td>ম‌োট ব‌েগ পরিমান‌‌</td>
+            <td>ম‌োট ব্যাগ পরিমান‌‌</td>
             <td>দর</td>
             <td>কমিশন</td>
             <td>মূল</td>
@@ -1305,9 +1271,9 @@ GROUP BY details_cement.particulars_id
                 <th>Monthly Commission</th>
                 <th>Yearly Commission</th>
                 <th>Total Deposit money</th>
-                <th>Beg Country</th>
+                <th>Bag Count</th>
                 <th>Free</th>
-                <th>Total Beg Country</th>
+                <th>Total Bag Count</th>
 
                 <th>Para's</th>
                 <th>Discount</th>
@@ -1352,9 +1318,9 @@ GROUP BY details_cement.particulars_id
                 <th>মাসিক কমিশন</th>
                 <th>বাৎসরিক কমিশন</th>
                 <th>মোট জমা টাকা</th>
-                <th>ব‌েগ পরিমান‌</th>
+                <th>ব্যাগ পরিমান‌</th>
                 <th>ফ্রি </th>
-                <th>ম‌োট ব‌েগ পরিমান‌</th>
+                <th>ম‌োট ব্যাগ পরিমান‌</th>
                 <th>দর</th>
                 <th>কমিশন</th>
                 <th>মূল</th>

@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
 }
 
 //Start Gari vara
-$sql = "SELECT SUM(motor_vara) as motor_vara FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(motor_vara) as motor_vara FROM details_cement WHERE  project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -49,7 +49,7 @@ if ($result->num_rows > 0) {
 //End Gari vara
 
 //Start khalas/Unload
-$sql = "SELECT SUM(unload) as unload FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(unload) as unload FROM details_cement WHERE  project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -69,34 +69,34 @@ $motor_vara_and_unload = $motor_vara + $unload;
 // // End total total_motor
 
 // //Start GB Bank Ganti
-$sql = "SELECT SUM(value) as value FROM cement_sell_gb_bank_history WHERE  customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(weight) as weight FROM details_sell_cement WHERE  customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-    $gb_bank_ganti = $row['value'];
+    $total_weight = $row['weight'];
     $gb_bank_ganti_db_id = $row['id'];
-    if (is_null($gb_bank_ganti)) {
-      $gb_bank_ganti = 0;
+    if (is_null($total_weight)) {
+      $total_weight = 0;
     }
   }
 } else {
-  $gb_bank_ganti = 0;
+  $total_weight = 0;
 }
 
 
 // //End GB Bank Ganti
 // Start total total_kg
-$sql = "SELECT SUM(weight) as shift FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(count) as mot_bag FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-    $total_shift = $row['shift'];
-    if (is_null($total_shift)) {
-      $total_shift = 0;
+    $total_mot_bag = $row['mot_bag'];
+    if (is_null($total_mot_bag)) {
+      $total_mot_bag = 0;
     }
   }
 } else {
-  $total_shift = 0;
+  $total_mot_bag = 0;
 }
 $sql = "SELECT SUM(count2) as count_c FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
@@ -134,7 +134,7 @@ if ($result->num_rows > 0) {
 } else {
   $free = 0;
 }
-$mot_beg_kroy = $total_w + $free;
+$mot_beg_kroy = $total_w;
 
 $sql = "SELECT SUM(oil_free) as oil_free FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
@@ -199,6 +199,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_credit_kroy = 0;
 }
+$total_credit_oil = $total_credit_kroy + $oil_kroy;
 // End total total_credit/mot_mul
 
 // Start total total_debit/joma
@@ -218,7 +219,7 @@ if ($result->num_rows > 0) {
 $total_balance = $total_debit - $total_credit - $motor_vara_and_unload;
 
 
-$vara_credit = $motor_vara_and_unload + $total_credit_kroy;
+$vara_credit = $motor_vara_and_unload + $total_credit_oil;
 
 
 
@@ -236,6 +237,10 @@ if ($result->num_rows > 0) {
 } else {
   $paras = 0;
 }
+
+// total bikroy 
+
+
 //End Total para/mot_mul_khoros_shoho
 
 $nij_joma = $total_debit - $gb_bank_ganti;
@@ -245,9 +250,10 @@ $total_balance = $total_debit - $total_cement_tel_mul;
 $paona_jer = $oil_kroy - $oil_sell;
 $total_bikroy = $total_credit + $oil_sell;
 
-$ache = $total_credit - $mot_beg_kroy;
+$ache = $total_mot_bag - $mot_beg_kroy;
 $mot_baki = $total_debit - $total_bikroy;
 $total_paona_jer = $total_bikroy - $vara_credit;
+$mot_tel = $oil_kroy - $oil_free;
 ?>
 
 
@@ -256,53 +262,52 @@ $total_paona_jer = $total_bikroy - $vara_credit;
 
 
 <div id="flip">
-  <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary
+    <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary 
       <input type="checkbox">
       <span class="checkmark"></span>
     </label> -->
-
-
-  <div class="contorlAfterDealer">
-
-    <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-    <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
-  </div>
-  <!-- <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-        <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
-</div>
+    <label class="conchk" id="flipChkbox">Show/Hide Summary
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <div class="contorlAfterDealer">          
+      
+        <button onclick="myFunction()" class="btn printBtnDlr" style="position:relative; margin-left:150px; right: 0px">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    </div>
 </div>
 
 <div id="panel">
   <div style="display: flex; flex-direction:row;">
     <div class="upper">
 
-      <table width="100%" class="summary">
+      <table width="250px" class="summary">
         <?php
-        $sql =
-          "SELECT category_name,category_id,sum(count) as 'total' 
-       FROM cement_category
-       LEFT JOIN details_sell_cement
-       ON details_sell_cement.particulars_id = cement_category.category_id
-       WHERE details_sell_cement.customer_id = '$dealerId'  AND details_sell_cement.particulars != 'BG' AND details_sell_cement.particulars != 'In Cash' 
-       GROUP BY details_sell_cement.particulars_id
-      ";
+      //   $sql =
+      //     "SELECT category_name,category_id,sum(count) as 'total' 
+      //  FROM cement_category
+      //  LEFT JOIN details_sell_cement
+      //  ON details_sell_cement.particulars_id = cement_category.category_id
+      //  WHERE details_sell_cement.customer_id = '$dealerId'  AND details_sell_cement.particulars != 'BG' AND details_sell_cement.particulars != 'In Cash' 
+      //  GROUP BY details_sell_cement.particulars_id
+      // ";
 
-        // $sqlrr = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
-        // FROM details_sell_cement 
-        // WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' 
-        // GROUP BY particulars_id";
+        $sql = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
+        FROM details_sell_cement 
+        WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' AND particulars != 'Oil'
+        GROUP BY particulars_id";
         // $result2 = $conn->query($sqlrr);
-        $result2 = $db->select($sql);
+        $result = $db->select($sql);
         if ($result) {
-          $rowcount2 = mysqli_num_rows($result2);
+          $rowcount2 = mysqli_num_rows($result);
           if ($rowcount2 != 0) {
-            if ($result2->num_rows > 0) {
+            if ($result->num_rows > 0) {
               // output data of each row
 
-              while ($rows = $result2->fetch_assoc()) {
+              while ($rows = $result->fetch_assoc()) {
                 // $temp = $rows['particulars'];
                 echo "<tr>";
-                echo "<td>" . $rows['category_name'] . "</td>";
+                echo "<td>" . $rows['particulars'] . "</td>";
                 echo "<td>" . $rows['total'] . "</td>";
                 echo "</tr>";
                 // echo "id: " . $row["id"]. " - Name: " . $row["category_name"]. " " .  "<br>";
@@ -315,8 +320,8 @@ $total_paona_jer = $total_bikroy - $vara_credit;
         ?>
         <tr>
 
-          <td class="hastext"><b>ম‌োট ব‌েগঃ</b></td>
-          <td><b><?php echo $mot_beg; ?></b></td>
+          <td style= "background-color: grey; border: 2px solid black; color: white; text-align:center;" class="hastext"><b>ম‌োট ব্যাগ</b></td>
+          <td style= "border: 2px solid black;"><b><?php echo $total_mot_bag; ?></b></td>
           <!-- <td class="hastext"><b>Total Kg:</b></td>
     <td><b><?php echo $total_kg_rod400; ?></b></td> -->
 
@@ -325,7 +330,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
     </div>
     <div class="lower">
 
-      <table width="160%" class="summary">
+      <table width="748px" class="summary">
         <tr>
           <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
@@ -346,8 +351,8 @@ $total_paona_jer = $total_bikroy - $vara_credit;
           <!-- <td class="hastext">06mm 400W/60G</td>
 			<td><?php echo $mm06_rod400; ?></td> -->
           <td class="hastext">ম‌োট তেল</td>
-          <td><?php echo $oil_kroy; ?></td>
-          <td class="hastext">ম‌োট বে‌গঃ</td>
+          <td><?php echo $mot_tel; ?></td>
+          <td class="hastext">ম‌োট ব্যাগঃ</td>
           <td><?php echo $mot_beg_kroy; ?></td>
           <!-- <td style="width: 150px; position: relative;" id="gb_bank_ganti_td">
         <span id="gbbank_stable_val"><?php echo $gb_bank_ganti; ?></span>
@@ -361,9 +366,9 @@ $total_paona_jer = $total_bikroy - $vara_credit;
         </button></td> -->
 
           <!-- The modal -->
-          <div class="modal fade" id="smallShoes" tabindex="-1" role="dialog" aria-labelledby="modalLabelSmall" aria-hidden="true">
+          <!-- <div class="modal fade" id="smallShoes" tabindex="-1" role="dialog" aria-labelledby="modalLabelSmall" aria-hidden="true">
             <div class="modal-dialog modal-md">
-              <div class="modal-content">
+              <div class="modal-content"> -->
 
                 <!-- <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -374,7 +379,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
 
               </h4>
             </div> -->
-
+<!-- 
                 <div class="modal-body">
 
                   <div>
@@ -411,7 +416,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
                 </div>
 
               </div>
-            </div>
+            </div> -->
 
         </tr>
         <tr>
@@ -422,19 +427,18 @@ $total_paona_jer = $total_bikroy - $vara_credit;
       <td><?php echo $total_weight11; ?></td> -->
           <!-- <td class="hastext">08mm 400W/60G</td>
 			<td><?php echo $mm08_rod400; ?></td> -->
-          <!-- <td class="hastext">ম‌োট ব‌েগঃ</td>
+          <!-- <td class="hastext">ম‌োট ব্যাগ</td>
       <td><?php echo $total_w; ?></td> -->
           <td class="hastext">তেল ফ্রি মূলঃ</td>
           <!-- <td><?php echo $total_b; ?></td> -->
           <td><?php echo $oil_kroy; ?></td>
 
-          <!-- <td class="hastext">কোম্পানী পাওনাঃ</td>
+       <!-- <td class="hastext">কোম্পানী পাওনাঃ</td>
       <td style="min-width: 85px"><?php echo $company_paona; ?></td> -->
 
           <td class="hastext">ম‌োট বিক্রয়</td>
-          <td style="min-width: 85px"><?php echo $company_paona; ?></td>
-          <!-- <td></td>
-      <td></td> -->
+          <td style="min-width: 85px"><?php echo $total_mot_bag; ?></td>
+         
 
 
 
@@ -488,15 +492,17 @@ $total_paona_jer = $total_bikroy - $vara_credit;
       <td><?php echo $total_weight13; ?></td> -->
           <!-- <td class="hastext">20mm 400W/60G</td>
 			<td><?php echo $mm20_rod400; ?></td> -->
-          <!-- <td class="hastext">ম‌োট ব‌েগঃ </td>
+          <!-- <td class="hastext">ম‌োট ব্যাগ </td>
       <td><?php echo $mot_beg; ?></td> -->
 
           <td class="hastext">পাওনা ও জেরঃ</td>
           <td><?php echo $paona_jer; ?></td>
-
-
           <td></td>
           <td></td>
+
+
+          <!-- <td></td>
+          <td></td> -->
 
 
         </tr>
@@ -509,7 +515,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
       <td><?php echo $oil_free; ?></td> -->
           <td class="hastext">ওজন (এম,টি )</td>
           <td><?php
-              $format_number1 = number_format($total_shift, 2);
+              $format_number1 = number_format($total_weight, 2);
               echo $format_number1; ?></td>
           <td></td>
           <td></td>
@@ -517,76 +523,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
 
         </tr>
 
-        <tr>
-          <!-- <td class="hastext">Cement OPC 33 </td>
-      <td><?php echo $total_weight5; ?></td>
-      <td class="hastext">Cement Poly (PCC)-1 </td>
-      <td><?php echo $total_weight15; ?></td> -->
-          <!-- <td class="hastext">ম‌োট তেল মূলঃ</td>
-      <td><?php echo $oil_sell; ?></td> -->
-
-          <!-- <td class="hastext">ওজন (এম,টি )</td>
-      <td><?php
-          $format_number1 = number_format($total_shift, 2);
-          echo $format_number1; ?></td> -->
-
-
-        <tr>
-          <!-- <td class="hastext">Cement OPC 53</td>
-      <td><?php echo $total_weight7; ?></td>
-      <td class="hastext">Cement (PCC A-M)</td>
-      <td><?php echo $total_weight17; ?></td> -->
-          <td class="hastext"></td>
-          <!-- <td><?php echo $motor_vara; ?></td> -->
-          <td class="hastext"></td>
-          <!-- <td><?php echo $total_credit; ?></td> -->
-
-
-
-          <!-- <td></td>
-      <td></td> -->
-        </tr>
-        <!-- <td></td>
-      <td></td> -->
-        </tr>
-        <tr>
-          <!-- <td class="hastext">Cement OPC 43 </td>
-      <td><?php echo $total_weight6; ?></td>
-      <td class="hastext"> Cement Poly (PCC)-2</td>
-      <td><?php echo $total_weight16; ?></td> -->
-          <td style="background-color:#555"></td>
-          <td style="background-color:#555"></td>
-          <td style="background-color:#555"></td>
-          <td style="background-color:#555"></td>
-
-
-        <tr>
-          <!-- <td class="hastext">Cement OPC 53</td>
-      <td><?php echo $total_weight7; ?></td>
-      <td class="hastext">Cement (PCC A-M)</td>
-      <td><?php echo $total_weight17; ?></td> -->
-          <td class="hastext"></td>
-          <!-- <td><?php echo $motor_vara; ?></td> -->
-          <td class="hastext"></td>
-          <!-- <td><?php echo $total_credit; ?></td> -->
-
-
-
-          <!-- <td></td>
-      <td></td> -->
-        </tr>
-        <!-- <td></td>
-      <td></td> -->
-        <!-- <td></td>
-      <td></td>  -->
-        </tr>
-        <tr>
-          <!-- <td class="hastext">Cement OPC 53</td>
-      <td><?php echo $total_weight7; ?></td>
-      <td class="hastext">Cement (PCC A-M)</td>
-      <td><?php echo $total_weight17; ?></td> -->
-          <!-- <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
-      <td><?php echo $motor_vara; ?></td> -->
+       
 
           <td class="hastext">মোট বাকীঃ</td>
           <td><?php echo $mot_baki; ?></td>
@@ -654,14 +591,14 @@ $total_paona_jer = $total_bikroy - $vara_credit;
         <tr>
           <td class="hastext"><b></b></td>
           <td><b><?php echo $total_b; ?></b></td>
-          <!-- <td class="hastext"><b>ম‌োট ব‌েগঃ</b></td>
+          <!-- <td class="hastext"><b>ম‌োট ব্যাগ</b></td>
       <td><b><?php echo $mot_beg; ?></b></td> -->
           <!-- <td class="hastext"><b>Total Kg:</b></td>
 			<td><b><?php echo $total_kg_rod400; ?></b></td> -->
+          <!-- <td></td>
           <td></td>
           <td></td>
-          <td></td>
-          <td></td>
+          <td></td> -->
         </tr>
       </table>
     </div>
@@ -690,6 +627,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
           <!-- <td class="widthPercent1">Type</td> -->
 
 
+          <td class="widthPercent1">Dealer ID</td>
           <td class="widthPercent1">Information</td>
           <td class="widthPercent1">Voucher No.</td>
           <td class="widthPercent1">Address</td>
@@ -714,7 +652,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
         </tr>
         <tr>
           <td>কাস্টমার আই ডি</td>
-          <!-- <td>ডিলার আই ডি</td> -->
+          <td>ডিলার আই ডি</td>
           <!-- <td>টাইপ</td> -->
 
           <td>মালের বিবরণ</td>
@@ -726,7 +664,7 @@ $total_paona_jer = $total_bikroy - $vara_credit;
           <td>নগদ/বাকী</td>
           <td>তেল ফ্রি </td>
           <td>তেল মূলঃ</td>
-          <td>ব‌েগ পরিমান‌</td>
+          <td>ব্যাগ পরিমান‌</td>
           <td>দর</td>
           <td>কমিশন</td>
           <td>মূল</td>
@@ -765,7 +703,32 @@ $total_paona_jer = $total_bikroy - $vara_credit;
 
           </td>
 
+          <td>
+              <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
+              <?php
+              $sql = "SELECT * FROM cement_dealer WHERE project_name_id ='$project_name_id'";
+              $all_custmr_id = $db->select($sql);
+              echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
+              echo '<option value="none">Select...</option>';
+              if ($all_custmr_id->num_rows > 0) {
+                while ($row = $all_custmr_id->fetch_assoc()) {
+                  $id = $row['dealer_id'];
+                  $dealer_name = $row['dealer_name'];
+                  echo '<option value="' . $id . '">' . $id . '--' . $dealer_name . '</option>';
+                }
+              } else {
+                echo '<option value="none">0 Result</option>';
+              }
+              echo '</select>';
+              // var_dump($_POST['dealer_id']);
+              ?>
 
+            </td>
+
+           
+          <td style="display: none;">
+            <input type="text" name="stock" class="form-control-cement" id="stock" placeholder="Enter Information...">
+          </td>
           <td>
             <input type="text" name="information" class="form-control-cement" id="information" placeholder="Enter Information...">
           </td>
@@ -940,6 +903,7 @@ if ($result) {
           <thead class="header">
             <tr>
               <th>Customer ID:</th>
+              <th>Dealer ID:</th>
               <!-- <th>SL</th> -->
               <th>Information</th>
 
@@ -964,6 +928,7 @@ if ($result) {
             </tr>
             <tr>
               <th>কাস্টমার আই ডি</th>
+              <th>ডিলার আই ডি</th>
               <!-- <th>ক্রমিক নং</th> -->
               <th>মালের বিবরণ</th>
               <th>ভাউচার নং</th>
@@ -974,7 +939,7 @@ if ($result) {
               <th>নগদ/বাকী</th>
               <th>তেল ফ্রি</th>
               <th>তেল মূলঃ</th>
-              <th>ব‌েগ পরিমান‌</th>
+              <th>ব্যাগ পরিমান‌</th>
               <th>দর</th>
               <th>কমিশন</th>
               <th>মূল</th>
@@ -1044,6 +1009,7 @@ if ($result) {
               }
               echo "<tr>";
               echo "<td>" . $rows['customer_id'] . "</td>";
+              echo "<td>" . $rows['dealer_id'] . "</td>";
               // echo "<td>" . $rows['sl'] . "</td>";
               echo "<td>" . $rows['information'] . "</td>";
               echo "<td>" . $rows['challan_no'] . "</td>";
