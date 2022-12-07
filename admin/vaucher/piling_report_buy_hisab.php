@@ -68,8 +68,10 @@
 		<div class="left_side_bar menu">
 			<div id="left_all_menu_con">
 			<h4 class="reportHeader" style="text-align: left;"><span class="back-button"><b >&#x2190;</b></span>&nbsp;&nbsp;<b>   রিপোর্ট</b></h4>
+			    
     			<a href="../vaucher/piling_report_buy_hisab.php" class="active">জমা অনুযায়ী</a>
-                <a href="../vaucher/piling_report_other_category.php">ক্যাটাগরি অনুযায়ী</a>
+				<a href="../vaucher/piling_report_dealer.php">ডিলার অনুযায়ী</a>
+                <!-- <a href="../vaucher/piling_report_other_category.php">ক্যাটাগরি অনুযায়ী</a> -->
 
     			  <!-- <a href="../vaucher/piling_report_sell_hisab.php">বিক্রয় অনুযায়ী</a>
     			 <a href="../vaucher/rod_report_others_category.php">রড ও অন্যান্ন ক্যাটাগরি</a> 

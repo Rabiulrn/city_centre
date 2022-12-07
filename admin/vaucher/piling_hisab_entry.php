@@ -56,9 +56,12 @@
       } else {
           $category_id = $_POST['category_id'];
           $sql="UPDATE piling_category SET category_name = '$category_name' WHERE category_id = '$category_id'";
-
+          $sql2="UPDATE details_piling SET particulars = '$category_name' WHERE particulars_id = '$category_id'";
+          // $sql3="UPDATE details_sell_piling SET particulars = '$category_name' WHERE particulars_id = '$category_id'";
+          $db->update($sql2); 
+          // $db->update($sql3);
           if ($db->update($sql) === TRUE) {
-              $sucMsg = "Category Entry Updated Successfully";
+              $sucMsg = "Category Entry Updated Successfully";  
           } else {
               echo "Error: " . $sql . "<br>" . $db->error;
           }

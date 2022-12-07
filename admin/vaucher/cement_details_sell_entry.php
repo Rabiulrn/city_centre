@@ -687,9 +687,9 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Challan No. (ভাউচার নং)</td>
+                                <td>Voucher No. (ভাউচার নং)</td>
                                 <td>
-                                    <input type="text" name="challan_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
+                                    <input type="text" name="voucher_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
                                 </td>
                             </tr>
                             <tr>
@@ -1308,45 +1308,45 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
             var cash = $(element).closest('tr').find('td:eq(15)').text();
            
             // alert(buyr_id);
-            // $('#cement_details_id').val(rowid);
-            // $('#customer_id_popup').val(customer_id);
-            // $('#information_popup').val(information);
-            // $('#voucher_no_popup').val(voucher_no);
-            // $('#address_popup').val(address);
-            // $('#date_popup').val(date);
-            // $('marfot_name_popup').val(marfot_name);
-            // $('#particulars_popup').val(particulars);
-            // $('#cash_rest_popup').val(cash_rest);
-            // $('#oil_amount_popup').val(oil_amount);
-            // $('#oil_paras_popup').val(oil_paras);
-            // $('#bag_amount_popup').val(bag_amount);
-            // $('#paras_popup').val(paras);
-            // $('#discount_popup').val(discount);
-            // $('#credit_popup').val(credit);
-            // $('#cash_popup').val(cash);
+            $('#cement_details_id').val(rowid);
+            $('#customer_id_popup').val(customer_id);
+            $('#information_popup').val(information);
+            $('#voucher_no_popup').val(voucher_no);
+            $('#address_popup').val(address);
+            $('#date_popup').val(date);
+            $('marfot_name_popup').val(marfot_name);
             $('#particulars_popup').val(particulars);
-            $('#debit_popup').val(debit);
-            $('#ton_kg_popup').val(ton_kg);
-            $('#length_popup').val(length);
-            $('#width_popup').val(width);
-            $('#height_popup').val(height);
-            $('#shifty_popup').val(shifty);
-            $('#inchi_minus_popup').val(inchi_minus);
-            $('#cft_dropped_popup').val(cft_dropped);
-            $('#inchi_added_popup').val(inchi_added);
-            $('#points_dropped_popup').val(points_dropped);
-            $('#shift_popup').val(shift);
-            $('#total_shift_popup').val(total_shift);
+            $('#cash_rest_popup').val(cash_rest);
+            $('#oil_amount_popup').val(oil_amount);
+            $('#oil_paras_popup').val(oil_paras);
+            $('#bag_amount_popup').val(bag_amount);
             $('#paras_popup').val(paras);
             $('#discount_popup').val(discount);
             $('#credit_popup').val(credit);
-            $('#balance_popup').val(balance);
-            $('#cemeats_paras_popup').val(cemeats_paras);
-            $('#ton_popup').val(ton);
-            $('#total_shift_popup').val(total_shift);
-            $('#tons_popup').val(tons);
-            $('#bank_name_popup').val(bank_name);
-            $('#fee_popup').val(fee);
+            $('#cash_popup').val(cash);
+            // $('#particulars_popup').val(particulars);
+            // $('#debit_popup').val(debit);
+            // $('#ton_kg_popup').val(ton_kg);
+            // $('#length_popup').val(length);
+            // $('#width_popup').val(width);
+            // $('#height_popup').val(height);
+            // $('#shifty_popup').val(shifty);
+            // $('#inchi_minus_popup').val(inchi_minus);
+            // $('#cft_dropped_popup').val(cft_dropped);
+            // $('#inchi_added_popup').val(inchi_added);
+            // $('#points_dropped_popup').val(points_dropped);
+            // $('#shift_popup').val(shift);
+            // $('#total_shift_popup').val(total_shift);
+            // $('#paras_popup').val(paras);
+            // $('#discount_popup').val(discount);
+            // $('#credit_popup').val(credit);
+            // $('#balance_popup').val(balance);
+            // $('#cemeats_paras_popup').val(cemeats_paras);
+            // $('#ton_popup').val(ton);
+            // $('#total_shift_popup').val(total_shift);
+            // $('#tons_popup').val(tons);
+            // $('#bank_name_popup').val(bank_name);
+            // $('#fee_popup').val(fee);
 
 
             $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {

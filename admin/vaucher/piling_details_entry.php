@@ -636,7 +636,7 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
                 <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
-                        <table style="width: 100%;">
+                    <table style="width: 100%;">
                             <tr>
                                 <td>Dealer ID( আই ডি)</td>
                                 <td>
@@ -665,90 +665,9 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
 
                             <!-- <input type="hidden" name="piling_details_id" id="piling_details_id"> -->
                             <tr>
-                                <td>Driver Name (ড্রাইভারের নাম)</td>
-                                <td>
-                                    <input type="text" name="driver_name" class="form-control" id="driver_name_popup" placeholder="Enter Driver Name...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Motor Name (গাড়ী নাম)</td>
-                                <td>
-                                    <input type="text" name="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>id</td>
-                                <td>
-                                    <input type="text" name ="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
-                                </td>           
-                            </tr> -->
-                            <!-- <tr> -->
-
-                            <tr>
-                                <td>Motor Vara (গাড়ী ভাড়া)</td>
-                                <td>
-                                    <input type="text" onkeypress="return isNumber(event)" name="motor_vara" class="form-control value-calc-popup" id="motor_vara_popup" placeholder="Enter Motor Vara...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Unload (আনলোড)</td>
-                                <td>
-                                    <input type="text" onkeypress="return isNumber(event)" name="unload" class="form-control value-calc-popup" id="unload_popup" placeholder="Unload">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cars rent & Redeem (গাড়ী ভাড়া ও খালাস)</td>
-                                <td>
-                                    <input type="text" name="cars_rent_redeem" class="form-control value-calc-popup" id="car_rent_redeem_popup" placeholder="Enter cars rent & redeem...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Information (মালের বিবরণ)</td>
-                                <td>
-                                    <input type="text" name="information" class="form-control" id="information_popup" placeholder="Enter information...">
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>SL (ক্রমিক)</td>
                                 <td>
                                     <input type="text" name="sl_no" class="form-control" id="sl_popup" placeholder="Enter SL...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Challan No. (ভাউচার নং)</td>
-                                <td>
-                                    <input type="text" name="challan_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Address (ঠিকানা)</td>
-                                <td>
-                                    <input type="text" name="address" class="form-control" id="address_popup" placeholder="Enter address...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Motor Number (গাড়ী নাম্বার)</td>
-                                <td>
-                                    <input type="text" name="motor_number" class="form-control" id="motor_number_popup" placeholder="Enter motor number...">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Motor Sl (গাড়ী নং)</td>
-                                <td>
-                                    <input type="text" name="motor_sl" class="form-control" id="motor_sl_popup" placeholder="Enter Motor Sl...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Challan Date ( ভাউচার তারিখ)</td>
-                                <td>
-                                    <input onkeypress="datecheckformatpopup(event)" type="text" name="challan_date" class="form-control" id="challan_date_popup" placeholder="dd-mm-yyyy">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>SO Date (অর্ডার তারিখ)</td>
-                                <td>
-                                    <input onkeypress="datecheckformatpopup(event)" type="text" name="so_date" class="form-control" id="so_date_popup" placeholder="dd-mm-yyyy">
                                 </td>
                             </tr>
                             <tr>
@@ -764,19 +683,26 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
                                 </td>
                             </tr>
                             <tr>
+                                <td>Information ( বিবরণ)</td>
+                                <td>
+                                    <input type="text" name="information" class="form-control" id="information_popup" placeholder="Enter information...">
+                                </td>
+                            </tr>
+                            <tr>
 
                                 <td>Particulars (বিবরণ)</td>
                                 <td>
                                     <?php
                                     // var parti_val = $('#car_rent_redeem').val();
-                                    $sql = "SELECT DISTINCT category_name FROM piling_category WHERE  category_name != ''";
+                                    $sql = "SELECT DISTINCT category_name,category_id FROM piling_category WHERE  category_name != ''";
                                     $all_particular = $db->select($sql);
-                                    echo '<select name="particulars" id="particulars" class="form-control" >';
+                                    echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
                                     echo '<option value="none">Select...</option>';
                                     if ($all_particular->num_rows > 0) {
                                         while ($row = $all_particular->fetch_assoc()) {
                                             $particulars = $row['category_name'];
-                                            echo '<option value="' . $particulars . '">' . $particulars . '</option>';
+                                            $particulars_id = $row['category_id'];
+                                            echo '<option value="' . $particulars_id . ',' . $particulars . ' ">' . $particulars . '</option>';
                                         }
                                     } else {
                                         echo '<option value="none">0 Result</option>';
@@ -787,78 +713,37 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
 
 
                             </tr>
+
                             <tr>
-                                <td>Debit (জমা টাকা)</td>
+                                <td>Cape No (কেপ নাম)</td>
+                                <td>
+                                    <input type="text" name="cape_no" class="form-control" id="cape_no_popup" placeholder="Enter Driver Name...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bill Cash (জমা টাকা)</td>
                                 <td>
                                     <input type="text" name="debit" class="form-control value-calc-popup" id="debit_popup" placeholder="Enter debit...">
                                 </td>
                             </tr>
                             <tr>
-                                <td>Monthly Commision (মাসিক কমিশন)</td>
+                                <td>Address (ঠিকানা)</td>
                                 <td>
-                                    <input type="text" name="monthly_com" class="form-control value-calc-popup" id="monthly_com_popup" placeholder="Enter monthly_com...">
+                                    <input type="text" name="address" class="form-control" id="address_popup" placeholder="Enter address...">
                                 </td>
                             </tr>
                             <tr>
-                                <td>Yearly Commision (বাৎসরিক কমিশন)</td>
-                                <td>
-                                    <input type="text" name="yearly_com" class="form-control value-calc-popup" id="yearly_com_popup" placeholder="Enter yearly_com...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Count (পরিমান‌)</td>
+                                <td>Piling Count (পরিমান‌)</td>
                                 <td>
                                     <input type="text" name="count" class="form-control value-calc-popup" id="count_popup" placeholder="Enter count...">
                                 </td>
                             </tr>
                             <tr>
-                                <td>Free (ফি)</td>
+                                <td>Feet (ফিট)</td>
                                 <td>
-                                    <input type="text" name="free" class="form-control value-calc-popup" id="free_popup" placeholder="Enter free...">
+                                    <input type="text" name="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Count without free (পরিমান‌)</td>
-                                <td>
-                                    <input type="text" name="count2" class="form-control value-calc-popup" id="count2_popup" placeholder="Enter count...">
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>Inchi (-) Minus (Inchi (-) বিয়োগ )</td>
-                                <td>
-                                    <input type="text" name="inchi_minus" class="form-control" id="inchi_minus_popup" placeholder="Enter Inchi (-) Minus...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cft ( - ) Dropped Out (সিএফটি ( - ) বাদ)</td>
-                                <td>
-                                    <input type="text" name="cft_dropped_out" class="form-control" id="cft_dropped_popup" placeholder="Enter Cft ( - ) Dropped Out ...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Inchi (+) Added (Inchi (+) যোগ) </td>
-                                <td>
-                                    <input type="text" name="inchi_added" class="form-control" id="inchi_added_popup" placeholder="Enter Inchi (+) Added ...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Points ( - ) Dropped Out (পয়েন্ট ( - ) বাদ) </td>
-                                <td>
-                                    <input type="text" name="points_dropped_out" class="form-control" id="points_dropped_popup" placeholder="Enter Points ( - ) Dropped Out ...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> Shift(সেপ্টি) </td>
-                                <td>
-                                    <input type="text" name="shift" class="form-control" id="shift_popup" placeholder="Enter Shift ...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Total Shift(মোট সেপ্টি) </td>
-                                <td>
-                                    <input type="text" name="total_shift" class="form-control" id="total_shift_popup" placeholder="Enter Total Shift ...">
-                                </td>
-                            </tr> -->
                             <tr>
                                 <td> Para's (দর) </td>
                                 <td>
@@ -866,60 +751,27 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Discount(কমিশন) </td>
+                                <td>Piling Bill (পাইলিং বিলঃ)</td>
                                 <td>
-                                    <input type="text" name="discount" class="form-control value-calc-popup" id="discount_popup" placeholder="Enter Discount ...">
+                                    <input type="text" onkeypress="return isNumber(event)" name="piling_bill" class="form-control value-calc-popup" id="piling_bill_popup" placeholder="Enter Motor Vara...">
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Credit(মূল) </td>
+                            <!-- <tr>
+                                <td>id</td>
                                 <td>
-                                    <input type="text" name="credit" class="form-control value-calc-popup" id="credit_popup" placeholder="Enter Credit ...">
-                                </td>
-                            </tr>
+                                    <input type="text" name ="motor_name" class="form-control" id="motor_name_popup" placeholder="Enter Motor Name...">
+                                </td>           
+                            </tr> -->
+                            <!-- <tr> -->
+
+
                             <tr>
-                                <td> Balance(অবশিষ্ট) </td>
+                                <td>Excess money back (অতিরিক্ত টাকা ফেরত)</td>
                                 <td>
-                                    <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup" placeholder="Enter Balance  ...">
+                                    <input type="text" onkeypress="return isNumber(event)" name="money_back" class="form-control value-calc-popup" id="money_back_popup" placeholder="Unload">
                                 </td>
                             </tr>
 
-                            <!-- <tr>
-                                <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
-                                <td>
-                                    <input type="text" name="cemeats_paras" class="form-control value-calc-popup" id="cemeats_paras_popup" placeholder="Enter Cemeat's Para's...">
-                                </td>
-                            </tr> -->
-                            <tr style="display:none ;">
-                                <td>Total Credit(মোট মূলঃ)</td>
-                                <td>
-                                    <input type="text" name="total_credit" class="form-control value-calc-popup" id="total_credit_popup" placeholder="Enter ...">
-                                </td>
-                            </tr>
-                            <tr style="display:none ;">
-                                <td>Weight (MT)(ওজন (এম,টি ))</td>
-                                <td>
-                                    <input type="text" name="weight" class="form-control value-calc-popup" id="weight_popup" placeholder="Enter Total Shifts...">
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>Count</td>
-                                <td>
-                                    <input type="text" name="count" class="form-control" id="count_popup" placeholder="Enter Count...">
-                                </td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td>Bank Name</td>
-                                <td>
-                                    <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
-                                </td>
-                            </tr> -->
-                            <!-- <tr>
-                                <td>Fee(ফি)</td>
-                                <td>
-                                    <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter Fee...">
-                                </td>
-                            </tr> -->
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         <?php
@@ -1240,12 +1092,12 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
                 //     returnValid = true;
                 // }
 
-                if (particulars == 'none') {
-                    alert('Please select a particular');
-                    returnValid = false;
-                } else {
-                    returnValid = true;
-                }
+                // if (particulars == 'none') {
+                //     alert('Please select a particular');
+                //     returnValid = false;
+                // } else {
+                //     returnValid = true;
+                // }
 
                 var formElement = $('#form_entry')[0];
                 var formData = new FormData(formElement);
@@ -1254,12 +1106,12 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
             } else if (submit_type == 'insert_popup') {
                 var buyer_id = $('#buyer_id_popup').val();
 
-                if (buyer_id == 'none') {
-                    alert('Please select a buyer Id');
-                    returnValid = false;
-                } else {
-                    returnValid = true;
-                }
+                // if (buyer_id == 'none') {
+                //     alert('Please select a buyer Id');
+                //     returnValid = false;
+                // } else {
+                //     returnValid = true;
+                // }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
                 var urltxt = '../ajaxcall/piling_details_entry_ajax.php';
@@ -1279,14 +1131,14 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
                 // var urltxt = '../ajaxcall/rod_update_entry_ajax.php';
 
                 ////Popup edit/update er code
-                var buyer_id = $('#buyer_id_popup').val();
+                // var buyer_id = $('#buyer_id_popup').val();
 
-                if (buyer_id == 'none') {
-                    alert('Please select a buyer Id');
-                    returnValid = false;
-                } else {
-                    returnValid = true;
-                }
+                // if (buyer_id == 'none') {
+                //     alert('Please select a buyer Id');
+                //     returnValid = false;
+                // } else {
+                //     returnValid = true;
+                // }
                 var formElement = $('#insertPopupForm')[0];
                 var formData = new FormData(formElement);
                 var urltxt = '../ajaxcall/piling_update_entry_ajax.php';
@@ -1412,22 +1264,22 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
         }
 
         function edit_rod_popup(element, rowid) {
-            var buyr_id = $(element).closest('tr').find('td:eq(0)').text();
+            var dealer_id = $(element).closest('tr').find('td:eq(0)').text();
             // var dlar_id         = $(element).closest('tr').find('td:eq(1)').text();
-            var motor_name = $(element).closest('tr').find('td:eq( 2)').text();
-            var driver_name = $(element).closest('tr').find('td:eq(1)').text();
-            var motor_vara = $(element).closest('tr').find('td:eq(3)').text();
-            var unload = $(element).closest('tr').find('td:eq(4)').text();
-            var cars_rent_redeem = $(element).closest('tr').find('td:eq(5)').text();
-            var information = $(element).closest('tr').find('td:eq(6)').text();
-            var sl = $(element).closest('tr').find('td:eq(7)').text();
-            var voucher_no = $(element).closest('tr').find('td:eq(10)').text();
-            var address = $(element).closest('tr').find('td:eq(8)').text();
-            var motor_number = $(element).closest('tr').find('td:eq(12)').text();
-            var motor_sl = $(element).closest('tr').find('td:eq(11)').text();
+            var sl = $(element).closest('tr').find('td:eq(2)').text();
+            var date = $(element).closest('tr').find('td:eq(1)').text();
+            var marfot_name = $(element).closest('tr').find('td:eq(3)').text();
+            var description = $(element).closest('tr').find('td:eq(4)').text();
+            var category = $(element).closest('tr').find('td:eq(5)').text();
+            var cap_no = $(element).closest('tr').find('td:eq(6)').text();
+            var bill_cash = $(element).closest('tr').find('td:eq(7)').text();
+            var address = $(element).closest('tr').find('td:eq(10)').text();
+            var piling_count = $(element).closest('tr').find('td:eq(8)').text();
+            var feet = $(element).closest('tr').find('td:eq(12)').text();
+            var paras = $(element).closest('tr').find('td:eq(11)').text();
             // var delivery_date = $(element).closest('tr').find('td:eq(12)').text();
-            var challan_date = $(element).closest('tr').find('td:eq(15)').text();
-            var so_date = $(element).closest('tr').find('td:eq(16)').text();
+            var piling_bill = $(element).closest('tr').find('td:eq(15)').text();
+            var money_back = $(element).closest('tr').find('td:eq(16)').text();
             var date = $(element).closest('tr').find('td:eq(17)').text();
             var partculars = $(element).closest('tr').find('td:eq(18)').text();
             var particulars = $(element).closest('tr').find('td:eq(19)').text();
@@ -1462,24 +1314,28 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
 
             // alert(buyr_id);
             // $('#dealer_id').val(dlar_id);
-            $('#piling_details_id').val(rowid);
+            // $('#piling_details_id').val(rowid);
 
 
-            $('#buyer_id_popup').val(buyr_id);
-            $('#motor_name_popup').val(motor_name);
-            $('#driver_name_popup').val(driver_name);
-            $('#motor_vara_popup').val(motor_vara);
-            $('#unload_popup').val(unload);
-            $('#car_rent_redeem_popup').val(cars_rent_redeem);
-            $('#information_popup').val(information);
-            $('#sl_popup').val(sl);
-            $('#voucher_no_popup').val(voucher_no);
-            $('#address_popup').val(address);
-            $('#motor_number_popup').val(motor_number);
-            $('#motor_sl_popup').val(motor_sl);
-            // $('#delivery_date_popup').val(delivery_date);
-            $('#challan_date_popup').val(challan_date);
-            $('#so_date_popup').val(so_date);
+            // $('#dealer_id_popup').val(dealer_id);
+            // $('#sl_popup').val(sl);
+            // $('#dates_popup').val(date);
+            // $('#marfot_name_popup').val(marfot_name);
+            // $('#description_popup').val(description);
+            // $('#category_popup').val(category);
+            // $('#cape_no_popup').val(cape_no);
+            // $('#bill_cash_popup').val(bill_cash);
+            // $('#address_popup').val(address);
+            // $('#piling_count_popup').val(piling_count);
+            // $('#feet_popup').val(feet);
+            // $('#paras_popup').val(paras);
+            // // $('#delivery_date_popup').val(delivery_date);
+            // $('#piling_bill_popup').val(piling_bill);
+            // $('#money_back_popup').val(money_back);
+
+
+
+
             $('#dates_popup').val(date);
             $('#partculars_popup').val(partculars);
             $('#particulars_popup').val(particulars);
@@ -1533,37 +1389,37 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
 
 
 
-        //     // var input_cft = $('#shift').val();
-        //     // if(input_cft != ''){
-        //     //     $('#total_shift').val(input_cft);
-        //     //         $('#total_shifts').val(input_cft);
-        //     // }
+            //     // var input_cft = $('#shift').val();
+            //     // if(input_cft != ''){
+            //     //     $('#total_shift').val(input_cft);
+            //     //         $('#total_shifts').val(input_cft);
+            //     // }
 
 
 
-        //     if (count != '') {
-        //         $('#paras').attr("placeholder", "rate");
-        //         var count = $('#count').val();
-        //         var free = $('#fee').val();
-        //         var count_minus_free = count - free;
-        //         $('#count2').val(count_minus_free);
-        //         var count2 = $('#count2').val();
-        //         var paras = $('#paras').val();
+            //     if (count != '') {
+            //         $('#paras').attr("placeholder", "rate");
+            //         var count = $('#count').val();
+            //         var free = $('#fee').val();
+            //         var count_minus_free = count - free;
+            //         $('#count2').val(count_minus_free);
+            //         var count2 = $('#count2').val();
+            //         var paras = $('#paras').val();
 
-        //         var weight = count / 20;
-        //         $('#weight').val(weight.toFixed(2));
+            //         var weight = count / 20;
+            //         $('#weight').val(weight.toFixed(2));
 
-        //         if (count == '') {
-        //             $('#credit').val('0');
-        //         } else if (paras == '') {
-        //             $('#credit').val('0');
-        //         } else {
+            //         if (count == '') {
+            //             $('#credit').val('0');
+            //         } else if (paras == '') {
+            //             $('#credit').val('0');
+            //         } else {
 
-        //             var credit = count2 * paras;
-        //             //  alert(credit);
-        //             $('#credit').val(credit.toFixed(2));
-        //         }
-        //     }
+            //             var credit = count2 * paras;
+            //             //  alert(credit);
+            //             $('#credit').val(credit.toFixed(2));
+            //         }
+            //     }
 
 
 
@@ -1582,102 +1438,102 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
             // }
 
 
-        //     var debit = $("#debit").val();
-        //     var credit = $("#credit").val();
-        //     var monthly_com = $("#monthly_com").val();
-        //     var yearly_com = $("#yearly_com").val();
-        //     var oil_free = $("#oil_free").val();
-        //     var oil_sell = $("#oil_sell").val();
-        //     // if (debit == '') {
-        //     //     // $('#balance').val('0');
-        //     // } else if (credit == '') {
-        //     //     $('#balance').val('0');
-        //     // } else {
-        //     var name = monthly_com ? parseFloat(monthly_com) : 0;
-        //     var name2 = yearly_com ? parseFloat(yearly_com) : 0;
-        //     var name3 = oil_sell ? parseFloat(oil_sell) : 0;
-        //     var commision = name + name2;
-        //     // var commision = parseFloat(monthly_com) + parseFloat(yearly_com) ;
-        //     var balance = (debit - credit) + commision + name3;
-        //     var debit2 = debit ? parseFloat(debit) : 0;
-        //     var balance2 = debit2 + commision;
-        //     // alert(balance);
-        //     $('#debit2').val(balance2);
-        //     $('#balance').val(balance.toFixed(3));
-        //     // }
+            //     var debit = $("#debit").val();
+            //     var credit = $("#credit").val();
+            //     var monthly_com = $("#monthly_com").val();
+            //     var yearly_com = $("#yearly_com").val();
+            //     var oil_free = $("#oil_free").val();
+            //     var oil_sell = $("#oil_sell").val();
+            //     // if (debit == '') {
+            //     //     // $('#balance').val('0');
+            //     // } else if (credit == '') {
+            //     //     $('#balance').val('0');
+            //     // } else {
+            //     var name = monthly_com ? parseFloat(monthly_com) : 0;
+            //     var name2 = yearly_com ? parseFloat(yearly_com) : 0;
+            //     var name3 = oil_sell ? parseFloat(oil_sell) : 0;
+            //     var commision = name + name2;
+            //     // var commision = parseFloat(monthly_com) + parseFloat(yearly_com) ;
+            //     var balance = (debit - credit) + commision + name3;
+            //     var debit2 = debit ? parseFloat(debit) : 0;
+            //     var balance2 = debit2 + commision;
+            //     // alert(balance);
+            //     $('#debit2').val(balance2);
+            //     $('#balance').val(balance.toFixed(3));
+            //     // }
 
-        //     var motor_vara = $('#motor_vara').val();
-        //     var unload = $('#unload').val();
-        //     if (motor_vara == '') {
-        //         $('#motor_vara').attr("placeholder", "motor vara");
-        //         //  $('#motor_vara').attr("value", "0");
-        //         //  $('#motor_vara').val(0);
+            //     var motor_vara = $('#motor_vara').val();
+            //     var unload = $('#unload').val();
+            //     if (motor_vara == '') {
+            //         $('#motor_vara').attr("placeholder", "motor vara");
+            //         //  $('#motor_vara').attr("value", "0");
+            //         //  $('#motor_vara').val(0);
 
-        //         $('#car_rent_redeem').val(unload);
-        //         $('#cemeats_paras').val(unload);
-        //     } else if (unload == '') {
-        //         $('#unload').attr("placeholder", "unload");
-        //         //  $('#unload').attr("value", "0");
-        //         //  $('#unload').val(0);
+            //         $('#car_rent_redeem').val(unload);
+            //         $('#cemeats_paras').val(unload);
+            //     } else if (unload == '') {
+            //         $('#unload').attr("placeholder", "unload");
+            //         //  $('#unload').attr("value", "0");
+            //         //  $('#unload').val(0);
 
-        //         $('#car_rent_redeem').val(motor_vara);
-        //         $('#cemeats_paras').val(motor_vara);
-        //     } else if (unload == 0 && motor_vara == 0) {
-        //         $('#car_rent_redeem').val(0);
-        //     } else {
-
-
-        //         //                 $('#motor_vara').focus(function(){
-        //         //                     $('#motor_vara').value('')
-        //         // });
-
-        //         var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
-        //         // alert(balance);
-        //         $('#car_rent_redeem').val(car_rent_redeem);
-        //         $('#cemeats_paras').val(car_rent_redeem);
-
-        //     }
+            //         $('#car_rent_redeem').val(motor_vara);
+            //         $('#cemeats_paras').val(motor_vara);
+            //     } else if (unload == 0 && motor_vara == 0) {
+            //         $('#car_rent_redeem').val(0);
+            //     } else {
 
 
-        //     // var car_khalas = $('#car_rent_redeem').val();
-        //     // var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
-        //     // var cedi = $('#credit').val();
-        //     // var cadi2 = cedi ? parseFloat(cedi) : 0;
-        //     // var oil_s = $('#oil_sell').val();
-        //     // var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
-        //     // // var var_car=
-        //     // // var var_oil =
-        //     // // var var_credi = 
-        //     // // if(car_khalas_cr || cedi2 || oil_sell_cr){
-        //     //     var credit_car_rent = car_khalas_cr + cedi2 + oil_sell_cr;
-        //     // $('#total_credit').val(credit_car_rent);
+            //         //                 $('#motor_vara').focus(function(){
+            //         //                     $('#motor_vara').value('')
+            //         // });
 
-        //     // // }
+            //         var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+            //         // alert(balance);
+            //         $('#car_rent_redeem').val(car_rent_redeem);
+            //         $('#cemeats_paras').val(car_rent_redeem);
 
-        //     var oil_s = $('#oil_sell').val();
-        //     var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
-        //     var car_khalas = $('#car_rent_redeem').val();
-        //     var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
-        //     var cedi = $('#credit').val();
-        //     var cedi2 = parseFloat(cedi);
-        //     // var cadi2 = cedi ? parseFloat(cedi) : 0;
-        //     var credit_car_rent = oil_sell_cr + car_khalas_cr + parseFloat(cedi);
-        //     $('#total_credit').val(credit_car_rent);
+            //     }
 
-        //     // // if (motor_vara == '') {
-        //     // //     $('#motor_vara').val()=null;
-        //     // // } else if (unload == '') {
-        //     // //     $('#unload').val()=null;
-        //     // // } else {
-        //     // //     $('#motor_vara').val()=null;
-        //     // // $('#unload').val()=null;
-        //     // //     var tar = motor_vara?$('#motor_vara').val():'0';
-        //     // //     var tar2 = motor_vara?$('#unload').val():'0';
-        //     // //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
-        //     // //     // alert(balance);
-        //     // //     $('#car_rent_redeem').val(car_rent_redeem);
-        //     // //     $('#cemeats_paras').val(car_rent_redeem);
-        //     // // }
+
+            //     // var car_khalas = $('#car_rent_redeem').val();
+            //     // var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
+            //     // var cedi = $('#credit').val();
+            //     // var cadi2 = cedi ? parseFloat(cedi) : 0;
+            //     // var oil_s = $('#oil_sell').val();
+            //     // var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
+            //     // // var var_car=
+            //     // // var var_oil =
+            //     // // var var_credi = 
+            //     // // if(car_khalas_cr || cedi2 || oil_sell_cr){
+            //     //     var credit_car_rent = car_khalas_cr + cedi2 + oil_sell_cr;
+            //     // $('#total_credit').val(credit_car_rent);
+
+            //     // // }
+
+            //     var oil_s = $('#oil_sell').val();
+            //     var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
+            //     var car_khalas = $('#car_rent_redeem').val();
+            //     var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
+            //     var cedi = $('#credit').val();
+            //     var cedi2 = parseFloat(cedi);
+            //     // var cadi2 = cedi ? parseFloat(cedi) : 0;
+            //     var credit_car_rent = oil_sell_cr + car_khalas_cr + parseFloat(cedi);
+            //     $('#total_credit').val(credit_car_rent);
+
+            //     // // if (motor_vara == '') {
+            //     // //     $('#motor_vara').val()=null;
+            //     // // } else if (unload == '') {
+            //     // //     $('#unload').val()=null;
+            //     // // } else {
+            //     // //     $('#motor_vara').val()=null;
+            //     // // $('#unload').val()=null;
+            //     // //     var tar = motor_vara?$('#motor_vara').val():'0';
+            //     // //     var tar2 = motor_vara?$('#unload').val():'0';
+            //     // //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
+            //     // //     // alert(balance);
+            //     // //     $('#car_rent_redeem').val(car_rent_redeem);
+            //     // //     $('#cemeats_paras').val(car_rent_redeem);
+            //     // // }
 
 
         });
@@ -2105,14 +1961,14 @@ $_SESSION['pageName'] = 'piling_kroy_hisab';
             });
         }
 
-        $(document).on('keypress change', '#gb_bank_ganti','#delear_id', function(e) {
+        $(document).on('keypress change', '#gb_bank_ganti', '#delear_id', function(e) {
             if (e.which == 13) {
                 var id = $(e.currentTarget).attr('data-id');
                 var gbvalue = $('#gb_bank_ganti').val();
                 var dealerId = $('#delear_id option:selected').val();
                 console.log(dealerId);
                 // alert(id);
-                gbbank_update(id, gbvalue,dealerId);
+                gbbank_update(id, gbvalue, dealerId);
                 $('#gb_bank_ganti').hide();
             }
         });

@@ -156,7 +156,7 @@
                   <th>Edit</th> -->
                 </tr>
                 <?php
-                  $sql = "SELECT dealer_id,sum(count2) as 'count' FROM details_cement 
+                  $sql = "SELECT dealer_id,sum(count) as 'count' FROM stocks_cement 
                   WHERE project_name_id = '$project_name_id' 
                   GROUP BY dealer_id";
                   $show = $db->select($sql);

@@ -164,17 +164,19 @@ $jer =($total_joma - $total_piling_bill) - $total_money_back;
 ?>
 
 <div id="flip">
-  <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary
+    <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary 
       <input type="checkbox">
       <span class="checkmark"></span>
     </label> -->
-
-
-  <div class="contorlAfterDealer">
-
-    <button onclick="myFunction()" class="btn printBtnDlr">Print</button>
-    <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
-  </div>
+    <label class="conchk" id="flipChkbox">Show/Hide Summary
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <div class="contorlAfterDealer">          
+      
+        <button onclick="myFunction()" class="btn printBtnDlr" style="position:relative; margin-left:150px; right: 0px">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    </div>
 </div>
 <div id="panel">
   <div style="display: flex;">
@@ -230,7 +232,12 @@ $jer =($total_joma - $total_piling_bill) - $total_money_back;
     <div class="lower">
       <table width="600px" class="summary">
 
+      <tr>
 
+    
+    
+
+     </tr>
      
        
         <tr>
@@ -302,7 +309,7 @@ $jer =($total_joma - $total_piling_bill) - $total_money_back;
           <!-- Address is added here -->
           <!-- <td class="widthPercent2">Class</td> -->
           <td class="widthPercent3">Piling Count </td>
-          <td class="widthPercent3">Fit</td>
+          <td class="widthPercent3">Feet</td>
           <td class="widthPercent3">Para's</td>
           <!-- <td class="widthPercent3">Discount</td> -->
           <td class="widthPercent3">Piling Bill</td>
@@ -318,7 +325,7 @@ $jer =($total_joma - $total_piling_bill) - $total_money_back;
           <td>তারিখ</td>
           <td>মারফ‌োত নাম</td>
           <td>বিবরণ</td>
-          <td>category</td>
+          <td>ক্যাটাগরি</td>
 
           
           <!-- <td></td> -->
@@ -506,7 +513,7 @@ if ($result) {
               <th>ফিট</th>
               <th>রেট‌</th>
               <th>পাইলিং বিলঃ</th>
-              <th>অথিরক্ত টাকা ফেরোত</th>
+              <th>অতিরিক্ত টাকা ফেরত</th>
               
               <th class='no_print_media'></th>
               <th class='no_print_media'></th>
