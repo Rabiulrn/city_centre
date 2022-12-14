@@ -105,7 +105,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_w = 0;
 }
-if ($count < $total_w) {
+if ($count <= $total_w) {
   if ($customer_id != 'none') {
     $sql = "INSERT INTO `details_sell_cement`
              (`customer_id`, `dealer_id`, `motor_name`,`driver_name`, `motor_vara`, `unload`, `cars_rent_redeem`, `information`, `sl`, `challan_no`, `address`, `motor_no`, `motor_sl`,`oil_free`,`oil_sell`, `so_date`, `dates`, `partculars`, `particulars`,`particulars_id`, `debit`,`debit2`,`monthly_com`,`yearly_com`,`challan_date`, `total_credit`, `paras`, `discount`, `credit`, `balance`, `weight`, `count`,`count2`, `fee`,`project_name_id`) 
@@ -126,13 +126,14 @@ if ($count < $total_w) {
     }
   
   
-    $sql_update = "UPDATE stocks_cement SET `count` = `count` - '$count' WHERE dealer_id ='$dealer_id'  AND `count` - '$count' >= 0 ORDER BY count DESC LIMIT 1";  // limit 1, aktai edit hobe. 
+    $sql_update = "UPDATE stocks_cement SET `count` = `count` - '$count'
+     WHERE dealer_id ='$dealer_id'  AND `count` - '$count' >= 0 ORDER BY count DESC LIMIT 1";  // limit 1, aktai edit hobe. 
   
       $result2 = $db->select($sql_update);
       // print_r($result2);
       if ($result2) {
         // print_r($sql_update);
-        // $sucMsg = "stocks updated Successfully.";
+        // $sucMsg = "stocks updated Successfully."; 
         echo "stocks updated  Successfully.";
       } else {
         echo " marfot and particular not matched ";
@@ -142,7 +143,7 @@ if ($count < $total_w) {
 } 
 else
 {
-echo "Dealer- " . $dealer_id . "\'s stock not available. The available stock of this dealer :".$total_w." bag";
+echo "Stocks are not available. The available stocks of this dealer :".$total_w." bags";
 // echo " stock not available";
 
 }

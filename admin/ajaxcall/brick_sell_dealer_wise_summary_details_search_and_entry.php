@@ -189,7 +189,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 <div id="panel">
 <div style="display: flex;">
     <div class="upper">
-      <table width="250px" class="summary">
+      <table width="288px" class="summary">
         <?php
       //   $sql =
       //     "SELECT category_name,category_id,sum(count) as 'total' 
@@ -237,7 +237,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       </table>
     </div>
     <div class="lower">
-      <table width="748px" class="summary">
+      <table width="709px" class="summary">
         <tr>
           <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
@@ -373,6 +373,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       <table border="1" id="detailsEtryTable">
         <tr>
           <td class="widthPercent1">Customer ID</td>
+          <td class="widthPercent1">Dealer ID</td>
           <!-- <td width="150">Dealer ID</td> -->
           <!-- <td class="widthPercent1">Type</td> -->
           <td class="widthPercent1">Motor Name</td>
@@ -394,7 +395,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <!-- <td class="widthPercent2">SO Date</td> -->
           <td class="widthPercent2">Date</td>
           <td class="widthPercent2">Partculars</td>
-          <td class="widthPercent2">Particulars</td>
+          <!-- <td class="widthPercent2">Particulars</td> -->
           <td class="widthPercent2">Debit</td>
           <td class="widthPercent2">Class</td>
           <td class="widthPercent3">Count</td>
@@ -407,7 +408,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
         </tr>
         <tr>
           <td>কাস্টমার আই ডি</td>
-          <!-- <td>ডিলার আই ডি</td> -->
+          <td>ডিলার আই ডি</td>
           <!-- <td>টাইপ</td> -->
           <td>গাড়ী নাম</td>
           <td>ড্রাইভারের নাম</td>
@@ -428,7 +429,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <!-- <td>অর্ডার তারিখ</td> -->
           <td>তারিখ</td>
           <td>মারফ‌োত নাম</td>
-          <td>বিবরণ</td>
+          <!-- <td>বিবরণ</td> -->
          
           <td>জমা টাকা</td>
           <td>শ্রেণী</td>
@@ -475,7 +476,26 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           $newId = 'SL-' . $newNumber;
           ?>
 
+<td>
+            <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
+            <?php
+            $sql = "SELECT * FROM brick_dealer WHERE project_name_id ='$project_name_id'";
+            $all_custmr_id = $db->select($sql);
+            echo '<select name="dealer_id" id="dealer_id" class="form-control" style="width: 140px; required">';
+            echo '<option value="none">Select...</option>';
+            if ($all_custmr_id->num_rows > 0) {
+              while ($row = $all_custmr_id->fetch_assoc()) {
+                $id = $row['dealer_id'];
+                $dealer_name = $row['dealer_name'];
+                echo '<option value="' . $id . '">' . $id . '--' . $dealer_name . '</option>';
+              }
+            } else {
+              echo '<option value="none">0 Result</option>';
+            }
+            echo '</select>';
+            ?>
 
+          </td>
 <td>
             <input type="text" name="motor_name" class="form-control-cement" id="motor_name" placeholder="Motor name...">
           </td>
@@ -489,20 +509,20 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-cement value-calc" id="unload" placeholder="Unload...">
           </td>
           <td>
-            <input type="text" name="car_rent_redeem" class="form-control-cement value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
+            <input type="text" name="car_rent_redeem" class="form-control-cement value-calc" id="car_rent_redeem" placeholder="Cars rent & redeem...">
           </td>
           <td>
-            <input type="text" name="information" class="form-control-cement" id="information" placeholder="Enter Information...">
+            <input type="text" name="information" class="form-control-cement" id="information" placeholder="Information...">
           </td>
           <td>
             <input type="text" name="address" class="form-control-cement" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>
           </td>
           <td>
-            <input type="text" name="sl_no" class="form-control-cement" id="sl_no"  placeholder="Enter sl no..." >
+            <input type="text" name="sl_no" class="form-control-cement" id="sl_no"  placeholder="Sl no..." >
           </td>
           
           <td>
-            <input type="text" name="voucher_no" class="form-control-cement" id="voucher_no" placeholder="Enter voucher no..." required>
+            <input type="text" name="voucher_no" class="form-control-cement" id="voucher_no" placeholder="Voucher no..." required>
           </td>
           <td>
             <input type="text" name="motor_no" class="form-control-cement" id="motor_no" placeholder="Motor sl...">
@@ -523,6 +543,11 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <input type="text" name="partculars" class="form-control-cement" id="partculars" placeholder="Marfot...">
           </td>
+          
+
+          <td>
+            <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-cement value-calc" id="debit" placeholder="Debit...">
+          </td>
           <td>
             <?php
             // var parti_val = $('#car_rent_redeem').val();
@@ -535,29 +560,6 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
                 $particulars = $row['category_name'];
                 $particulars_id = $row['category_id'];
                 echo '<option value="' . $particulars_id . ',' . $particulars . ' ">' . $particulars . '</option>';
-              }
-            } else {
-              echo '<option value="none">0 Result</option>';
-            }
-            echo '</select>';
-            ?>
-
-          </td>
-
-          <td>
-            <input type="text" onkeypress="return isNumber(event)" name="debit" class="form-control-cement value-calc" id="debit" placeholder="Debit...">
-          </td>
-         <td>
-            <?php
-            // var parti_val = $('#car_rent_redeem').val();
-            $sql = "SELECT DISTINCT category_name FROM brick_category WHERE  category_name != ''";
-            $all_particular = $db->select($sql);
-            echo '<select name="particulars" id="particulars" class="form-control" style="width: 140px;" required>';
-            echo '<option value="none">Select...</option>';
-            if ($all_particular->num_rows > 0) {
-              while ($row = $all_particular->fetch_assoc()) {
-                $particulars = $row['category_name'];
-                echo '<option value="' . $particulars . '">' . $particulars . '</option>';
               }
             } else {
               echo '<option value="none">0 Result</option>';
@@ -588,7 +590,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" name="balance" class="form-control-cement value-calc" id="balance" placeholder="Balance...">
           </td>
           <td style="display: none;">
-            <input type="text" name="total_credit" class="form-control-cement value-calc" id="total_credit" placeholder="Total_Credit...">
+            <input type="text" name="et_para" class="form-control-cement value-calc" id="et_para" placeholder="gari vara labour soho...">
+          </td>
+          <td style="display: none;">
+            <input type="text" name="total_credit" class="form-control-cement value-calc" id="total_credit" placeholder="Total credit...">
           </td>
           <!-- <td colspan="2"></td> -->
         </tr>
@@ -608,7 +613,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 <?php
 // $sql ="SELECT * FROM details_balu WHERE dealer_id='$dealerId' ";
-$sql = "SELECT * FROM details_sell_brick WHERE customer_id='$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT * FROM details_sell_brick WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result) {
   $rowcount = mysqli_num_rows($result);
@@ -620,6 +625,7 @@ if ($result) {
           <thead class="header">
             <tr>
               <th>Customer ID:</th>
+              <th>Dealer ID:</th>
               <th>Motor Name</th>
               <th>Driver Name</th>
               <th>Motor Vara</th>
@@ -650,6 +656,7 @@ if ($result) {
             </tr>
             <tr>
               <th>কাস্টমার আই ডি</th>
+              <th>ডিলার আই ডি</th>
               <th>গাড়ী নাম</th>
               <th>ড্রাইভারের নাম</th>
               <th>গাড়ী ভাড়া</th>
@@ -703,6 +710,7 @@ if ($result) {
               }
               echo "<tr>";
               echo "<td>" . $rows['customer_id'] . "</td>";
+              echo "<td>" . $rows['dealer_id'] . "</td>";
               echo "<td>" . $rows['motor_name'] . "</td>";
               echo "<td>" . $rows['driver_name'] . "</td>";
               echo "<td>" . $rows['motor_vara'] . "</td>";
@@ -715,7 +723,7 @@ if ($result) {
               echo "<td>" . $rows['motor_sl'] . "</td>";
               echo "<td>" . $rows['motor_no'] . "</td>";
               // echo "<td>" . $format_challan_date . "</td>";
-              echo "<td>" . $rows['challan_date'] . "</td>";
+              echo "<td>" . $rows['delivery_date'] . "</td>";
               echo "<td>" . $format_dates . "</td>";
               echo "<td>" . $rows['partculars'] . "</td>";
               echo "<td>" . $rows['particulars'] . "</td>";
@@ -726,6 +734,7 @@ if ($result) {
               echo "<td>" . $rows['discount'] . "</td>";
               echo "<td>" . $rows['credit'] . "</td>";
               echo "<td>" . $rows['balance'] . "</td>";
+              
               // echo "<td>" . $rows[''] . "</td>";
 
               if ($delete_data_permission == 'yes') {

@@ -195,7 +195,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 <div id="panel">
   <div style="display: flex;">
     <div class="upper">
-      <table width="250px" class="summary">
+      <table width="288px" class="summary">
         <?php
       //   $sql =
       //     "SELECT category_name,category_id,sum(count) as 'total' 
@@ -208,7 +208,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
         $sql = "SELECT DISTINCT particulars,particulars_id,SUM(count) as 'total' 
         FROM details_brick 
-        WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' 
+        WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id' AND particulars != 'BG' AND particulars != 'In Cash' AND count != 0
         GROUP BY particulars_id";
         // $result2 = $conn->query($sqlrr);
         $result = $db->select($sql);
@@ -243,7 +243,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
       </table>
     </div>
     <div class="lower">
-      <table width="748px" class="summary">
+      <table width="709px" class="summary">
         <tr>
           <!-- <td class="hastext" width="150px">04.50mm 500W/60G</td>
 			<td style="min-width: 85px"><?php echo $mm0450_rod500; ?></td>
@@ -403,7 +403,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <!-- <td class="widthPercent2">SO Date</td> -->
           <td class="widthPercent2">Date</td>
           <td class="widthPercent2">Partculars</td>
-          <td class="widthPercent2">Particulars</td>
+          <!-- <td class="widthPercent2">Particulars</td> -->
 
           <td class="widthPercent2">Debit</td>
           <td class="widthPercent2">Class</td>
@@ -438,7 +438,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <!-- <td>অর্ডার তারিখ</td> -->
           <td>তারিখ</td>
           <td>মারফ‌োত নাম</td>
-          <td>বিবরণ</td>
+          <!-- <td>বিবরণ</td> -->
 
           <td>জমা টাকা</td>
           <td>শ্রেণী</td>
@@ -528,20 +528,20 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-cement value-calc" id="unload" placeholder="Unload...">
           </td>
           <td>
-            <input type="text" name="car_rent_redeem" class="form-control-cement value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
+            <input type="text" name="car_rent_redeem" class="form-control-cement value-calc" id="car_rent_redeem" placeholder="Cars rent & redeem...">
           </td>
           <td>
-            <input type="text" name="information" class="form-control-cement" id="information" placeholder="Enter Information...">
+            <input type="text" name="information" class="form-control-cement" id="information" placeholder="Information...">
           </td>
           <td>
             <input type="text" name="address" class="form-control-cement" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>
           </td>
           <td>
-            <input type="text" name="sl_no" class="form-control-cement" id="sl_no" placeholder="Enter sl no...">
+            <input type="text" name="sl_no" class="form-control-cement" id="sl_no" placeholder="Sl no...">
           </td>
 
           <td>
-            <input type="text" name="voucher_no" class="form-control-cement" id="voucher_no" placeholder="Enter voucher no..." required>
+            <input type="text" name="voucher_no" class="form-control-cement" id="voucher_no" placeholder="Voucher no..." required>
           </td>
           <td>
             <input type="text" name="motor_no" class="form-control-cement" id="motor_no" placeholder="Motor sl...">
@@ -563,9 +563,9 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           <td>
             <input type="text" name="partculars" class="form-control-cement" id="partculars" placeholder="Marfot...">
           </td>
-          <td>
+          <!-- <td>
             <input type="text" name="biboron" class="form-control-cement" id="biboron" placeholder="Particular...">
-          </td>
+          </td> -->
 
 
           <td>
@@ -615,7 +615,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
           </td>
 
           <td style="display: none;">
-            <input type="text" name="et_para" class="form-control-cement value-calc" id="et_para" placeholder="Balance...">
+            <input type="text" name="et_para" class="form-control-cement value-calc" id="et_para" placeholder="gari vara labour soho...">
           </td>
           <!-- <td style="display: none;">
             <input type="text" name="total_credit" class="form-control-cement value-calc" id="total_credit" placeholder="Total_Credit...">
@@ -667,7 +667,7 @@ if ($result) {
               <th>Delivery Date</th>
               <th>Date</th>
               <th>Partculars</th>
-              <th>Particulars</th>
+              <!-- <th>Particulars</th> -->
               <th>Debit</th>
               <th>Class</th>
               <th>Count</th>
@@ -704,7 +704,7 @@ if ($result) {
               <th>ডেলিভারী তারিখ</th>
               <th>তারিখ</th>
               <th>মারফ‌োত নাম</th>
-              <th>ব‌িবরণ</th>
+              <!-- <th>ব‌িবরণ</th> -->
               <th>জমা টাকা</th>
               <th>শ্রেণী</th>
               <th>পরিমান‌</th>
@@ -756,10 +756,10 @@ if ($result) {
               echo "<td>" . $rows['motor_sl'] . "</td>";
               echo "<td>" . $rows['motor_no'] . "</td>";
               // echo "<td>" . $format_challan_date . "</td>";
-              echo "<td>" . $rows['challan_date'] . "</td>";
+              echo "<td>" . $rows['delivery_date'] . "</td>";
               echo "<td>" . $format_dates . "</td>";
               echo "<td>" . $rows['partculars'] . "</td>";
-              echo "<td>" . $rows['biboron'] . "</td>";
+              // echo "<td>" . $rows['biboron'] . "</td>";
               echo "<td>" . $rows['debit'] . "</td>";
               echo "<td>" . $rows['particulars'] . "</td>";
               echo "<td>" . $rows['count'] . "</td>";

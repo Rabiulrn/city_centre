@@ -80,7 +80,7 @@ if(isset($cement_details_id)){
 `count2`='$count2',`paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance',`weight`='$weight'  WHERE id = '$cement_details_id'";
     // partculars = '$partculars', particulars = '$particulars', debit = '$debit',`ton & kg`='$ton_kg',`length`='$length',`width`='$width',`height`='$height',`shifty`='$shifty',`inchi (-)_minus`='$inchi_minus',`cft (-)_dropped out`='$cft_dropped_out',`inchi (+)_added`='$inchi_added',`points ( - )_dropped out`='$points_dropped_out',`shift`='$shift',`total_shift`='$total_shift',`ton`='$ton',
     // 
-if($particulars != "none" || $particulars != "None"){
+if($particulars != "" || $particulars != "Select..."){
   $sql2 = "UPDATE `details_cement` SET particulars='$data_name',particulars_id='$data_id'";
   $db->select($sql2);
 }

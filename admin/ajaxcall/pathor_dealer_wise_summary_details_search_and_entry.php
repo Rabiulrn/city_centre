@@ -160,10 +160,20 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
 <div id="flip">
-  <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary
+    <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary 
       <input type="checkbox">
       <span class="checkmark"></span>
     </label> -->
+    <label class="conchk" id="flipChkbox">Show/Hide Summary
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <div class="contorlAfterDealer">          
+      
+        <button onclick="myFunction()" class="btn printBtnDlr" style="position:relative; margin-left:150px; right: 0px">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    </div>
+</div>
 
 
   <div class="contorlAfterDealer">
@@ -225,10 +235,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm12_rod500; ?></td>
 			<td class="hastext">12mm 400W/60G</td>
 			<td><?php echo $mm12_rod400; ?></td> -->
+      <!-- <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
-      <td style="background-color: #bcbcbc;"></td>
-      <td style="background-color: #bcbcbc;"></td>
+      <td style="background-color: #bcbcbc;"></td> -->
     </tr>
     <!-- Ekhan theke -->
     <tr>
@@ -488,10 +498,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload...">
           </td>
           <td>
-            <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
+            <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Cars rent & redeem...">
           </td>
           <td>
-            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter Information...">
+            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Information...">
           </td>
 
 
@@ -511,13 +521,13 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
           <td>
-            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no..." style="cursor:not-allowed;">
+            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Sl no..." style="cursor:not-allowed;">
           </td>
 
 
 
           <td>
-            <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter voucher no..." required>
+            <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Voucher no..." required>
           </td>
           <td>
             <input type="text" name="address" class="form-control-balu" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>

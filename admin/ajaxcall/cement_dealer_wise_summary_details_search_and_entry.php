@@ -1086,10 +1086,10 @@
               <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-cement value-calc" id="unload" placeholder="Unload...">
             </td>
             <td>
-              <input type="text" name="car_rent_redeem" class="form-control-cement value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
+              <input type="text" name="car_rent_redeem" class="form-control-cement value-calc" id="car_rent_redeem" placeholder="Cars rent & redeem...">
             </td>
             <td>
-              <input type="text" name="information" class="form-control-cement" id="information" placeholder="Enter Information...">
+              <input type="text" name="information" class="form-control-cement" id="information" placeholder="Information...">
             </td>
 
 
@@ -1113,16 +1113,16 @@
           </td> -->
 
             <td>
-              <input type="text" name="sl_no" class="form-control-cement" id="sl_no" placeholder="Enter sl no...">
+              <input type="text" name="sl_no" class="form-control-cement" id="sl_no" placeholder="Sl no...">
             </td>
             <td>
               <input type="text" name="address" class="form-control-cement" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>
             </td>
             <td>
-              <input type="text" name="customer_id" class="form-control-cement" id="customer_id" placeholder="customer_id">
+              <input type="text" name="customer_id" class="form-control-cement" id="customer_id" placeholder="Customer id">
             </td>
             <td>
-              <input type="text" name="challan_no" class="form-control-cement" id="challan_no" placeholder="Enter challan no..." required>
+              <input type="text" name="challan_no" class="form-control-cement" id="challan_no" placeholder="Challan no..." required>
             </td>
             <td>
               <input type="text" name="motor_no" class="form-control-cement" id="motor_no" placeholder="Motor sl...">
@@ -1131,10 +1131,10 @@
               <input type="text" name="motor" class="form-control-cement" id="motor" placeholder="Motor...">
             </td>
             <td>
-              <input type="text" name="oil_free" class="form-control-cement" id="oil_free" placeholder="oil_free...">
+              <input type="text" name="oil_free" class="form-control-cement" id="oil_free" placeholder="Oil free...">
             </td>
             <td>
-              <input type="text" name="oil_sell" class="form-control-cement value-calc" id="oil_sell" placeholder="oil_para...">
+              <input type="text" name="oil_sell" class="form-control-cement value-calc" id="oil_sell" placeholder="Oil para...">
             </td>
 
             <td>
@@ -1178,11 +1178,11 @@
             </td>
 
             <td>
-              <input type="text" onkeypress="return isNumber(event)" name="monthly_com" class="form-control-cement value-calc" id="monthly_com" placeholder="monthly_com...">
+              <input type="text" onkeypress="return isNumber(event)" name="monthly_com" class="form-control-cement value-calc" id="monthly_com" placeholder="Monthly commission...">
             </td>
 
             <td>
-              <input type="text" onkeypress="return isNumber(event)" name="yearly_com" class="form-control-cement value-calc" id="yearly_com" placeholder="yearly_com...">
+              <input type="text" onkeypress="return isNumber(event)" name="yearly_com" class="form-control-cement value-calc" id="yearly_com" placeholder="Yearly commission...">
             </td>
             <td>
               <input type="text" onkeypress="return isNumber(event)" name="debit2" class="form-control-cement value-calc" id="debit2" placeholder="Debit...">
@@ -1212,7 +1212,7 @@
               <input type="text" name="balance" class="form-control-cement value-calc" id="balance" placeholder="Balance...">
             </td>
             <td style="display: none;">
-              <input type="text" name="total_credit" class="form-control-cement value-calc" id="total_credit" placeholder="Total_Credit...">
+              <input type="text" name="total_credit" class="form-control-cement value-calc" id="total_credit" placeholder="Total credit...">
             </td>
             <td>
               <input type="text" onkeypress="return isNumber(event)" name="weight" name="weight" class="form-control-cement value-calc" id="weight" placeholder="Weight ( MT )...">

@@ -600,17 +600,17 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
             <div class="dealerIdSelect">
                 <table>
                     <tr>
-                        <td><b>Select a Customer Name</b></td>
+                        <td><b>Select a Dealer Name</b></td>
                         <td><?php
-                            $sql = "SELECT DISTINCT customer_name,customer_id FROM customers_cement WHERE customer_name != '' AND project_name_id = '$project_name_id'";
+                            $sql = "SELECT DISTINCT dealer_name,dealer_id FROM cement_dealer WHERE dealer_name != '' AND project_name_id = '$project_name_id'";
                             // $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer WHERE project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="customer_id" id="delear_id" class="form-control form-control-customer" style="width: 222px;">';
                             // echo '<option value="none" disabled>Select...</option>';
                             if ($all_custmr_id->num_rows > 0) {
                                 while ($row = $all_custmr_id->fetch_assoc()) {
-                                    $id = $row['customer_id'];
-                                    $dealer_name = $row['customer_name'];
+                                    $id = $row['dealer_id'];
+                                    $dealer_name = $row['dealer_name'];
                                     echo '<option value="' . $id . '">' . $dealer_name . '</option>';
                                 }
                             } else {
@@ -623,21 +623,22 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
 
 <!-- 
                                <td><b>Select a Dealer Name</b></td>
-                        <td><?php
-                            $sql2 = "SELECT DISTINCT dealer_name, dealer_id FROM cement_dealer WHERE dealer_name != '' AND  project_name_id = '$project_name_id'";
-                            $all_custmr_id = $db->select($sql2);
-                            echo '<select name="delear_id" id="delear_id" class="form-control form-control-dealer" style="width: 222px;">';
-                            // echo '<option value=""></option>';
-                            if ($all_custmr_id->num_rows > 0) {
-                                while ($row = $all_custmr_id->fetch_assoc()) {
-                                    $id = $row['dealer_id'];
-                                    $dealer_name = $row['dealer_name'];
-                                    echo '<option value="' . $id . '">' . $dealer_name . '</option>';
-                                }
-                            } else {
-                                echo '<option value="none">0 Result</option>';
-                            }
-                            echo '</select>';
+                        <td>
+                            <?php
+                            // $sql2 = "SELECT DISTINCT dealer_name, dealer_id FROM cement_dealer WHERE dealer_name != '' AND  project_name_id = '$project_name_id'";
+                            // $all_custmr_id = $db->select($sql2);
+                            // echo '<select name="delear_id" id="delear_id" class="form-control form-control-dealer" style="width: 222px;">';
+                            // // echo '<option value=""></option>';
+                            // if ($all_custmr_id->num_rows > 0) {
+                            //     while ($row = $all_custmr_id->fetch_assoc()) {
+                            //         $id = $row['dealer_id'];
+                            //         $dealer_name = $row['dealer_name'];
+                            //         echo '<option value="' . $id . '">' . $dealer_name . '</option>';
+                            //     }
+                            // } else {
+                            //     echo '<option value="none">0 Result</option>';
+                            // }
+                            // echo '</select>';
                             ?></td> -->
                     </tr>
 
@@ -655,7 +656,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead" style="color: Green;">বিক্রয় হিসাব এন্ট্রি</h2>
+                <h2 class="popupHead" style="color: Green;">বিক্রয় হিসাব পরিবর্তন</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
 
@@ -718,7 +719,7 @@ $_SESSION['pageName'] = 'cement_bikroy_hisab';
     // var parti_val = $('#car_rent_redeem').val();
     $sql = "SELECT DISTINCT category_name,category_id FROM cement_category WHERE  category_name != ''";
     $all_particular = $db->select($sql);
-    echo '<select name="particulars" id="particulars" class="form-control" >';
+    echo '<select name="particulars" id="particulars_popup" class="form-control" >';
     echo '<option value="particulars">Select...</option>';
     if ($all_particular->num_rows > 0) {
         while ($row = $all_particular->fetch_assoc()) {

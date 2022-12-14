@@ -147,7 +147,7 @@
                 <tr class="bg-primary">
                   <th>ডিলার নাম</th>
                   <!-- <th>ব‌িবরণ</th> -->
-                  <th>ব্যাগ</th>
+                  <th>amount</th>
 
                   <!-- <th>Address</th>
                   <th>Contact Person Name</th>
@@ -156,7 +156,7 @@
                   <th>Edit</th> -->
                 </tr>
                 <?php
-                  $sql = "SELECT dealer_id,sum(count2) as 'count' FROM details_brick 
+                  $sql = "SELECT dealer_id,sum(count) as 'count' FROM stocks_brick 
                   WHERE project_name_id = '$project_name_id' 
                   GROUP BY dealer_id";
                   $show = $db->select($sql);

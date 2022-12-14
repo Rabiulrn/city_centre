@@ -633,7 +633,7 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
+                <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব পরিবর্তন</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
@@ -660,7 +660,7 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                                 </td>
                             </tr>
 
-                            
+
 
 
                             <!-- <input type="hidden" name="cement_details_id" id="cement_details_id"> -->
@@ -683,7 +683,7 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                                 </td>           
                             </tr> -->
                             <!-- <tr> -->
-                           
+
                             <tr>
                                 <td>Motor Vara (গাড়ী ভাড়া)</td>
                                 <td>
@@ -715,9 +715,9 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Challan No. (ভাউচার নং)</td>
+                                <td>Challan No. (চালান নং)</td>
                                 <td>
-                                    <input type="text" name="challan_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
+                                    <input type="text" name="challan_no" class="form-control" id="challan_no_popup" placeholder="Enter Challan No...">
                                 </td>
                             </tr>
                             <tr>
@@ -751,59 +751,37 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                                     <input onkeypress="datecheckformatpopup(event)" type="text" name="dates" class="form-control" id="dates_popup" placeholder="dd-mm-yyyy">
                                 </td>
                             </tr>
-                            <!-- <tr>
-                                <td>Partculars (মারফোত নাম)</td>
-                                <td>
-                                    <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Particulars (বিবরণ)</td>
-                                <td>
-                                    <?php
-                                    $pathor_catgry_sql = "SELECT * FROM pathor_category";
-                                    $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
 
-                                    echo '<select name="particulars" id="particulars_popup" class="form-control">';
-                                    echo '<option value="">Select...</option>';
-                                    if ($rslt_pathor_catgry->num_rows > 0) {
-                                        while ($row = $rslt_pathor_catgry->fetch_assoc()) {
-                                            $pathor_category_id = $row['id'];
-                                            $pathor_category_name = $row['category_name'];
-
-                                            echo '<option style="font-weight: bold;">' . $pathor_category_name . '</option>';
-
-                                            $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
-                                            $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
-                                            if ($rslt_pathor_lbl->num_rows > 0) {
-
-                                                while ($row2 = $rslt_pathor_lbl->fetch_assoc()) {
-                                                    $raol_id = $row2['id'];
-                                                    $raol_pathor_label = $row2['pathor_label'];
-                                                    $raol_pathor_category_id = $row2['pathor_category_id'];
-
-
-                                                    if ($pathor_category_id == $raol_pathor_category_id) {
-                                                        echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
-                                                    }
-                                                }
-                                            } else {
-                                                echo '<option>0 results</option>';
-                                            }
-                                        }
-                                    } else {
-                                        echo '<option>0 results</option>';
-                                    }
-                                    echo '</select> ';
-                                    ?>
-                                </td>
-                            </tr> -->
                             <tr>
                                 <td>Debit (জমা টাকা)</td>
                                 <td>
                                     <input type="text" name="debit" class="form-control value-calc-popup" id="debit_popup" placeholder="Enter debit...">
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Class (শ্রেণী)</td>
+
+                                <td>
+                                    <?php
+                                    // var parti_val = $('#car_rent_redeem').val();
+                                    $sql = "SELECT DISTINCT category_name,category_id FROM brick_category WHERE  category_name != ''";
+                                    $all_particular = $db->select($sql);
+                                    echo '<select name="particulars" id="particulars_popup" class="form-control" >';
+                                    echo '<option value="particulars">Select...</option>';
+                                    if ($all_particular->num_rows > 0) {
+                                        while ($row = $all_particular->fetch_assoc()) {
+                                            $particulars = $row['category_name'];
+                                            $particulars_id = $row['category_id'];
+                                            echo '<option value="' . $particulars_id . ',' . $particulars . ' " selected>' . $particulars . '</option>';
+                                        }
+                                    } else {
+                                        echo '<option value="none">0 Result</option>';
+                                    }
+                                    echo '</select>';
+                                    ?>
+                                </td>
+                            </tr>
+
                             <!-- <tr>
                                 <td>Ton & Kg (টোন ও কেজি)</td>
                                 <td>
@@ -888,12 +866,12 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                                     <input type="text" name="credit" class="form-control value-calc-popup" id="credit_popup" placeholder="Enter Credit ...">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td> Balance(অবশিষ্ট) </td>
                                 <td>
                                     <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup" placeholder="Enter Balance  ...">
                                 </td>
-                            </tr>
+                            </tr> -->
 
                             <!-- <tr>
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
@@ -924,12 +902,12 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                                     <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
                                 </td>
                             </tr> -->
-                            <tr>
+                            <!-- <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
                                     <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter Fee...">
                                 </td>
-                            </tr>
+                            </tr> -->
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
                         <?php
@@ -1416,53 +1394,34 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
         }
 
         function edit_rod_popup(element, rowid) {
-            var buyr_id = $(element).closest('tr').find('td:eq(0)').text();
+            var dealer_id = $(element).closest('tr').find('td:eq(0)').text();
             // var dlar_id         = $(element).closest('tr').find('td:eq(1)').text();
-            var motor_name = $(element).closest('tr').find('td:eq( 2)').text();
-            var driver_name = $(element).closest('tr').find('td:eq(1)').text();
+            var motor_name = $(element).closest('tr').find('td:eq(1)').text();
+            var driver_name = $(element).closest('tr').find('td:eq(2)').text();
             var motor_vara = $(element).closest('tr').find('td:eq(3)').text();
             var unload = $(element).closest('tr').find('td:eq(4)').text();
             var cars_rent_redeem = $(element).closest('tr').find('td:eq(5)').text();
             var information = $(element).closest('tr').find('td:eq(6)').text();
-            var sl = $(element).closest('tr').find('td:eq(7)').text();
+            var address = $(element).closest('tr').find('td:eq(7)').text();
+            var sl = $(element).closest('tr').find('td:eq(8)').text();
             var voucher_no = $(element).closest('tr').find('td:eq(9)').text();
-            var address = $(element).closest('tr').find('td:eq(8)').text();
-            var motor_number = $(element).closest('tr').find('td:eq(10)').text();
-            var motor_sl = $(element).closest('tr').find('td:eq(11)').text();
+            var motor_sl = $(element).closest('tr').find('td:eq(10)').text();
+            // var address = $(element).closest('tr').find('td:eq(10)').text();
+            var motor_number = $(element).closest('tr').find('td:eq(11)').text();
+
             var delivery_date = $(element).closest('tr').find('td:eq(12)').text();
             var date = $(element).closest('tr').find('td:eq(13)').text();
             var partculars = $(element).closest('tr').find('td:eq(14)').text();
-            var particulars = $(element).closest('tr').find('td:eq(15)').text();
-            var debit = $(element).closest('tr').find('td:eq(17)').text();
-            var ton_kg = $(element).closest('tr').find('td:eq(17)').text();
-            var length = $(element).closest('tr').find('td:eq(18)').text();
-            var width = $(element).closest('tr').find('td:eq(19)').text();
-            var height = $(element).closest('tr').find('td:eq(20)').text();
-            var shifty = $(element).closest('tr').find('td:eq(21)').text();
-            var inchi_minus = $(element).closest('tr').find('td:eq(22)').text();
-            var cft_dropped = $(element).closest('tr').find('td:eq(23)').text();
-            var inchi_added = $(element).closest('tr').find('td:eq(24)').text();
-            var points_dropped = $(element).closest('tr').find('td:eq(25)').text();
-            var shift = $(element).closest('tr').find('td:eq(26)').text();
-            var total_shift = $(element).closest('tr').find('td:eq(27)').text();
-            var paras = $(element).closest('tr').find('td:eq(20)').text();
-            var discount = $(element).closest('tr').find('td:eq(21)').text();
-            var credit = $(element).closest('tr').find('td:eq(22)').text();
-            var balance = $(element).closest('tr').find('td:eq(23)').text();
-            var cemeats_paras = $(element).closest('tr').find('td:eq(32)').text();
-            var ton = $(element).closest('tr').find('td:eq(33)').text();
-            var total_shift = $(element).closest('tr').find('td:eq(34)').text();
-            var tons = $(element).closest('tr').find('td:eq(35)').text();
-            var bank_name = $(element).closest('tr').find('td:eq(36)').text();
-            var fee = $(element).closest('tr').find('td:eq(37)').text();
+            var debit = $(element).closest('tr').find('td:eq(15)').text();
+            var particulars = $(element).closest('tr').find('td:eq(16)').text();
 
-
+            var count = $(element).closest('tr').find('td:eq(17)').text();
+            var paras = $(element).closest('tr').find('td:eq(18)').text();
+            var discount = $(element).closest('tr').find('td:eq(19)').text();
+            var credit = $(element).closest('tr').find('td:eq(20)').text();
             // alert(buyr_id);
-            // $('#dealer_id').val(dlar_id);
             $('#brick_details_id').val(rowid);
-
-
-            $('#buyer_id_popup').val(buyr_id);
+            $('#dealer_id_popup').val(dealer_id);
             $('#motor_name_popup').val(motor_name);
             $('#driver_name_popup').val(driver_name);
             $('#motor_vara_popup').val(motor_vara);
@@ -1470,36 +1429,38 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
             $('#car_rent_redeem_popup').val(cars_rent_redeem);
             $('#information_popup').val(information);
             $('#sl_popup').val(sl);
-            $('#voucher_no_popup').val(voucher_no);
+            $('#challan_no_popup').val(voucher_no);
             $('#address_popup').val(address);
             $('#motor_number_popup').val(motor_number);
             $('#motor_sl_popup').val(motor_sl);
             $('#delivery_date_popup').val(delivery_date);
             $('#dates_popup').val(date);
             $('#partculars_popup').val(partculars);
-            $('#particulars_popup').val(particulars);
             $('#debit_popup').val(debit);
-            $('#ton_kg_popup').val(ton_kg);
-            $('#count_popup').val(length);
-            $('#width_popup').val(width);
-            $('#height_popup').val(height);
-            $('#shifty_popup').val(shifty);
-            $('#inchi_minus_popup').val(inchi_minus);
-            $('#cft_dropped_popup').val(cft_dropped);
-            $('#inchi_added_popup').val(inchi_added);
-            $('#points_dropped_popup').val(points_dropped);
-            $('#shift_popup').val(shift);
-            $('#total_shift_popup').val(total_shift);
+            $('#particulars_popup').val(particulars);
+            $('#count_popup').val(count);
             $('#paras_popup').val(paras);
             $('#discount_popup').val(discount);
             $('#credit_popup').val(credit);
-            $('#balance_popup').val(balance);
-            $('#cemeats_paras_popup').val(cemeats_paras);
-            $('#ton_popup').val(ton);
-            $('#total_shift_popup').val(total_shift);
-            $('#tons_popup').val(tons);
-            $('#bank_name_popup').val(bank_name);
-            $('#fee_popup').val(fee);
+
+
+
+            // $('#inchi_minus_popup').val(inchi_minus);
+            // $('#cft_dropped_popup').val(cft_dropped);
+            // $('#inchi_added_popup').val(inchi_added);
+            // $('#points_dropped_popup').val(points_dropped);
+            // $('#shift_popup').val(shift);
+            // $('#total_shift_popup').val(total_shift);
+            // $('#paras_popup').val(paras);
+            // $('#discount_popup').val(discount);
+            // $('#credit_popup').val(credit);
+            // $('#balance_popup').val(balance);
+            // $('#cemeats_paras_popup').val(cemeats_paras);
+            // $('#ton_popup').val(ton);
+            // $('#total_shift_popup').val(total_shift);
+            // $('#tons_popup').val(tons);
+            // $('#bank_name_popup').val(bank_name);
+            // $('#fee_popup').val(fee);
             $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
                 $(".popupClose").trigger('click');
             });
@@ -1542,20 +1503,20 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
             }
 
 
-       
 
 
-      
+
+
 
             var debit = $("#debit").val();
             var credit = $("#credit").val();
             var name = credit ? parseFloat(credit) : 0;
-                var balance = name - debit;
-                // alert(balance);
-                $('#balance').val(balance.toFixed(3));
-                
-              
-                
+            var balance = name - debit;
+            // alert(balance);
+            $('#balance').val(balance.toFixed(3));
+
+
+
             if (discount != '') {
                 var discount = $("#discount").val();
                 var dis = discount ? parseFloat(discount) : 0;
@@ -1568,7 +1529,7 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
                     Swal.fire("Not acceptable. Value should be less then credit");
                 }
             }
-         
+
 
             var motor_vara = $('#motor_vara').val();
             var unload = $('#unload').val();
@@ -1607,11 +1568,11 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
             var credit = $("#credit").val();
             var name = credit ? parseFloat(credit) : 0;
             var name2 = g_khalas ? parseFloat(g_khalas) : 0;
-                var et_paras = name + name2;
-                // console.log(et_paras);
-                // console.log(typeof(et_paras));
-                // alert(balance);
-                $('#et_para').val(et_paras.toFixed(3));
+            var et_paras = name + name2;
+            // console.log(et_paras);
+            // console.log(typeof(et_paras));
+            // alert(balance);
+            $('#et_para').val(et_paras.toFixed(3));
             // // if (motor_vara == '') {
             // //     $('#motor_vara').val()=null;
             // // } else if (unload == '') {
@@ -1712,7 +1673,7 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
             } else if (credit == '') {
                 $('#balance_popup').val('0');
             } else {
-                var balance =debit - credit;
+                var balance = debit - credit;
                 // alert(balance);
                 $('#balance_popup').val(balance);
             }
@@ -1743,7 +1704,7 @@ $_SESSION['pageName'] = 'brick_kroy_hisab';
             }
 
 
-           
+
 
 
             var discountp = $("#discount_popup").val();

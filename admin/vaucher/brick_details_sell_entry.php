@@ -587,7 +587,7 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
             ?>
                     <div class="project_heading">
                         <h2 class="headingOfAllProject" id="city_center_id">
-                            <?php echo $rows['heading']; ?> <span class="protidinHisab"> bikroy হিসাব</span>
+                            <?php echo $rows['heading']; ?> <span class="protidinHisab"> হিসাব</span>
                             <!-- , <span class="protidinHisab"><?php //echo $rows['subheading']; 
                                                                 ?></span> -->
 
@@ -600,17 +600,17 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
             <div class="dealerIdSelect">
                 <table>
                     <tr>
-                        <td><b>Select a Customer Name</b></td>
+                        <td><b>Select a Dealer Name</b></td>
                         <td><?php
-                            $sql = "SELECT customer_name,customer_id FROM customers_brick WHERE project_name_id = '$project_name_id'";
+                            $sql = "SELECT dealer_name,dealer_id FROM brick_dealer WHERE project_name_id = '$project_name_id'";
                             // $sql = "SELECT dealer_name, dealer_id,project_name_id  FROM balu_dealer WHERE project_name_id = '$project_name_id'";
                             $all_custmr_id = $db->select($sql);
                             echo '<select name="customer_id" id="delear_id" class="form-control" style="width: 222px;">';
 
                             if ($all_custmr_id->num_rows > 0) {
                                 while ($row = $all_custmr_id->fetch_assoc()) {
-                                    $id = $row['customer_id'];
-                                    $dealer_name = $row['customer_name'];
+                                    $id = $row['dealer_id'];
+                                    $dealer_name = $row['dealer_name'];
                                     echo '<option value="' . $id . '">' . $dealer_name . '</option>';
                                 }
                             } else {
@@ -632,29 +632,32 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead" style="color: Green;">বিক্রয় হিসাব এন্ট্রি</h2>
+                <h2 class="popupHead" style="color: Green;">বিক্রয় হিসাব পরিবর্তন</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
 
-                        <table style="width: 100%;">
+                    <table style="width: 100%;">
                             <tr>
-                                <td>Customer ID(Customer আই ডি)</td>
+                                <td>Customer ID( আই ডি)</td>
                                 <td>
+                                    <!-- <input type="text" name="customer_id" class="form-control-balu" id="customer_id" placeholder="Enter customer_id..."> -->
                                     <?php
-                                    $sql = "SELECT customer_id FROM customers_brick";
-                                    $all_custmr_id = $db->select($sql);
-                                    echo '<select name="customer_id" id="customer_id_popup" class="form-control" disabled >';
-                                    echo '<option value="none">Select...</option>';
-                                    if ($all_custmr_id->num_rows > 0) {
-                                        while ($row = $all_custmr_id->fetch_assoc()) {
-                                            $id = $row['customer_id'];
-                                            echo '<option value="' . $id . '">' . $id . '</option>';
-                                        }
-                                    } else {
-                                        echo '<option value="none">0 Resulst</option>';
-                                    }
-                                    echo '</select>';
-                                    ?>
+            $sql = "SELECT customer_id, customer_name FROM customers_cement";
+            $all_custmr_id = $db->select($sql);
+            echo '<select name="customer_id" id="customer_id" class="form-control" >';
+            echo '<option value="none">Select...</option>';
+            if ($all_custmr_id->num_rows > 0) {
+              while ($row = $all_custmr_id->fetch_assoc()) {
+                $id = $row['customer_id'];
+                $customer_name = $row['customer_name'];
+                echo '<option value="' . $id . '">' . $id . '-(' . $customer_name . ')' . '</option>';
+              }
+            } else {
+              echo '<option value="none">0 Result</option>';
+            }
+            echo '</select>';
+            ?>
+
                                 </td>
                             </tr>
 
@@ -713,9 +716,9 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Challan No. (ভাউচার নং)</td>
+                                <td>Challan No. (চালান নং)</td>
                                 <td>
-                                    <input type="text" name="challan_no" class="form-control" id="voucher_no_popup" placeholder="Enter Challan No...">
+                                    <input type="text" name="challan_no" class="form-control" id="challan_no_popup" placeholder="Enter Challan No...">
                                 </td>
                             </tr>
                             <tr>
@@ -749,59 +752,37 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
                                     <input onkeypress="datecheckformatpopup(event)" type="text" name="dates" class="form-control" id="dates_popup" placeholder="dd-mm-yyyy">
                                 </td>
                             </tr>
-                            <!-- <tr>
-                                <td>Partculars (মারফোত নাম)</td>
-                                <td>
-                                    <input type="text" name="partculars" class="form-control" id="partculars_popup" placeholder="Enter partculars...">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Particulars (বিবরণ)</td>
-                                <td>
-                                    <?php
-                                    $pathor_catgry_sql = "SELECT * FROM pathor_category";
-                                    $rslt_pathor_catgry = $db->select($pathor_catgry_sql);
 
-                                    echo '<select name="particulars" id="particulars_popup" class="form-control">';
-                                    echo '<option value="">Select...</option>';
-                                    if ($rslt_pathor_catgry->num_rows > 0) {
-                                        while ($row = $rslt_pathor_catgry->fetch_assoc()) {
-                                            $pathor_category_id = $row['id'];
-                                            $pathor_category_name = $row['category_name'];
-
-                                            echo '<option style="font-weight: bold;">' . $pathor_category_name . '</option>';
-
-                                            $pathor_lbl_sql = "SELECT * FROM pathor_and_other_label";
-                                            $rslt_pathor_lbl = $db->select($pathor_lbl_sql);
-                                            if ($rslt_pathor_lbl->num_rows > 0) {
-
-                                                while ($row2 = $rslt_pathor_lbl->fetch_assoc()) {
-                                                    $raol_id = $row2['id'];
-                                                    $raol_pathor_label = $row2['pathor_label'];
-                                                    $raol_pathor_category_id = $row2['pathor_category_id'];
-
-
-                                                    if ($pathor_category_id == $raol_pathor_category_id) {
-                                                        echo "<option value='" . $raol_pathor_label . "'>" . $raol_pathor_label . "</option>";
-                                                    }
-                                                }
-                                            } else {
-                                                echo '<option>0 results</option>';
-                                            }
-                                        }
-                                    } else {
-                                        echo '<option>0 results</option>';
-                                    }
-                                    echo '</select> ';
-                                    ?>
-                                </td>
-                            </tr> -->
                             <tr>
                                 <td>Debit (জমা টাকা)</td>
                                 <td>
                                     <input type="text" name="debit" class="form-control value-calc-popup" id="debit_popup" placeholder="Enter debit...">
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Class (শ্রেণী)</td>
+
+                                <td>
+                                    <?php
+                                    // var parti_val = $('#car_rent_redeem').val();
+                                    $sql = "SELECT DISTINCT category_name,category_id FROM brick_category WHERE  category_name != ''";
+                                    $all_particular = $db->select($sql);
+                                    echo '<select name="particulars" id="particulars_popup" class="form-control" >';
+                                    echo '<option value="particulars">Select...</option>';
+                                    if ($all_particular->num_rows > 0) {
+                                        while ($row = $all_particular->fetch_assoc()) {
+                                            $particulars = $row['category_name'];
+                                            $particulars_id = $row['category_id'];
+                                            echo '<option value="' . $particulars_id . ',' . $particulars . ' " selected>' . $particulars . '</option>';
+                                        }
+                                    } else {
+                                        echo '<option value="none">0 Result</option>';
+                                    }
+                                    echo '</select>';
+                                    ?>
+                                </td>
+                            </tr>
+
                             <!-- <tr>
                                 <td>Ton & Kg (টোন ও কেজি)</td>
                                 <td>
@@ -886,12 +867,12 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
                                     <input type="text" name="credit" class="form-control value-calc-popup" id="credit_popup" placeholder="Enter Credit ...">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td> Balance(অবশিষ্ট) </td>
                                 <td>
                                     <input type="text" name="balance" class="form-control value-calc-popup" id="balance_popup" placeholder="Enter Balance  ...">
                                 </td>
-                            </tr>
+                            </tr> -->
 
                             <!-- <tr>
                                 <td>Cemeat's Para's (গাড়ী ভাড়া / লেবার সহ)</td>
@@ -922,12 +903,12 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
                                     <input type="text" name="bank_name" class="form-control" id="bank_name_popup" placeholder="Enter Bank Name...">
                                 </td>
                             </tr> -->
-                            <tr>
+                            <!-- <tr>
                                 <td>Fee(ফি)</td>
                                 <td>
                                     <input type="text" name="fee" class="form-control value-calc-popup" id="fee_popup" placeholder="Enter Fee...">
                                 </td>
-                            </tr>
+                            </tr> -->
                         </table>
                         <h4 class="text-success text-center" id="NewEntrySucMsgPopup"></h4>
 
@@ -1393,46 +1374,31 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
 
         function edit_rod_popup(element, rowid) {
             var customer_id = $(element).closest('tr').find('td:eq(0)').text();
+            var dealer_id = $(element).closest('tr').find('td:eq(1)').text();
             // var dlar_id         = $(element).closest('tr').find('td:eq(1)').text();
-            var motor_name = $(element).closest('tr').find('td:eq(1)').text();
-            var driver_name = $(element).closest('tr').find('td:eq(2)').text();
-            var motor_vara = $(element).closest('tr').find('td:eq(3)').text();
-            var unload = $(element).closest('tr').find('td:eq(4)').text();
-            var cars_rent_redeem = $(element).closest('tr').find('td:eq(5)').text();
-            var information = $(element).closest('tr').find('td:eq(6)').text();
-            var sl = $(element).closest('tr').find('td:eq(7)').text();
-            var voucher_no = $(element).closest('tr').find('td:eq(8)').text();
-            var address = $(element).closest('tr').find('td:eq(9)').text();
-            var motor_number = $(element).closest('tr').find('td:eq(10)').text();
+            var motor_name = $(element).closest('tr').find('td:eq(2)').text();
+            var driver_name = $(element).closest('tr').find('td:eq(3)').text();
+            var motor_vara = $(element).closest('tr').find('td:eq(4)').text();
+            var unload = $(element).closest('tr').find('td:eq(5)').text();
+            var cars_rent_redeem = $(element).closest('tr').find('td:eq(6)').text();
+            var information = $(element).closest('tr').find('td:eq(7)').text();
+            var address = $(element).closest('tr').find('td:eq(8)').text();
+            var sl = $(element).closest('tr').find('td:eq(9)').text();
+            var voucher_no = $(element).closest('tr').find('td:eq(10)').text();
             var motor_sl = $(element).closest('tr').find('td:eq(11)').text();
-            var delivery_date = $(element).closest('tr').find('td:eq(12)').text();
-            var date = $(element).closest('tr').find('td:eq(13)').text();
-            var partculars = $(element).closest('tr').find('td:eq(14)').text();
-            var particulars = $(element).closest('tr').find('td:eq(15)').text();
-            var debit = $(element).closest('tr').find('td:eq(16)').text();
-            var ton_kg = $(element).closest('tr').find('td:eq(17)').text();
-            var length = $(element).closest('tr').find('td:eq(18)').text();
-            var width = $(element).closest('tr').find('td:eq(19)').text();
-            var height = $(element).closest('tr').find('td:eq(20)').text();
-            var shifty = $(element).closest('tr').find('td:eq(21)').text();
-            var inchi_minus = $(element).closest('tr').find('td:eq(22)').text();
-            var cft_dropped = $(element).closest('tr').find('td:eq(23)').text();
-            var inchi_added = $(element).closest('tr').find('td:eq(24)').text();
-            var points_dropped = $(element).closest('tr').find('td:eq(25)').text();
-            var shift = $(element).closest('tr').find('td:eq(26)').text();
-            var total_shift = $(element).closest('tr').find('td:eq(27)').text();
-            var paras = $(element).closest('tr').find('td:eq(28)').text();
-            var discount = $(element).closest('tr').find('td:eq(29)').text();
-            var credit = $(element).closest('tr').find('td:eq(30)').text();
-            var balance = $(element).closest('tr').find('td:eq(31)').text();
-            var cemeats_paras = $(element).closest('tr').find('td:eq(32)').text();
-            var ton = $(element).closest('tr').find('td:eq(33)').text();
-            var total_shift = $(element).closest('tr').find('td:eq(34)').text();
-            var tons = $(element).closest('tr').find('td:eq(35)').text();
-            var bank_name = $(element).closest('tr').find('td:eq(36)').text();
-            var fee = $(element).closest('tr').find('td:eq(37)').text();
+            // var address = $(element).closest('tr').find('td:eq(10)').text();
+            var motor_number = $(element).closest('tr').find('td:eq(12)').text();
 
+            var delivery_date = $(element).closest('tr').find('td:eq(13)').text();
+            var date = $(element).closest('tr').find('td:eq(14)').text();
+            // var partculars = $(element).closest('tr').find('td:eq(15)').text();
+            var debit = $(element).closest('tr').find('td:eq(17)').text();
+            var particulars = $(element).closest('tr').find('td:eq(17)').text();
 
+            var count = $(element).closest('tr').find('td:eq(18)').text();
+            var paras = $(element).closest('tr').find('td:eq(19)').text();
+            var discount = $(element).closest('tr').find('td:eq(20)').text();
+            var credit = $(element).closest('tr').find('td:eq(21)').text();
             // alert(buyr_id);
             $('#brick_details_id').val(rowid);
             $('#customer_id_popup').val(customer_id);
@@ -1443,38 +1409,19 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
             $('#car_rent_redeem_popup').val(cars_rent_redeem);
             $('#information_popup').val(information);
             $('#sl_popup').val(sl);
-            $('#voucher_no_popup').val(voucher_no);
+            $('#challan_no_popup').val(voucher_no);
             $('#address_popup').val(address);
             $('#motor_number_popup').val(motor_number);
             $('#motor_sl_popup').val(motor_sl);
             $('#delivery_date_popup').val(delivery_date);
             $('#dates_popup').val(date);
             $('#partculars_popup').val(partculars);
-            $('#particulars_popup').val(particulars);
             $('#debit_popup').val(debit);
-            $('#ton_kg_popup').val(ton_kg);
-            $('#length_popup').val(length);
-            $('#width_popup').val(width);
-            $('#height_popup').val(height);
-            $('#shifty_popup').val(shifty);
-            $('#inchi_minus_popup').val(inchi_minus);
-            $('#cft_dropped_popup').val(cft_dropped);
-            $('#inchi_added_popup').val(inchi_added);
-            $('#points_dropped_popup').val(points_dropped);
-            $('#shift_popup').val(shift);
-            $('#total_shift_popup').val(total_shift);
+            $('#particulars_popup').val(particulars);
+            $('#count_popup').val(count);
             $('#paras_popup').val(paras);
             $('#discount_popup').val(discount);
             $('#credit_popup').val(credit);
-            $('#balance_popup').val(balance);
-            $('#cemeats_paras_popup').val(cemeats_paras);
-            $('#ton_popup').val(ton);
-            $('#total_shift_popup').val(total_shift);
-            $('#tons_popup').val(tons);
-            $('#bank_name_popup').val(bank_name);
-            $('#fee_popup').val(fee);
-
-
             $('#popup_save_update_btn').val('Update').attr("onclick", "valid('update_popup')").click(function() {
                 $(".popupClose").trigger('click');
             });
@@ -1489,151 +1436,151 @@ $_SESSION['pageName'] = 'brick_bikroy_hisab';
         //Start calculation
         $(document).on('input change paste keyup', '.value-calc', function() {
 
-// var input_cft = $('#shift').val();
-// if(input_cft != ''){
-//     $('#total_shift').val(input_cft);
-//         $('#total_shifts').val(input_cft);
-// }
+            // var input_cft = $('#shift').val();
+            // if(input_cft != ''){
+            //     $('#total_shift').val(input_cft);
+            //         $('#total_shifts').val(input_cft);
+            // }
 
 
 
-if (count != '') {
-    $('#paras').attr("placeholder", "rate");
-    var count = $('#count').val();
-    var free = $('#fee').val();
-    var count_minus_free = count - free;
-    $('#count2').val(count_minus_free);
-    var count2 = $('#count2').val();
-    var paras = $('#paras').val();
+            if (count != '') {
+                $('#paras').attr("placeholder", "rate");
+                var count = $('#count').val();
+                var free = $('#fee').val();
+                var count_minus_free = count - free;
+                $('#count2').val(count_minus_free);
+                var count2 = $('#count2').val();
+                var paras = $('#paras').val();
 
-    var weight = count / 20;
-    $('#weight').val(weight.toFixed(2));
+                var weight = count / 20;
+                $('#weight').val(weight.toFixed(2));
 
-    if (count == '') {
-        $('#credit').val('0');
-    } else if (paras == '') {
-        $('#credit').val('0');
-    } else {
+                if (count == '') {
+                    $('#credit').val('0');
+                } else if (paras == '') {
+                    $('#credit').val('0');
+                } else {
 
-        var credit = count2 * paras;
-        //  alert(credit);
-        $('#credit').val(credit.toFixed(2));
-    }
-}
-
-
+                    var credit = count * paras;
+                    //  alert(credit);
+                    $('#credit').val(credit.toFixed(2));
+                }
+            }
 
 
 
-var discount = $("#discount").val();
-if (discount != '') {
-    var credit = credit - discount;
-    $('#credit').val(credit.toFixed(3));
-    if (discount > credit) {
-        $('#discount').focus(function() {
-            $('#discount').val("");
+
+
+            var discount = $("#discount").val();
+            if (discount != '') {
+                var credit = credit - discount;
+                $('#credit').val(credit.toFixed(3));
+                if (discount > credit) {
+                    $('#discount').focus(function() {
+                        $('#discount').val("");
+                    });
+                    Swal.fire("Not acceptable. Value should be less then credit");
+                }
+            }
+
+
+            var debit = $("#debit").val();
+            var credit = $("#credit").val();
+            var monthly_com = $("#monthly_com").val();
+            var yearly_com = $("#yearly_com").val();
+            var oil_free = $("#oil_free").val();
+            var oil_sell = $("#oil_sell").val();
+            // if (debit == '') {
+            //     // $('#balance').val('0');
+            // } else if (credit == '') {
+            //     $('#balance').val('0');
+            // } else {
+            var name = monthly_com ? parseFloat(monthly_com) : 0;
+            var name2 = yearly_com ? parseFloat(yearly_com) : 0;
+            var name3 = oil_sell ? parseFloat(oil_sell) : 0;
+            var commision = name + name2;
+            // var commision = parseFloat(monthly_com) + parseFloat(yearly_com) ;
+            var balance = (debit - credit) + commision + name3;
+            // alert(balance);
+            $('#balance').val(balance.toFixed(3));
+            // }
+
+            var motor_vara = $('#motor_vara').val();
+            var unload = $('#unload').val();
+            if (motor_vara == '') {
+                $('#motor_vara').attr("placeholder", "motor vara");
+                //  $('#motor_vara').attr("value", "0");
+                //  $('#motor_vara').val(0);
+
+                $('#car_rent_redeem').val(unload);
+                $('#cemeats_paras').val(unload);
+            } else if (unload == '') {
+                $('#unload').attr("placeholder", "unload");
+                //  $('#unload').attr("value", "0");
+                //  $('#unload').val(0);
+
+                $('#car_rent_redeem').val(motor_vara);
+                $('#cemeats_paras').val(motor_vara);
+            } else if (unload == 0 && motor_vara == 0) {
+                $('#car_rent_redeem').val(0);
+            } else {
+
+
+                //                 $('#motor_vara').focus(function(){
+                //                     $('#motor_vara').value('')
+                // });
+
+                var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
+                // alert(balance);
+                $('#car_rent_redeem').val(car_rent_redeem);
+                $('#cemeats_paras').val(car_rent_redeem);
+
+            }
+
+
+            // var car_khalas = $('#car_rent_redeem').val();
+            // var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
+            // var cedi = $('#credit').val();
+            // var cadi2 = cedi ? parseFloat(cedi) : 0;
+            // var oil_s = $('#oil_sell').val();
+            // var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
+            // // var var_car=
+            // // var var_oil =
+            // // var var_credi = 
+            // // if(car_khalas_cr || cedi2 || oil_sell_cr){
+            //     var credit_car_rent = car_khalas_cr + cedi2 + oil_sell_cr;
+            // $('#total_credit').val(credit_car_rent);
+
+            // // }
+
+            var oil_s = $('#oil_sell').val();
+            var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
+            var car_khalas = $('#car_rent_redeem').val();
+            var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
+            var cedi = $('#credit').val();
+            var cedi2 = parseFloat(cedi);
+            // var cadi2 = cedi ? parseFloat(cedi) : 0;
+            var credit_car_rent = oil_sell_cr + car_khalas_cr + parseFloat(cedi);
+            $('#total_credit').val(credit_car_rent);
+
+            // // if (motor_vara == '') {
+            // //     $('#motor_vara').val()=null;
+            // // } else if (unload == '') {
+            // //     $('#unload').val()=null;
+            // // } else {
+            // //     $('#motor_vara').val()=null;
+            // // $('#unload').val()=null;
+            // //     var tar = motor_vara?$('#motor_vara').val():'0';
+            // //     var tar2 = motor_vara?$('#unload').val():'0';
+            // //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
+            // //     // alert(balance);
+            // //     $('#car_rent_redeem').val(car_rent_redeem);
+            // //     $('#cemeats_paras').val(car_rent_redeem);
+            // // }
+
+
         });
-        Swal.fire("Not acceptable. Value should be less then credit");
-    }
-}
-
-
-var debit = $("#debit").val();
-var credit = $("#credit").val();
-var monthly_com = $("#monthly_com").val();
-var yearly_com = $("#yearly_com").val();
-var oil_free = $("#oil_free").val();
-var oil_sell = $("#oil_sell").val();
-// if (debit == '') {
-//     // $('#balance').val('0');
-// } else if (credit == '') {
-//     $('#balance').val('0');
-// } else {
-var name = monthly_com ? parseFloat(monthly_com) : 0;
-var name2 = yearly_com ? parseFloat(yearly_com) : 0;
-var name3 = oil_sell ? parseFloat(oil_sell) : 0;
-var commision = name + name2;
-// var commision = parseFloat(monthly_com) + parseFloat(yearly_com) ;
-var balance = (debit - credit) + commision + name3;
-// alert(balance);
-$('#balance').val(balance.toFixed(3));
-// }
-
-var motor_vara = $('#motor_vara').val();
-var unload = $('#unload').val();
-if (motor_vara == '') {
-    $('#motor_vara').attr("placeholder", "motor vara");
-    //  $('#motor_vara').attr("value", "0");
-    //  $('#motor_vara').val(0);
-
-    $('#car_rent_redeem').val(unload);
-    $('#cemeats_paras').val(unload);
-} else if (unload == '') {
-    $('#unload').attr("placeholder", "unload");
-    //  $('#unload').attr("value", "0");
-    //  $('#unload').val(0);
-
-    $('#car_rent_redeem').val(motor_vara);
-    $('#cemeats_paras').val(motor_vara);
-} else if (unload == 0 && motor_vara == 0) {
-    $('#car_rent_redeem').val(0);
-} else {
-
-
-    //                 $('#motor_vara').focus(function(){
-    //                     $('#motor_vara').value('')
-    // });
-
-    var car_rent_redeem = parseInt(motor_vara) + parseInt(unload);
-    // alert(balance);
-    $('#car_rent_redeem').val(car_rent_redeem);
-    $('#cemeats_paras').val(car_rent_redeem);
-
-}
-
-
-// var car_khalas = $('#car_rent_redeem').val();
-// var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
-// var cedi = $('#credit').val();
-// var cadi2 = cedi ? parseFloat(cedi) : 0;
-// var oil_s = $('#oil_sell').val();
-// var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
-// // var var_car=
-// // var var_oil =
-// // var var_credi = 
-// // if(car_khalas_cr || cedi2 || oil_sell_cr){
-//     var credit_car_rent = car_khalas_cr + cedi2 + oil_sell_cr;
-// $('#total_credit').val(credit_car_rent);
-
-// // }
-
-var oil_s = $('#oil_sell').val();
-var oil_sell_cr = oil_s ? parseFloat(oil_s) : 0;
-var car_khalas = $('#car_rent_redeem').val();
-var car_khalas_cr = car_khalas ? parseFloat(car_khalas) : 0;
-var cedi = $('#credit').val();
-var cedi2 = parseFloat(cedi);
-// var cadi2 = cedi ? parseFloat(cedi) : 0;
-var credit_car_rent = oil_sell_cr + car_khalas_cr + parseFloat(cedi);
-$('#total_credit').val(credit_car_rent);
-
-// // if (motor_vara == '') {
-// //     $('#motor_vara').val()=null;
-// // } else if (unload == '') {
-// //     $('#unload').val()=null;
-// // } else {
-// //     $('#motor_vara').val()=null;
-// // $('#unload').val()=null;
-// //     var tar = motor_vara?$('#motor_vara').val():'0';
-// //     var tar2 = motor_vara?$('#unload').val():'0';
-// //     var car_rent_redeem = parseInt(tar) + parseInt(tar2);
-// //     // alert(balance);
-// //     $('#car_rent_redeem').val(car_rent_redeem);
-// //     $('#cemeats_paras').val(car_rent_redeem);
-// // }
-
-
-});
         // $(document).on('input change paste keyup', '.value-calc_edit', function() {
         //     var kg = $('#kg_edit').val();
         //     var paras = $('#paras_edit').val();

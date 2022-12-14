@@ -1,3 +1,4 @@
+
 <?php
 
 use Mpdf\Language\ScriptToLanguage;
@@ -19,57 +20,9 @@ $delete_data_permission = $_SESSION['delete_data'];
 $sucMsg = "";
 
 
-// Start total total_motor
-$sql = "SELECT COUNT(motor_sl) as motor FROM details_sell_cement WHERE customer_id = '$dealerId'AND motor_sl > 0 AND project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $total_motor = $row['motor'];
-    if (is_null($total_motor)) {
-      $total_motor = 0;
-    }
-  }
-} else {
-  $total_motor = 0;
-}
 
-//Start Gari vara
-$sql = "SELECT SUM(motor_vara) as motor_vara FROM details_cement WHERE  project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $motor_vara = $row['motor_vara'];
-    if (is_null($motor_vara)) {
-      $motor_vara = 0;
-    }
-  }
-} else {
-  $motor_vara = 0;
-}
-//End Gari vara
 
-//Start khalas/Unload
-$sql = "SELECT SUM(unload) as unload FROM details_cement WHERE  project_name_id = '$project_name_id'";
-$result = $db->select($sql);
-if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $unload = $row['unload'];
-    if (is_null($unload)) {
-      $unload = 0;
-    }
-  }
-} else {
-  $unload = 0;
-}
-$motor_vara_and_unload = $motor_vara + $unload;
-//End khalas/Unload
-
-// // Start total total_motor
-
-// // End total total_motor
-
-// //Start GB Bank Ganti
-$sql = "SELECT SUM(weight) as weight FROM details_sell_cement WHERE  customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(weight) as weight FROM details_sell_cement WHERE  dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -86,7 +39,7 @@ if ($result->num_rows > 0) {
 
 // //End GB Bank Ganti
 // Start total total_kg
-$sql = "SELECT SUM(count) as mot_bag FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(count) as mot_bag FROM details_sell_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -98,7 +51,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_mot_bag = 0;
 }
-$sql = "SELECT SUM(count2) as count_c FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(count2) as count_c FROM details_sell_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -110,7 +63,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_w = 0;
 }
-$sql = "SELECT SUM(count2) as count_c FROM details_cement WHERE  project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(count2) as count_c FROM details_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -122,7 +75,7 @@ if ($result->num_rows > 0) {
 } else {
   $total_w = 0;
 }
-$sql = "SELECT SUM(fee) as fee FROM details_cement WHERE  project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(fee) as fee FROM details_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -136,7 +89,7 @@ if ($result->num_rows > 0) {
 }
 $mot_beg_kroy = $total_w;
 
-$sql = "SELECT SUM(oil_free) as oil_free FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(oil_free) as oil_free FROM details_sell_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -149,7 +102,7 @@ if ($result->num_rows > 0) {
   $oil_free = 0;
 }
 
-$sql = "SELECT SUM(oil_sell) as oil_sell FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(oil_sell) as oil_sell FROM details_sell_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -161,7 +114,7 @@ if ($result->num_rows > 0) {
 } else {
   $oil_sell = 0;
 }
-$sql = "SELECT SUM(oil_sell) as oil_kroy FROM details_cement WHERE  project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(oil_sell) as oil_kroy FROM details_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -174,7 +127,7 @@ if ($result->num_rows > 0) {
   $oil_kroy = 0;
 }
 // Start total total_credit/mot_mul
-$sql = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(credit) as credit FROM details_sell_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -187,7 +140,7 @@ if ($result->num_rows > 0) {
   $total_credit = 0;
 }
 
-$sql = "SELECT SUM(credit) as credit_kroy FROM details_cement WHERE  project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(credit) as credit_kroy FROM details_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -203,7 +156,7 @@ $total_credit_oil = $total_credit_kroy + $oil_kroy;
 // End total total_credit/mot_mul
 
 // Start total total_debit/joma
-$sql = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(debit) as debit FROM details_sell_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -225,7 +178,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit_oil;
 
 //End Total para/mot_mul_khoros_shoho
 
-$sql = "SELECT SUM(paras) as paras FROM details_sell_cement WHERE customer_id = '$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT SUM(paras) as paras FROM details_sell_cement WHERE dealer_id = '$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
@@ -730,10 +683,10 @@ $mot_tel = $oil_kroy - $oil_free;
             <input type="text" name="stock" class="form-control-cement" id="stock" placeholder="Enter Information...">
           </td>
           <td>
-            <input type="text" name="information" class="form-control-cement" id="information" placeholder="Enter Information...">
+            <input type="text" name="information" class="form-control-cement" id="information" placeholder="Information...">
           </td>
           <td>
-            <input type="text" name="challan_no" class="form-control-cement" id="challan_no" placeholder="Enter voucher no..." required>
+            <input type="text" name="challan_no" class="form-control-cement" id="challan_no" placeholder="Voucher no..." required>
           </td>
           <td>
             <input type="text" name="address" class="form-control-cement" id="address" placeholder="Address..." pattern="[a-zA-Z0-9-\s]+" required>
@@ -766,13 +719,13 @@ $mot_tel = $oil_kroy - $oil_free;
           </td>
 
           <td>
-            <input type="text" name="sl_no" class="form-control-cement" id="sl_no" placeholder="In Cash/ Due...">
+            <input type="text" name="sl_no" class="form-control-cement" id="sl_no" placeholder="In cash/due...">
           </td>
           <td>
-            <input type="text" name="oil_free" class="form-control-cement" id="oil_free" placeholder="oil_free...">
+            <input type="text" name="oil_free" class="form-control-cement" id="oil_free" placeholder="Oil free...">
           </td>
           <td>
-            <input type="text" name="oil_sell" class="form-control-cement value-calc" id="oil_sell" placeholder="oil_para...">
+            <input type="text" name="oil_sell" class="form-control-cement value-calc" id="oil_sell" placeholder="Oil para...">
           </td>
           <td>
             <input type="text" onkeypress="return isNumber(event)" name="count" class="form-control-cement value-calc" id="count" placeholder="Count...">
@@ -891,7 +844,7 @@ $mot_tel = $oil_kroy - $oil_free;
 
 <?php
 // $sql ="SELECT * FROM details_balu WHERE dealer_id='$dealerId' ";
-$sql = "SELECT * FROM details_sell_cement WHERE customer_id='$dealerId' AND project_name_id = '$project_name_id'";
+$sql = "SELECT * FROM details_sell_cement WHERE dealer_id='$dealerId' AND project_name_id = '$project_name_id'";
 $result = $db->select($sql);
 if ($result) {
   $rowcount = mysqli_num_rows($result);

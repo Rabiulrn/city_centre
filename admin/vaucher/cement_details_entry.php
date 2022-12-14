@@ -633,7 +633,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                     <div class="bar_one"></div>
                     <div class="bar_two"></div>
                 </div>
-                <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব এন্ট্রি</h2>
+                <h2 class="popupHead" style="color: Green;">ক্রয় হিসাব পরিবর্তন</h2>
                 <div class="items_all_con" style="background-color: gray; color: white; border: 2px solid black;">
                     <form id="insertPopupForm">
                         <table style="width: 100%;">
@@ -766,12 +766,13 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                             <tr>
 
                                 <td>Particulars (বিবরণ)</td>
+                            
                                 <td>
                                     <?php
                                     // var parti_val = $('#car_rent_redeem').val();
                                     $sql = "SELECT DISTINCT category_name,category_id FROM cement_category WHERE  category_name != ''";
                                     $all_particular = $db->select($sql);
-                                    echo '<select name="particulars" id="particulars" class="form-control" >';
+                                    echo '<select name="particulars" id="particulars_popup" class="form-control" >';
                                     echo '<option value="particulars">Select...</option>';
                                     if ($all_particular->num_rows > 0) {
                                         while ($row = $all_particular->fetch_assoc()) {
@@ -1325,7 +1326,7 @@ $_SESSION['pageName'] = 'cement_kroy_hisab';
                         $('#so_date_popup').val('');
                         $('#dates_popup').val('');
                         $('#partculars_popup').val('');
-                        $('#particulars_popup').val("").change();
+                        $('#particulars_popup').val('');
                         $('#debit_popup').val('');
                         $('#monthly_com_popup').val('');
                         $('#yearly_com_popup').val('');

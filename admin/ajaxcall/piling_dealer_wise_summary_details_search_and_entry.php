@@ -383,7 +383,7 @@ $jer =($total_joma - $total_piling_bill) - $total_money_back;
           ?>
 
           <td>
-            <input type="text" name="sl" class="form-control-cement" id="sl"  placeholder="Enter sl no..." >
+            <input type="text" name="sl" class="form-control-cement" id="sl"  placeholder="Sl no..." >
           </td>
           <td>
             <input onkeypress="datecheckformat(event)" type="text" name="dates" class="form-control-cement" id="dates" placeholder="dd-mm-yyyy">

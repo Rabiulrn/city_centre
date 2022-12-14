@@ -23,7 +23,7 @@ if ($_POST['dates'] == '') {
 }
 $partculars     = trim($_POST['partculars']);
 $particulars    = trim($_POST['particulars']);
-
+list($data_id, $data_name) = explode(",", $_POST['particulars'], 2);
 
 
 
@@ -69,13 +69,16 @@ $weight      = trim($_POST['weight']);
   // var cash = $(element).closest('tr').find('td:eq(15)').text();
 
   $sql ="UPDATE `details_sell_cement` SET `information`='$information',`challan_no`='$voucher_no',
-  `address`='$address',`dates`='$dates',`partculars`='$partculars ',`particulars`='$particulars',
+  `address`='$address',`dates`='$dates',`partculars`='$partculars ',
   `sl`='$cash_rest',`oil_free`='$oil_amount',`oil_sell`='$oil_paras',
   `count`='$bag_amount',
   `paras`='$paras',`discount`='$discount',`credit`='$credit',`balance`='$balance'  WHERE id = '$cement_details_id'";
 // 	$sql = "UPDATE details_sell_cement SET motor_name = '$motor_name', driver_name = '$driver_name', motor_vara = '$motor_vara', unload = '$unload', cars_rent_redeem = '$car_rent_redeem', information = '$information', sl = '$sl', voucher_no = '$voucher_no', address = '$address', motor_sl = '$motor_sl', delivery_date = '$delivery_date', dates = '$dates', partculars = '$partculars', particulars = '$particulars', debit = '$debit' WHERE id = '$cement_details_id'";
     // -- , ton & kg = '$ton_kg', length = '$length', width = '$width', height = '$height', shifty = '$shifty', inchi (-)_minus = '$inchi_minus', cft_ (-)dropperd_out = '$cft_dropperd_out', inchi (+)_added = '$inchi_added', points ( - )_dropped_out = '$points_dropped_out', shift = '$shift', total_shift = '$total_shift', paras = '$paras', discount = '$discount', balance = '$balance', discount ='$discount', credit ='$credit', balance = '$balance', cemeats_paras= '$cemeats_paras', ton = '$ton', total_shifts = '$total_shifts' tons = '$tons', bank_name = '$bank_name', fee = '$fee' WHERE id = '$cement_details_id'";
-
+    if($particulars != "" || $particulars != "Select..."){
+      $sql2 = "UPDATE `details_sell_cement` SET particulars='$data_name',particulars_id='$data_id'";
+      $db->select($sql2);
+    }
 	if ($db->select($sql) === TRUE) {
 		$sucMsg = "cement details updated Successfully.";
 		echo "cement details updated Successfully.";

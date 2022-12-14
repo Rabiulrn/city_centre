@@ -12,21 +12,22 @@
 
   if(isset($rod_details_id)){
 
-    // $sql = "SELECT ton,partculars,particulars FROM details_cement WHERE id = '$rod_details_id'";
-    // $show = $db->select($sql);
-    // if ($show) {
-    //   while ($rows = $show->fetch_assoc()) {
-    //     $del_ton = $rows['ton'];
-    //     $del_part = $rows['partculars'];
-    //     $del_parti = $rows['particulars'];
-    //   }
-    //   // $sql_update = "UPDATE stocks_pathor SET `ton` = `ton` - '$del_ton' WHERE partculars ='$del_part' AND particulars ='$del_parti' AND `ton` - '$ton' >= 0 ORDER BY ton DESC LIMIT 1";
-
-    //   // $result2 = $db->select($sql_update);
-    //   // if ($result2) {
-    //   //   echo "stocks updated  Successfully.";
-    //   // }
-    // }
+    $sql = "SELECT id,dealer_id,particulars FROM details_cement WHERE id = '$rod_details_id'";
+    $show = $db->select($sql);
+    if ($show) {
+      while ($rows = $show->fetch_assoc()) {
+        $del_id = $rows['id'];
+        $del_dealer = $rows['dealer_id'];
+        $del_parti = $rows['particulars'];
+      }
+     // $sql_st_del = "UPDATE stocks_cement SET `ton` = `ton` - '$del_ton' WHERE partculars ='$del_part' AND particulars ='$del_parti' AND `ton` - '$ton' >= 0 ORDER BY ton DESC LIMIT 1";
+      // $sql_update = "UPDATE stocks_balu SET `ton` = `ton` - '$del_ton' WHERE partculars ='$del_part' AND particulars ='$del_parti' AND `ton` - '$ton' >= 0 ORDER BY ton DESC LIMIT 1";
+      $sql_st_del = "DELETE FROM stocks_cement WHERE dealer_id = '$del_dealer'";
+      $result2 = $db->select($sql_st_del);
+      if ($result2) {
+        echo "stocks deleted  Successfully.";
+      }
+    }
 
 
       $sql = "DELETE FROM details_cement WHERE id = '$rod_details_id'";

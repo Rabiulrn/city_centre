@@ -12,11 +12,12 @@
 
   if (isset($rod_details_id)) {
 
-    // $sql = "SELECT ton,partculars,particulars FROM details_balu WHERE id = '$rod_details_id'";
+    // $sql = "SELECT id,ton,partculars,particulars FROM details_balu WHERE id = '$rod_details_id'";
     // $show = $db->select($sql);
     // if ($show) {
     //   while ($rows = $show->fetch_assoc()) {
     //     $del_ton = $rows['ton'];
+    //     $del_id = $rows['id'];
     //     $del_part = $rows['partculars'];
     //     $del_parti = $rows['particulars'];
     //   }

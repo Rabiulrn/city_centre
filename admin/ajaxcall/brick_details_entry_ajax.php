@@ -75,7 +75,8 @@
 
 
 // $sql2 = "INSERT INTO `stocks_cement` (`stock_id`, `partculars`, `particulars`, `weight`,`project_name_id`) VALUES ('','$partculars', '$particulars', '$weight','$project_name_id')";
-
+$sql2 = "INSERT INTO `stocks_brick` (`stock_id`, `dealer_id`, `count`,`project_name_id`) VALUES ('','$dealer_id', '$count','$project_name_id')";
+$db->insert($sql2);
     $result = $db->insert($sql);
     if ($result) 
     {

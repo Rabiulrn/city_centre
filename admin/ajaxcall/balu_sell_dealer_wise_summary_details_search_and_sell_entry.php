@@ -148,6 +148,7 @@ $total_balance = $total_debit-$total_credit -$motor_vara_and_unload ;
 //Start Total para/mot_mul_khoros_shoho
 
 $vara_credit = $motor_vara_and_unload + $total_credit;
+$mot_baki = $total_debit - $total_credit;
 
 
 
@@ -162,10 +163,20 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
 <div id="flip">
-  <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary
+    <!-- <label class="conchk" id="flipChkbox">Show/Hide Summary 
       <input type="checkbox">
       <span class="checkmark"></span>
     </label> -->
+    <label class="conchk" id="flipChkbox">Show/Hide Summary
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <div class="contorlAfterDealer">          
+      
+        <button onclick="myFunction()" class="btn printBtnDlr" style="position:relative; margin-left:150px; right: 0px">Print</button>
+        <!-- <button onclick="myFunction()" class="btn printBtnDlrDown">Download</button> -->
+    </div>
+</div>
 
 
   <div class="contorlAfterDealer">
@@ -250,37 +261,39 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 			<td><?php echo $mm12_rod500; ?></td>
 			<td class="hastext">12mm 400W/60G</td>
 			<td><?php echo $mm12_rod400; ?></td> -->
+      <!-- <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
       <td style="background-color: #bcbcbc;"></td>
-      <td style="background-color: #bcbcbc;"></td>
-      <td style="background-color: #bcbcbc;"></td>
+      <td style="background-color: #bcbcbc;"></td> -->
     </tr>
     <!-- Ekhan theke -->
     <tr>
-      <td class="hastext">মোট গাড়ীঃ</td>
-      <td><?php echo $total_motor; ?></td>
-      <td class="hastext">ম‌োট মূলঃ</td>
-      <td><?php echo $total_credit; ?></td>
+      <td class="hastext">মোট বাকীঃ</td>
+      <td><?php echo $mot_baki; ?></td>
+      <td class="hastext">মোট ক্রয় মূলঃ</td>
+      <td><?php echo $total_credits; ?></td>
     </tr>
     <tr>
       <!-- <td class="hastext">16mm 500W/60G</td>
 			<td><?php echo $mm16_rod500; ?></td>
 			<td class="hastext">16mm 400W/60G</td>
 			<td><?php echo $mm16_rod400; ?></td> -->
-      <td class="hastext">মোট গাড়ী ভাড়াঃ</td>
-      <td><?php echo $motor_vara; ?></td>
-      <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
-      <td><?php echo $vara_credit; ?></td>
+      <td class="hastext">টাকা জমাঃ</td>
+      <td><?php echo $total_debit; ?></td>
+      <!-- <td class="hastext">ম‌োট মূল খরচ সহঃ</td>
+      <td><?php echo $vara_credit; ?></td> -->
+      <td class="hastext">মোট বিক্রয় মূলঃ</td>
+      <td><?php echo $total_credit; ?></td>
     </tr>
     <tr>
       <!-- <td class="hastext">20mm 500W/60G</td>
 			<td><?php echo $mm20_rod500; ?></td>
 			<td class="hastext">20mm 400W/60G</td>
 			<td><?php echo $mm20_rod400; ?></td> -->
-      <td class="hastext">মোট খালাস খরচঃ</td>
-      <td><?php echo $unload; ?></td>
-      <td class="hastext">ম‌োট জমাঃ</td>
-      <td><?php echo $total_debit; ?></td>
+      <td class="hastext">বাকী পাওনাঃ</td>
+      <td><?php echo $mot_baki; ?></td>
+      <td class="hastext">জেরঃ</td>
+      <td><?php echo $total_debits; ?></td>
       
       
     </tr>
@@ -289,10 +302,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <td><?php echo $mm22_rod500; ?></td>
             <td class="hastext">22mm 400W/60G</td>
             <td><?php echo $mm22_rod400; ?></td> -->
-      <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
+      <!-- <td class="hastext">গাড়ী ভাড়া ও খালাস খরচঃ</td>
       <td><?php echo $motor_vara_and_unload; ?></td>
       <td class="hastext">ম‌োট পাওনা ও জেরঃ</td>
-      <td><?php echo $total_balance; ?></td>
+      <td><?php echo $total_balance; ?></td> -->
       
     
 
@@ -535,10 +548,10 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" onkeypress="return isNumber(event)" name="unload" name="unload" class="form-control-balu value-calc" id="unload" placeholder="Unload...">
           </td>
           <td>
-            <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Enter cars rent & redeem...">
+            <input type="text" name="car_rent_redeem" class="form-control-balu value-calc" id="car_rent_redeem" placeholder="Cars rent & redeem...">
           </td>
           <td>
-            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Enter information...">
+            <input type="text" name="information" class="form-control-balu" id="information" placeholder="Information...">
           </td>
           <!-- <td>
 	                      <?php
@@ -582,11 +595,11 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
 
 
           <td>
-            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Enter sl no...">
+            <input type="text" name="sl_no" class="form-control-balu" id="sl_no" value="<?php echo $newId ?>" placeholder="Sl no...">
           </td>
 
           <td>
-            <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Enter voucher no...">
+            <input type="text" name="delivery_no" class="form-control-balu" id="delivery_no" placeholder="Voucher no...">
           </td>
           <td>
             <input type="text" name="address" class="form-control-balu" id="address" placeholder="Address...">
@@ -604,7 +617,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input onkeypress="datecheckformat(event)" type="text" name="dates" class="form-control-balu" id="dates" placeholder="dd-mm-yyyy">
           </td>
           <td>
-            <input type="text" name="partculars" class="form-control-balu" id="partculars" placeholder="marfot...">
+            <input type="text" name="partculars" class="form-control-balu" id="partculars" placeholder="Marfot...">
           </td>
           <!-- <td>
 	                      <?php
@@ -699,7 +712,7 @@ $vara_credit = $motor_vara_and_unload + $total_credit;
             <input type="text" name="shift" class="form-control-balu value-calc" id="shift" placeholder="Cft '00 mm'...">
           </td>
           <td>
-            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="Enter paras...">
+            <input type="text" onkeypress="return isNumber(event)" name="paras" class="form-control-balu value-calc" id="paras" placeholder="Paras...">
           </td>
           <td>
             <input type="text" name="total_shift" class="form-control-balu value-calc" id="total_shift" placeholder="Total-cft '00 mm'...">
