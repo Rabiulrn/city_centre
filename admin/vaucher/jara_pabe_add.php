@@ -1,4 +1,7 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     session_start();
     if(!isset($_SESSION['username'])){
         header('location:../index.php'); 
@@ -233,7 +236,7 @@
                             <td><input type="text" name="jp_date[]" class="form-control dateInput dtCount" id="jpDate1" placeholder="DD/MM/YYYY" /></td>
                             <td><input type="text" name="name[]" class="form-control" size="100" placeholder="নিজ পাওনাদারের নাম" id="name1"/></td>
                             <td><input type="text" name="description[]" class="form-control" placeholder="বিবরণ" id="description1"/></td>
-                            <td><input type="text" name="amount[]" class="form-control" placeholder="টাকাঃ" id="amount1"/></td>
+                            <td><input type="number" name="amount[]" class="form-control" placeholder="টাকাঃ" id="amount1"/></td>
                             <td class="cenText"><button type="button" name="add" id="add" class="btn btn-success">+</button></td>
                             <td class="cenText"><button type="button" name="remove" id="1 " class="btn btn-danger btn_remove disabled">-</button></td>
                         </tr>

@@ -1,4 +1,8 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     session_start();
     if(!isset($_SESSION['username'])){
         header('location:../index.php');
@@ -229,7 +233,7 @@
                         <tr>
                             <td><input type="text" name="credit_date[]" class="form-control dateInput dtCount" id="cDate1" placeholder="DD/MM/YYYY"/></td>
                             <td><input type="text" name="credit_name[]" class="form-control" size="100" placeholder="মারফোত নাম" id="credit_name1"/></td>
-                            <td><input type="text" name="credit_amount[]" class="form-control" placeholder="জমাঃ" id="credit_amount1"/></td>
+                            <td><input type="number" name="credit_amount[]" class="form-control" placeholder="জমাঃ" id="credit_amount1"/></td>
                             <td class="cenText"><button type="button" name="add" id="add" class="btn btn-success">+</button></td>
                             <td class="cenText"><button type="button" name="remove" id="1" class="btn btn-danger btn_remove disabled">-</button></td>
                         </tr>
@@ -263,49 +267,61 @@
                     $result = $db->select($sql);
                     if ($result && mysqli_num_rows($result) > 0) {
                         $total_amount = 0;
-                        while($row = $result->fetch_assoc()){
-                            $id = trim($row['id']);
-                            $credit_name = trim($row['credit_name']);
-                            $credit_amount = trim($row['credit_amount']);
-                            $credit_date = $row['credit_date'];
-                            if($credit_amount == ''){
-                                $credit_amount = 0;
-                            }
-                            if($credit_date == '0000-00-00'){
-                                $credit_date = '';
-                            }
-                            $total_amount += $credit_amount;
-                            $html = '<tr>'
-                                        . '<td style="text-align:center;">'. $i .'</td>'
-                                        . '<td style="">'. date("d/m/Y", strtotime($credit_date)) .'</td>'
-                                        . '<td style="">'. $credit_name .'</td>'
-                                        . '<td style="">'. number_format($credit_amount, 2) .'</td>';
+                        while ($row = $result->fetch_assoc()) {
+            $id = trim($row['id']);
+            $credit_name = trim($row['credit_name']);
+            
+            // Safely handle credit amount
+            $credit_amount = trim($row['credit_amount']);
+            $credit_amount = is_numeric($credit_amount) ? (float)$credit_amount : 0;
+            
+            // Handle invalid date
+            $credit_date = $row['credit_date'];
+            if ($credit_date == '0000-00-00' || empty($credit_date)) {
+                $credit_date = '';
+            }
 
-                            if($delete_data_permission == 'yes'){
-                                $html .= '<td align="center"><input type="button" value="Delete" class="btn btn-danger" data_row_id="'. $id .'" onclick="delete_row(this)"></td>';
-                            } else {
-                                $html .= '<td align="center"><a class="btn btn-danger edPermit" disabled>Delete</a></td>';
-                            }
+            $total_amount += $credit_amount;
 
-                            if($edit_data_permission == 'yes'){
-                                $html .= '<td style=""><input type="button" value="Edit" class="btn btn-success" data_row_id="'. $id .'" data_row_amount="'.$credit_amount.'" onclick="display_update(this)"></td>';
-                            } else {
-                                $html .= '<td align="center"><a class="btn btn-success edPermit" disabled>&nbsp;Edit&nbsp</a></td>';
-                            }
-                            $html .= '</tr>';
-                            echo $html;
-                            $i++;
-                        }
-                        $html_total = '<tr>'
-                                          .'<td colspan="3" style="text-align:right;">মোটঃ</td>'
-                                          .'<td>'.number_format($total_amount, 2).'</td>'
-                                          .'<td></td>'
-                                          .'<td></td>'
-                                      .'</tr>';
-                        echo $html_total;
-                    }
+            // Start row
+            $html = '<tr>'
+                      . '<td style="text-align:center;">' . $i . '</td>'
+                      . '<td style="">' . (!empty($credit_date) ? date("d/m/Y", strtotime($credit_date)) : '') . '</td>'
+                      . '<td style="">' . htmlspecialchars($credit_name) . '</td>'
+                      . '<td style="">' . number_format($credit_amount, 2) . '</td>';
 
-                    echo '</table>';       
+            // Delete button
+            if ($delete_data_permission == 'yes') {
+                $html .= '<td align="center"><input type="button" value="Delete" class="btn btn-danger" data_row_id="' . $id . '" onclick="delete_row(this)"></td>';
+            } else {
+                $html .= '<td align="center"><a class="btn btn-danger edPermit" disabled>Delete</a></td>';
+            }
+
+            // Edit button
+            if ($edit_data_permission == 'yes') {
+                $html .= '<td style=""><input type="button" value="Edit" class="btn btn-success" data_row_id="' . $id . '" data_row_amount="' . $credit_amount . '" onclick="display_update(this)"></td>';
+            } else {
+                $html .= '<td align="center"><a class="btn btn-success edPermit" disabled>&nbsp;Edit&nbsp;</a></td>';
+            }
+
+            $html .= '</tr>';
+
+            echo $html;
+            $i++;
+        }
+
+        // Total row
+        $html_total = '<tr>'
+                        . '<td colspan="3" style="text-align:right;">মোটঃ</td>'
+                        . '<td>' . number_format($total_amount, 2) . '</td>'
+                        . '<td></td>'
+                        . '<td></td>'
+                      . '</tr>';
+
+        echo $html_total;
+    }
+
+    echo '</table>';       
                ?>
             </div>
 
