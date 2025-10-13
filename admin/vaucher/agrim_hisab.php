@@ -120,7 +120,10 @@ error_reporting(E_ALL);
             $debit_group_id = $row['id'];
 
 
-            $qrys = "UPDATE debit_group_data SET group_total_taka = group_taka * group_pices";
+            // $qrys = "UPDATE debit_group_data SET group_total_taka = group_taka * group_pices";
+        $qrys = "UPDATE debit_group_data 
+         SET group_total_taka = CAST(group_taka AS DECIMAL(10,2)) * CAST(group_pices AS DECIMAL(10,2)) 
+         WHERE group_taka != '' AND group_pices != ''";
             $result = $db->update($qrys);
 
             $sql_qry_debit_due="SELECT SUM(group_total_taka) AS debit_due FROM debit_group_data WHERE group_id =$debit_group_id";
