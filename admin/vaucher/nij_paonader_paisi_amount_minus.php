@@ -179,17 +179,26 @@ if(isset($_GET['row_id'])){
                   if($amount == ''){
                       $amount = 0;
                   }
-                  $nij_paona_date = $table_row['nij_paona_date'];
-                  $query = "SELECT SUM(nij_amount) as add_amount FROM entry_nij_paonadar WHERE nij_paonadar_id = '$data_id' AND nij_status ='add' AND project_name_id = '$project_name_id'";
-                  $show = $db->select($query);
-                  if(mysqli_num_rows($show) == 1){
-                      $sum_row = $show->fetch_assoc();
-                      $add_amount = trim($sum_row['add_amount']);
-                      if($add_amount == ''){
-                          $add_amount = 0;
-                      }
-                      $amount += $add_amount;
-                  }
+                 $nij_paona_date = $table_row['nij_paona_date'];
+                 $query = "SELECT SUM(nij_amount) as add_amount FROM entry_nij_paonadar WHERE nij_paonadar_id = '$data_id' AND nij_status ='add' AND project_name_id = '$project_name_id'";
+                 $show = $db->select($query);
+
+                 if ($show && mysqli_num_rows($show) == 1) {
+                     $sum_row = $show->fetch_assoc();
+    
+                     if (isset($sum_row['add_amount']) && $sum_row['add_amount'] !== null) {
+                         $add_amount = trim((string)$sum_row['add_amount']);
+                     } else {
+                         $add_amount = 0;
+                     }
+
+                     if ($add_amount === '') {
+                         $add_amount = 0;
+                     }
+
+                     $amount += $add_amount;
+                 }
+
                   echo '<tr>';
                       echo '<td class="text-center">পাওনা = </td>';
                       echo '<td>'. date("d/m/Y", strtotime($nij_paona_date)).'</td>';
