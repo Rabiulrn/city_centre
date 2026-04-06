@@ -54,8 +54,10 @@
                         $mail->isSMTP();                                            // Set mailer to use SMTP
                         $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                        $mail->Username   = 'citycenterwebapp@gmail.com';                     // SMTP username
-                        $mail->Password   = 'cc@rangpur@Kh0k0n82';                               // SMTP password
+                        $mail->Username   = 'mottaleb.jebon@gmail.com';                     // SMTP username
+                        $mail->Password   = 'qmew tjnu ydjy htpc';                               // SMTP password
+                        // $mail->Username   = 'citycenterwebapp@gmail.com';                     // SMTP username
+                        // $mail->Password   = 'cc@rangpur@Kh0k0n82'; 
                         $mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
                         $mail->Port       = 465;                                    // TCP port to connect to
                         $mail->SMTPDebug = false;

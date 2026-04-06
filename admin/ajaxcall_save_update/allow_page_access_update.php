@@ -60,7 +60,7 @@
 	$cement_dealer 		= $_POST['cement_dealer'];
 	$cement_customer 		= $_POST['cement_customer'];
 	$cement_buyer 			= $_POST['cement_buyer'];
-	$cement_stocks 			= $_POST['cement_stocks'];
+	// $cement_stocks 			= $_POST['cement_stocks'];
 	$cement_report 			= $_POST['cement_report'];
 	// $pathor_report 		= $_POST['pathor_report'];
 
@@ -79,7 +79,7 @@
 	pathor_buyer = '$pathor_buyer',pathor_stocks = '$pathor_stocks',
 	cement_kroy_hisab = '$cement_kroy_hisab',cement_bikroy_hisab = '$cement_bikroy_hisab',
 	cement_category = '$cement_category', cement_dealer = '$cement_dealer', cement_customer = '$cement_customer',
-	cement_buyer = '$cement_buyer',cement_stocks = '$cement_stocks',cement_report = '$cement_report',
+	cement_buyer = '$cement_buyer', cement_report = '$cement_report',
 	  create_user = '$create_user', edit_data = '$edit_data', delete_data = '$delete_data', project_name_id = '$project_name_id' WHERE username = '$username'";
 
 	if ($db->update($sql) === TRUE) {
