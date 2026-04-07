@@ -190,8 +190,8 @@ if ($usernamePost) {
 
 <div class="pw">
   <div class="pw-header">
-    <span class="pw-title">Allowable Pages</span>
-    <button class="sel-btn" type="button" onclick="toggleAllPerms(this)">Select all</button>
+    <span class="pw-title" style="margin-top: 10px;">Allowable Pages</span>
+    <!-- <button class="sel-btn" type="button" onclick="toggleAllPerms(this)">Select all</button> -->
   </div>
 
   <div class="pw-grid">
@@ -289,6 +289,10 @@ if ($usernamePost) {
           <input type="checkbox" name="pathor_stocks" id="pathor_stocks" onchange="checkUncheck(this)" value="<?php echo $pathor_stocks; ?>" <?php echo ($pathor_stocks == 'yes' ? 'checked' : ''); ?>>
           <span>স্টক তথ্য</span>
         </label>
+        <!-- <label class="check-row">
+          <input type="checkbox" name="pathor_report" id="pathor_report" onchange="checkUncheck(this)" value="<?php echo $pathor_report; ?>" <?php echo ($pathor_report == 'yes' ? 'checked' : ''); ?>>
+          <span>রিপোর্ট</span>
+        </label> -->
       </div>
     </div>
 
@@ -410,10 +414,10 @@ if ($usernamePost) {
       </div>
     </div>
 
-    <!-- অন্যান্ন -->
+    <!-- অন্যান্য -->
     <div class="card">
       <div class="card-head">
-        <div class="card-head-left"><div class="card-dot"></div><span class="card-title">অন্যান্ন</span></div>
+        <div class="card-head-left"><div class="card-dot"></div><span class="card-title">অন্যান্য</span></div>
         <span class="card-badge">3 items</span>
       </div>
       <div class="card-body">
